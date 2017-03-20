@@ -11,5 +11,15 @@
             "name": "Johannes Tegnér",
             "email": "johannes@jitesoft.com"
         }
-    ]
+    ],
+    "autoload": {
+        "psr-4": {
+            "Jitesoft\\Utilities\\Arrays\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Jitesoft\\Utilities\\Arrays\\Tests\\": "tests/"
+        }
+    }
 }
