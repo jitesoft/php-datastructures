@@ -26,14 +26,22 @@ interface IndexedListInterface {
      */
     public function remove($object): bool;
 
-    public function addAt($object, int $index): bool;
+    /**
+     * Insert a object at the specific location.
+     *
+     * @param $object
+     * @param int $index
+     * @return bool
+     */
+    public function insert($object, int $index): bool;
 
     /**
      * Remove a object at a specific location.
      *
      * @param int $index
      * @param bool $cyclic  If true, the array will move all objects after the removed object to keep the array order.
-     *                      If false, the last index will be placed at the removed objects index to speed up the execution.
+     *                      If false, the last index will be placed at the removed objects index to speed up the
+     *                      execution.
      * @return bool
      */
     public function removeAt(int $index, bool $cyclic = false): bool;
@@ -41,17 +49,17 @@ interface IndexedListInterface {
     /**
      * Add a range of objects to the list.
      *
-     * @param ArrayAccess $range
+     * @param array|ArrayAccess $range
      * @return bool
      */
-    public function addRange(ArrayAccess $range): bool;
+    public function addRange($range): bool;
 
     /**
      * Insert a range of objects into the List.
      *
-     * @param ArrayAccess $range
+     * @param array|ArrayAccess $range
      * @param int $index
      * @return bool
      */
-    public function insertRange(ArrayAccess $range, int $index): bool;
+    public function insertRange($range, int $index): bool;
 }
