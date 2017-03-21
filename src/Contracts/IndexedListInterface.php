@@ -8,7 +8,7 @@ namespace Jitesoft\Utilities\Arrays\Contracts;
 
 use ArrayAccess;
 
-interface IndexedListInterface {
+interface IndexedListInterface extends ListInterface {
 
     /**
      * Add a object to the list.
@@ -47,14 +47,6 @@ interface IndexedListInterface {
     public function removeAt(int $index, bool $cyclic = false): bool;
 
     /**
-     * Add a range of objects to the list.
-     *
-     * @param array|ArrayAccess $range
-     * @return bool
-     */
-    public function addRange($range): bool;
-
-    /**
      * Insert a range of objects into the List.
      *
      * @param array|ArrayAccess $range
@@ -62,4 +54,13 @@ interface IndexedListInterface {
      * @return bool
      */
     public function insertRange($range, int $index): bool;
+
+
+    /**
+     * Add objects to the list.
+     *
+     * @param array $range
+     * @return bool
+     */
+    public function addRange(array $range): bool;
 }

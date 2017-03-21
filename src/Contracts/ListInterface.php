@@ -8,11 +8,12 @@ namespace Jitesoft\Utilities\Arrays\Contracts;
 
 use ArrayAccess;
 use IteratorAggregate;
+use Countable;
 
 /**
- * Interface for List classes.
+ * Interface for all List classes.
  */
-interface ListInterface extends ArrayAccess, IteratorAggregate {
+interface ListInterface extends ArrayAccess, IteratorAggregate, Countable {
 
     /**
      * ListInterface constructor.
@@ -20,18 +21,10 @@ interface ListInterface extends ArrayAccess, IteratorAggregate {
      */
     public function __construct(array $from = []);
 
-
-    /**
-     * Add objects to the list.
-     *
-     * @param array $objects
-     * @return bool
-     */
-    public function addAll(array $objects): bool;
-
     /**
      * Get number of objects in the list.
      *
+     * @alias count()
      * @return int
      */
     public function length(): int;
@@ -41,7 +34,15 @@ interface ListInterface extends ArrayAccess, IteratorAggregate {
      *
      * @return int
      */
-    public function count(): int ;
+    public function count(): int;
+
+    /**
+     * Get number of objects in the list.
+     *
+     * @alias count()
+     * @return int
+     */
+    public function size(): int;
 
     /**
      * Clear the list of all objects.

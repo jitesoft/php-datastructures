@@ -97,7 +97,7 @@ trait IndexedArrayTestTrait {
 
     public function testInsertRange() {
         $this->implementation->add("Test");
-        $this->implementation->add("Test2");
+        $this->implementation->add("Test4");
 
         $this->getSelf()->assertEquals("Test", $this->implementation[0]);
         $this->getSelf()->assertEquals("Test4", $this->implementation[1]);
@@ -141,7 +141,7 @@ trait IndexedArrayTestTrait {
         $this->getSelf()->assertEquals("Test", $this->implementation[0]);
         $this->getSelf()->assertEquals("Test3", $this->implementation[1]);
         $this->getSelf()->assertEquals("Test2", $this->implementation[2]);
-        $this->getSelf()->assertFalse(isset($this->implementation[0]));
+        $this->getSelf()->assertFalse(isset($this->implementation[3]));
     }
 
 
@@ -155,7 +155,64 @@ trait IndexedArrayTestTrait {
         $this->getSelf()->assertEquals("Test", $this->implementation[0]);
         $this->getSelf()->assertEquals("Test2", $this->implementation[1]);
         $this->getSelf()->assertEquals("Test3", $this->implementation[2]);
-        $this->getSelf()->assertFalse(isset($this->implementation[0]));
+        $this->getSelf()->assertFalse(isset($this->implementation[3]));
+    }
+
+
+    public function testCount() {
+        $this->getSelf()->assertEquals(0, $this->implementation->count());
+        $this->implementation->add("hej");
+        $this->getSelf()->assertEquals(1, $this->implementation->count());
+        $this->implementation->addRange(["a", "b", "c"]);
+        $this->getSelf()->assertEquals(4, $this->implementation->count());
+        $this->implementation->remove("a");
+        $this->getSelf()->assertEquals(3, $this->implementation->count());
+    }
+
+    public function testLength() {
+        $this->getSelf()->assertEquals(0, $this->implementation->length());
+        $this->implementation[0] = "Test";
+        $this->implementation[1] = "TEST";
+        $this->implementation->insert("test...", 1);
+        $this->getSelf()->assertEquals(3, $this->implementation->length());
+        $this->implementation->removeAt(1);
+        $this->getSelf()->assertEquals(2, $this->implementation->length());
+    }
+
+    public function testSize() {
+        $this->getSelf()->assertEquals(0, $this->implementation->size());
+        $this->implementation->insertRange(["a", "b", "c"], 0);
+        $this->getSelf()->assertEquals(3, $this->implementation->size());
+        $this->implementation->removeAt(2);
+        $this->getSelf()->assertEquals(2, $this->implementation->size());
+    }
+
+    public function testCountable() {
+        $this->getSelf()->assertCount(0, $this->implementation);
+        $this->getSelf()->assertEquals(0, count($this->implementation));
+        $this->implementation->addRange(["a","b", 3]);
+        $this->getSelf()->assertCount(3, $this->implementation);
+        $this->getSelf()->assertEquals(3, count($this->implementation));
+    }
+
+    public function testClear() {
+        $this->implementation->addRange(["a", "b", "c"]);
+        $this->getSelf()->assertCount(3, $this->implementation);
+        $this->implementation->clear();
+        $this->getSelf()->assertCount(0, $this->implementation);
+        $this->getSelf()->assertEmpty($this->implementation);
+    }
+
+    public function testUnset() {
+        $this->implementation->addRange(["a", "b", "c", "d", "e"]);
+        $this->getSelf()->assertTrue(isset($this->implementation[1]));
+        unset($this->implementation[1]);
+        $this->getSelf()->assertCount(5, $this->implementation);
+        $this->getSelf()->assertEquals("a", $this->implementation[0]);
+        $this->getSelf()->assertEquals("c", $this->implementation[1]);
+        $this->getSelf()->assertEquals("d", $this->implementation[2]);
+        $this->getSelf()->assertEquals("e", $this->implementation[3]);
+        $this->getSelf()->assertFalse(isset($this->implementation[4]));
     }
 
     /**
