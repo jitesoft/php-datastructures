@@ -50,4 +50,5 @@ interface ListInterface extends ArrayAccess, IteratorAggregate, Countable {
      * @return bool
      */
     public function clear(): bool;
+
 }
