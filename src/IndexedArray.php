@@ -9,10 +9,12 @@ namespace Jitesoft\Utilities\Arrays;
 use ArrayAccess;
 use InvalidArgumentException;
 use Jitesoft\Utilities\Arrays\Contracts\IndexedListInterface;
+use Jitesoft\Utilities\Arrays\Traits\ArrayMethodsTrait;
 use OutOfBoundsException;
 use Traversable;
 
 class IndexedArray implements IndexedListInterface {
+    use ArrayMethodsTrait;
 
     private $innerArray = [];
     private $count      = 0;
