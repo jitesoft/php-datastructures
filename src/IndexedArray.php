@@ -203,17 +203,7 @@ class IndexedArray implements IndexedListInterface {
         return true;
     }
 
-    //region Traversable, ArrayAccess.
-
-    /**
-     * Retrieve an external iterator
-     * @link http://php.net/manual/en/iteratoraggregate.getiterator.php
-     * @return Traversable An instance of an object implementing <b>Iterator</b> or
-     * <b>Traversable</b>
-     * @since 5.0.0
-     */
-    public function getIterator() {
-    }
+    //region ArrayAccess.
 
     /**
      * Whether a offset exists
@@ -291,5 +281,4 @@ class IndexedArray implements IndexedListInterface {
             throw new OutOfBoundsException("Array out of bounds.");
         }
     }
-
 }

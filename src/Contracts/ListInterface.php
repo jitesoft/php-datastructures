@@ -7,13 +7,12 @@
 namespace Jitesoft\Utilities\Arrays\Contracts;
 
 use ArrayAccess;
-use IteratorAggregate;
 use Countable;
 
 /**
  * Interface for all List classes.
  */
-interface ListInterface extends ArrayAccess, IteratorAggregate, Countable {
+interface ListInterface extends ArrayAccess, Countable {
 
     /**
      * ListInterface constructor.
