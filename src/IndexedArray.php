@@ -6,18 +6,26 @@
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 namespace Jitesoft\Utilities\Arrays;
 
-use Jitesoft\Utilities\Arrays\Contracts\ListInterface;
+use ArrayAccess;
+use InvalidArgumentException;
+use Jitesoft\Utilities\Arrays\Contracts\IndexedListInterface;
+use OutOfBoundsException;
 use Traversable;
 
-class IndexedArray implements ListInterface {
+class IndexedArray implements IndexedListInterface {
 
     private $innerArray = [];
+    private $count      = 0;
 
     /**
      * ListInterface constructor.
      * @param array $from
      */
     public function __construct(array $from = []) {
+        foreach ($from as $item) {
+            $this->innerArray[] = $item;
+        }
+        $this->count = count($from);
     }
 
     /**
@@ -27,7 +35,9 @@ class IndexedArray implements ListInterface {
      * @return bool
      */
     public function add($object): bool {
-        // TODO: Implement add() method.
+        $this->innerArray[] = $object;
+        $this->count++;
+        return true;
     }
 
     /**
@@ -37,26 +47,43 @@ class IndexedArray implements ListInterface {
      * @return bool
      */
     public function remove($object): bool {
-        // TODO: Implement remove() method.
-    }
+        if (!in_array($object, $this->innerArray)) {
+            return false;
+        }
 
-    /**
-     * Add objects to the list.
-     *
-     * @param array $objects
-     * @return bool
-     */
-    public function addAll(array $objects): bool {
-        // TODO: Implement addAll() method.
+        $temp = [];
+        foreach ($this->innerArray as $item) {
+            if ($item === $object) {
+                continue;
+            }
+
+            $temp[] = $item;
+        }
+
+        $this->innerArray = $temp;
+        $this->count--;
+        return true;
     }
 
     /**
      * Get number of objects in the list.
      *
+     * @alias count()
      * @return int
      */
     public function length(): int {
-        // TODO: Implement length() method.
+        return $this->count;
+    }
+
+
+    /**
+     * Get number of objects in the list.
+     *
+     * @alias count()
+     * @return int
+     */
+    public function size(): int {
+        return $this->count;
     }
 
     /**
@@ -65,7 +92,7 @@ class IndexedArray implements ListInterface {
      * @return int
      */
     public function count(): int {
-        // TODO: Implement count() method.
+        return $this->count;
     }
 
     /**
@@ -74,17 +101,105 @@ class IndexedArray implements ListInterface {
      * @return bool
      */
     public function clear(): bool {
-        // TODO: Implement clear() method.
+        unset($this->innerArray);
+        $this->innerArray = [];
+        $this->count      = 0;
+        return true;
     }
 
+    /**
+     * Insert a object at the specific location.
+     *
+     * @param $object
+     * @param int $index
+     * @return bool
+     */
+    public function insert($object, int $index): bool {
+        $this->boundsCheck($index, $this->count+1, 0);
 
+        $temp = [];
+        for ($i=0;$i<$this->count;$i++) {
+            if ($i === $index) {
+                $temp[] = $object;
+            }
+            $temp[] = $this->innerArray[$i];
+        }
+        $this->innerArray = $temp;
+        $this->count++;
+        return true;
+    }
 
+    /**
+     * Remove a object at a specific location.
+     *
+     * @param int $index
+     * @param bool $cyclic If true, the array will move all objects after the removed object to keep the array order.
+     *                      If false, the last index will be placed at the removed objects index to speed up the
+     *                      execution.
+     * @return bool
+     */
+    public function removeAt(int $index, bool $cyclic = false): bool {
+        $this->boundsCheck($index, $this->count, 0);
 
+        if ($cyclic) {
+            $temporary = [];
+            $counter   = 0;
+            foreach ($this->innerArray as $object) {
+                if ($counter === $index) {
+                    $counter++;
+                    continue;
+                }
 
+                $temporary[] = $object;
+                $counter++;
+            }
+            $this->innerArray = $temporary;
+        } else {
+            if ($index !== $this->count -1) {
+                $this->innerArray[$index] = $this->innerArray[$this->count-1];
+            }
+            unset($this->innerArray[$this->count-1]);
+        }
 
+        $this->count--;
+        return true;
+    }
 
+    /**
+     * Add a range of objects to the list.
+     *
+     * @param array|ArrayAccess $range
+     * @return bool
+     */
+    public function addRange(array $range): bool {
+        foreach ($range as $obj) {
+            $this->innerArray[] = $obj;
+        }
+        $this->count += count($range);
+        return true;
+    }
 
-
+    /**
+     * Insert a range of objects into the List.
+     *
+     * @param array|ArrayAccess $range
+     * @param int $index
+     * @return bool
+     */
+    public function insertRange($range, int $index): bool {
+        $temp = [];
+        for ($i=0;$i<$this->count;$i++) {
+            if ($i === $index) {
+                foreach ($range as $o) {
+                    $temp[] = $o;
+                }
+            }
+            $temp[] = $this->innerArray[$i];
+        }
+        $this->count     += count($range);
+        $this->innerArray = $temp;
+        return true;
+    }
 
     //region Traversable, ArrayAccess.
 
@@ -111,7 +226,7 @@ class IndexedArray implements ListInterface {
      * @since 5.0.0
      */
     public function offsetExists($offset) {
-
+        return isset($this->innerArray[$offset]);
     }
 
     /**
@@ -124,7 +239,8 @@ class IndexedArray implements ListInterface {
      * @since 5.0.0
      */
     public function offsetGet($offset) {
-
+        $this->boundsCheck($offset, $this->count(), 0);
+        return $this->innerArray[$offset];
     }
 
     /**
@@ -140,7 +256,12 @@ class IndexedArray implements ListInterface {
      * @since 5.0.0
      */
     public function offsetSet($offset, $value) {
-        // TODO: Implement offsetSet() method.
+        $this->boundsCheck($offset, $this->count()+1, 0);
+        if (!isset($this->innerArray[$offset])) {
+            $this->count++;
+        }
+
+        $this->innerArray[$offset] = $value;
     }
 
     /**
@@ -153,8 +274,20 @@ class IndexedArray implements ListInterface {
      * @since 5.0.0
      */
     public function offsetUnset($offset) {
-        // TODO: Implement offsetUnset() method.
+        $this->removeAt($offset, true);
     }
 
     //endregion
+
+
+    private function boundsCheck($offset, int $high, int $low = 0) {
+        if (!is_integer($offset)) {
+            throw new InvalidArgumentException("Invalid indexer access. Argument was not of integer type.");
+        }
+
+        if ($offset > $high || $offset < $low) {
+            throw new OutOfBoundsException("Array out of bounds.");
+        }
+    }
+
 }

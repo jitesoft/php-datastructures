@@ -207,7 +207,7 @@ trait IndexedArrayTestTrait {
         $this->implementation->addRange(["a", "b", "c", "d", "e"]);
         $this->getSelf()->assertTrue(isset($this->implementation[1]));
         unset($this->implementation[1]);
-        $this->getSelf()->assertCount(5, $this->implementation);
+        $this->getSelf()->assertCount(4, $this->implementation);
         $this->getSelf()->assertEquals("a", $this->implementation[0]);
         $this->getSelf()->assertEquals("c", $this->implementation[1]);
         $this->getSelf()->assertEquals("d", $this->implementation[2]);
