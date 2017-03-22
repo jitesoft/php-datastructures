@@ -11,7 +11,6 @@ use InvalidArgumentException;
 use Jitesoft\Utilities\Arrays\Contracts\IndexedListInterface;
 use Jitesoft\Utilities\Arrays\Traits\ArrayMethodsTrait;
 use OutOfBoundsException;
-use Traversable;
 
 class IndexedArray implements IndexedListInterface {
     use ArrayMethodsTrait;
