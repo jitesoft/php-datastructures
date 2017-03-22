@@ -88,7 +88,7 @@ trait ArrayMethodsTestTrait {
         $this->assertEquals(6, $count);
 
         $count = 0;
-        $out2  = StaticArrayMethods::map([0,1,2,3,4,5], function($object, $index, $array) use(&$count) {
+        $out2  = StaticArrayMethods::map($this->implementation, function($object, $index, $array) use(&$count) {
             $this->assertEquals($object, $array[$index]);
             $this->assertNotNull($object);
 
@@ -177,5 +177,11 @@ trait ArrayMethodsTestTrait {
 
         $this->assertEquals(5, $first);
         $this->assertEquals(5, $count);
+
+        $firstNull = $this->implementation->first(function($o) {
+            return $o === 100;
+        });
+
+        $this->assertNull($firstNull);
     }
 }
