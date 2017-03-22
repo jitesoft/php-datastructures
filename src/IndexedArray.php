@@ -270,7 +270,6 @@ class IndexedArray implements IndexedListInterface {
 
     //endregion
 
-
     private function boundsCheck($offset, int $high, int $low = 0) {
         if (!is_integer($offset)) {
             throw new InvalidArgumentException("Invalid indexer access. Argument was not of integer type.");

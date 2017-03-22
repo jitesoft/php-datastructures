@@ -56,4 +56,11 @@ class NodeTest extends TestCase {
         $this->expectExceptionMessage("The node only have 1 link.");
         $node->getLink(1);
     }
+
+    public function testSetItem() {
+        $node = new Node("Hej", 1);
+        $this->assertEquals("Hej", $node->getItem());
+        $node->setItem("Hej2");
+        $this->assertEquals("Hej2", $node->getItem());
+    }
 }

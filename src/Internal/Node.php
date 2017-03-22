@@ -59,6 +59,13 @@ class Node {
     }
 
     /**
+     * @param mixed|null $object
+     */
+    public function setItem($object) {
+        $this->object = $object;
+    }
+
+    /**
      * @param int $link
      * @param Node|null $node
      */
