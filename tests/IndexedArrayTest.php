@@ -15,7 +15,6 @@ class IndexedArrayTest extends TestCase {
     use IndexedArrayTestTrait;
     use ArrayMethodsTestTrait;
 
-    protected $implementation;
 
     public function setUp() {
         parent::setUp();
