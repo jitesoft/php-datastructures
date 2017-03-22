@@ -137,7 +137,7 @@ trait IndexedArrayTestTrait {
         $this->implementation[1] = "Test1";
         $this->implementation[2] = "Test2";
         $this->implementation[3] = "Test3";
-        $this->assertTrue($this->implementation->removeAt(1));
+        $this->assertTrue($this->implementation->removeAt(1, false));
 
         $this->assertEquals("Test", $this->implementation[0]);
         $this->assertEquals("Test3", $this->implementation[1]);

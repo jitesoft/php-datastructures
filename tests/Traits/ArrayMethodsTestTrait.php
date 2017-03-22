@@ -18,10 +18,8 @@ trait ArrayMethodsTestTrait {
     protected $implementation;
 
     private function fill(...$arg) {
-        $count = count($arg);
-        for ($i=0;$i<$count;$i++) {
-            $this->implementation[$i] = $arg[$i];
-        }
+        $class                = get_class($this->implementation);
+        $this->implementation = new $class($arg);
     }
 
     public function testForEach() {
