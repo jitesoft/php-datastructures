@@ -7,6 +7,5 @@ Using a ListInterface implemented class does not make the code necessarily faste
 ### Currently implemented classes.
 The following classes are currently implemented:  
   
-* `IndexedList` - a list which only used indexes/keys of integer type.
-
-
+* `IndexedList` - a indexed list implemenataion which jut wraps the native array.
+* `LinkedList`  - a indexed list implementation with a underlying linked list.
