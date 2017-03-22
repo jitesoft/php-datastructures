@@ -13,6 +13,15 @@ trait ListTestTrait {
     /** @var ListInterface */
     protected $implementation;
 
+    public function testCreate() {
+        $class = get_class($this->implementation);
+        $implementation = new $class([1,2,3]);
+        $this->assertCount(3, $implementation);
+        $this->assertEquals(1,$implementation[0]);
+        $this->assertEquals(2,$implementation[1]);
+        $this->assertEquals(3,$implementation[2]);
+    }
+
     public function testLength() {
         $this->assertEquals(0, $this->implementation->length());
         $this->implementation[0] = "Test";

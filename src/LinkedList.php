@@ -21,7 +21,7 @@ class LinkedList implements IndexedListInterface {
     /** @var Node|null */
     private $lastNode = null;
     /** @var int */
-    private $count    = 0;
+    private $count = 0;
 
     //region ArrayAccess
     /**
@@ -116,32 +116,39 @@ class LinkedList implements IndexedListInterface {
      * @return bool
      */
     public function remove($object): bool {
-        if ($this->count <= 1) {
-            if ($this->rootNode !== null && $this->rootNode->getItem() === $object) {
-                $this->count--;
-                $this->rootNode = null;
-                return true;
+        if ($this->count === 0) {
+            return false;
+        }
+
+        if ($this->count === 1) {
+            if ($this->rootNode->getItem() === $object) {
+                return $this->clear();
             }
             return false;
         }
 
-        $node = $this->rootNode;
-        while ($node->getLink(0) !== null && $node->getItem() !== $object) {
-            $node = $node->getLink(0);
+        $remove = $this->rootNode;
+        $prev   = null;
+        while ($remove !== null) {
+            if ($remove->getItem() === $object) {
+                break;
+            }
+            $prev   = $remove;
+            $remove = $remove->getLink(0);
         }
 
-        if ($node === null) {
-            return false;
+        if ($prev === null) { // Is first.
+            $old            = $this->rootNode;
+            $this->rootNode = $remove->getLink(0);
+            $old->setLink(0, null);
+        } else {
+            $prev->setLink(0, $remove->getLink(0));
+            $remove->setLink(0, null);
         }
 
-        $newParent = $node->getLink(0)->getLink(0);
-        $node->getLink(0)->setLink(0, null);
-        $node->setLink(0, $newParent);
 
-        if ($object === $this->lastNode->getItem()) {
-            $this->lastNode = $newParent;
-        }
 
+        $this->lastNode = $remove->getLink(0) === null ? $prev : $this->lastNode;
         $this->count--;
         return true;
     }
@@ -186,17 +193,15 @@ class LinkedList implements IndexedListInterface {
     public function removeAt(int $index, bool $cyclic = true): bool {
         $this->boundsCheck($index, $this->count, 0);
 
-        if ($index === 0) {
-            $r              = $this->lastNode;
-            $this->lastNode = $this->lastNode->getLink(0);
-            $r->setLink(0, null);
-            $this->count++;
-            return true;
+        $toRemove = $this->rootNode;
+        $node     = null;
+
+        if ($index !== 0) {
+            $node     = $this->getNode($index-1);
+            $toRemove = $node->getLink(0);
         }
 
-        $node     = $this->getNode($index-1);
-        $toRemove = $node->getLink(0);
-        $replace  = $toRemove->getLink(0);
+        $replace = $toRemove->getLink(0);
 
         if (!$cyclic && $replace !== $this->lastNode) {
             $replace        = $this->lastNode;
@@ -205,7 +210,11 @@ class LinkedList implements IndexedListInterface {
             $replace->setLink(0, $toRemove->getLink(0));
         }
 
-        $node->setLink(0, $replace);
+        if ($node !== null) {
+            $node->setLink(0, $replace);
+        } else {
+            $this->rootNode = $replace;
+        }
         $toRemove->setLink(0, null);
         $this->count--;
         return true;

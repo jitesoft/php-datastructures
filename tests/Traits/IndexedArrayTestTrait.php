@@ -68,6 +68,15 @@ trait IndexedArrayTestTrait {
         $this->assertEquals("One", $this->implementation[0]);
         $this->assertEquals("Two", $this->implementation[1]);
         $this->assertEquals("Three", $this->implementation[2]);
+
+        $this->implementation->insert("Hi", 2);
+
+        $this->assertCount(4, $this->implementation);
+
+        $this->assertEquals("One", $this->implementation[0]);
+        $this->assertEquals("Two", $this->implementation[1]);
+        $this->assertEquals("Hi", $this->implementation[2]);
+        $this->assertEquals("Three", $this->implementation[3]);
     }
 
     public function testInsertOutOfBounds() {
@@ -104,25 +113,47 @@ trait IndexedArrayTestTrait {
         $this->assertEquals("Test4", $this->implementation[1]);
         $this->assertFalse(isset($this->implementation[2]));
 
-        $this->implementation->insertRange(array(
+        $this->assertTrue($this->implementation->insertRange(array(
             "Test2",
             "Test3"
-        ), 1);
+        ), 1));
 
         $this->assertEquals("Test", $this->implementation[0]);
         $this->assertEquals("Test2", $this->implementation[1]);
         $this->assertEquals("Test3", $this->implementation[2]);
         $this->assertEquals("Test4", $this->implementation[3]);
+        $this->assertCount(4, $this->implementation);
+
+        $this->assertTrue($this->implementation->insertRange(array(
+            "Hej",
+            "Whoop"
+        ), 2));
+        $this->assertCount(6, $this->implementation);
+
+        $this->assertEquals("Test", $this->implementation[0]);
+        $this->assertEquals("Test2", $this->implementation[1]);
+        $this->assertEquals("Hej", $this->implementation[2]);
+        $this->assertEquals("Whoop", $this->implementation[3]);
+        $this->assertEquals("Test3", $this->implementation[4]);
+        $this->assertEquals("Test4", $this->implementation[5]);
     }
 
     public function testRemoveInvalid() {
         $this->assertFalse($this->implementation->remove("Test"));
+        $this->implementation->add("Test");
+        $this->assertFalse($this->implementation->remove("Test2"));
+        $this->assertCount(1, $this->implementation);
     }
 
     public function testRemoveValid() {
         $this->implementation->add("Test");
-        $this->assertTrue(isset($this->implementation[0]));
+        $this->implementation->add("Test2");
+        $this->assertCount(2, $this->implementation);
         $this->assertTrue($this->implementation->remove("Test"));
+        $this->assertCount(1, $this->implementation);
+        $this->assertEquals("Test2", $this->implementation[0]);
+        $this->assertTrue($this->implementation->remove("Test2"));
+        $this->assertCount(0, $this->implementation);
         $this->assertFalse(isset($this->implementation[0]));
     }
 
@@ -143,6 +174,11 @@ trait IndexedArrayTestTrait {
         $this->assertEquals("Test3", $this->implementation[1]);
         $this->assertEquals("Test2", $this->implementation[2]);
         $this->assertFalse(isset($this->implementation[3]));
+        $this->assertCount(3, $this->implementation);
+
+        $this->assertTrue($this->implementation->removeAt(0, false));
+        $this->assertCount(2, $this->implementation);
+        $this->assertEquals("Test2", $this->implementation[0]);
     }
 
     public function testRemoveAtValidCyclic() {
@@ -156,6 +192,10 @@ trait IndexedArrayTestTrait {
         $this->assertEquals("Test2", $this->implementation[1]);
         $this->assertEquals("Test3", $this->implementation[2]);
         $this->assertFalse(isset($this->implementation[3]));
+
+        $this->assertTrue($this->implementation->removeAt(0, true));
+        $this->assertEquals("Test2", $this->implementation[0]);
+        $this->assertCount(2, $this->implementation);
     }
 
     public function testUnset() {
