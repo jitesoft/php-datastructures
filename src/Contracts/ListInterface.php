@@ -10,44 +10,13 @@ use ArrayAccess;
 use Countable;
 
 /**
- * Interface for all List classes.
+ * Base interface for all List classes.
  */
-interface ListInterface extends ArrayAccess, Countable {
+interface ListInterface extends CollectionInterface, ArrayAccess {
 
     /**
      * ListInterface constructor.
      * @param array $from
      */
     public function __construct(array $from = []);
-
-    /**
-     * Get number of objects in the list.
-     *
-     * @alias count()
-     * @return int
-     */
-    public function length(): int;
-
-    /**
-     * Get number of objects in the list.
-     *
-     * @return int
-     */
-    public function count(): int;
-
-    /**
-     * Get number of objects in the list.
-     *
-     * @alias count()
-     * @return int
-     */
-    public function size(): int;
-
-    /**
-     * Clear the list of all objects.
-     *
-     * @return bool
-     */
-    public function clear(): bool;
-
 }

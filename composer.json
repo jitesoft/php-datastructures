@@ -1,6 +1,6 @@
 {
-    "name": "jitesoft/list",
-    "description": "List class for php.",
+    "name": "jitesoft/datastructures",
+    "description": "Misc data structures for php.",
     "type": "library",
     "require-dev": {
         "phpunit/phpunit": "^6.0"

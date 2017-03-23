@@ -12,12 +12,12 @@ namespace Jitesoft\Utilities\DataStructures\Contracts;
 interface QueueInterface extends ListInterface {
 
     /**
-     * Adds a object to the end of the queue.
+     * Adds one or multiple objects to the end of the queue.
      *
-     * @param $object
+     * @param $object - One or multiple objects to enqueue.
      * @return bool
      */
-    public function enqueue($object): bool;
+    public function enqueue(...$object): bool;
 
     /**
      * Returns the first object and removes it from the queue.
