@@ -1,6 +1,6 @@
 <?php
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-  IndexedArrayTestTrait.php - Part of the php-list project.
+  IndexedListTestTrait.php - Part of the php-list project.
 
   © - Jitesoft 2017
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
@@ -11,7 +11,7 @@ use Jitesoft\Utilities\Arrays\Contracts\IndexedListInterface;
 use OutOfBoundsException;
 use PHPUnit\Framework\TestCase;
 
-trait IndexedArrayTestTrait {
+trait IndexedListTestTrait {
     use ListTestTrait;
 
     /** @var IndexedListInterface */
