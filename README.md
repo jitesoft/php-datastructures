@@ -1,6 +1,9 @@
 # Data structures 
-[![Build Status](https://travis-ci.org/jitesoft/php-datastructures.svg?branch=master)](https://travis-ci.org/jitesoft/php-datastructures)
+_master:_  
+[![Build Status](https://travis-ci.org/jitesoft/php-datastructures.svg?branch=master)](https://travis-ci.org/jitesoft/php-datastructures)  
 
+_develop:_  
+[![Build Status](https://travis-ci.org/jitesoft/php-datastructures.svg?branch=development)](https://travis-ci.org/jitesoft/php-datastructures)
 
 A package consisting of a mix of data structures I find useful for php 7.1+.  
 
@@ -25,7 +28,9 @@ The following classes are currently implemented:
   * `IndexedList` - a indexed list implementation wrapping the native array.
   * `LinkedList`  - a indexed list implementation as a linked list.
 * Queue types (`Jitesoft\Utilities\DataStructures\Queues`)
-  * `LinkedQueue` - A queue implementation with a linked list as base.
+  * `LinkedQueue` - A queue (FiFo) implementation with a linked list as base.
+* Stack types (`Jitesoft\Utilities\DataStructures\Stacks`)
+  * `LinkedStack` - A stack (LiFo) implementation with a linked list as base.
 
 #### Development & Contributions.
 Pull requests following the given code-standard (check `ruleset.xml`) with 100% coverage by tests will be reviewed for merge.  
