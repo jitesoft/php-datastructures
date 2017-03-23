@@ -2,7 +2,7 @@
 [![Build Status](https://travis-ci.org/jitesoft/php-datastructures.svg?branch=master)](https://travis-ci.org/jitesoft/php-datastructures)
 
 
-A package consisting of a mix of data structures I find useful for php.  
+A package consisting of a mix of data structures I find useful for php 7.1+.  
 
 Usage of data structures does not necessarily speed up the end product, but it could very well help in the development process.  
 The native array type in php can be a pain to keep track of what it is, is it a indexed or associative? Is it supposed to be a queue or a list?

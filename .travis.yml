@@ -1,11 +1,8 @@
 language: php
 php:
   - 7.1
-  - hhvm-3.3
-  - hhvm-3.18
-sudo: required
 install:
-  - composer install --prefer-source --no-interaction --dev
+  - composer install --prefer-source --no-interaction
 script:
   composer dump-autoload; ./vendor/bin/phpunit -c phpunit.xml
 notifications:
@@ -13,7 +10,3 @@ notifications:
   on_failure: always
 git:
 depth: 1
-matrix:
-  allow_failures:
-  - php: hhvm-3.3
-  - php: hhvm-3.18
