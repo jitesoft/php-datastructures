@@ -9,15 +9,15 @@ namespace Jitesoft\Utilities\DataStructures\Contracts;
 /**
  * Interface for LiFo stacks.
  */
-interface StackInterface extends ListInterface {
+interface StackInterface extends CollectionInterface {
 
     /**
-     * Adds a object to the top of the stack.
+     * Adds one or more object to the top of the stack.
      *
-     * @param $object
+     * @param $objects
      * @return bool
      */
-    public function push($object): bool;
+    public function push(...$objects): bool;
 
     /**
      * Removes and returns the object at the top of the stack.
