@@ -4,7 +4,7 @@
 
   © - Jitesoft 2017
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
-namespace Jitesoft\Utilities\DataStructures;
+namespace Jitesoft\Utilities\DataStructures\Lists;
 
 use ArrayAccess;
 use InvalidArgumentException;
