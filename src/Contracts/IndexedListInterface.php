@@ -4,7 +4,7 @@
 
   © - Jitesoft 2017
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
-namespace Jitesoft\Utilities\Arrays\Contracts;
+namespace Jitesoft\Utilities\DataStructures\Contracts;
 
 use ArrayAccess;
 

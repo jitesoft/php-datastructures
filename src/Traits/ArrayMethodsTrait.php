@@ -4,10 +4,10 @@
 
   © - Jitesoft 2017
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
-namespace Jitesoft\Utilities\Arrays\Traits;
+namespace Jitesoft\Utilities\DataStructures\Traits;
 
 use Closure;
-use Jitesoft\Utilities\Arrays\StaticArrayMethods;
+use Jitesoft\Utilities\DataStructures\StaticArrayMethods;
 
 trait ArrayMethodsTrait {
 

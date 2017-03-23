@@ -4,7 +4,7 @@
 
   © - Jitesoft 2017
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
-namespace Jitesoft\Utilities\Arrays\Internal;
+namespace Jitesoft\Utilities\DataStructures\Internal;
 
 use InvalidArgumentException;
 

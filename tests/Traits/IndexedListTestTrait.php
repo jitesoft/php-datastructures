@@ -4,10 +4,10 @@
 
   © - Jitesoft 2017
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
-namespace Jitesoft\Utilities\Arrays\Tests\Traits;
+namespace Jitesoft\Utilities\DataStructures\Tests\Traits;
 
 use InvalidArgumentException;
-use Jitesoft\Utilities\Arrays\Contracts\IndexedListInterface;
+use Jitesoft\Utilities\DataStructures\Contracts\IndexedListInterface;
 use OutOfBoundsException;
 use PHPUnit\Framework\TestCase;
 

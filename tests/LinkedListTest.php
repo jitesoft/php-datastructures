@@ -4,11 +4,11 @@
 
   © - Jitesoft 2017
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
-namespace Jitesoft\Utilities\Arrays\Tests;
+namespace Jitesoft\Utilities\DataStructures\Tests;
 
-use Jitesoft\Utilities\Arrays\LinkedList;
-use Jitesoft\Utilities\Arrays\Tests\Traits\ArrayMethodsTestTrait;
-use Jitesoft\Utilities\Arrays\Tests\Traits\IndexedListTestTrait;
+use Jitesoft\Utilities\DataStructures\LinkedList;
+use Jitesoft\Utilities\DataStructures\Tests\Traits\ArrayMethodsTestTrait;
+use Jitesoft\Utilities\DataStructures\Tests\Traits\IndexedListTestTrait;
 use PHPUnit\Framework\TestCase;
 
 class LinkedListTest extends TestCase {

@@ -14,12 +14,12 @@
     ],
     "autoload": {
         "psr-4": {
-            "Jitesoft\\Utilities\\Arrays\\": "src/"
+            "Jitesoft\\Utilities\\DataStructures\\": "src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Jitesoft\\Utilities\\Arrays\\Tests\\": "tests/"
+            "Jitesoft\\Utilities\\DataStructures\\Tests\\": "tests/"
         }
     }
 }

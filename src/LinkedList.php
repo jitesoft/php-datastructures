@@ -4,13 +4,13 @@
 
   © - Jitesoft 2017
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
-namespace Jitesoft\Utilities\Arrays;
+namespace Jitesoft\Utilities\DataStructures;
 
 use ArrayAccess;
 use InvalidArgumentException;
-use Jitesoft\Utilities\Arrays\Contracts\IndexedListInterface;
-use Jitesoft\Utilities\Arrays\Internal\Node;
-use Jitesoft\Utilities\Arrays\Traits\ArrayMethodsTrait;
+use Jitesoft\Utilities\DataStructures\Contracts\IndexedListInterface;
+use Jitesoft\Utilities\DataStructures\Internal\Node;
+use Jitesoft\Utilities\DataStructures\Traits\ArrayMethodsTrait;
 use OutOfBoundsException;
 
 class LinkedList implements IndexedListInterface {

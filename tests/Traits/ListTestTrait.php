@@ -4,9 +4,9 @@
 
   © - Jitesoft 2017
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
-namespace Jitesoft\Utilities\Arrays\Tests\Traits;
+namespace Jitesoft\Utilities\DataStructures\Tests\Traits;
 
-use Jitesoft\Utilities\Arrays\Contracts\ListInterface;
+use Jitesoft\Utilities\DataStructures\Contracts\ListInterface;
 
 trait ListTestTrait {
 

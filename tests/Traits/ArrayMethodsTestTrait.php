@@ -4,11 +4,11 @@
 
   © - Jitesoft 2017
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
-namespace Jitesoft\Utilities\Arrays\Tests\Traits;
+namespace Jitesoft\Utilities\DataStructures\Tests\Traits;
 
 use ArrayAccess;
-use Jitesoft\Utilities\Arrays\StaticArrayMethods;
-use Jitesoft\Utilities\Arrays\Traits\ArrayMethodsTrait;
+use Jitesoft\Utilities\DataStructures\StaticArrayMethods;
+use Jitesoft\Utilities\DataStructures\Traits\ArrayMethodsTrait;
 
 trait ArrayMethodsTestTrait {
 

@@ -4,9 +4,9 @@
 
   © - Jitesoft 2017
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
-namespace Jitesoft\Utilities\Arrays\Tests\Internal;
+namespace Jitesoft\Utilities\DataStructures\Tests\Internal;
 
-use Jitesoft\Utilities\Arrays\Internal\Node;
+use Jitesoft\Utilities\DataStructures\Internal\Node;
 use PHPUnit\Framework\TestCase;
 use InvalidArgumentException;
 

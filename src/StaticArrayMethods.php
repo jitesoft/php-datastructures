@@ -4,7 +4,7 @@
 
   © - Jitesoft 2017
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
-namespace Jitesoft\Utilities\Arrays;
+namespace Jitesoft\Utilities\DataStructures;
 
 use ArrayAccess;
 use Closure;
