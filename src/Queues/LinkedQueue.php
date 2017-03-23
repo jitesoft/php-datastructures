@@ -8,7 +8,6 @@ namespace Jitesoft\Utilities\DataStructures\Queues;
 
 use Jitesoft\Utilities\DataStructures\Contracts\QueueInterface;
 use Jitesoft\Utilities\DataStructures\Internal\Node;
-use OutOfBoundsException;
 
 /**
  * Linked list queue structure.
