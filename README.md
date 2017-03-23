@@ -1,4 +1,6 @@
 # Data structures 
+[![Build Status](https://travis-ci.org/jitesoft/php-datastructures.svg?branch=master)](https://travis-ci.org/jitesoft/php-datastructures)
+
 
 A package consisting of a mix of data structures I find useful for php.  
 
