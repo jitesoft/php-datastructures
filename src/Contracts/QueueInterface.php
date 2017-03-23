@@ -9,7 +9,7 @@ namespace Jitesoft\Utilities\DataStructures\Contracts;
 /**
  * Interface for FiFo queues.
  */
-interface QueueInterface extends ListInterface {
+interface QueueInterface extends CollectionInterface {
 
     /**
      * Adds one or multiple objects to the end of the queue.

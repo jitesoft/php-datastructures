@@ -36,6 +36,10 @@ trait QueueTestTrait {
         $this->assertEmpty($this->implementation);
     }
 
+    public function testDequeueEmpty() {
+        $this->assertNull($this->implementation->dequeue());
+    }
+
     public function testPeek() {
         $this->implementation->enqueue("A", "B", "C");
         $this->implementation->enqueue("D");
@@ -46,6 +50,10 @@ trait QueueTestTrait {
         $this->implementation->dequeue();
         $this->assertEquals("B", $this->implementation->peek());
         $this->assertCount(3, $this->implementation);
+    }
+
+    public function testPeekEmpty() {
+        $this->assertNull($this->implementation->peek());
     }
 
     public function testLength() {
