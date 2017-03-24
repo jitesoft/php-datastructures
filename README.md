@@ -27,11 +27,12 @@ The following classes are currently implemented:
 * List types (`Jitesoft\Utilities\DataStructures\Lists`)
   * `IndexedList` - a indexed list implementation wrapping the native array.
   * `LinkedList`  - a indexed list implementation as a linked list.
-* Queue types (`Jitesoft\Utilities\DataStructures\Queues`)
-  * `LinkedQueue` - A queue (FiFo) implementation with a linked list as base.
-* Stack types (`Jitesoft\Utilities\DataStructures\Stacks`)
-  * `LinkedStack` - A stack (LiFo) implementation with a linked list as base.
-
+* Queue types (`Jitesoft\Utilities\DataStructures\Queues`) (FiFo queue)
+  * `LinkedQueue` - A queue implementation with a linked list as base.
+  * `ArrayQueue`  - A queue implementation with an array as base.
+* Stack types (`Jitesoft\Utilities\DataStructures\Stacks`) (LiFo queue)
+  * `LinkedStack` - A stack implementation with a linked list as base.
+  * `ArrayStack`  - A stack implementation with an array as base.
 #### Development & Contributions.
 Pull requests following the given code-standard (check `ruleset.xml`) with 100% coverage by tests will be reviewed for merge.  
 Any contributions is greatly appreciated!
