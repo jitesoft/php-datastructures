@@ -8,7 +8,7 @@ namespace Jitesoft\Utilities\DataStructures;
 
 use ArrayAccess;
 use Closure;
-use Jitesoft\Utilities\Arrays\Contracts\ListInterface;
+use Jitesoft\Utilities\DataStructures\Contracts\ListInterface;
 use PHPUnit\Framework\Exception;
 
 /**
@@ -114,6 +114,37 @@ final class StaticArrayMethods {
 
         $count = count($array);
         for ($i=0;$i<$count;$i++) {
+            if ($closure($array[$i], $i, $array)) {
+                return $array[$i];
+            }
+        }
+        return null;
+    }
+
+    /**
+     * Fetches last object on which the closure returns true.
+     * If no closure is supplied, last object of the array will be returned.
+     *
+     * Depending on arguments the method will do the following:
+     *
+     * 1) With closure:
+     * Loops through each object in the List and applies the closure to it.
+     * If the closure returns true the last truthy value will be returned.
+     * If the closure never returns true, null will be returned.
+     *
+     * 2) Without closure:
+     * Last object in the List will be returned.
+     *
+     * @param ListInterface|ArrayAccess $array
+     * @param Closure|null $closure
+     * @return mixed|null
+     */
+    public static function last($array, ?Closure $closure = null) {
+        if($closure === null) {
+            return $array[count($array)-1];
+        }
+
+        for ($i=count($array);$i-->0;) {
             if ($closure($array[$i], $i, $array)) {
                 return $array[$i];
             }

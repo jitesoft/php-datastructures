@@ -46,4 +46,12 @@ trait ArrayMethodsTrait {
     public function first(?Closure $closure = null) {
         return StaticArrayMethods::first($this, $closure);
     }
+
+    /**
+     * @param Closure|null $closure
+     * @return mixed
+     */
+    public function last(?Closure $closure = null) {
+        return StaticArrayMethods::last($this, $closure);
+    }
 }

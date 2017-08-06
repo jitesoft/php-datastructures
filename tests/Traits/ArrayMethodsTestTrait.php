@@ -181,4 +181,46 @@ trait ArrayMethodsTestTrait {
 
         $this->assertNull($firstNull);
     }
+
+
+    public function testLast() {
+        $this->fill(1,2,3,4,5);
+
+        $last = $this->implementation->last();
+        $this->assertEquals(5, $last);
+
+        $count = 0;
+        $last = $this->implementation->last(function($object, $index, $array) use(&$count) {
+            $count++;
+
+            $this->assertEquals($object, $array[$index]);
+            $this->assertNotNull($object);
+            return $object === 1;
+        });
+
+        $this->assertEquals(1, $last);
+        $this->assertEquals(5, $count);
+
+
+        $last = StaticArrayMethods::last($this->implementation);
+        $this->assertEquals(5, $last);
+        $count = 0;
+
+        $last = StaticArrayMethods::last($this->implementation, function($object, $index, $array) use(&$count) {
+            $count++;
+
+            $this->assertEquals($object, $array[$index]);
+            $this->assertNotNull($object);
+            return $object === 1;
+        });
+
+        $this->assertEquals(1, $last);
+        $this->assertEquals(5, $count);
+
+        $lastNull = $this->implementation->last(function($o) {
+            return false;
+        });
+
+        $this->assertNull($lastNull);
+    }
 }
