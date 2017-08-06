@@ -277,7 +277,7 @@ class LinkedList implements IndexedListInterface {
      * @param array $from
      */
     public function __construct(array $from = []) {
-        if (count($from) > 0) {
+        if (!empty($from)) {
             $this->addRange($from);
         }
     }

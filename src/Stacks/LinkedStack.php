@@ -13,7 +13,6 @@ class LinkedStack implements StackInterface {
 
     /** @var Node|null */
     private $top = null;
-
     /** @var Node|null */
     private $bottom = null;
     /** @var int */
