@@ -1,4 +1,5 @@
 # Data structures 
+
 _master:_  
 [![Build Status](https://travis-ci.org/jitesoft/php-datastructures.svg?branch=master)](https://travis-ci.org/jitesoft/php-datastructures)  
 
@@ -15,6 +16,7 @@ The structures all have methods to add and remove objects and works pretty much 
 The package is a work in progress and new type of structures will be added over time.  
 
 #### Installation and Usage.
+
 Either clone the repository or require the package from composer:
 ```
 composer require jitesoft/datastructures
@@ -22,22 +24,30 @@ composer require jitesoft/datastructures
 Usage is quite self-explanatory, if not, feel free to add a issue for further documentation in the issue tracker.
   
 #### Currently implemented classes.
+
 The following classes are currently implemented:  
 
 * List types (`Jitesoft\Utilities\DataStructures\Lists`)
-  * `IndexedList` - a indexed list implementation wrapping the native array.
-  * `LinkedList`  - a indexed list implementation as a linked list.
+  * `IndexedList` - A indexed list implementation wrapping the native array.
+  * `LinkedList`  - A indexed list implementation as a linked list.
 * Queue types (`Jitesoft\Utilities\DataStructures\Queues`) (FiFo queue)
   * `LinkedQueue` - A queue implementation with a linked list as base.
   * `ArrayQueue`  - A queue implementation with an array as base.
 * Stack types (`Jitesoft\Utilities\DataStructures\Stacks`) (LiFo queue)
   * `LinkedStack` - A stack implementation with a linked list as base.
   * `ArrayStack`  - A stack implementation with an array as base.
+* Math (`Jitesoft\Utilities\DataStructures\Math`) (Misc math classes and functions).
+  * `Point2D`     - A point structure in 2D space.
+  * `Vector2D`    - A vector structure in 2D space.
+  * `Point3D`     - A point structure in 3D space.
+
 #### Development & Contributions.
+
 Pull requests following the given code-standard (check `ruleset.xml`) with 100% coverage by tests will be reviewed for merge.  
 Any contributions is greatly appreciated!
 
 #### License.
+
 ```text
 MIT License
 
