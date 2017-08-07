@@ -92,7 +92,12 @@ class Vector3DMath {
      * @return float
      */
     public static function dot(Point $value1, Point $value2) : float {
-
+        return
+            ($value1->getX() * $value2->getX())
+            +
+            ($value1->getY() * $value2->getY())
+            +
+            ($value1->getZ() * $value2->getZ());
     }
 
     /**
@@ -103,7 +108,11 @@ class Vector3DMath {
      * @return Vector
      */
     public static function cross(Point $value1, Point $value2) : Vector {
-
+        return new Vector(
+            ($value1->getY() * $value2->getZ()) - ($value1->getZ() * $value2->getY()),
+            -(($value1->getX() * $value2->getZ()) - ($value1->getZ() * $value2->getX())),
+            ($value1->getX() * $value2->getY()) - ($value1->getY() * $value2->getX())
+        );
     }
 
     /**
@@ -114,7 +123,7 @@ class Vector3DMath {
      * @return float
      */
     public static function distance(Point $value1, Point $value2) : float {
-
+        return sqrt(self::distance2($value1, $value2));
     }
 
     /**
@@ -125,6 +134,11 @@ class Vector3DMath {
      * @return float
      */
     public static function distance2(Point $value1, Point $value2) : float {
-
+        return
+            ($value1->getX() - $value2->getX()) * ($value1->getX() - $value2->getX())
+            +
+            ($value1->getY() - $value2->getY()) * ($value1->getY() - $value2->getY())
+            +
+            ($value1->getZ() - $value2->getZ()) * ($value1->getZ() - $value2->getZ());
     }
 }

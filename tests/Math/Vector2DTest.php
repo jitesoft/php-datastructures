@@ -131,6 +131,7 @@ class Vector2DTest extends TestCase {
         $v = new Vector2D(10, 5);
         $v->normalize();
 
+        $this->assertEquals(1, $v->length());
         $this->assertequals(0.89, $v->getX(), "", 2);
         $this->assertEquals(0.44, $v->getY(), "", 2);
     }

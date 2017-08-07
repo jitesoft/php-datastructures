@@ -107,14 +107,71 @@ class Vector3DTest extends TestCase {
     }
 
 
-    public function testDistance() {}
-    public function testDistance2() {}
+    public function testDistance() {
+        $vector1 = new Vector(1,2,3);
+        $vector2 = new Vector(10, 11, 12);
 
-    public function testDot() {}
-    public function testCross() {}
+        $result1 = Vector3DMath::distance($vector1, $vector2);
+        $result2 = $vector1->distance($vector2);
 
-    public function testNormalize() {}
-    public function testLength() {}
-    public function testLength2() {}
+        $this->assertEquals($result1, $result2);
 
+        $this->assertEquals(15.58, $result1, "", 2);
+    }
+
+    public function testDistance2() {
+        $vector1 = new Vector(1,2,3);
+        $vector2 = new Vector(10, 11, 12);
+
+        $result1 = Vector3DMath::distance2($vector1, $vector2);
+        $result2 = $vector1->distance2($vector2);
+
+        $this->assertEquals($result1, $result2);
+        $this->assertEquals(243, $result1);
+    }
+
+    public function testDot() {
+        $vector1 = new Vector(1,2,3);
+        $vector2 = new Vector(10, 11, 12);
+
+        $result1 = Vector3DMath::dot($vector1, $vector2);
+        $result2 = $vector1->dot($vector2);
+
+        $this->assertEquals($result2, $result1);
+        $this->assertEquals(68, $result1);
+    }
+
+    public function testCross() {
+        $vector1 = new Vector(2,3,4);
+        $vector2 = new Vector(5, 6, 7);
+
+        $result1 = Vector3DMath::cross($vector1, $vector2);
+        $vector1->cross($vector2);
+
+        $this->assertEquals($vector1, $result1);
+        $this->assertEquals(-3, $vector1->getX());
+        $this->assertEquals(6, $vector1->getY());
+        $this->assertEquals(-3, $vector1->getZ());
+    }
+
+    public function testNormalize() {
+        $vector1 = new Vector(2,3,4);
+        $vector1->normalize();
+
+        $this->assertEquals(0.37, $vector1->getX(), "", 2);
+        $this->assertEquals(0.55, $vector1->getY(), "", 2);
+        $this->assertEquals(0.74, $vector1->getZ(), "", 2);
+
+        $this->assertEquals(1, $vector1->length());
+    }
+
+    public function testLength() {
+        $vector1 = new Vector(2,3,4);
+        $this->assertEquals(sqrt(29), $vector1->length());
+    }
+
+    public function testLength2() {
+        $vector1 = new Vector(2,3,4);
+        $this->assertEquals(29, $vector1->length2());
+    }
 }

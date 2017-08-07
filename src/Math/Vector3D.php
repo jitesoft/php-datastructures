@@ -80,5 +80,60 @@ class Vector3D extends Point {
         $this->copy(_::div($this, $v2));
     }
 
+    /**
+     * @param Point $vector2
+     * @return float
+     */
+    public function distance(Point $vector2) : float {
+        return _::distance($this, $vector2);
+    }
+
+    /**
+     * @param Point $vector2
+     * @return float
+     */
+    public function distance2(Point $vector2) : float {
+        return _::distance2($this, $vector2);
+    }
+
+    /**
+     * Calculates the dot product of two vectors.
+     *
+     * @param Point $vector2
+     * @return float
+     */
+    public function dot(Point $vector2) : float {
+        return _::dot($this, $vector2);
+    }
+
+    /**
+     * Calculates the cross product of two vectors.
+     *
+     * @param Point $vector
+     */
+    public function cross(Point $vector) {
+        $this->copy(_::cross($this, $vector));
+    }
+
+    public function length() : float {
+        return sqrt($this->length2());
+    }
+
+    public function length2() : float {
+        return
+            ($this->x * $this->x)
+            +
+            ($this->y * $this->y)
+            +
+            ($this->z * $this->z);
+    }
+
+    public function normalize() {
+        $len = $this->length();
+        if($len <= 0) {
+            return;
+        }
+        $this->div($len);
+    }
 
 }
