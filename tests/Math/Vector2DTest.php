@@ -117,7 +117,6 @@ class Vector2DTest extends TestCase {
         $v1 = new Vector2D(10, 5);
         $len = $v1->length();
 
-
         $this->assertEquals(sqrt(125), $len);
     }
 

@@ -1,16 +1,21 @@
 <?php
-
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
   Vector2DMath.php - Part of the php-datastructures project.
 
   © - Jitesoft 2017
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
-
 namespace Jitesoft\Utilities\DataStructures\Math;
 
 use Jitesoft\Utilities\DataStructures\Math\Point2D as Point;
 use Jitesoft\Utilities\DataStructures\Math\Vector2D as Vector;
 
+/**
+ * Class Vector2DMath
+ *
+ * A Math helper class for vector structures.
+ * Each vector does have the same method as these but they will change the actual vector calling rather than
+ * create a new vector to return.
+ */
 class Vector2DMath {
     /**
      * Vector addition.

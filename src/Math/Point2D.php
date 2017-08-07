@@ -14,7 +14,9 @@ namespace Jitesoft\Utilities\DataStructures\Math;
  */
 class Point2D {
 
+    /** @var float */
     protected $x;
+    /** @var float */
     protected $y;
 
     /**

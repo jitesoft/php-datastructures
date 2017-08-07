@@ -15,7 +15,8 @@ namespace Jitesoft\Utilities\DataStructures\Math;
  */
 class Point3D extends Point2D {
 
-    private $z;
+    /** @var float */
+    protected $z;
 
     /**
      * Initialize a point object.
