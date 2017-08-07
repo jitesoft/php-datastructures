@@ -9,12 +9,13 @@ namespace Jitesoft\Utilities\DataStructures\Math;
 
 /**
  * Class Point2D
+ *
  * A point in a two dimensional space.
  */
 class Point2D {
 
-    private $x;
-    private $y;
+    protected $x;
+    protected $y;
 
     /**
      * Initialize a point object.
