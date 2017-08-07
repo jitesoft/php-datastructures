@@ -16,7 +16,8 @@ use Jitesoft\Utilities\DataStructures\Math\Vector3DMath as _;
  *
  * Vector structure in 3D space.
  */
-class Vector3D extends Point3D {
+class Vector3D extends Point {
+
 
 
     /**
@@ -45,7 +46,39 @@ class Vector3D extends Point3D {
     }
 
 
+    /**
+     * Vector addition.
+     *
+     * @param Point $v2
+     */
+    public function add(Point $v2) {
+        $this->copy(_::add($this, $v2));
+    }
 
+    /**
+     * Vector subtraction.
+     *
+     * @param Point $v2
+     */
+    public function sub(Point $v2) {
+        $this->copy(_::sub($this, $v2));
+    }
+
+    /**
+     * Vector multiplication.
+     *
+     * @param Point|float $v2
+     */
+    public function mul($v2) {
+        $this->copy(_::mul($this, $v2));
+    }
+
+    /**
+     * @param Point|float $v2
+     */
+    public function div($v2) {
+        $this->copy(_::div($this, $v2));
+    }
 
 
 }

@@ -21,40 +21,72 @@ use Jitesoft\Utilities\DataStructures\Math\Point3D as Point;
 class Vector3DMath {
 
     /**
+     * Vector multiplication.
+     *
      * @param Point $value1
      * @param Point|float $value2
      * @return Vector
      */
-    public static function mul(Point $value1, $value2) : Vector {}
+    public static function mul(Point $value1, $value2) : Vector {
+        $value2 = is_numeric($value2) ? new Vector($value2, $value2, $value2) : $value2;
+
+        return new Vector(
+            $value1->getX() * $value2->getX(),
+            $value1->getY() * $value2->getY(),
+            $value1->getZ() * $value2->getZ()
+        );
+    }
 
     /**
+     * Vector division.
+     *
      * @param Point $value1
      * @param Point|float $value2
      * @return Vector
      */
     public static function div(Point $value1, $value2) : Vector {
+        $value2 = is_numeric($value2) ? new Vector($value2, $value2, $value2) : $value2;
 
+        return new Vector(
+            $value1->getX() / $value2->getX(),
+            $value1->getY() / $value2->getY(),
+            $value1->getZ() / $value2->getZ()
+        );
     }
 
     /**
+     * Vector addition.
+     *
      * @param Point $value1
      * @param Point $value2
      * @return Vector
      */
     public static function add(Point $value1, Point $value2) : Vector {
-
+        return new Vector(
+            $value1->getX() + $value2->getX(),
+            $value1->getY() + $value2->getY(),
+            $value1->getZ() + $value2->getZ()
+        );
     }
 
     /**
+     * Vector subtraction.
+     *
      * @param Point $value1
-     * @param Point $value2
+     * @param Point|float $value2
      * @return Vector
      */
     public static function sub(Point $value1, Point $value2) : Vector {
-
+        return new Vector(
+            $value1->getX() - $value2->getX(),
+            $value1->getY() - $value2->getY(),
+            $value1->getZ() - $value2->getZ()
+        );
     }
 
     /**
+     * Dot product of two vectors/points.
+     *
      * @param Point $value1
      * @param Point $value2
      * @return float
@@ -64,6 +96,8 @@ class Vector3DMath {
     }
 
     /**
+     * Cross product of two vectors/points.
+     *
      * @param Point $value1
      * @param Point $value2
      * @return Vector
@@ -73,6 +107,8 @@ class Vector3DMath {
     }
 
     /**
+     * Distance between two vectors/points.
+     *
      * @param Point $value1
      * @param Point $value2
      * @return float
@@ -82,6 +118,8 @@ class Vector3DMath {
     }
 
     /**
+     * Squared distance between two vectors/points.
+     *
      * @param Point $value1
      * @param Point $value2
      * @return float
