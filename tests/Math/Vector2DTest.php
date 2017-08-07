@@ -57,15 +57,61 @@ class Vector2DTest extends TestCase {
 
     }
 
-    public function testSub() {}
+    public function testSub() {
+        $v1 = new Vector2D(10, 20);
+        $v2 = new Vector2D(3, 12);
 
-    public function testMul() {}
+        $result = Vector2DMath::sub($v1, $v2);
+        $v1->sub($v2);
 
-    public function testDiv() {}
+        $this->assertEquals($v1, $result);
+        $this->assertEquals(7, $v1->getX());
+        $this->assertEquals(8, $v1->getY());
+    }
 
-    public function testMulF() {}
-    
-    public function testDivF() {}
+    public function testMul() {
+        $v1 = new Vector2D(10, 20);
+        $v2 = new Vector2D(2, 3);
+
+        $result = Vector2DMath::mul($v1, $v2);
+        $v1->mul($v2);
+
+        $this->assertEquals($v1, $result);
+        $this->assertEquals(20, $v1->getX());
+        $this->assertEquals(60, $v1->getY());
+    }
+
+    public function testDiv() {
+        $v1 = new Vector2D(10, 12);
+        $v2 = new Vector2D(2, 3);
+
+        $result = Vector2DMath::div($v1, $v2);
+        $v1->div($v2);
+
+        $this->assertEquals($v1, $result);
+        $this->assertEquals(5, $v1->getX());
+        $this->assertEquals(4, $v1->getY());
+    }
+
+    public function testMulF() {
+        $v1 = new Vector2D(10, 1);
+        $result = Vector2DMath::mul($v1, 5);
+        $v1->mul(5);
+
+        $this->assertEquals($result, $v1);
+        $this->assertEquals(50, $v1->getX());
+        $this->assertEquals(5, $v1->getY());
+    }
+
+    public function testDivF() {
+        $v1 = new Vector2D(100, 10);
+        $result = Vector2DMath::div($v1, 10);
+        $v1->div(10);
+
+        $this->assertEquals($result, $v1);
+        $this->assertEquals(10, $v1->getX());
+        $this->assertEquals(1, $v1->getY());
+    }
 
     public function testLength() {}
     public function testLength2() {}
