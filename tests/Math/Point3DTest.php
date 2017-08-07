@@ -36,8 +36,8 @@ class Point3DTest extends TestCase {
 
     public function testSetY() {
         $p = new Point3D(1, 3, 5);
-        $p->setX(1);
-        $this->assertEquals(1, $p->getX());
+        $p->setY(1);
+        $this->assertEquals(1, $p->getY());
     }
 
     public function testSetZ() {
