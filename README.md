@@ -40,6 +40,9 @@ The following classes are currently implemented:
   * `Point2D`     - A point structure in 2D space.
   * `Vector2D`    - A vector structure in 2D space.
   * `Point3D`     - A point structure in 3D space.
+  * `Vector3D`    - A vector structure in 3D space.
+  * `Vector2DMath` - Static Vector2D/Point2D math helpers.
+  * `Vector3DMath` - Static Vector3D/Point3D math helpers.
 
 #### Development & Contributions.
 

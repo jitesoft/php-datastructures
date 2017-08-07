@@ -2,7 +2,7 @@
     "name": "jitesoft/datastructures",
     "description": "Misc data structures for php.",
     "type": "library",
-    "version": "0.0.1",
+    "version": "1.0.0",
     "require": {
         "php": ">7.1"
     },
