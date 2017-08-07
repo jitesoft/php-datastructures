@@ -7,6 +7,7 @@
 namespace Jitesoft\Utilities\DataStructures\Math;
 
 use Jitesoft\Utilities\DataStructures\Math\Point2D as Point;
+use Jitesoft\Utilities\DataStructures\Math\Vector2DMath as _;
 
 /**
  * Class Vector2D
@@ -14,6 +15,17 @@ use Jitesoft\Utilities\DataStructures\Math\Point2D as Point;
  * Vector structure in 2D space.
  */
 class Vector2D extends Point2D {
+
+    /**
+     * Make the given vector a copy of another vector.
+     * Basically assigns X and Y of the vector to the X and Y of passed point/vector.
+     *
+     * @param Point $copy
+     */
+    private function copy(Point $copy) {
+        $this->x = $copy->x;
+        $this->y = $copy->y;
+    }
 
     /**
      * Create a Vector2D instance.
@@ -79,7 +91,7 @@ class Vector2D extends Point2D {
      * @return float Distance.
      */
     public function distance(Point2D $value) : float {
-        return sqrt($this->distance2($value));
+        return _::distance($this, $value);
     }
 
     /**
@@ -89,10 +101,7 @@ class Vector2D extends Point2D {
      * @return float Distance squared.
      */
     public function distance2(Point2D $value) : float {
-        return
-            ($this->x - $value->x) * ($this->x - $value->x)
-            +
-            ($this->y - $value->y) * ($this->y - $value->y);
+        return _::distance2($this, $value);
     }
 
     /**
@@ -101,8 +110,7 @@ class Vector2D extends Point2D {
      * @param Point|Vector2D $value
      */
     public function add(Point $value) {
-        $this->x += $value->x;
-        $this->y += $value->y;
+        $this->copy(_::add($this, $value));
     }
 
     /**
@@ -111,8 +119,7 @@ class Vector2D extends Point2D {
      * @param Point|Vector2D $value
      */
     public function sub(Point $value) {
-        $this->x -= $value->x;
-        $this->y -= $value->y;
+        $this->copy(_::sub($this, $value));
     }
 
     /**
@@ -121,13 +128,7 @@ class Vector2D extends Point2D {
      * @param Vector2D|Point|float $value
      */
     public function mul($value) {
-        if (is_numeric($value)) {
-            $this->mul_f($value);
-            return;
-        }
-
-        $this->x *= $value->x;
-        $this->y *= $value->y;
+        $this->copy(_::mul($this, $value));
     }
 
     /**
@@ -136,45 +137,16 @@ class Vector2D extends Point2D {
      * @param Vector2D|Point|float $value
      */
     public function div($value) {
-        if (is_numeric($value)) {
-            $this->div_f($value);
-            return;
-        }
-
-        $this->x /= $value->x;
-        $this->y /= $value->y;
+        $this->copy(_::div($this, $value));
     }
 
     /**
      * Dot product.
      *
-     * @param Point2D $value
+     * @param Point $value
      * @return float
      */
     public function dot(Point $value) : float {
-        return
-            $this->x * $value->x
-            +
-            $this->y * $value->y;
-    }
-
-    /**
-     * Vector multiplication with a float value.
-     *
-     * @param float $float
-     */
-    private function mul_f(float $float) {
-        $this->x *= $float;
-        $this->y *= $float;
-    }
-
-    /**
-     * Vector division with a float value.
-     *
-     * @param float $float
-     */
-    private function div_f(float $float) {
-        $this->x /= $float;
-        $this->y /= $float;
+        return _::dot($this, $value);
     }
 }
