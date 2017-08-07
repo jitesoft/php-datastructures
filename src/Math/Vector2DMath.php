@@ -12,9 +12,6 @@ use Jitesoft\Utilities\DataStructures\Math\Point2D as Point;
 use Jitesoft\Utilities\DataStructures\Math\Vector2D as Vector;
 
 class Vector2DMath {
-
-
-
     /**
      * Vector addition.
      *

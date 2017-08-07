@@ -43,19 +43,34 @@ class Vector2D extends Point2D {
      *
      * @return float Length.
      */
-    public function length() : float {}
+    public function length() : float {
+        return sqrt($this->length2());
+    }
 
     /**
      * Get the length of the vector squared for faster operation.
      *
      * @return float Length squared.
      */
-    public function length2() : float {}
+    public function length2() : float {
+        return
+            $this->x * $this->x
+            +
+            $this->y * $this->y;
+    }
 
     /**
      * Normalize the vector.
      */
-    public function normalize() {}
+    public function normalize() {
+        $len = $this->length();
+
+        if ($len <= 0) {
+            return;
+        }
+
+        $this->div($len);
+    }
 
     /**
      * Calculate the distance between two vectors.
@@ -63,7 +78,9 @@ class Vector2D extends Point2D {
      * @param Point2D $value
      * @return float Distance.
      */
-    public function distance(Point2D $value) : float {}
+    public function distance(Point2D $value) : float {
+        return sqrt($this->distance2($value));
+    }
 
     /**
      * Calculate the distance between two vectors squared for faster operation.
@@ -71,7 +88,12 @@ class Vector2D extends Point2D {
      * @param Point2D $value
      * @return float Distance squared.
      */
-    public function distance2(Point2D $value) : float {}
+    public function distance2(Point2D $value) : float {
+        return
+            ($this->x - $value->x) * ($this->x - $value->x)
+            +
+            ($this->y - $value->y) * ($this->y - $value->y);
+    }
 
     /**
      * Vector addition.
@@ -88,21 +110,40 @@ class Vector2D extends Point2D {
      *
      * @param Point|Vector2D $value
      */
-    public function sub(Point $value) {}
+    public function sub(Point $value) {
+        $this->x -= $value->x;
+        $this->y -= $value->y;
+    }
 
     /**
      * Vector multiplication.
      *
      * @param Vector2D|Point|float $value
      */
-    public function mul($value) {}
+    public function mul($value) {
+        if (is_numeric($value)) {
+            $this->mul_f($value);
+            return;
+        }
+
+        $this->x *= $value->x;
+        $this->y *= $value->y;
+    }
 
     /**
      * Vector division.
      *
      * @param Vector2D|Point|float $value
      */
-    public function div($value) {}
+    public function div($value) {
+        if (is_numeric($value)) {
+            $this->div_f($value);
+            return;
+        }
+
+        $this->x /= $value->x;
+        $this->y /= $value->y;
+    }
 
     /**
      * Dot product.
@@ -110,19 +151,30 @@ class Vector2D extends Point2D {
      * @param Point2D $value
      * @return float
      */
-    public function dot(Point $value) : float {}
+    public function dot(Point $value) : float {
+        return
+            $this->x * $value->x
+            +
+            $this->y * $value->y;
+    }
 
     /**
      * Vector multiplication with a float value.
      *
      * @param float $float
      */
-    private function mul_f(float $float) {}
+    private function mul_f(float $float) {
+        $this->x *= $float;
+        $this->y *= $float;
+    }
 
     /**
      * Vector division with a float value.
      *
      * @param float $float
      */
-    private function div_f(float $float) {}
+    private function div_f(float $float) {
+        $this->x /= $float;
+        $this->y /= $float;
+    }
 }

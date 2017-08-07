@@ -113,13 +113,53 @@ class Vector2DTest extends TestCase {
         $this->assertEquals(1, $v1->getY());
     }
 
-    public function testLength() {}
-    public function testLength2() {}
+    public function testLength() {
+        $v1 = new Vector2D(10, 5);
+        $len = $v1->length();
 
-    public function testNormalize() {}
-    public function testDot() {}
 
-    public function testDistance() {}
-    public function testDistanceSquared() {}
+        $this->assertEquals(sqrt(125), $len);
+    }
+
+    public function testLength2() {
+        $v = new Vector2D(10, 5);
+        $len = $v->length2();
+
+        $this->assertEquals(125, $len);
+    }
+
+    public function testNormalize() {
+        $v = new Vector2D(10, 5);
+        $v->normalize();
+
+        $this->assertequals(0.89, $v->getX(), "", 2);
+        $this->assertEquals(0.44, $v->getY(), "", 2);
+    }
+
+    public function testDot() {
+        $v1 = new Vector2D(10, 15);
+        $v2 = new Vector2D(20, 25);
+        $result = $v1->dot($v2);
+
+        $this->assertEquals(575, $result);
+    }
+
+    public function testDistance() {
+        $v1 = new Vector2D(10, 15);
+        $v2 = new Vector2D(20, 25);
+
+        $dist = $v1->distance($v2);
+
+        $this->assertEquals(sqrt(200), $dist);
+    }
+
+    public function testDistanceSquared() {
+        $v1 = new Vector2D(10, 15);
+        $v2 = new Vector2D(20, 25);
+
+        $dist = $v1->distance2($v2);
+
+        $this->assertEquals(200, $dist);
+    }
 
 }
