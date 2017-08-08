@@ -187,7 +187,9 @@ class Vector3D extends Point implements ArrayAccess {
      * @throws Exception
      */
     public function offsetSet($offset, $value) {
-        assert(is_numeric($value), "Value is invalid. Value should be a number.");
+        if (!is_numeric($value)) {
+            throw new \InvalidArgumentException("Invalid value. Value must be a number.");
+        }
         $offset = $this->convertOffset($offset);
         $this->{$offset} = $value;
     }

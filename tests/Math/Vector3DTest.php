@@ -236,6 +236,11 @@ class Vector3DTest extends TestCase {
         $this->assertEquals(10, $vector->getZ());
         $vector['Z'] = 100;
         $this->assertEquals(100, $vector->getZ());
+
+        $this->expectException(\InvalidArgumentException::class);
+        $this->expectExceptionMessage("Invalid value. Value must be a number.");
+
+        $vector['x'] = "HI!";
     }
 
     public function testOffsetUnset() {
