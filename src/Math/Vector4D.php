@@ -160,7 +160,7 @@ class Vector4D {
     }
 
     /**
-     * Calculate dot product between two vectors.
+     * Calculate dot product of two vectors.
      *
      * @param Vector4D $value
      * @return float
@@ -195,7 +195,7 @@ class Vector4D {
      * @return float
      */
     public function length() : float {
-
+        return sqrt($this->length2());
     }
 
     /**
@@ -204,14 +204,26 @@ class Vector4D {
      * @return float
      */
     public function length2() : float {
-
+        return
+            ($this->x * $this->x)
+            +
+            ($this->y * $this->y)
+            +
+            ($this->z * $this->z)
+            +
+            ($this->w * $this->w);
     }
 
     /**
      * Normalizes the vector.
      */
     public function normalize() {
+        $len = $this->length();
 
+        $this->x /= $len;
+        $this->y /= $len;
+        $this->z /= $len;
+        $this->w /= $len;
     }
 
 }

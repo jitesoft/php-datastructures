@@ -120,17 +120,58 @@ class Vector4DTest extends TestCase {
 
     }
 
-    public function testCross() {}
+    public function testDot() {
+        $v1 = new Vector(1,2,3,4);
+        $v2 = new Vector(10,20,30,40);
 
-    public function testDot() {}
+        $result1 = Vector4DMath::dot($v1, $v2);
+        $result2 = $v1->dot($v2);
 
-    public function testDistance() {}
+        $this->assertEquals($result1, $result2);
+        $this->assertEquals(300, $result2);
+    }
 
-    public function testDistance2() {}
+    public function testDistance() {
+        $v1 = new Vector(1,2,3,4);
+        $v2 = new Vector(10,20,30,40);
 
-    public function testNormalize() {}
+        $result1 = Vector4DMath::distance($v1, $v2);
+        $result2 = $v1->distance($v2);
 
-    public function testLength() {}
+        $this->assertEquals($result1, $result2);
+        $this->assertEquals(sqrt(2430), $result2);
+    }
 
-    public function testLength2() {}
+    public function testDistance2() {
+        $v1 = new Vector(1,2,3,4);
+        $v2 = new Vector(10,20,30,40);
+
+        $result1 = Vector4DMath::distance2($v1, $v2);
+        $result2 = $v1->distance2($v2);
+
+        $this->assertEquals($result1, $result2);
+        $this->assertEquals(2430, $result2);
+    }
+
+    public function testNormalize() {
+        $vector = new Vector(10,20,30,40);
+        $vector->normalize();
+        $this->assertEquals(1, $vector->length());
+
+        $this->assertEquals(0.18, $vector->getX(), "", 2);
+        $this->assertEquals(0.36, $vector->getY(), "", 2);
+        $this->assertEquals(0.54, $vector->getZ(), "", 2);
+        $this->assertEquals(0.73, $vector->getW(), "", 2);
+        
+    }
+
+    public function testLength() {
+        $vector = new Vector(10,20,30,40);
+        $this->assertEquals(sqrt(3000), $vector->length());
+    }
+
+    public function testLength2() {
+        $vector = new Vector(10,20,30,40);
+        $this->assertEquals(3000, $vector->length2());
+    }
 }
