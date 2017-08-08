@@ -2,6 +2,7 @@
     "name": "jitesoft/datastructures",
     "description": "Misc data structures for php.",
     "type": "library",
+    "keywords": [ "data structure", "math", "vector", "list", "array", "queue", "stack" ],
     "version": "1.0.0",
     "require": {
         "php": ">7.1"
