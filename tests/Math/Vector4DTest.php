@@ -60,7 +60,7 @@ class Vector4DTest extends TestCase {
         $this->assertEquals($result, $v1);
         $this->assertEquals(1, $v1->getX());
         $this->assertEquals(3, $v1->getY());
-        $this->assertEquals(3, $v1->getZ());
+        $this->assertEquals(2, $v1->getZ());
         $this->assertEquals(5, $v1->getW());
     }
 
