@@ -37,12 +37,15 @@ The following classes are currently implemented:
   * `LinkedStack` - A stack implementation with a linked list as base.
   * `ArrayStack`  - A stack implementation with an array as base.
 * Math (`Jitesoft\Utilities\DataStructures\Math`) (Misc math classes and functions).
+  * `Math`        - Misc static math helpers.
   * `Point2D`     - A point structure in 2D space.
   * `Vector2D`    - A vector structure in 2D space.
   * `Point3D`     - A point structure in 3D space.
   * `Vector3D`    - A vector structure in 3D space.
   * `Vector2DMath` - Static Vector2D/Point2D math helpers.
   * `Vector3DMath` - Static Vector3D/Point3D math helpers.
+  * `Matrix33`    - A matrix structure with 3*3 indexes.
+  * `Matrix33Math` - Static Matrix33 math helpers.
 
 #### Development & Contributions.
 

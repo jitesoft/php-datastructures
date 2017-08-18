@@ -6,6 +6,7 @@
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 namespace Jitesoft\Utilities\DataStructures\Tests\Math;
 
+use Jitesoft\Utilities\DataStructures\Math\Vector3D;
 use Jitesoft\Utilities\DataStructures\Math\Vector3DMath;
 use PHPUnit\Framework\TestCase;
 use Jitesoft\Utilities\DataStructures\Math\Vector3D as Vector;
@@ -173,5 +174,79 @@ class Vector3DTest extends TestCase {
     public function testLength2() {
         $vector1 = new Vector(2,3,4);
         $this->assertEquals(29, $vector1->length2());
+    }
+
+    public function testOffsetExists() {
+        $vector = new Vector(1,2,3);
+
+        $this->assertFalse($vector->offsetExists(3));
+        $this->assertFalse($vector->offsetExists(-1));
+
+        $this->assertTrue($vector->offsetExists(0));
+        $this->assertTrue($vector->offsetExists('x'));
+        $this->assertTrue($vector->offsetExists('X'));
+
+        $this->assertTrue($vector->offsetExists(1));
+        $this->assertTrue($vector->offsetExists('y'));
+        $this->assertTrue($vector->offsetExists('Y'));
+
+        $this->assertTrue($vector->offsetExists(2));
+        $this->assertTrue($vector->offsetExists('z'));
+        $this->assertTrue($vector->offsetExists('Z'));
+    }
+
+
+    public function testOffsetGet() {
+        $vector = new Vector(1,2,3);
+
+        $this->assertEquals(1, $vector[0]);
+        $this->assertEquals(1, $vector['x']);
+        $this->assertEquals(1, $vector['X']);
+
+        $this->assertEquals(2, $vector[1]);
+        $this->assertEquals(2, $vector['y']);
+        $this->assertEquals(2, $vector['Y']);
+
+        $this->assertEquals(3, $vector[2]);
+        $this->assertEquals(3, $vector['z']);
+        $this->assertEquals(3, $vector['Z']);
+    }
+
+    public function testOffsetSet() {
+
+        $vector = new Vector(10,20,30);
+
+        $vector[0] = 1;
+        $this->assertEquals(1, $vector->getX());
+        $vector['x'] = 10;
+        $this->assertEquals(10, $vector->getX());
+        $vector['X'] = 100;
+        $this->assertEquals(100, $vector->getX());
+
+        $vector[1] = 1;
+        $this->assertEquals(1, $vector->getY());
+        $vector['y'] = 10;
+        $this->assertEquals(10, $vector->getY());
+        $vector['Y'] = 100;
+        $this->assertEquals(100, $vector->getY());
+
+        $vector[2] = 1;
+        $this->assertEquals(1, $vector->getZ());
+        $vector['z'] = 10;
+        $this->assertEquals(10, $vector->getZ());
+        $vector['Z'] = 100;
+        $this->assertEquals(100, $vector->getZ());
+
+        $this->expectException(\InvalidArgumentException::class);
+        $this->expectExceptionMessage("Invalid value. Value must be a number.");
+
+        $vector['x'] = "HI!";
+    }
+
+    public function testOffsetUnset() {
+        $this->expectException(\Exception::class);
+        $this->expectExceptionMessage("Invalid method.");
+
+        (new Vector3D(1,2,3))->offsetUnset(1);
     }
 }
