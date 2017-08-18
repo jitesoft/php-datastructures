@@ -7,8 +7,6 @@
 namespace Jitesoft\Utilities\DataStructures\Math;
 
 use Jitesoft\Utilities\DataStructures\Math\Matrix33Math as _;
-use ArrayAccess;
-use Exception;
 
 /**
  * Class Matrix33
