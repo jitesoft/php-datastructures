@@ -42,7 +42,6 @@ class Vector3D extends Point implements ArrayAccess {
         parent::__construct($x, $y, $z);
     }
 
-
     /**
      * Vector addition.
      *
@@ -140,7 +139,7 @@ class Vector3D extends Point implements ArrayAccess {
      */
     public function normalize() {
         $len = $this->length();
-        if($len <= 0) {
+        if ($len <= 0) {
             return;
         }
         $this->div($len);
@@ -190,7 +189,7 @@ class Vector3D extends Point implements ArrayAccess {
         if (!is_numeric($value)) {
             throw new \InvalidArgumentException("Invalid value. Value must be a number.");
         }
-        $offset = $this->convertOffset($offset);
+        $offset          = $this->convertOffset($offset);
         $this->{$offset} = $value;
     }
 
