@@ -7,7 +7,7 @@
 namespace Jitesoft\Utilities\DataStructures\Math;
 
 use Exception;
-use Jitesoft\Utilities\DataStructures\Math\Matrix33 as Matrix;
+use Jitesoft\Utilities\DataStructures\Math\Matrix33;
 
 /**
  * Class Matrix33Math
@@ -27,7 +27,7 @@ class Matrix33Math {
      */
     public static function identity() : Matrix {
 
-        return new Matrix(
+        return new Matrix33(
             1, 0, 0,
             0, 1, 0,
             0, 0, 1
@@ -42,9 +42,9 @@ class Matrix33Math {
      * @return Matrix33
      * @throws Exception On invalid value type.
      */
-    public static function mul(Matrix $matrix, $value) : Matrix {
+    public static function mul(Matrix33 $matrix, $value) : Matrix33 {
 
-        if ($value instanceof Matrix) {
+        if ($value instanceof Matrix33) {
             return self::mulMatrix($matrix, $value);
         }
 
@@ -56,8 +56,8 @@ class Matrix33Math {
         throw new Exception("Invalid type. Can not multiply a matrix with {$type}.");
     }
 
-    private static function mulMatrix(Matrix $matrix, Matrix $matrix2) : Matrix {
-        $result = new Matrix();
+    private static function mulMatrix(Matrix33 $matrix, Matrix33 $matrix2) : Matrix33 {
+        $result = new Matrix33();
 
         for ($x=0;$x<3;$x++) {
             for ($y=0;$y<3;$y++) {
@@ -72,8 +72,8 @@ class Matrix33Math {
         return $result;
     }
 
-    private static function mulFloat(Matrix $matrix, float $value) : Matrix {
-        $result = new Matrix();
+    private static function mulFloat(Matrix33 $matrix, float $value) : Matrix33 {
+        $result = new Matrix33();
 
         for ($i=0;$i<3;$i++) {
             for ($j=0;$j<3;$j++) {
@@ -91,8 +91,8 @@ class Matrix33Math {
      * @param Matrix33 $matrix2
      * @return Matrix33
      */
-    public static function add(Matrix $matrix, Matrix $matrix2) : Matrix {
-        $result = new Matrix();
+    public static function add(Matrix33 $matrix, Matrix33 $matrix2) : Matrix33 {
+        $result = new Matrix33();
 
         for ($i=0;$i<3;$i++) {
             for ($j=0;$j<3;$j++) {
@@ -110,8 +110,8 @@ class Matrix33Math {
      * @param Matrix33 $matrix2
      * @return Matrix33
      */
-    public static function sub(Matrix $matrix, Matrix $matrix2) : Matrix {
-        $result = new Matrix();
+    public static function sub(Matrix33 $matrix, Matrix33 $matrix2) : Matrix33 {
+        $result = new Matrix33();
 
         for ($i=0;$i<3;$i++) {
             for ($j=0;$j<3;$j++) {
@@ -129,12 +129,12 @@ class Matrix33Math {
      * @param string $type If degrees or radians, see Math constants.
      * @return Matrix33
      */
-    public static function makeRotationX(float $angle, string $type = Math::DEGREES) : Matrix {
+    public static function makeRotationX(float $angle, string $type = Math::DEGREES) : Matrix33 {
         if ($type === Math::DEGREES) {
             $angle = Math::degToRad($angle);
         }
 
-        return new Matrix(
+        return new Matrix33(
             1, 0, 0,
             0, cos($angle), - sin($angle),
             0, sin($angle), cos($angle)
@@ -148,12 +148,12 @@ class Matrix33Math {
      * @param string $type If degrees or radians, see Math constants.
      * @return Matrix33
      */
-    public static function makeRotationY(float $angle, string $type = Math::DEGREES) : Matrix {
+    public static function makeRotationY(float $angle, string $type = Math::DEGREES) : Matrix33 {
         if ($type === Math::DEGREES) {
             $angle = Math::degToRad($angle);
         }
 
-        return new Matrix(
+        return new Matrix33(
             cos($angle), 0, sin($angle),
             0, 1, 0,
             - sin($angle), 0, cos($angle)
@@ -167,12 +167,12 @@ class Matrix33Math {
      * @param string $type If degrees or radians, see Math constants.
      * @return Matrix33
      */
-    public static function makeRotationZ(float $angle, string $type = Math::DEGREES) : Matrix {
+    public static function makeRotationZ(float $angle, string $type = Math::DEGREES) : Matrix33 {
         if ($type === Math::DEGREES) {
             $angle = Math::degToRad($angle);
         }
 
-        return new Matrix(
+        return new Matrix33(
             cos($angle), - sin($angle), 0,
             sin($angle), cos($angle), 0,
             0, 0, 1

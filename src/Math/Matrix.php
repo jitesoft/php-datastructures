@@ -32,6 +32,32 @@ abstract class Matrix implements ArrayAccess {
     protected $vectors = [];
 
     /**
+     * Matrix multiplication.
+     *
+     * @param float|Matrix $value
+     */
+    public abstract function mul($value);
+
+    /**
+     * Matrix addition.
+     *
+     * @param Matrix $value
+     */
+    public abstract function add(Matrix $value);
+
+    /**
+     * Matrix subtraction.
+     *
+     * @param Matrix $value
+     */
+    public abstract function sub(Matrix $value);
+
+    /**
+     * Turn the matrix into a identity matrix.
+     */
+    public abstract function identity();
+
+    /**
      * Calculate the matrix determinant.
      *
      * @return float
@@ -49,6 +75,66 @@ abstract class Matrix implements ArrayAccess {
      * Transpose the matrix.
      */
     public abstract function transpose();
+
+    /**
+     * Alias for Matrix::setRotationX
+     * @see Matrix::setRotationX()
+     *
+     * @param float $angle
+     * @param string $type
+     */
+    public function roll(float $angle, string $type = Math::DEGREES) {
+        $this->setRotationX($angle, $type);
+    }
+
+    /**
+     * Alias for Matrix::setRotationY
+     * @see Matrix::setRotationY()
+     *
+     * @param float $angle
+     * @param string $type
+     */
+    public function pitch(float $angle, string $type = Math::DEGREES) {
+        $this->setRotationY($angle, $type);
+    }
+
+    /**
+     * Alias for Matrix::setRotationZ
+     * @see Matrix::setRotationZ()
+     *
+     * @param float $angle
+     * @param string $type
+     */
+    public function yaw(float $angle, string $type = Math::DEGREES) {
+        $this->setRotationZ($angle, $type);
+    }
+
+    /**
+     * Rotate the matrix in X by given angle.
+     * This is commonly called "Roll".
+     *
+     * @param float $angle
+     * @param string $type
+     */
+    public abstract function setRotationX(float $angle, string $type = Math::DEGREES);
+
+    /**
+     * Rotate the matrix in Y by given angle.
+     * This is commonly called "Pitch".
+     *
+     * @param float $angle
+     * @param string $type
+     */
+    public abstract function setRotationY(float $angle, string $type = Math::DEGREES);
+
+    /**
+     * Rotate the matrix in Z by given angle.
+     * This is commonly called "Yaw".
+     *
+     * @param float $angle
+     * @param string $type
+     */
+    public abstract function setRotationZ(float $angle, string $type = Math::DEGREES);
 
     /**
      * Inverse the matrix.

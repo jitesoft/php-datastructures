@@ -32,7 +32,7 @@ class Matrix33 extends Matrix {
 
 
     /**
-     * Transpose the matrix.
+     * {@inheritdoc}
      */
     public function transpose() {
         $cpy = new Matrix33();
@@ -46,7 +46,7 @@ class Matrix33 extends Matrix {
     }
 
     /**
-     * Turn the matrix into a identity matrix.
+     * {@inheritDoc}
      *
      * <pre>
      *  [1,0,0]
@@ -60,7 +60,7 @@ class Matrix33 extends Matrix {
 
 
     /**
-     * Get the minors of the given matrix.
+     * {@inheritDoc}
      *
      * <pre>
      * Calculation used to get minors:
@@ -104,10 +104,9 @@ class Matrix33 extends Matrix {
         );
     }
 
+
     /**
-     * Calculate matrix determinant using laplace expansion.
-     *
-     * @return float
+     * {@inheritDoc}
      */
     public function determinant() : float {
         return
@@ -117,68 +116,28 @@ class Matrix33 extends Matrix {
     }
 
     /**
-     * @param Matrix33|float $value
-     * @throws Exception
+     * {@inheritDoc}
      */
     public function mul($value) {
         $this->copy(_::mul($this, $value));
     }
 
     /**
-     * @param Matrix33 $value
+     * {@inheritDoc}
      */
-    public function add(Matrix33 $value) {
+    public function add(Matrix $value) {
         $this->copy(_::add($this, $value));
     }
 
     /**
-     * @param Matrix33|float $value
+     * {@inheritDoc}
      */
-    public function sub($value) {
+    public function sub(Matrix $value) {
         $this->copy(_::sub($this, $value));
     }
 
     /**
-     * @alias to Matrix33::setRotationX
-     * @see Matrix33::setRotationX()
-     *
-     * @param float $angle
-     * @param string $type
-     */
-    public function roll(float $angle, string $type = Math::DEGREES) {
-        $this->setRotationX($angle, $type);
-    }
-
-
-    /**
-     * @alias to Matrix33::setRotationY
-     * @see Matrix33::setRotationY()
-     *
-     * @param float $angle
-     * @param string $type
-     */
-    public function pitch(float $angle, string $type = Math::DEGREES) {
-        $this->setRotationY($angle, $type);
-    }
-
-
-    /**
-     * @alias to Matrix33::setRotationZ
-     * @see Matrix33::setRotationZ()
-     *
-     * @param float $angle
-     * @param string $type
-     */
-    public function yaw(float $angle, string $type = Math::DEGREES) {
-        $this->setRotationZ($angle, $type);
-    }
-
-    /**
-     * Rotate the matrix in X by given angle.
-     * This is commonly called "Roll".
-     *
-     * @param float $angle
-     * @param string $type
+     * {@inheritDoc}
      */
     public function setRotationX(float $angle, string $type = Math::DEGREES) {
         $rotationMatrix = _::makeRotationX($angle, $type);
@@ -186,11 +145,7 @@ class Matrix33 extends Matrix {
     }
 
     /**
-     * Rotate the matrix in Y by given angle.
-     * This is commonly called "Pitch".
-     *
-     * @param float $angle
-     * @param string $type
+     * {@inheritDoc}
      */
     public function setRotationY(float $angle, string $type = Math::DEGREES) {
         $rotationMatrix = _::makeRotationY($angle, $type);
@@ -199,11 +154,7 @@ class Matrix33 extends Matrix {
     }
 
     /**
-     * Rotate the matrix in Z by given angle.
-     * This is commonly called "Yaw".
-     *
-     * @param float $angle
-     * @param string $type
+     * {@inheritDoc}
      */
     public function setRotationZ(float $angle, string $type = Math::DEGREES) {
         $rotationMatrix = _::makeRotationZ($angle, $type);
