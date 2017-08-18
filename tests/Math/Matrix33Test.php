@@ -42,7 +42,7 @@ class Matrix33Test extends TestCase {
 
     public function testGetValueOutOfRange() {
         $this->expectException(Exception::class);
-        $this->expectExceptionMessage("Out of range. This matrix has three * three indexes [0,1,2][0,1,2].");
+        $this->expectExceptionMessage("Out of range. This matrix has 3 * 3 indexes.");
 
         $matrix = new Matrix();
         $matrix[10];

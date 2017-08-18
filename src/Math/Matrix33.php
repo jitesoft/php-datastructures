@@ -15,28 +15,10 @@ use Exception;
  *
  * A 3x3 matrix structure.
  */
-class Matrix33 implements ArrayAccess {
+class Matrix33 extends Matrix {
 
-    /** @var int[][] */
-    private static $cofactors = [
-        [1, -1, 1],
-        [-1, 1, -1],
-        [1, -1, 1]
-    ];
-
-    /** @var Vector3D[] */
-    private $vectors;
-
-    private function copy(Matrix33 $matrix) {
-        for ($i=0;$i<3;$i++) {
-
-            $this->vectors[$i] = new Vector3D(
-                $matrix[$i]->getX(),
-                $matrix[$i]->getY(),
-                $matrix[$i]->getZ()
-            );
-        }
-    }
+    protected $columns = 3;
+    protected $rows    = 3;
 
     public function __construct(
         float $x1 = 1, float $y1 = 0, float $z1 = 0,
@@ -49,6 +31,9 @@ class Matrix33 implements ArrayAccess {
     }
 
 
+    /**
+     * Transpose the matrix.
+     */
     public function transpose() {
         $cpy = new Matrix33();
         $cpy->copy($this);
@@ -73,31 +58,6 @@ class Matrix33 implements ArrayAccess {
         $this->copy(_::identity());
     }
 
-
-    public function inverse() {
-        $determinant = $this->determinant();
-        if ($determinant === 0) { // If 0, there is no inverse.
-            return;
-        }
-
-        $minors = $this->getMinors();
-        for ($i=0;$i<3;$i++) {
-            for ($j=0;$j<3;$j++) {
-                $minors[$i][$j] *= self::$cofactors[$i][$j];
-            }
-        }
-
-        // Adjugate.
-        $minors->transpose();
-        $div = 1 / $determinant;
-        for ($x=0;$x<3;$x++) {
-            for ($y=0;$y<3;$y++) {
-                    $minors[$x][$y] *= $div;
-            }
-        }
-
-        $this->copy($minors);
-    }
 
     /**
      * Get the minors of the given matrix.
@@ -126,9 +86,9 @@ class Matrix33 implements ArrayAccess {
      *
      *   [0Y*1Z - 0Z*1Y] [0X*1Z - 0Z*1X] [0X*1Y - 0Y*1X]
      * </pre>
-     * @return Matrix33
+     * @return Matrix
      */
-    public function getMinors() : Matrix33 {
+    public function getMinors() : Matrix {
         return new Matrix33(
             ($this[1]["Y"] * $this[2]["Z"]) - ($this[1]["Z"] * $this[2]["Y"]),
             ($this[1]["X"] * $this[2]["Z"]) - ($this[1]["Z"] * $this[2]["X"]),
@@ -248,26 +208,5 @@ class Matrix33 implements ArrayAccess {
     public function setRotationZ(float $angle, string $type = Math::DEGREES) {
         $rotationMatrix = _::makeRotationZ($angle, $type);
         $this->mul($rotationMatrix);
-    }
-
-    public function offsetGet($offset) {
-        if (!$this->offsetExists($offset)) {
-            throw new Exception("Out of range. This matrix has three * three indexes [0,1,2][0,1,2].");
-        }
-
-        return $this->vectors[$offset];
-    }
-
-    public function offsetExists($offset) {
-        return is_numeric($offset) && $offset >= 0 && $offset < 3;
-    }
-
-    public function offsetSet($offset, $value) {
-        throw new Exception("Invalid operation.");
-
-    }
-
-    public function offsetUnset($offset) {
-        throw new Exception("Invalid operation.");
     }
 }
