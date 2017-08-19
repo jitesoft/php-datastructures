@@ -6,15 +6,29 @@
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 namespace Jitesoft\Utilities\DataStructures\Math;
 
+use ArrayAccess;
 use Jitesoft\Utilities\DataStructures\Math\Point2D as Point;
 use Jitesoft\Utilities\DataStructures\Math\Vector2DMath as _;
+use Jitesoft\Utilities\DataStructures\Traits\VectorAccessTrait;
 
 /**
  * Class Vector2D
  *
  * Vector structure in 2D space.
+ *
+ * A vector consists of two floating point numbers and can be accessed through
+ * either their get-accessors (getX, getY) or through array access.
+ * (x/X/0, y/Y/1).
  */
-class Vector2D extends Point2D {
+class Vector2D extends Point2D implements ArrayAccess {
+    use VectorAccessTrait;
+
+    /** @var array */
+    protected $offsets = [
+        'x' => 'x', 'X' => 'x', 0 => 'x',
+        'y' => 'y', 'Y' => 'y', 1 => 'y',
+    ];
+
 
     /**
      * Make the given vector a copy of another vector.

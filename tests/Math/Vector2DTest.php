@@ -94,7 +94,7 @@ class Vector2DTest extends TestCase {
     }
 
     public function testMulF() {
-        $v1 = new Vector2D(10, 1);
+        $v1     = new Vector2D(10, 1);
         $result = Vector2DMath::mul($v1, 5);
         $v1->mul(5);
 
@@ -104,7 +104,7 @@ class Vector2DTest extends TestCase {
     }
 
     public function testDivF() {
-        $v1 = new Vector2D(100, 10);
+        $v1     = new Vector2D(100, 10);
         $result = Vector2DMath::div($v1, 10);
         $v1->div(10);
 
@@ -114,14 +114,14 @@ class Vector2DTest extends TestCase {
     }
 
     public function testLength() {
-        $v1 = new Vector2D(10, 5);
+        $v1  = new Vector2D(10, 5);
         $len = $v1->length();
 
         $this->assertEquals(sqrt(125), $len);
     }
 
     public function testLength2() {
-        $v = new Vector2D(10, 5);
+        $v   = new Vector2D(10, 5);
         $len = $v->length2();
 
         $this->assertEquals(125, $len);
@@ -137,8 +137,8 @@ class Vector2DTest extends TestCase {
     }
 
     public function testDot() {
-        $v1 = new Vector2D(10, 15);
-        $v2 = new Vector2D(20, 25);
+        $v1     = new Vector2D(10, 15);
+        $v2     = new Vector2D(20, 25);
         $result = $v1->dot($v2);
 
         $this->assertEquals(575, $result);
@@ -160,6 +160,64 @@ class Vector2DTest extends TestCase {
         $dist = $v1->distance2($v2);
 
         $this->assertEquals(200, $dist);
+    }
+
+    public function testOffsetExists() {
+        $vector = new Vector2D(1,2);
+
+        $this->assertFalse($vector->offsetExists(2));
+        $this->assertFalse($vector->offsetExists(-1));
+
+        $this->assertTrue($vector->offsetExists(0));
+        $this->assertTrue($vector->offsetExists('x'));
+        $this->assertTrue($vector->offsetExists('X'));
+
+        $this->assertTrue($vector->offsetExists(1));
+        $this->assertTrue($vector->offsetExists('y'));
+        $this->assertTrue($vector->offsetExists('Y'));
+    }
+
+
+    public function testOffsetGet() {
+        $vector = new Vector2D(1,2);
+
+        $this->assertEquals(1, $vector[0]);
+        $this->assertEquals(1, $vector['x']);
+        $this->assertEquals(1, $vector['X']);
+
+        $this->assertEquals(2, $vector[1]);
+        $this->assertEquals(2, $vector['y']);
+        $this->assertEquals(2, $vector['Y']);
+    }
+
+    public function testOffsetSet() {
+        $vector = new Vector2D(10,20);
+
+        $vector[0] = 1;
+        $this->assertEquals(1, $vector->getX());
+        $vector['x'] = 10;
+        $this->assertEquals(10, $vector->getX());
+        $vector['X'] = 100;
+        $this->assertEquals(100, $vector->getX());
+
+        $vector[1] = 1;
+        $this->assertEquals(1, $vector->getY());
+        $vector['y'] = 10;
+        $this->assertEquals(10, $vector->getY());
+        $vector['Y'] = 100;
+        $this->assertEquals(100, $vector->getY());
+
+        $this->expectException(\InvalidArgumentException::class);
+        $this->expectExceptionMessage("Invalid value. Value must be a number.");
+
+        $vector['x'] = "HI!";
+    }
+
+    public function testOffsetUnset() {
+        $this->expectException(\Exception::class);
+        $this->expectExceptionMessage("Invalid method.");
+
+        (new Vector2D(1,2))->offsetUnset(1);
     }
 
 }

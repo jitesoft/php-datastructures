@@ -4,7 +4,6 @@
 
   © - Jitesoft 2017
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
-
 namespace Jitesoft\Utilities\DataStructures\Math;
 
 /**
