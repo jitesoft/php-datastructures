@@ -4,26 +4,27 @@ _master:_
 [![Build Status](https://travis-ci.org/jitesoft/php-datastructures.svg?branch=master)](https://travis-ci.org/jitesoft/php-datastructures)  
 
 _develop:_  
-[![Build Status](https://travis-ci.org/jitesoft/php-datastructures.svg?branch=development)](https://travis-ci.org/jitesoft/php-datastructures)
+[![Build Status](https://travis-ci.org/jitesoft/php-datastructures.svg?branch=develop)](https://travis-ci.org/jitesoft/php-datastructures)
 
-A package consisting of a mix of data structures I find useful for php 7.1+.  
+A package consisting of a mix of data structures, classes and algorithms I find useful for php 7.1+.  
 
 Usage of data structures does not necessarily speed up the end product, but it could very well help in the development process.  
 The native array type in php can be a pain to keep track of what it is, is it a indexed or associative? Is it supposed to be a queue or a list?
 Well, by using a data structure as `LinkedQueue` or `IndexedList` this becomes a bit easier.  
 The structures all have methods to add and remove objects and works pretty much as one is used to with the type of structure they represent.
   
-The package is a work in progress and new type of structures will be added over time.  
+The package is a work in progress and new things will be added over time.  
+If you got a specific request, feel free to add a query through the [issue tracker](https://github.com/jitesoft/php-datastructures/issues).
 
-#### Installation and Usage.
+## Installation and Usage.
 
 Either clone the repository or require the package from composer:
 ```
 composer require jitesoft/datastructures
 ```
-Usage is quite self-explanatory, if not, feel free to add a issue for further documentation in the issue tracker.
+Usage is quite self-explanatory, if not, feel free to add a issue for further documentation in the  [issue tracker](https://github.com/jitesoft/php-datastructures/issues).
   
-#### Currently implemented classes.
+## Currently implemented classes.
 
 The following classes are currently implemented:  
 
@@ -46,13 +47,16 @@ The following classes are currently implemented:
   * `Vector3DMath` - Static Vector3D/Point3D math helpers.
   * `Matrix33`    - A matrix structure with 3*3 indexes.
   * `Matrix33Math` - Static Matrix33 math helpers.
+  * `Matrix44`    - A matrix structure with 4*4 indexes.
+  * `Matrix44Math` - Static Matrix44 math helpers.
+  * `MatrixMath`   - Common math for all matrices.
 
-#### Development & Contributions.
+## Development & Contributions.
 
 Pull requests following the given code-standard (check `ruleset.xml`) with 100% coverage by tests will be reviewed for merge.  
 Any contributions is greatly appreciated!
 
-#### License.
+## License.
 
 ```text
 MIT License
