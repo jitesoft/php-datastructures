@@ -32,23 +32,25 @@ class Matrix44 extends Matrix {
 
     /**
      * {@inheritdoc}
+     *
+     * @param float|Matrix44|Matrix33|Vector4D $value
      */
     public function mul($value) {
-        // TODO: Implement mul() method.
+        $this->copy(_::mul($this, $value));
     }
 
     /**
      * {@inheritdoc}
      */
     public function add(Matrix $value) {
-        // TODO: Implement add() method.
+        $this->copy(_::add($this, $value));
     }
 
     /**
      * {@inheritdoc}
      */
     public function sub(Matrix $value) {
-        // TODO: Implement sub() method.
+        $this->copy(_::sub($this, $value));
     }
 
     /**
@@ -61,23 +63,10 @@ class Matrix44 extends Matrix {
     /**
      * {@inheritdoc}
      */
-    public function determinant(): float {
-        // TODO: Implement determinant() method.
-    }
-
-    /**
-     * {@inheritdoc}
-     */
     public function getMinors(): Matrix {
         // TODO: Implement getMinors() method.
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function transpose() {
-        // TODO: Implement transpose() method.
-    }
 
     /**
      * {@inheritdoc}

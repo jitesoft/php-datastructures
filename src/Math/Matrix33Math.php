@@ -7,7 +7,6 @@
 namespace Jitesoft\Utilities\DataStructures\Math;
 
 use Exception;
-use Jitesoft\Utilities\DataStructures\Math\Matrix33;
 
 /**
  * Class Matrix33Math
@@ -22,11 +21,9 @@ class Matrix33Math {
      * [1,0,0]
      * [0,1,0]
      * [0,0,1]
-     *
-     * @return Matrix33
+     * @return Matrix
      */
     public static function identity() : Matrix {
-
         return new Matrix33(
             1, 0, 0,
             0, 1, 0,

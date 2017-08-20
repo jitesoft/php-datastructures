@@ -25,32 +25,37 @@ class Matrix44Test extends TestCase {
     }
 
     public function testGetValue() {
-        $matrix = new Matrix(1,2,3,4,5,6,7,8,9, 10, 11, 12, 13, 14, 15, 16);
+        $matrix = new Matrix(
+            1,2,3,4,
+            5,6,7,8,
+            9, 10, 11, 12,
+            13, 14, 15, 16
+        );
 
         $this->assertEquals(1, $matrix[0][0]);
         $this->assertEquals(2, $matrix[0][1]);
         $this->assertEquals(3, $matrix[0][2]);
-        $this->assertEquals(9, $matrix[2][3]);
+        $this->assertEquals(4, $matrix[0][3]);
 
-        $this->assertEquals(4, $matrix[1][0]);
-        $this->assertEquals(5, $matrix[1][1]);
-        $this->assertEquals(6, $matrix[1][2]);
-        $this->assertEquals(9, $matrix[2][3]);
+        $this->assertEquals(5, $matrix[1][0]);
+        $this->assertEquals(6, $matrix[1][1]);
+        $this->assertEquals(7, $matrix[1][2]);
+        $this->assertEquals(8, $matrix[1][3]);
 
-        $this->assertEquals(7, $matrix[2][0]);
-        $this->assertEquals(8, $matrix[2][1]);
-        $this->assertEquals(9, $matrix[2][2]);
-        $this->assertEquals(9, $matrix[2][3]);
+        $this->assertEquals(9, $matrix[2][0]);
+        $this->assertEquals(10, $matrix[2][1]);
+        $this->assertEquals(11, $matrix[2][2]);
+        $this->assertEquals(12, $matrix[2][3]);
 
-        $this->assertEquals(7, $matrix[3][0]);
-        $this->assertEquals(8, $matrix[3][1]);
-        $this->assertEquals(9, $matrix[3][2]);
-        $this->assertEquals(9, $matrix[3][3]);
+        $this->assertEquals(13, $matrix[3][0]);
+        $this->assertEquals(14, $matrix[3][1]);
+        $this->assertEquals(15, $matrix[3][2]);
+        $this->assertEquals(16, $matrix[3][3]);
     }
 
     public function testGetValueOutOfRange() {
         $this->expectException(Exception::class);
-        $this->expectExceptionMessage("Out of range. This matrix has 3 * 3 indexes.");
+        $this->expectExceptionMessage("Out of range. This matrix has 4 * 4 indexes.");
 
         $matrix = new Matrix();
         $matrix[10];
@@ -158,7 +163,7 @@ class Matrix44Test extends TestCase {
             3, 5,6,7
         );
 
-        $this->assertEquals(-2, $matrix->determinant());
+        $this->assertEquals(11, $matrix->determinant());
 
         $matrix = new Matrix(
             6,1,1, 10,
@@ -167,7 +172,7 @@ class Matrix44Test extends TestCase {
             5, 22, 0, 1
         );
 
-        $this->assertEquals(-306, $matrix->determinant());
+        $this->assertEquals(3531, $matrix->determinant());
     }
 
     public function testGetMinors() {

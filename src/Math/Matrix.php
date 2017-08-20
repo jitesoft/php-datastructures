@@ -62,7 +62,10 @@ abstract class Matrix implements ArrayAccess {
      *
      * @return float
      */
-    public abstract function determinant() : float;
+    public function determinant() : float {
+        return MatrixMath::calculateDeterminant($this->toArray());
+    }
+
 
     /**
      * Get the minors matrix of the matrix.
@@ -74,7 +77,17 @@ abstract class Matrix implements ArrayAccess {
     /**
      * Transpose the matrix.
      */
-    public abstract function transpose();
+    public function transpose() {
+        $cpy = new static();
+        $cpy->copy($this);
+
+        for ($i=0;$i<$this->rows;$i++) {
+            for ($j=0;$j<$this->columns;$j++) {
+                $this[$i][$j] = $cpy[$j][$i];
+            }
+        }
+
+    }
 
     /**
      * Alias for Matrix::setRotationX
@@ -196,5 +209,19 @@ abstract class Matrix implements ArrayAccess {
                 $this->vectors[$i][$j] = $matrix[$i][$j];
             }
         }
+    }
+
+    /**
+     * @return float[][] Array representation of the matrix.
+     */
+    protected function toArray() {
+        $out = [];
+        for ($i=0;$i<$this->rows;$i++) {
+            $out[$i] = [];
+            for ($j=0;$j<$this->columns;$j++) {
+                $out[$i][$j] = $this[$i][$j];
+            }
+        }
+        return $out;
     }
 }

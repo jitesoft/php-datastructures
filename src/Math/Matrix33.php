@@ -28,29 +28,8 @@ class Matrix33 extends Matrix {
         $this->vectors[2] = new Vector3D($x3, $y3, $z3);
     }
 
-
-    /**
-     * {@inheritdoc}
-     */
-    public function transpose() {
-        $cpy = new Matrix33();
-        $cpy->copy($this);
-
-        for ($i=0;$i<3;$i++) {
-            for ($j=0;$j<3;$j++) {
-                $this[$i][$j] = $cpy[$j][$i];
-            }
-        }
-    }
-
     /**
      * {@inheritDoc}
-     *
-     * <pre>
-     *  [1,0,0]
-     *  [0,1,0]
-     *  [0,0,1]
-     * </pre>
      */
     public function identity() {
         $this->copy(_::identity());
@@ -100,17 +79,6 @@ class Matrix33 extends Matrix {
             ($this[0]["X"] * $this[1]["Z"]) - ($this[0]["Z"] * $this[1]["X"]),
             ($this[0]["X"] * $this[1]["Y"]) - ($this[0]["Y"] * $this[1]["X"])
         );
-    }
-
-
-    /**
-     * {@inheritDoc}
-     */
-    public function determinant() : float {
-        return
-            ($this[0][0] * (($this[1][1] * $this[2][2]) - ($this[1][2] * $this[2][1]))) -
-            ($this[0][1] * (($this[1][0] * $this[2][2]) - ($this[1][2] * $this[2][0]))) +
-            ($this[0][2] * (($this[1][0] * $this[2][1]) - ($this[1][1] * $this[2][0])));
     }
 
     /**
