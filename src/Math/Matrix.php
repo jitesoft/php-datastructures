@@ -24,9 +24,9 @@ abstract class Matrix implements ArrayAccess {
     ];
 
     /** @var int  */
-    protected $rows = 0;
+    public const ROWS = 0;
     /** @var int */
-    protected $columns = 0;
+    public const COLUMNS = 0;
     /** @var Vector3D[] */
     protected $vectors = [];
 
@@ -35,7 +35,9 @@ abstract class Matrix implements ArrayAccess {
      *
      * @param float|Matrix $value
      */
-    public abstract function mul($value);
+    public function mul($value) {
+        $this->copy(MatrixMath::mul($this, $value));
+    }
 
     /**
      * Matrix addition.
@@ -54,7 +56,9 @@ abstract class Matrix implements ArrayAccess {
     /**
      * Turn the matrix into a identity matrix.
      */
-    public abstract function identity();
+    public function identity() {
+        $this->copy(MatrixMath::identity(static::class));
+    }
 
     /**
      * Calculate the matrix determinant.
@@ -73,8 +77,8 @@ abstract class Matrix implements ArrayAccess {
      */
     public function getAdjoinMatrix() : Matrix {
         $matrix = new static();
-        for ($i=0;$i<$this->rows;$i++) {
-            for ($j=0;$j<$this->columns;$j++) {
+        for ($i=0; $i<static::ROWS; $i++) {
+            for ($j=0; $j<static::COLUMNS; $j++) {
                 $cofactor       = MatrixMath::getCofactor($this->toArray(), $i, $j);
                 $matrix[$i][$j] = MatrixMath::calculateDeterminant($cofactor);
             }
@@ -89,8 +93,8 @@ abstract class Matrix implements ArrayAccess {
         $cpy = new static();
         $cpy->copy($this);
 
-        for ($i=0;$i<$this->rows;$i++) {
-            for ($j=0;$j<$this->columns;$j++) {
+        for ($i=0; $i<static::ROWS; $i++) {
+            for ($j=0; $j<static::COLUMNS; $j++) {
                 $this[$i][$j] = $cpy[$j][$i];
             }
         }
@@ -168,8 +172,8 @@ abstract class Matrix implements ArrayAccess {
 
         $adj  = $this->getAdjoinMatrix();
         $sign = 1;
-        for ($i=0;$i<$this->rows;$i++) {
-            for ($j=0;$j<$this->columns;$j++) {
+        for ($i=0; $i<static::ROWS; $i++) {
+            for ($j=0; $j<static::COLUMNS; $j++) {
                 $sign        = Matrix::SIGN_CHART[$i][$j];
                 $adj[$i][$j] = $sign * $adj[$i][$j];
             }
@@ -183,14 +187,20 @@ abstract class Matrix implements ArrayAccess {
 
     public function offsetGet($offset) {
         if (!$this->offsetExists($offset)) {
-            throw new Exception("Out of range. This matrix has $this->columns * $this->rows indexes.");
+            throw new Exception(
+                sprintf(
+                    "Out of range. This matrix has %d * %d indexes.",
+                    static::ROWS,
+                    static::COLUMNS
+                    )
+            );
         }
 
         return $this->vectors[$offset];
     }
 
     public function offsetExists($offset) {
-        return is_numeric($offset) && $offset >= 0 && $offset < $this->rows;
+        return is_numeric($offset) && $offset >= 0 && $offset < static::ROWS;
     }
 
     public function offsetSet($offset, $value) {
@@ -208,8 +218,8 @@ abstract class Matrix implements ArrayAccess {
      * @param Matrix $matrix
      */
     protected function copy(Matrix $matrix) {
-        for ($i=0;$i<$matrix->rows;$i++) {
-            for ($j=0;$j<$matrix->columns;$j++) {
+        for ($i=0; $i<static::ROWS; $i++) {
+            for ($j=0; $j<static::COLUMNS; $j++) {
                 $this->vectors[$i][$j] = $matrix[$i][$j];
             }
         }
@@ -220,9 +230,9 @@ abstract class Matrix implements ArrayAccess {
      */
     protected function toArray() {
         $out = [];
-        for ($i=0;$i<$this->rows;$i++) {
+        for ($i=0; $i<static::ROWS; $i++) {
             $out[$i] = [];
-            for ($j=0;$j<$this->columns;$j++) {
+            for ($j=0; $j<static::COLUMNS; $j++) {
                 $out[$i][$j] = $this[$i][$j];
             }
         }

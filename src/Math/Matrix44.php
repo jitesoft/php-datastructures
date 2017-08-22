@@ -15,8 +15,8 @@ use Jitesoft\Utilities\DataStructures\Math\Matrix44Math as _;
  */
 class Matrix44 extends Matrix {
 
-    protected $columns = 4;
-    protected $rows    = 4;
+    public const COLUMNS = 4;
+    public const ROWS    = 4;
 
     public function __construct(
         float $x1 = 1, float $y1 = 0, float $z1 = 0, float $w1 = 0,
@@ -32,15 +32,6 @@ class Matrix44 extends Matrix {
 
     /**
      * {@inheritdoc}
-     *
-     * @param float|Matrix44|Matrix33|Vector4D $value
-     */
-    public function mul($value) {
-        $this->copy(_::mul($this, $value));
-    }
-
-    /**
-     * {@inheritdoc}
      */
     public function add(Matrix $value) {
         $this->copy(_::add($this, $value));
@@ -51,13 +42,6 @@ class Matrix44 extends Matrix {
      */
     public function sub(Matrix $value) {
         $this->copy(_::sub($this, $value));
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function identity() {
-        $this->copy(_::identity());
     }
 
     /**

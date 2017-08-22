@@ -11,6 +11,7 @@ use Jitesoft\Utilities\DataStructures\Math\Math;
 use Jitesoft\Utilities\DataStructures\Math\Matrix44 as Matrix;
 use Jitesoft\Utilities\DataStructures\Math\Matrix44;
 use Jitesoft\Utilities\DataStructures\Math\Matrix44Math;
+use Jitesoft\Utilities\DataStructures\Math\MatrixMath;
 use Jitesoft\Utilities\DataStructures\Math\Vector4D;
 use PHPUnit\Framework\TestCase;
 
@@ -120,7 +121,7 @@ class Matrix44Test extends TestCase {
     public function testSetIdentity() {
         $matrix = new Matrix();
 
-        $static = Matrix44Math::identity();
+        $static = MatrixMath::identity(Matrix44::class);
         $matrix->identity();
 
         $this->assertEquals($static, $matrix);
@@ -219,16 +220,15 @@ class Matrix44Test extends TestCase {
         $matrix1 = new Matrix(1,2,3,4,5,6,7,8,9, 10, 11, 12, 13, 14, 15, 16);
         $matrix2 = new Matrix(1,2,3,4,5,6,7,8,9, 10, 11, 12, 13, 14, 15, 16);
 
-        $result = Matrix44Math::mul($matrix1, $matrix2);
+        $result = MatrixMath::mul($matrix1, $matrix2);
         $matrix1->mul($matrix2);
 
         $this->assertEquals($matrix1, $result);
         $this->assertEquals(new Matrix(
-            30, 36, 42, 1,
-            66, 81, 96, 1,
-            102, 126, 150, 1,
-            1, 1, 1, 1
-
+            90, 100, 110, 120,
+            202, 228, 254, 280,
+            314, 356, 398, 440,
+            426,  484, 542, 600
         ), $matrix1);
     }
 
@@ -236,7 +236,7 @@ class Matrix44Test extends TestCase {
         $matrix = new Matrix(1,2,3,4,5,6,7,8,9,10, 11, 12, 13, 14, 15, 16);
         $scalar = 10;
 
-        $result = Matrix44Math::mul($matrix, $scalar);
+        $result = MatrixMath::mul($matrix, $scalar);
         $matrix->mul($scalar);
 
         $this->assertEquals($result, $matrix);

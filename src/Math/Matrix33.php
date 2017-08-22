@@ -15,8 +15,8 @@ use Jitesoft\Utilities\DataStructures\Math\Matrix33Math as _;
  */
 class Matrix33 extends Matrix {
 
-    protected $columns = 3;
-    protected $rows    = 3;
+    public const COLUMNS = 3;
+    public const ROWS    = 3;
 
     public function __construct(
         float $x1 = 1, float $y1 = 0, float $z1 = 0,
@@ -26,20 +26,6 @@ class Matrix33 extends Matrix {
         $this->vectors[0] = new Vector3D($x1, $y1, $z1);
         $this->vectors[1] = new Vector3D($x2, $y2, $z2);
         $this->vectors[2] = new Vector3D($x3, $y3, $z3);
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function identity() {
-        $this->copy(_::identity());
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function mul($value) {
-        $this->copy(_::mul($this, $value));
     }
 
     /**

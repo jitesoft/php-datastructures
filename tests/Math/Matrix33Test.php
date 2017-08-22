@@ -11,6 +11,7 @@ use Jitesoft\Utilities\DataStructures\Math\Math;
 use Jitesoft\Utilities\DataStructures\Math\Matrix33 as Matrix;
 use Jitesoft\Utilities\DataStructures\Math\Matrix33;
 use Jitesoft\Utilities\DataStructures\Math\Matrix33Math;
+use Jitesoft\Utilities\DataStructures\Math\MatrixMath;
 use Jitesoft\Utilities\DataStructures\Math\Vector3D as Vector;
 use PHPUnit\Framework\TestCase;
 
@@ -92,7 +93,7 @@ class Matrix33Test extends TestCase {
     public function testSetIdentity() {
         $matrix = new Matrix();
 
-        $static = Matrix33Math::identity();
+        $static = MatrixMath::identity(Matrix33::class);
         $matrix->identity();
 
         $this->assertEquals($static, $matrix);
@@ -179,7 +180,7 @@ class Matrix33Test extends TestCase {
         $matrix1 = new Matrix(1,2,3,4,5,6,7,8,9);
         $matrix2 = new Matrix(1,2,3,4,5,6,7,8,9);
 
-        $result = Matrix33Math::mul($matrix1, $matrix2);
+        $result = MatrixMath::mul($matrix1, $matrix2);
         $matrix1->mul($matrix2);
 
         $this->assertEquals($matrix1, $result);
@@ -194,7 +195,7 @@ class Matrix33Test extends TestCase {
         $matrix = new Matrix(1,2,3,4,5,6,7,8,9);
         $scalar = 10;
 
-        $result = Matrix33Math::mul($matrix, $scalar);
+        $result = MatrixMath::mul($matrix, $scalar);
         $matrix->mul($scalar);
 
         $this->assertEquals($result, $matrix);

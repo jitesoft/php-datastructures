@@ -15,6 +15,17 @@ use Exception;
  */
 class MatrixMath {
 
+    public static function identity($type = Matrix44::class) : Matrix {
+        $matrix = new $type();
+
+        for ($i=0;$i<$type::ROWS;$i++) {
+            for ($j=0;$j<$type::COLUMNS;$j++) {
+                $matrix[$i][$j] = $i === $j ? 1 : 0;
+            }
+        }
+        return $matrix;
+    }
+
     /**
      * @param float[][] $matrix
      * @param int $skipRow
@@ -79,4 +90,48 @@ class MatrixMath {
         return $determinant;
     }
 
+
+    public static function mul(Matrix $matrix, $value) : Matrix {
+
+        if ($value instanceof Matrix) {
+            return self::mulMatrix($matrix, $value);
+        }
+
+        if (is_numeric($value)) {
+            return self::mulFloat($matrix, $value);
+        }
+
+        $type = gettype($value);
+        throw new Exception("Invalid type. Can not multiply a matrix with {$type}.");
+    }
+
+    private static function mulMatrix(Matrix $matrix, Matrix $matrix2) : Matrix {
+        $type   = get_class($matrix);
+        $result = new $type();
+
+        for ($x=0;$x<$type::ROWS;$x++) {
+            for ($y=0;$y<$type::ROWS;$y++) {
+                $value = 0;
+                for ($z=0;$z<$type::COLUMNS;$z++) {
+                    $value += $matrix[$y][$z] * $matrix2[$z][$x];
+                }
+                $result[$y][$x] = $value;
+            }
+        }
+
+        return $result;
+    }
+
+    private static function mulFloat(Matrix $matrix, float $value) : Matrix {
+        $type   = get_class($matrix);
+        $result = new $type();
+
+        for ($i=0;$i<$type::ROWS;$i++) {
+            for ($j=0;$j<$type::COLUMNS;$j++) {
+                $result[$i][$j] = $matrix[$i][$j] * $value;
+            }
+        }
+
+        return $result;
+    }
 }
