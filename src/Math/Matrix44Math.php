@@ -23,6 +23,17 @@ class Matrix44Math {
     }
 
     public static function mul(Matrix $matrix, $value) : Matrix {
+        $result = new Matrix44();
+
+        if (is_numeric($value)) { // Scalar multiplication.
+            for ($i=0;$i<4;$i++) {
+                for ($j=0;$j<4;$j++) {
+                    $result[$i][$j] = $matrix[$i][$j] * $value;
+                }
+            }
+        }
+
+        return $result;
 
     }
 

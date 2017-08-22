@@ -57,16 +57,8 @@ class Matrix44 extends Matrix {
      * {@inheritdoc}
      */
     public function identity() {
-        // TODO: Implement identity() method.
+        $this->copy(_::identity());
     }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function getMinors(): Matrix {
-        // TODO: Implement getMinors() method.
-    }
-
 
     /**
      * {@inheritdoc}

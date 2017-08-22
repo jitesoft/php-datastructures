@@ -35,52 +35,6 @@ class Matrix33 extends Matrix {
         $this->copy(_::identity());
     }
 
-
-    /**
-     * {@inheritDoc}
-     *
-     * <pre>
-     * Calculation used to get minors:
-     *
-     *
-     * For each "Minor", calculate the 2x2 determinate
-     *
-     *   I.E.,
-     *   [a] [b]
-     *   [c] [d]
-     *
-     *   D = a*d - b*c
-     *
-     *   The matrix is defined as following:
-     *   0 [X][Y][Z]
-     *   1 [X][Y][Z]
-     *   2 [X][Y][Z]
-     *
-     *   Where calculations of the minors are:
-     *   [1Y*2Z - 1Z*2Y] [1X*2Z - 1Z*2X] [1X*2Y - 1Y*2X]
-     *
-     *   [0Y*2Z - 0Z*2Y] [0X*2Z - 0Z*2X] [0X*2Y - 0Y*2X]
-     *
-     *   [0Y*1Z - 0Z*1Y] [0X*1Z - 0Z*1X] [0X*1Y - 0Y*1X]
-     * </pre>
-     * @return Matrix
-     */
-    public function getMinors() : Matrix {
-        return new Matrix33(
-            ($this[1]["Y"] * $this[2]["Z"]) - ($this[1]["Z"] * $this[2]["Y"]),
-            ($this[1]["X"] * $this[2]["Z"]) - ($this[1]["Z"] * $this[2]["X"]),
-            ($this[1]["X"] * $this[2]["Y"]) - ($this[1]["Y"] * $this[2]["X"]),
-
-            ($this[0]["Y"] * $this[2]["Z"]) - ($this[0]["Z"] * $this[2]["Y"]),
-            ($this[0]["X"] * $this[2]["Z"]) - ($this[0]["Z"] * $this[2]["X"]),
-            ($this[0]["X"] * $this[2]["Y"]) - ($this[0]["Y"] * $this[2]["X"]),
-
-            ($this[0]["Y"] * $this[1]["Z"]) - ($this[0]["Z"] * $this[1]["Y"]),
-            ($this[0]["X"] * $this[1]["Z"]) - ($this[0]["Z"] * $this[1]["X"]),
-            ($this[0]["X"] * $this[1]["Y"]) - ($this[0]["Y"] * $this[1]["X"])
-        );
-    }
-
     /**
      * {@inheritDoc}
      */

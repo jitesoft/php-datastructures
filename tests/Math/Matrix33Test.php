@@ -143,14 +143,14 @@ class Matrix33Test extends TestCase {
         $this->assertEquals(-306, $matrix->determinant());
     }
 
-    public function testGetMinors() {
+    public function testGetAdjoinMatrix() {
         $matrix = new Matrix(
             9, 3, 5,
             -6, -9, 7,
             -1, -8, 1
         );
 
-        $minors = $matrix->getMinors();
+        $minors = $matrix->getAdjoinMatrix();
         $this->assertEquals($minors, new Matrix33(
             47, 1, 39,
             43, 14, -69,
@@ -166,8 +166,8 @@ class Matrix33Test extends TestCase {
         );
 
         $matrix->inverse();
-
         $d = 1/615;
+
         $this->assertEquals(new Matrix(
             47 * $d, -43 * $d, 66 * $d,
             -1 * $d, 14 * $d, -93 * $d,

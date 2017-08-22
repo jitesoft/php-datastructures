@@ -16,8 +16,7 @@ use Exception;
  */
 abstract class Matrix implements ArrayAccess {
 
-    /** @var int[][] */
-    protected static $cofactors = [
+    const SIGN_CHART = [
         [1, -1, 1, -1],
         [-1, 1, -1, 1],
         [1, -1, 1, -1],
@@ -72,7 +71,16 @@ abstract class Matrix implements ArrayAccess {
      *
      * @return Matrix
      */
-    public abstract function getMinors() : Matrix;
+    public function getAdjoinMatrix() : Matrix {
+        $matrix = new static();
+        for ($i=0;$i<$this->rows;$i++) {
+            for ($j=0;$j<$this->columns;$j++) {
+                $cofactor       = MatrixMath::getCofactor($this->toArray(), $i, $j);
+                $matrix[$i][$j] = MatrixMath::calculateDeterminant($cofactor);
+            }
+        }
+        return $matrix;
+    }
 
     /**
      * Transpose the matrix.
@@ -158,23 +166,19 @@ abstract class Matrix implements ArrayAccess {
             return;
         }
 
-        $minors = $this->getMinors();
+        $adj  = $this->getAdjoinMatrix();
+        $sign = 1;
         for ($i=0;$i<$this->rows;$i++) {
             for ($j=0;$j<$this->columns;$j++) {
-                $minors[$i][$j] *= self::$cofactors[$i][$j];
+                $sign        = Matrix::SIGN_CHART[$i][$j];
+                $adj[$i][$j] = $sign * $adj[$i][$j];
             }
         }
 
-        // Adjugate.
-        $minors->transpose();
+        $this->copy($adj);
+        $this->transpose();
         $div = 1 / $determinant;
-        for ($x=0;$x<$this->rows;$x++) {
-            for ($y=0;$y<$this->columns;$y++) {
-                $minors[$x][$y] *= $div;
-            }
-        }
-
-        $this->copy($minors);
+        $this->mul($div);
     }
 
     public function offsetGet($offset) {
@@ -186,7 +190,7 @@ abstract class Matrix implements ArrayAccess {
     }
 
     public function offsetExists($offset) {
-        return is_numeric($offset) && $offset >= 0 && $offset < $this->columns;
+        return is_numeric($offset) && $offset >= 0 && $offset < $this->rows;
     }
 
     public function offsetSet($offset, $value) {
@@ -223,5 +227,17 @@ abstract class Matrix implements ArrayAccess {
             }
         }
         return $out;
+    }
+
+    protected function fromArray(array $array) {
+        $rows   = count($array);
+        $cols   = count($array[0]);
+        $matrix = new static();
+
+        for ($i=$rows;$i-->0;) {
+            for ($j=$cols;$j-->0;) {
+                $matrix[$i][$j] = $array[$i][$j];
+            }
+        }
     }
 }

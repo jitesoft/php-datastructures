@@ -9,6 +9,7 @@ namespace Jitesoft\Utilities\DataStructures\Tests\Math;
 use Exception;
 use Jitesoft\Utilities\DataStructures\Math\Math;
 use Jitesoft\Utilities\DataStructures\Math\Matrix44 as Matrix;
+use Jitesoft\Utilities\DataStructures\Math\Matrix44;
 use Jitesoft\Utilities\DataStructures\Math\Matrix44Math;
 use Jitesoft\Utilities\DataStructures\Math\Vector4D;
 use PHPUnit\Framework\TestCase;
@@ -175,7 +176,7 @@ class Matrix44Test extends TestCase {
         $this->assertEquals(3531, $matrix->determinant());
     }
 
-    public function testGetMinors() {
+    public function testGetAdjoinMatrix() {
         $matrix = new Matrix(
             9, 3, 5, 8,
             -6, -9, 7, 9,
@@ -183,12 +184,12 @@ class Matrix44Test extends TestCase {
             -2, 7, 12, 3
         );
 
-        $minors = $matrix->getMinors();
+        $minors = $matrix->getAdjoinMatrix();
         $this->assertEquals($minors, new Matrix(
-            47, 1, 39, 1,
-            43, 14, -69, 1,
-            66, 93, -63, 1,
-            1, 1, 1, 1
+            -1571, -377, -390, 367,
+            -690, 552, -46, -1012,
+            -1067, -1247, -1290, -1539,
+            -341, -583, 1248, 615
         ));
     }
 
@@ -202,13 +203,16 @@ class Matrix44Test extends TestCase {
 
         $matrix->inverse();
 
-        $d = 1/615;
-        $this->assertEquals(new Matrix(
-            47 * $d, -43 * $d, 66 * $d, 1 * $d,
-            -1 * $d, 14 * $d, -93 * $d, 1 * $d,
-            39 * $d, 69 * $d, -63 * $d, 1 * $d,
-            1 * $d, 1 * $d, 1 * $d, 1 * $d
-        ), $matrix);
+        $det = 1/-750;
+        $res = new Matrix44(
+            -23, 97, -144, -105,
+            -38, -68, 186, 120,
+            276, 336, -522, -990,
+            -201, -261, 372, 615
+        );
+        $res->mul($det);
+
+        $this->assertEquals($res, $matrix);
     }
 
     public function testMulMatrix() {
