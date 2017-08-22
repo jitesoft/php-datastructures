@@ -4,7 +4,7 @@
 
   © - Jitesoft 2017
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
-namespace Jitesoft\Utilities\DataStructures\Traits;
+namespace Jitesoft\Utilities\DataStructures\Math\Traits;
 
 use Exception;
 use InvalidArgumentException;

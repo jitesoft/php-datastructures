@@ -9,7 +9,7 @@ namespace Jitesoft\Utilities\DataStructures\Math;
 use ArrayAccess;
 use Jitesoft\Utilities\DataStructures\Math\Point3D as Point;
 use Jitesoft\Utilities\DataStructures\Math\Vector3DMath as _;
-use Jitesoft\Utilities\DataStructures\Traits\VectorAccessTrait;
+use Jitesoft\Utilities\DataStructures\Math\Traits\VectorAccessTrait;
 
 /**
  * Class Vector3D
