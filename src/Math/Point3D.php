@@ -13,8 +13,12 @@ namespace Jitesoft\Utilities\DataStructures\Math;
  *
  * A point in a three dimensional space.
  */
-class Point3D extends Point2D {
+class Point3D {
 
+    /** @var float */
+    protected $x;
+    /** @var float */
+    protected $y;
     /** @var float */
     protected $z;
 
@@ -27,8 +31,8 @@ class Point3D extends Point2D {
      * @param float $z
      */
     public function __construct(float $x = 0, float $y = 0, float $z = 0) {
-        parent::__construct($x, $y);
-
+        $this->x = $x;
+        $this->y = $y;
         $this->z = $z;
     }
 
@@ -48,5 +52,40 @@ class Point3D extends Point2D {
      */
     public function getZ() : float {
         return $this->z;
+    }
+
+    /**
+     * Set the X-Coordinate of the point.
+     *
+     * @param float $x
+     */
+    public function setX(float $x) {
+        $this->x = $x;
+    }
+
+    /**
+     * Set the Y-Coordinate of the point.
+     * @param float $y
+     */
+    public function setY(float $y) {
+        $this->y = $y;
+    }
+
+    /**
+     * Get the X-Coordinate of the point.
+     *
+     * @return float
+     */
+    public function getX() : float {
+        return $this->x;
+    }
+
+    /**
+     * Get tye Y-Coordinate of the point.
+     *
+     * @return float
+     */
+    public function getY() : float {
+        return $this->y;
     }
 }
