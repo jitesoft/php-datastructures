@@ -1,10 +1,10 @@
 # Data structures 
 
-_master:_  
-[![Build Status](https://travis-ci.org/jitesoft/php-datastructures.svg?branch=master)](https://travis-ci.org/jitesoft/php-datastructures)  
+[![Build Status](https://img.shields.io/travis/jitesoft/php-datastructures/master.svg?label=Master)](https://travis-ci.org/jitesoft/php-datastructures)  
 
-_develop:_  
-[![Build Status](https://travis-ci.org/jitesoft/php-datastructures.svg?branch=develop)](https://travis-ci.org/jitesoft/php-datastructures)
+[![Build Status](https://img.shields.io/travis/jitesoft/php-datastructures/develop.svg?label=Develop)](https://travis-ci.org/jitesoft/php-datastructures)
+
+[![Dependency Status](https://gemnasium.com/badges/github.com/jitesoft/php-datastructures.svg)](https://gemnasium.com/github.com/jitesoft/php-datastructures)
 
 A package consisting of a mix of data structures, classes and algorithms I find useful for php 7.1+.  
 
