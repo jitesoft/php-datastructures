@@ -7,9 +7,9 @@
 namespace Jitesoft\Utilities\DataStructures\Math;
 
 use ArrayAccess;
-use Exception;
 use Jitesoft\Utilities\DataStructures\Math\Point3D as Point;
 use Jitesoft\Utilities\DataStructures\Math\Vector3DMath as _;
+use Jitesoft\Utilities\DataStructures\Math\Traits\VectorAccessTrait;
 
 /**
  * Class Vector3D
@@ -21,9 +21,10 @@ use Jitesoft\Utilities\DataStructures\Math\Vector3DMath as _;
  * (x/X/0, y/Y/1, z/Z/2).
  */
 class Vector3D extends Point implements ArrayAccess {
+    use VectorAccessTrait;
 
     /** @var array */
-    private $offsets = [
+    protected $offsets = [
         'x' => 'x', 'X' => 'x', 0 => 'x',
         'y' => 'y', 'Y' => 'y', 1 => 'y',
         'z' => 'z', 'Z' => 'z', 2 => 'z'
@@ -145,61 +146,6 @@ class Vector3D extends Point implements ArrayAccess {
         $this->div($len);
     }
 
-    /**
-     * @param mixed $offset
-     * @param mixed $default
-     * @return null|string|bool
-     * @throws Exception
-     */
-    private function convertOffset($offset, $default = null) {
-        if (array_key_exists($offset, $this->offsets)) {
-            return $this->offsets[$offset];
-        }
-
-        if ($default !== null) {
-            return $default;
-        }
-        throw new Exception("Out of range. This vector has three indexes (0,1,2)/(x,y,z).");
-    }
-
-    /**
-     * @param mixed $offset
-     * @return bool
-     */
-    public function offsetExists($offset) {
-        return $this->convertOffset($offset, false) !== false;
-    }
-
-    /**
-     * @param mixed $offset
-     * @return float
-     * @throws Exception
-     */
-    public function offsetGet($offset) {
-        $offset = $this->convertOffset($offset);
-        return $this->{$offset};
-    }
-
-    /**
-     * @param int $offset
-     * @param float $value
-     * @throws Exception
-     */
-    public function offsetSet($offset, $value) {
-        if (!is_numeric($value)) {
-            throw new \InvalidArgumentException("Invalid value. Value must be a number.");
-        }
-        $offset          = $this->convertOffset($offset);
-        $this->{$offset} = $value;
-    }
-
-    /**
-     * @param mixed $offset
-     * @throws Exception
-     */
-    public function offsetUnset($offset) {
-        throw new Exception("Invalid method.");
-    }
 
     /**
      * Make the given vector a copy of another vector.

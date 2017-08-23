@@ -6,14 +6,30 @@
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 namespace Jitesoft\Utilities\DataStructures\Math;
 
+use ArrayAccess;
 use Jitesoft\Utilities\DataStructures\Math\Vector4DMath as _;
+use Jitesoft\Utilities\DataStructures\Math\Traits\VectorAccessTrait;
 
 /**
  * Class Vector4D
  *
- * A vector structure in four dimentional space.
+ * A vector structure in four dimensional space.
+ *
+ *
+ * A vector consists of four floating point numbers and can be accessed through
+ * either their get-accessors (getX, getY, getZ, getW) or through array access.
+ * (x/X/0, y/Y/1, z/Z/2, w/W/3).
  */
-class Vector4D {
+class Vector4D implements ArrayAccess {
+    use VectorAccessTrait;
+
+    /** @var array */
+    protected $offsets = [
+        'x' => 'x', 'X' => 'x', 0 => 'x',
+        'y' => 'y', 'Y' => 'y', 1 => 'y',
+        'z' => 'z', 'Z' => 'z', 2 => 'z',
+        'w' => 'w', 'W' => 'w', 3 => 'w'
+    ];
 
     /**
      * @param Vector4D $cpy
