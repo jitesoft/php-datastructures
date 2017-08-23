@@ -30,7 +30,7 @@ class Matrix33 extends Matrix {
      * {@inheritDoc}
      */
     public function setRotationX(float $angle, string $type = Math::DEGREES) {
-        $rotationMatrix = _::makeRotationX($angle, $type);
+        $rotationMatrix = MatrixMath::makeRotationX($angle, $type);
         $this->mul($rotationMatrix);
     }
 
@@ -38,7 +38,7 @@ class Matrix33 extends Matrix {
      * {@inheritDoc}
      */
     public function setRotationY(float $angle, string $type = Math::DEGREES) {
-        $rotationMatrix = _::makeRotationY($angle, $type);
+        $rotationMatrix = MatrixMath::makeRotationY($angle, $type);
         $this->mul($rotationMatrix);
 
     }
@@ -47,7 +47,7 @@ class Matrix33 extends Matrix {
      * {@inheritDoc}
      */
     public function setRotationZ(float $angle, string $type = Math::DEGREES) {
-        $rotationMatrix = _::makeRotationZ($angle, $type);
+        $rotationMatrix = MatrixMath::makeRotationZ($angle, $type);
         $this->mul($rotationMatrix);
     }
 }

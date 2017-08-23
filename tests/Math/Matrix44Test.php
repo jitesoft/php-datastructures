@@ -8,9 +8,7 @@ namespace Jitesoft\Utilities\DataStructures\Tests\Math;
 
 use Exception;
 use Jitesoft\Utilities\DataStructures\Math\Math;
-use Jitesoft\Utilities\DataStructures\Math\Matrix44 as Matrix;
 use Jitesoft\Utilities\DataStructures\Math\Matrix44;
-use Jitesoft\Utilities\DataStructures\Math\Matrix44Math;
 use Jitesoft\Utilities\DataStructures\Math\MatrixMath;
 use Jitesoft\Utilities\DataStructures\Math\Vector4D;
 use PHPUnit\Framework\TestCase;
@@ -19,7 +17,7 @@ class Matrix44Test extends TestCase {
 
 
     public function testGetInnerVector() {
-        $matrix = new Matrix();
+        $matrix = new Matrix44();
         $this->assertInstanceOf(Vector4D::class, $matrix[0]);
         $this->assertInstanceOf(Vector4D::class, $matrix[1]);
         $this->assertInstanceOf(Vector4D::class, $matrix[2]);
@@ -27,7 +25,7 @@ class Matrix44Test extends TestCase {
     }
 
     public function testGetValue() {
-        $matrix = new Matrix(
+        $matrix = new Matrix44(
             1,2,3,4,
             5,6,7,8,
             9, 10, 11, 12,
@@ -59,13 +57,13 @@ class Matrix44Test extends TestCase {
         $this->expectException(Exception::class);
         $this->expectExceptionMessage("Out of range. This matrix has 4 * 4 indexes.");
 
-        $matrix = new Matrix();
+        $matrix = new Matrix44();
         $matrix[10];
     }
 
     public function testSetValues() {
 
-        $matrix = new Matrix();
+        $matrix = new Matrix44();
 
         $matrix[0][0] = 10;
         $matrix[0][1] = 20;
@@ -106,7 +104,7 @@ class Matrix44Test extends TestCase {
         $this->expectException(Exception::class);
         $this->expectExceptionMessage("Invalid operation.");
 
-        $matrix    = new Matrix();
+        $matrix    = new Matrix44();
         $matrix[0] = "value";
     }
 
@@ -114,12 +112,12 @@ class Matrix44Test extends TestCase {
         $this->expectException(Exception::class);
         $this->expectExceptionMessage("Invalid operation.");
 
-        $matrix = new Matrix();
+        $matrix = new Matrix44();
         unset($matrix[0]);
     }
 
     public function testSetIdentity() {
-        $matrix = new Matrix();
+        $matrix = new Matrix44();
 
         $static = MatrixMath::identity(Matrix44::class);
         $matrix->identity();
@@ -139,7 +137,7 @@ class Matrix44Test extends TestCase {
     }
 
     public function testTranspose() {
-        $m = new Matrix(
+        $m = new Matrix44(
             1, 2, 3,
             4, 5, 6,
             7, 8, 9,
@@ -149,7 +147,7 @@ class Matrix44Test extends TestCase {
 
         $m->transpose();
 
-        $this->assertEquals(new Matrix(
+        $this->assertEquals(new Matrix44(
             1, 5, 9, 13,
             2, 6, 10, 14,
             3, 7, 11, 15,
@@ -158,7 +156,7 @@ class Matrix44Test extends TestCase {
     }
 
     public function testDeterminant() {
-        $matrix = new Matrix(
+        $matrix = new Matrix44(
             2,1,0, 5,
             2,0,0, 7,
             2,0,1, 9,
@@ -167,7 +165,7 @@ class Matrix44Test extends TestCase {
 
         $this->assertEquals(11, $matrix->determinant());
 
-        $matrix = new Matrix(
+        $matrix = new Matrix44(
             6,1,1, 10,
             4,-2,5,22,
             2,8,7, 31,
@@ -178,7 +176,7 @@ class Matrix44Test extends TestCase {
     }
 
     public function testGetAdjoinMatrix() {
-        $matrix = new Matrix(
+        $matrix = new Matrix44(
             9, 3, 5, 8,
             -6, -9, 7, 9,
             -1, -8, 1, - 5,
@@ -186,7 +184,7 @@ class Matrix44Test extends TestCase {
         );
 
         $minors = $matrix->getAdjoinMatrix();
-        $this->assertEquals($minors, new Matrix(
+        $this->assertEquals($minors, new Matrix44(
             -1571, -377, -390, 367,
             -690, 552, -46, -1012,
             -1067, -1247, -1290, -1539,
@@ -195,7 +193,7 @@ class Matrix44Test extends TestCase {
     }
 
     public function testInverse() {
-        $matrix = new Matrix(
+        $matrix = new Matrix44(
             9,3,5, 9,
             -6,-9,7, 12,
             -1,-8, 1, 3,
@@ -217,14 +215,14 @@ class Matrix44Test extends TestCase {
     }
 
     public function testMulMatrix() {
-        $matrix1 = new Matrix(1,2,3,4,5,6,7,8,9, 10, 11, 12, 13, 14, 15, 16);
-        $matrix2 = new Matrix(1,2,3,4,5,6,7,8,9, 10, 11, 12, 13, 14, 15, 16);
+        $matrix1 = new Matrix44(1,2,3,4,5,6,7,8,9, 10, 11, 12, 13, 14, 15, 16);
+        $matrix2 = new Matrix44(1,2,3,4,5,6,7,8,9, 10, 11, 12, 13, 14, 15, 16);
 
         $result = MatrixMath::mul($matrix1, $matrix2);
         $matrix1->mul($matrix2);
 
         $this->assertEquals($matrix1, $result);
-        $this->assertEquals(new Matrix(
+        $this->assertEquals(new Matrix44(
             90, 100, 110, 120,
             202, 228, 254, 280,
             314, 356, 398, 440,
@@ -233,14 +231,14 @@ class Matrix44Test extends TestCase {
     }
 
     public function testMulFloat() {
-        $matrix = new Matrix(1,2,3,4,5,6,7,8,9,10, 11, 12, 13, 14, 15, 16);
+        $matrix = new Matrix44(1,2,3,4,5,6,7,8,9,10, 11, 12, 13, 14, 15, 16);
         $scalar = 10;
 
         $result = MatrixMath::mul($matrix, $scalar);
         $matrix->mul($scalar);
 
         $this->assertEquals($result, $matrix);
-        $this->assertEquals(new Matrix(
+        $this->assertEquals(new Matrix44(
             10 ,20, 30, 40,
             50, 60, 70, 80,
             90, 100, 110, 120,
@@ -249,7 +247,7 @@ class Matrix44Test extends TestCase {
     }
 
     public function testMulError() {
-        $matrix = new Matrix();
+        $matrix = new Matrix44();
         $this->expectException(Exception::class);
         $this->expectExceptionMessage("Invalid type. Can not multiply a matrix with string.");
 
@@ -257,82 +255,66 @@ class Matrix44Test extends TestCase {
     }
 
     public function testAdd() {
-        $matrix  = new Matrix(-5, -1, 5, 1, -2, 1, 1, 9, -5, 3, 12, 17, 9, 3, 9, 2);
-        $matrix2 = new Matrix(2, 2, 9, -3, 5, 2, 3, 8 ,3, 1, 1, 1, 3, 4, 5, 3);
+        $matrix  = new Matrix44(
+            -5, -1, 5, 1,
+            -2, 1, 1, 9,
+            -5, 3, 12, 17,
+            9, 3, 9, 2
+        );
+        $matrix2 = new Matrix44(
+            2, 2, 9, -3,
+            5, 2, 3, 8 ,
+            3, 1, 1, 1,
+            3, 4, 5, 3
+        );
 
-        $result = Matrix44Math::add($matrix, $matrix2);
+        $result = MatrixMath::add($matrix, $matrix2);
         $matrix->add($matrix2);
 
         $this->assertEquals($matrix, $result);
-        $this->assertEquals(new Matrix(
-            -3, 1, 14,
-            -2, 3, 3,
-            4, 17, -2
-
+        $this->assertEquals(new Matrix44(
+            -3, 1, 14, -2,
+            3, 3, 4, 17,
+            -2, 4, 13, 18,
+            12, 7, 14, 5
         ), $matrix);
     }
 
     public function testSub() {
-        $matrix  = new Matrix(-5, -1, 5, 1, -2, 1, 1, 9, -5, 3, 12, 17, 9, 3, 9, 2);
-        $matrix2 = new Matrix(2, 2, 9, -3, 5, 2, 3, 8 ,3, 1, 1, 1, 3, 4, 5, 3);
+        $matrix  = new Matrix44(
+            -5, -1, 5, 1,
+            -2, 1, 1, 9,
+            -5, 3, 12, 17,
+            9, 3, 9, 2
+        );
+        $matrix2 = new Matrix44(
+            2, 2, 9, -3,
+            5, 2, 3, 8 ,
+            3, 1, 1, 1,
+            3, 4, 5, 3
+        );
 
-        $result = Matrix44Math::sub($matrix, $matrix2);
+        $result = MatrixMath::sub($matrix, $matrix2);
         $matrix->sub($matrix2);
 
         $this->assertEquals($matrix, $result);
-        $this->assertEquals(new Matrix(
-            14, -4, -9,
-            4, 5, 1,
-            5, -6, 14
+        $this->assertEquals(new Matrix44(
+            -7, -3, -4, 4,
+            -7, -1, -2, 1,
+            -8, 2, 11, 16,
+            6, -1, 4, -1
         ), $matrix);
     }
-
-    public function testRotationX() {
-        $matrix  = Matrix44Math::makeRotationX(90);
-        $matrix2 = Matrix44Math::makeRotationX(90 * (pi() / 180), Math::RADIANS);
-
-        $this->assertEquals($matrix, $matrix2);
-        $this->assertEquals(new Matrix(
-            1,0,0,
-            0,0,-1,
-            0,1,0
-        ), $matrix);
-    }
-
-    public function testRotationY() {
-        $matrix  = Matrix44Math::makeRotationY(90);
-        $matrix2 = Matrix44Math::makeRotationY(90 * (pi() / 180), Math::RADIANS);
-
-        $this->assertEquals($matrix, $matrix2);
-        $this->assertEquals(new Matrix(
-            0,0,1,
-            0,1,0,
-            -1,0,0
-        ), $matrix);
-    }
-
-    public function testRotationZ() {
-        $matrix  = Matrix44Math::makeRotationZ(90);
-        $matrix2 = Matrix44Math::makeRotationZ(90 * (pi() / 180), Math::RADIANS);
-
-        $this->assertEquals($matrix, $matrix2);
-        $this->assertEquals(new Matrix(
-            0,-1,0,
-            1,0,0,
-            0,0,1
-        ), $matrix);
-    }
-
 
     public function testSetRotationX() {
-        $matrix  = new Matrix(-5, -1, 5, 1, -2, 1, 1, 9, -5, 3, 12, 17, 9, 3, 9, 2);
-        $matrix2 = new Matrix(2, 2, 9, -3, 5, 2, 3, 8 ,3, 1, 1, 1, 3, 4, 5, 3);
+        $matrix  = new Matrix44(-5, -1, 5, 1, -2, 1, 1, 9, -5, 3, 12, 17, 9, 3, 9, 2);
+        $matrix2 = new Matrix44(-5, -1, 5, 1, -2, 1, 1, 9, -5, 3, 12, 17, 9, 3, 9, 2);
 
         $matrix->setRotationX((90 * (pi()/180)), Math::RADIANS);
         $matrix2->roll(90);
 
         $this->assertEquals($matrix2, $matrix);
-        $this->assertEquals(new Matrix(
+        $this->assertEquals(new Matrix44(
             10, -4, -2,
             91, 2, -7,
             11, 52, -41
@@ -341,14 +323,15 @@ class Matrix44Test extends TestCase {
     }
 
     public function testSetRotationY() {
-        $matrix  = new Matrix(-5, -1, 5, 1, -2, 1, 1, 9, -5, 3, 12, 17, 9, 3, 9, 2);
-        $matrix2 = new Matrix(2, 2, 9, -3, 5, 2, 3, 8 ,3, 1, 1, 1, 3, 4, 5, 3);
+
+        $matrix  = new Matrix44(-5, -1, 5, 1, -2, 1, 1, 9, -5, 3, 12, 17, 9, 3, 9, 2);
+        $matrix2 = new Matrix44(-5, -1, 5, 1, -2, 1, 1, 9, -5, 3, 12, 17, 9, 3, 9, 2);
 
         $matrix->setRotationY((90 * (pi()/180)), Math::RADIANS);
         $matrix2->pitch(90);
 
         $this->assertEquals($matrix2, $matrix);
-        $this->assertEquals(new Matrix(
+        $this->assertEquals(new Matrix44(
             4, 2, 10,
             -2, 7, 91,
             -52, 41, 11
@@ -356,14 +339,14 @@ class Matrix44Test extends TestCase {
     }
 
     public function testSetRotationZ() {
-        $matrix  = new Matrix(-5, -1, 5, 1, -2, 1, 1, 9, -5, 3, 12, 17, 9, 3, 9, 2);
-        $matrix2 = new Matrix(2, 2, 9, -3, 5, 2, 3, 8 ,3, 1, 1, 1, 3, 4, 5, 3);
+        $matrix  = new Matrix44(-5, -1, 5, 1, -2, 1, 1, 9, -5, 3, 12, 17, 9, 3, 9, 2);
+        $matrix2 = new Matrix44(2, 2, 9, -3, 5, 2, 3, 8 ,3, 1, 1, 1, 3, 4, 5, 3);
 
         $matrix->setRotationZ((90 * (pi()/180)), Math::RADIANS);
         $matrix2->yaw(90);
 
         $this->assertEquals($matrix2, $matrix);
-        $this->assertEquals(new Matrix(
+        $this->assertEquals(new Matrix44(
             2, -10, -4,
             7, -91, 2,
             41, -11, 52
@@ -378,10 +361,10 @@ class Matrix44Test extends TestCase {
             [12, 13, 14, 15]
         ];
 
-        $matrix = new Matrix();
+        $matrix = new Matrix44();
         $matrix->fromArray($matrixAsArray);
 
-        $this->assertEquals(new Matrix(
+        $this->assertEquals(new Matrix44(
             0, 1, 2, 3,
             4, 5, 6, 7,
             8, 9, 10, 11,
@@ -390,7 +373,7 @@ class Matrix44Test extends TestCase {
     }
 
     public function testToArray() {
-        $matrix = new Matrix(
+        $matrix = new Matrix44(
             0, 1, 2, 3,
             4, 5, 6, 7,
             8, 9, 10, 11,
