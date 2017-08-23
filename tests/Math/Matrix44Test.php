@@ -214,6 +214,18 @@ class Matrix44Test extends TestCase {
         $this->assertEquals($res, $matrix);
     }
 
+    public function testInverseWithZeroDeterminant() {
+        $matrix = new Matrix44(
+            1,2,3,4,
+            5,6, 7,8,
+            9, 10, 11, 12,
+            13, 14, 15, 16
+        );
+        $this->assertEquals(0, $matrix->determinant());
+        $matrix->inverse();
+        $this->assertEquals(new Matrix44(1,2,3,4,5,6,7,8, 9, 10, 11, 12,13, 14, 15, 16), $matrix);
+    }
+
     public function testMulMatrix() {
         $matrix1 = new Matrix44(1,2,3,4,5,6,7,8,9, 10, 11, 12, 13, 14, 15, 16);
         $matrix2 = new Matrix44(1,2,3,4,5,6,7,8,9, 10, 11, 12, 13, 14, 15, 16);

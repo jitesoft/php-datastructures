@@ -174,6 +174,17 @@ class Matrix33Test extends TestCase {
         ), $matrix);
     }
 
+    public function testInverseWithZeroDeterminant() {
+        $matrix = new Matrix33(
+            1,2,3,
+            4,5,6,
+            7,8,9
+        );
+        $this->assertEquals(0, $matrix->determinant());
+        $matrix->inverse();
+        $this->assertEquals(new Matrix33(1,2,3,4,5,6,7,8, 9), $matrix);
+    }
+
     public function testMulMatrix() {
         $matrix1 = new Matrix33(1,2,3,4,5,6,7,8,9);
         $matrix2 = new Matrix33(1,2,3,4,5,6,7,8,9);
