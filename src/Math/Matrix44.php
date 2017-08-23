@@ -6,8 +6,6 @@
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 namespace Jitesoft\Utilities\DataStructures\Math;
 
-use Jitesoft\Utilities\DataStructures\Math\Matrix44Math as _;
-
 /**
  * Class Matrix44
  *
@@ -28,20 +26,6 @@ class Matrix44 extends Matrix {
         $this->vectors[1] = new Vector4D($x2, $y2, $z2, $w2);
         $this->vectors[2] = new Vector4D($x3, $y3, $z3, $w3);
         $this->vectors[3] = new Vector4D($x4, $y4, $z4, $w4);
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function add(Matrix $value) {
-        $this->copy(_::add($this, $value));
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function sub(Matrix $value) {
-        $this->copy(_::sub($this, $value));
     }
 
     /**

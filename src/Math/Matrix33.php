@@ -6,8 +6,6 @@
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 namespace Jitesoft\Utilities\DataStructures\Math;
 
-use Jitesoft\Utilities\DataStructures\Math\Matrix33Math as _;
-
 /**
  * Class Matrix33
  *
@@ -26,20 +24,6 @@ class Matrix33 extends Matrix {
         $this->vectors[0] = new Vector3D($x1, $y1, $z1);
         $this->vectors[1] = new Vector3D($x2, $y2, $z2);
         $this->vectors[2] = new Vector3D($x3, $y3, $z3);
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function add(Matrix $value) {
-        $this->copy(_::add($this, $value));
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function sub(Matrix $value) {
-        $this->copy(_::sub($this, $value));
     }
 
     /**

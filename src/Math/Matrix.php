@@ -44,14 +44,18 @@ abstract class Matrix implements ArrayAccess {
      *
      * @param Matrix $value
      */
-    public abstract function add(Matrix $value);
+    public function add(Matrix $value) {
+        $this->copy(MatrixMath::add($this, $value));
+    }
 
     /**
      * Matrix subtraction.
      *
      * @param Matrix $value
      */
-    public abstract function sub(Matrix $value);
+    public function sub(Matrix $value) {
+        $this->copy(MatrixMath::sub($this, $value));
+    }
 
     /**
      * Turn the matrix into a identity matrix.
