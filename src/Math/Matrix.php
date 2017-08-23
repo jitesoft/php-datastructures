@@ -230,10 +230,20 @@ abstract class Matrix implements ArrayAccess {
     }
 
     /**
+     * Convert the Matrix into a float[][] array.
+     *
      * @return float[][] Array representation of the matrix.
      */
-    protected function toArray() {
+    public function toArray() {
         $out = [];
+
+        for ($i=static::ROWS;$i-->0;) {
+            $out[$i] = [];
+            for ($j=static::COLUMNS;$j-->0;) {
+                $out[$i][$j] = $this[$i][$j];
+            }
+        }
+
         for ($i=0; $i<static::ROWS; $i++) {
             $out[$i] = [];
             for ($j=0; $j<static::COLUMNS; $j++) {
@@ -243,14 +253,18 @@ abstract class Matrix implements ArrayAccess {
         return $out;
     }
 
-    protected function fromArray(array $array) {
-        $rows   = count($array);
-        $cols   = count($array[0]);
-        $matrix = new static();
+    /**
+     * Set matrix values from a float[][] array.
+     *
+     * @param array $array
+     */
+    public function fromArray(array $array) {
+        $rows = count($array);
+        $cols = count($array[0]);
 
         for ($i=$rows;$i-->0;) {
             for ($j=$cols;$j-->0;) {
-                $matrix[$i][$j] = $array[$i][$j];
+                $this[$i][$j] = $array[$i][$j];
             }
         }
     }
