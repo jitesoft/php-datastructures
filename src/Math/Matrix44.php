@@ -32,20 +32,44 @@ class Matrix44 extends Matrix {
      * {@inheritdoc}
      */
     public function setRotationX(float $angle, string $type = Math::DEGREES) {
-        // TODO: Implement setRotationX() method.
+        $rot33 = MatrixMath::makeRotationX($angle, $type);
+        $rot44 = new Matrix44(
+            $rot33[0][0], $rot33[0][1], $rot33[0][2], 0,
+            $rot33[1][0], $rot33[1][1], $rot33[1][2], 0,
+            $rot33[2][0], $rot33[2][1], $rot33[2][2], 0,
+            0, 0, 0, 1
+        );
+
+        $this->mul($rot44);
     }
 
     /**
      * {@inheritdoc}
      */
     public function setRotationY(float $angle, string $type = Math::DEGREES) {
-        // TODO: Implement setRotationY() method.
+        $rot33 = MatrixMath::makeRotationY($angle, $type);
+        $rot44 = new Matrix44(
+            $rot33[0][0], $rot33[0][1], $rot33[0][2], 0,
+            $rot33[1][0], $rot33[1][1], $rot33[1][2], 0,
+            $rot33[2][0], $rot33[2][1], $rot33[2][2], 0,
+            0, 0, 0, 1
+        );
+
+        $this->mul($rot44);
     }
 
     /**
      * {@inheritdoc}
      */
     public function setRotationZ(float $angle, string $type = Math::DEGREES) {
-        // TODO: Implement setRotationZ() method.
+        $rot33 = MatrixMath::makeRotationZ($angle, $type);
+        $rot44 = new Matrix44(
+            $rot33[0][0], $rot33[0][1], $rot33[0][2], 0,
+            $rot33[1][0], $rot33[1][1], $rot33[1][2], 0,
+            $rot33[2][0], $rot33[2][1], $rot33[2][2], 0,
+            0, 0, 0, 1
+        );
+
+        $this->mul($rot44);
     }
 }

@@ -307,6 +307,7 @@ class Matrix44Test extends TestCase {
     }
 
     public function testSetRotationX() {
+        // TODO: Test needs to be based on someone else's calculations, not mine.
         $matrix  = new Matrix44(-5, -1, 5, 1, -2, 1, 1, 9, -5, 3, 12, 17, 9, 3, 9, 2);
         $matrix2 = new Matrix44(-5, -1, 5, 1, -2, 1, 1, 9, -5, 3, 12, 17, 9, 3, 9, 2);
 
@@ -315,15 +316,16 @@ class Matrix44Test extends TestCase {
 
         $this->assertEquals($matrix2, $matrix);
         $this->assertEquals(new Matrix44(
-            10, -4, -2,
-            91, 2, -7,
-            11, 52, -41
-        ), $matrix);
+            -5, 5, 1, 1,
+            -2, 1, -0.999, 9,
+            -5, 12, -2.999, 17,
+            9,9,-2.999, 2
+        ), $matrix, "", 3);
 
     }
 
     public function testSetRotationY() {
-
+        // TODO: Test needs to be based on someone else's calculations, not mine.
         $matrix  = new Matrix44(-5, -1, 5, 1, -2, 1, 1, 9, -5, 3, 12, 17, 9, 3, 9, 2);
         $matrix2 = new Matrix44(-5, -1, 5, 1, -2, 1, 1, 9, -5, 3, 12, 17, 9, 3, 9, 2);
 
@@ -332,25 +334,28 @@ class Matrix44Test extends TestCase {
 
         $this->assertEquals($matrix2, $matrix);
         $this->assertEquals(new Matrix44(
-            4, 2, 10,
-            -2, 7, 91,
-            -52, 41, 11
-        ), $matrix);
+            -5, -1, -5, 1,
+            -2, 1, -0.999, 9,
+            -12, 3, -4.999, 17,
+            -9,3, 9, 2
+        ), $matrix, "", 3);
     }
 
     public function testSetRotationZ() {
+        // TODO: Test needs to be based on someone else's calculations, not mine.
         $matrix  = new Matrix44(-5, -1, 5, 1, -2, 1, 1, 9, -5, 3, 12, 17, 9, 3, 9, 2);
-        $matrix2 = new Matrix44(2, 2, 9, -3, 5, 2, 3, 8 ,3, 1, 1, 1, 3, 4, 5, 3);
+        $matrix2 = new Matrix44(-5, -1, 5, 1, -2, 1, 1, 9, -5, 3, 12, 17, 9, 3, 9, 2);
 
         $matrix->setRotationZ((90 * (pi()/180)), Math::RADIANS);
         $matrix2->yaw(90);
 
         $this->assertEquals($matrix2, $matrix);
         $this->assertEquals(new Matrix44(
-            2, -10, -4,
-            7, -91, 2,
-            41, -11, 52
-        ), $matrix);
+            -1, 5, 5, 1,
+            0.999, 2, 1, 9,
+            2.999, 5, 12, 17,
+            3,-9,9, 2
+        ), $matrix, "", 3);
     }
 
     public function testFromArray() {
