@@ -83,8 +83,8 @@ abstract class Matrix implements ArrayAccess {
         $matrix = new static();
         for ($i=0; $i<static::ROWS; $i++) {
             for ($j=0; $j<static::COLUMNS; $j++) {
-                $cofactor       = MatrixMath::getCofactor($this->toArray(), $i, $j);
-                $matrix[$i][$j] = MatrixMath::calculateDeterminant($cofactor);
+                $subMatrix      = MatrixMath::getSubMatrix($this->toArray(), $i, $j);
+                $matrix[$i][$j] = MatrixMath::calculateDeterminant($subMatrix);
             }
         }
         return $matrix;

@@ -33,14 +33,14 @@ class MatrixMath {
     }
 
     /**
-     * Get cofactor for a given matrix in float[][] format.
+     * Get sub matrix for a given matrix in float[][] format.
      *
      * @param float[][] $matrix
      * @param int $skipRow
      * @param int $skipColumn
      * @return array|float[][]
      */
-    public static function getCofactor($matrix, $skipRow = 0, $skipColumn = 0) : array {
+    public static function getSubMatrix($matrix, $skipRow = 0, $skipColumn = 0) : array {
         $size     = count($matrix);
         $newSize  = $size-1;
         $cfRow    = 0;
@@ -92,7 +92,7 @@ class MatrixMath {
         // Go through each element in first row.
         for ($counter=0;$counter<$rcCount;$counter++) {
             // Create a cofactor sub-matrix ($rcCount-1 in size).
-            $subMatrix = self::getCofactor($matrix, 0, $counter);
+            $subMatrix = self::getSubMatrix($matrix, 0, $counter);
             // Calculate the determinant of the sub-matrix.
             $sign         = Matrix::SIGN_CHART[0][$counter];
             $determinant += $sign * $matrix[0][$counter] * self::calculateDeterminant($subMatrix);
