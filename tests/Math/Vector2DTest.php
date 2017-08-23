@@ -9,9 +9,17 @@ namespace Jitesoft\Utilities\DataStructures\Tests\Math;
 
 use Jitesoft\Utilities\DataStructures\Math\Vector2D;
 use Jitesoft\Utilities\DataStructures\Math\Vector2DMath;
+use Exception;
 use PHPUnit\Framework\TestCase;
 
 class Vector2DTest extends TestCase {
+
+    public function testVectorAccessGetException() {
+        $this->expectException(Exception::class);
+        $this->expectExceptionMessage("Out of range. Invalid offset.");
+        $v = new Vector2D(1,2);
+        $v["j"];
+    }
 
     public function testGetXY() {
         $v = new Vector2D(5,15);
@@ -134,6 +142,12 @@ class Vector2DTest extends TestCase {
         $this->assertEquals(1, $v->length());
         $this->assertequals(0.89, $v->getX(), "", 2);
         $this->assertEquals(0.44, $v->getY(), "", 2);
+    }
+
+    public function testNormalizeLenZero() {
+        $vector1 = new Vector2D(0,0);
+        $vector1->normalize();
+        $this->assertEquals(new Vector2D(0,0), $vector1);
     }
 
     public function testDot() {

@@ -166,6 +166,12 @@ class Vector3DTest extends TestCase {
         $this->assertEquals(1, $vector1->length());
     }
 
+    public function testNormalizeLenZero() {
+        $vector1 = new Vector(0,0,0);
+        $vector1->normalize();
+        $this->assertEquals(new Vector(0,0,0), $vector1);
+    }
+
     public function testLength() {
         $vector1 = new Vector(2,3,4);
         $this->assertEquals(sqrt(29), $vector1->length());

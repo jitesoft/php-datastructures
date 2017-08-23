@@ -31,8 +31,7 @@ trait VectorAccessTrait {
             return $default;
         }
         $count = count($this->offsets);
-
-        throw new Exception("Out of range. This vector has {$count} indexes.");
+        throw new Exception("Out of range. Invalid offset.");
     }
 
     /**
