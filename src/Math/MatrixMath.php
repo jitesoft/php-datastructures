@@ -15,6 +15,12 @@ use Exception;
  */
 class MatrixMath {
 
+    /**
+     * Create an identity matrix of given matrix type.
+     *
+     * @param string $type defaults to Matrix44
+     * @return Matrix
+     */
     public static function identity($type = Matrix44::class) : Matrix {
         $matrix = new $type();
 
@@ -27,10 +33,12 @@ class MatrixMath {
     }
 
     /**
+     * Get cofactor for a given matrix in float[][] format.
+     *
      * @param float[][] $matrix
      * @param int $skipRow
      * @param int $skipColumn
-     * @return array
+     * @return array|float[][]
      */
     public static function getCofactor($matrix, $skipRow = 0, $skipColumn = 0) : array {
         $size     = count($matrix);
@@ -58,9 +66,12 @@ class MatrixMath {
     }
 
     /**
+     * Calculate the determinant of a matrix in float[][] format.
+     * Only square matrices (same amount of rows and columns) can be calculated.
+     *
      * @param float[][] $matrix
      * @return float
-     * @throws Exception
+     * @throws Exception Throws a Exception if matrix is not square.
      */
     public static function calculateDeterminant($matrix) : float {
         // The ´rows´ args is the only needed one. Determinants can only be calculated
@@ -91,6 +102,18 @@ class MatrixMath {
     }
 
 
+    /**
+     * Matrix multiplication.
+     *
+     * Multiplies the Matrix with either a scalar or another matrix.
+     *
+     * Currently only supports matrix multiplication with same type of matrices.
+     *
+     * @param Matrix $matrix
+     * @param float|Matrix $value
+     * @return Matrix
+     * @throws Exception
+     */
     public static function mul(Matrix $matrix, $value) : Matrix {
 
         if ($value instanceof Matrix) {
@@ -98,15 +121,32 @@ class MatrixMath {
         }
 
         if (is_numeric($value)) {
-            return self::mulFloat($matrix, $value);
+            return self::mulScalar($matrix, $value);
         }
 
         $type = gettype($value);
         throw new Exception("Invalid type. Can not multiply a matrix with {$type}.");
     }
 
-    private static function mulMatrix(Matrix $matrix, Matrix $matrix2) : Matrix {
-        $type   = get_class($matrix);
+    /**
+     * Matrix multiplication.
+     * Multiplies the first arg matrix with the second arg matrix and returns a result matrix.
+     *
+     * Currently only supports multiplication with same type of matrices.
+     *
+     * @param Matrix $matrix
+     * @param Matrix $matrix2
+     * @return Matrix
+     * @throws Exception
+     */
+    public static function mulMatrix(Matrix $matrix, Matrix $matrix2) : Matrix {
+        $type  = get_class($matrix);
+        $type2 = get_class($matrix2);
+
+        if ($type !== $type2) {
+            throw new Exception("Matrix multiplication without same row/column count not yet implemented.");
+        }
+
         $result = new $type();
 
         for ($x=0;$x<$type::ROWS;$x++) {
@@ -122,16 +162,136 @@ class MatrixMath {
         return $result;
     }
 
-    private static function mulFloat(Matrix $matrix, float $value) : Matrix {
+    /**
+     * Matrix scalar multiplication.
+     *
+     * @param Matrix $matrix
+     * @param float $scalar
+     * @return Matrix
+     */
+    public static function mulScalar(Matrix $matrix, float $scalar) : Matrix {
         $type   = get_class($matrix);
         $result = new $type();
 
         for ($i=0;$i<$type::ROWS;$i++) {
             for ($j=0;$j<$type::COLUMNS;$j++) {
-                $result[$i][$j] = $matrix[$i][$j] * $value;
+                $result[$i][$j] = $matrix[$i][$j] * $scalar;
             }
         }
 
         return $result;
+    }
+
+
+    /**
+     * Matrix Matrix addition.
+     *
+     * @param Matrix $matrix
+     * @param Matrix $matrix2
+     * @return Matrix
+     * @throws Exception
+     */
+    public static function add(Matrix $matrix, Matrix $matrix2) : Matrix {
+        $type  = get_class($matrix);
+        $type2 = get_class($matrix2);
+
+        if ($type !== $type2) {
+            throw new Exception("Can only add matrices of same size.");
+        }
+
+        $result = new $type();
+
+        for ($i=0;$i<$type::ROWS;$i++) {
+            for ($j=0;$j<$type::COLUMNS;$j++) {
+                $result[$i][$j] = $matrix[$i][$j] + $matrix2[$i][$j];
+            }
+        }
+
+        return $result;
+    }
+
+    /**
+     * Matrix Matrix subtraction.
+     *
+     * @param Matrix $matrix
+     * @param Matrix $matrix2
+     * @return Matrix
+     * @throws Exception
+     */
+    public static function sub(Matrix $matrix, Matrix $matrix2) : Matrix {
+        $type  = get_class($matrix);
+        $type2 = get_class($matrix2);
+
+        if ($type !== $type2) {
+            throw new Exception("Can only subtract matrices of same size.");
+        }
+
+
+        $result = new $type();
+
+        for ($i=0;$i<$type::ROWS;$i++) {
+            for ($j=0;$j<$type::COLUMNS;$j++) {
+                $result[$i][$j] = $matrix[$i][$j] - $matrix2[$i][$j];
+            }
+        }
+
+        return $result;
+    }
+
+    /**
+     * Create a rotation matrix with given X angle rotation.
+     *
+     * @param float $angle
+     * @param string $type If degrees or radians, see Math constants.
+     * @return Matrix33
+     */
+    public static function makeRotationX(float $angle, string $type = Math::DEGREES) : Matrix33 {
+        if ($type === Math::DEGREES) {
+            $angle = Math::degToRad($angle);
+        }
+
+        return new Matrix33(
+            1, 0, 0,
+            0, cos($angle), - sin($angle),
+            0, sin($angle), cos($angle)
+        );
+    }
+
+    /**
+     * Create a rotation matrix with given Y angle rotation.
+     *
+     * @param float $angle
+     * @param string $type If degrees or radians, see Math constants.
+     * @return Matrix33
+     */
+    public static function makeRotationY(float $angle, string $type = Math::DEGREES) : Matrix33 {
+        if ($type === Math::DEGREES) {
+            $angle = Math::degToRad($angle);
+        }
+
+        return new Matrix33(
+            cos($angle), 0, sin($angle),
+            0, 1, 0,
+            - sin($angle), 0, cos($angle)
+        );
+    }
+
+    /**
+     * Create a rotation matrix with given Z angle rotation.
+     *
+     * @param float $angle
+     * @param string $type If degrees or radians, see Math constants.
+     * @return Matrix33
+     */
+    public static function makeRotationZ(float $angle, string $type = Math::DEGREES) : Matrix33 {
+        if ($type === Math::DEGREES) {
+            $angle = Math::degToRad($angle);
+        }
+
+        return new Matrix33(
+            cos($angle), - sin($angle), 0,
+            sin($angle), cos($angle), 0,
+            0, 0, 1
+        );
     }
 }

@@ -46,10 +46,16 @@ The following classes are currently implemented:
   * `Vector2DMath` - Static Vector2D/Point2D math helpers.
   * `Vector3DMath` - Static Vector3D/Point3D math helpers.
   * `Matrix33`    - A matrix structure with 3*3 indexes.
-  * `Matrix33Math` - Static Matrix33 math helpers.
   * `Matrix44`    - A matrix structure with 4*4 indexes.
-  * `Matrix44Math` - Static Matrix44 math helpers.
   * `MatrixMath`   - Common math for all matrices.
+
+### Deprecated
+
+### Removed
+
+* Math (`Jitesoft\Utilities\DataStructures\Math`)
+  * `Matrix33Math` (Removed in favour of usage of the `MatrixMath` class).
+  * `Matrix44Math` (Removed in favour of usage of the `MatrixMath` class).
 
 ## Development & Contributions.
 
