@@ -19,11 +19,12 @@ class VectorMath {
         $type = get_class($vector);
         $out  = new $type();
 
+        $count = count($out);
         if ($value instanceof Vector === false) {
-            $value = new $type(...array_fill(0, $type::ELEMENT_COUNT, $value));
+            $value = new $type(...array_fill(0, $count , $value));
         }
 
-        for ($i=$type::ELEMENT_COUNT;$i-->0;) {
+        for ($i=$count;$i-->0;) {
             $out[$i] = $vector[$i] * $value[$i];
         }
 
@@ -38,14 +39,14 @@ class VectorMath {
      * @return Vector
      */
     public static function div(Vector $vector, $value) : Vector {
-        $type = get_class($vector);
-        $out  = new $type();
-
+        $type  = get_class($vector);
+        $out   = new $type();
+        $count = count($out);
         if ($value instanceof Vector === false) {
-            $value = new $type(...array_fill(0, $type::ELEMENT_COUNT, $value));
+            $value = new $type(...array_fill(0, $count , $value));
         }
 
-        for ($i=$type::ELEMENT_COUNT;$i-->0;) {
+        for ($i=$count;$i-->0;) {
             $out[$i] = $vector[$i] / $value[$i];
         }
 
@@ -63,11 +64,12 @@ class VectorMath {
         $type = get_class($vector);
         $out  = new $type();
 
+        $count = count($out);
         if ($value instanceof Vector === false) {
-            $value = new $type(...array_fill(0, $type::ELEMENT_COUNT, $value));
+            $value = new $type(...array_fill(0, $count, $value));
         }
 
-        for ($i=$type::ELEMENT_COUNT;$i-->0;) {
+        for ($i=$count;$i-->0;) {
             $out[$i] = $vector[$i] + $value[$i];
         }
 
@@ -85,11 +87,12 @@ class VectorMath {
         $type = get_class($vector);
         $out  = new $type();
 
+        $count = count($out);
         if ($value instanceof Vector === false) {
-            $value = new $type(...array_fill(0, $type::ELEMENT_COUNT, $value));
+            $value = new $type(...array_fill(0, $count, $value));
         }
 
-        for ($i=$type::ELEMENT_COUNT;$i-->0;) {
+        for ($i=$count;$i-->0;) {
             $out[$i] = $vector[$i] - $value[$i];
         }
 
@@ -104,10 +107,9 @@ class VectorMath {
      * @return float
      */
     public static function dot(Vector $vector1, Vector $vector2) : float {
-        $type = get_class($vector1);
-
+        $count = count($vector1);
         $value = 0;
-        for ($i=0;$i<$type::ELEMENT_COUNT;$i++) {
+        for ($i=0;$i<$count;$i++) {
             $value += ($vector1[$i] * $vector2[$i]);
         }
         return $value;
@@ -147,10 +149,9 @@ class VectorMath {
      * @return float
      */
     public static function distance2(Vector $vector1, Vector $vector2) : float {
-        $type  = get_class($vector1);
         $value = 0;
-
-        for ($i = 0; $i < $type::ELEMENT_COUNT; $i++) {
+        $count = count($vector1);
+        for ($i = 0;$i<$count;$i++) {
             $value += ($vector1[$i] - $vector2[$i]) * ($vector1[$i] - $vector2[$i]);
         }
         return $value;

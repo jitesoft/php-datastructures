@@ -272,4 +272,18 @@ class Vector3DTest extends TestCase {
 
         (new Vector3D(1,2,3))->offsetUnset(1);
     }
+
+    public function testToArray() {
+        $v   = new Vector3D(1,2,3);
+        $out = $v->toArray();
+
+        $this->assertEquals([1,2,3], $out);
+    }
+
+    public function testFromArray() {
+        $v = new Vector3D(0,0,0);
+        $v->fromArray([1,2,3]);
+
+        $this->assertEquals(new Vector3D(1,2,3), $v);
+    }
 }
