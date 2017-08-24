@@ -6,10 +6,6 @@
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 namespace Jitesoft\Utilities\DataStructures\Math;
 
-use ArrayAccess;
-use Jitesoft\Utilities\DataStructures\Math\Vector4DMath as _;
-use Jitesoft\Utilities\DataStructures\Math\Traits\VectorAccessTrait;
-
 /**
  * Class Vector4D
  *
@@ -20,26 +16,17 @@ use Jitesoft\Utilities\DataStructures\Math\Traits\VectorAccessTrait;
  * either their get-accessors (getX, getY, getZ, getW) or through array access.
  * (x/X/0, y/Y/1, z/Z/2, w/W/3).
  */
-class Vector4D implements ArrayAccess {
-    use VectorAccessTrait;
+class Vector4D extends Vector {
+
+    public const ELEMENT_COUNT = 4;
 
     /** @var array */
-    protected $offsets = [
-        'x' => 'x', 'X' => 'x', 0 => 'x',
-        'y' => 'y', 'Y' => 'y', 1 => 'y',
-        'z' => 'z', 'Z' => 'z', 2 => 'z',
-        'w' => 'w', 'W' => 'w', 3 => 'w'
+    protected const OFFSETS = [
+        'X' => 'x', 0 => 'x',
+        'Y' => 'y', 1 => 'y',
+        'Z' => 'z', 2 => 'z',
+        'W' => 'w', 3 => 'w'
     ];
-
-    /**
-     * @param Vector4D $cpy
-     */
-    private function copy(Vector4D $cpy) {
-        $this->x = $cpy->x;
-        $this->y = $cpy->y;
-        $this->z = $cpy->z;
-        $this->w = $cpy->w;
-    }
 
     /** @var float */
     protected $x;
@@ -137,109 +124,4 @@ class Vector4D implements ArrayAccess {
     public function setW(float $w) {
         $this->w = $w;
     }
-
-    /**
-     * Vector multiplication.
-     *
-     * @param float|Vector4D $value
-     */
-    public function mul($value) {
-        $this->copy(_::mul($this, $value));
-
-    }
-
-    /**
-     * Vector division.
-     *
-     * @param float|Vector4D $value
-     */
-    public function div($value) {
-        $this->copy(_::div($this, $value));
-    }
-
-    /**
-     * Vector addition.
-     *
-     * @param Vector4D $value
-     */
-    public function add(Vector4D $value) {
-        $this->copy(_::add($this, $value));
-    }
-
-    /**
-     * Vector subtraction.
-     *
-     * @param Vector4D $value
-     */
-    public function sub(Vector4D $value) {
-        $this->copy(_::sub($this, $value));
-    }
-
-    /**
-     * Calculate dot product of two vectors.
-     *
-     * @param Vector4D $value
-     * @return float
-     */
-    public function dot(Vector4D $value) {
-        return _::dot($this, $value);
-    }
-
-    /**
-     * Calculate distance between two vectors.
-     *
-     * @param Vector4D $value
-     * @return float
-     */
-    public function distance(Vector4D $value) : float {
-        return _::distance($this, $value);
-    }
-
-    /**
-     * Calculate square distance between two vectors.
-     *
-     * @param Vector4D $value
-     * @return float
-     */
-    public function distance2(Vector4D $value) {
-        return _::distance2($this, $value);
-    }
-
-    /**
-     * Vector length.
-     *
-     * @return float
-     */
-    public function length() : float {
-        return sqrt($this->length2());
-    }
-
-    /**
-     * Squared vector length.
-     *
-     * @return float
-     */
-    public function length2() : float {
-        return
-            ($this->x * $this->x)
-            +
-            ($this->y * $this->y)
-            +
-            ($this->z * $this->z)
-            +
-            ($this->w * $this->w);
-    }
-
-    /**
-     * Normalizes the vector.
-     */
-    public function normalize() {
-        $len = $this->length();
-
-        $this->x /= $len;
-        $this->y /= $len;
-        $this->z /= $len;
-        $this->w /= $len;
-    }
-
 }

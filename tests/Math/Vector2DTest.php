@@ -8,8 +8,8 @@
 namespace Jitesoft\Utilities\DataStructures\Tests\Math;
 
 use Jitesoft\Utilities\DataStructures\Math\Vector2D;
-use Jitesoft\Utilities\DataStructures\Math\Vector2DMath;
 use Exception;
+use Jitesoft\Utilities\DataStructures\Math\VectorMath;
 use PHPUnit\Framework\TestCase;
 
 class Vector2DTest extends TestCase {
@@ -56,20 +56,29 @@ class Vector2DTest extends TestCase {
         $v1 = new Vector2D(10, 20);
         $v2 = new Vector2D(20, 20);
 
-        $result = Vector2DMath::add($v1, $v2);
+        $result = VectorMath::add($v1, $v2);
         $v1->add($v2);
 
         $this->assertEquals($v1, $result);
-        $this->assertEquals(30, $result->getX());
-        $this->assertEquals(40, $result->getY());
+        $this->assertEquals(30, $result["x"]);
+        $this->assertEquals(40, $result["y"]);
+    }
 
+    public function testAddScalar() {
+        $v1  = new Vector2D(1,2);
+        $val = VectorMath::add($v1, 1);
+        $v1->add(1);
+        $this->assertEquals($val, $v1);
+
+
+        $this->assertEquals(new Vector2D(2,3), $v1);
     }
 
     public function testSub() {
         $v1 = new Vector2D(10, 20);
         $v2 = new Vector2D(3, 12);
 
-        $result = Vector2DMath::sub($v1, $v2);
+        $result = VectorMath::sub($v1, $v2);
         $v1->sub($v2);
 
         $this->assertEquals($v1, $result);
@@ -77,11 +86,20 @@ class Vector2DTest extends TestCase {
         $this->assertEquals(8, $v1->getY());
     }
 
+    public function testSubScalar() {
+        $v1  = new Vector2D(1,2);
+        $val = VectorMath::sub($v1, 2);
+        $v1->sub(2);
+
+        $this->assertEquals($v1, $val);
+        $this->assertEquals(new Vector2D(-1, 0), $v1);
+    }
+
     public function testMul() {
         $v1 = new Vector2D(10, 20);
         $v2 = new Vector2D(2, 3);
 
-        $result = Vector2DMath::mul($v1, $v2);
+        $result = VectorMath::mul($v1, $v2);
         $v1->mul($v2);
 
         $this->assertEquals($v1, $result);
@@ -93,7 +111,7 @@ class Vector2DTest extends TestCase {
         $v1 = new Vector2D(10, 12);
         $v2 = new Vector2D(2, 3);
 
-        $result = Vector2DMath::div($v1, $v2);
+        $result = VectorMath::div($v1, $v2);
         $v1->div($v2);
 
         $this->assertEquals($v1, $result);
@@ -103,7 +121,7 @@ class Vector2DTest extends TestCase {
 
     public function testMulF() {
         $v1     = new Vector2D(10, 1);
-        $result = Vector2DMath::mul($v1, 5);
+        $result = VectorMath::mul($v1, 5);
         $v1->mul(5);
 
         $this->assertEquals($result, $v1);
@@ -113,7 +131,7 @@ class Vector2DTest extends TestCase {
 
     public function testDivF() {
         $v1     = new Vector2D(100, 10);
-        $result = Vector2DMath::div($v1, 10);
+        $result = VectorMath::div($v1, 10);
         $v1->div(10);
 
         $this->assertEquals($result, $v1);

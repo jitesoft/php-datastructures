@@ -1,6 +1,6 @@
 <?php
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-  VectorAccessTrait.php - Part of the php-list project.
+  VectorAccessTrait.php - Part of the php-datastructures project.
 
   © - Jitesoft 2017
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
@@ -23,14 +23,13 @@ trait VectorAccessTrait {
      * @throws Exception
      */
     private function convertOffset($offset, $default = null) {
-        if (array_key_exists($offset, $this->offsets)) {
-            return $this->offsets[$offset];
+        if (array_key_exists(mb_strtoupper($offset), static::OFFSETS)) {
+            return static::OFFSETS[mb_strtoupper($offset)];
         }
 
         if ($default !== null) {
             return $default;
         }
-        $count = count($this->offsets);
         throw new Exception("Out of range. Invalid offset.");
     }
 
