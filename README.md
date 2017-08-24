@@ -40,20 +40,23 @@ The following classes are currently implemented:
 * Math (`Jitesoft\Utilities\DataStructures\Math`) (Misc math classes and functions).
   * `Math`        - Misc static math helpers.
   * `Point2D`     - A point structure in 2D space.
-  * `Vector2D`    - A vector structure in 2D space.
   * `Point3D`     - A point structure in 3D space.
+  * `Vector2D`    - A vector structure in 2D space.
   * `Vector3D`    - A vector structure in 3D space.
-  * `Vector2DMath` - Static Vector2D/Point2D math helpers.
-  * `Vector3DMath` - Static Vector3D/Point3D math helpers.
+  * `Vector4D`    - A vector structure in 4D space.
+  * `VectorMath`  - Common math for all vector types.
   * `Matrix33`    - A matrix structure with 3*3 indexes.
   * `Matrix44`    - A matrix structure with 4*4 indexes.
-  * `MatrixMath`   - Common math for all matrices.
+  * `MatrixMath`  - Common math for all matrices.
 
 ### Deprecated
 
 ### Removed
 
 * Math (`Jitesoft\Utilities\DataStructures\Math`)
+  * `Vector2DMath` (Removed in favour of usage of the `VectorMath` class).
+  * `Vector3DMath` (Removed in favour of usage of the `VectorMath` class).
+  * `Vector4DMath` (Removed in favour of usage of the `VectorMath` class).
   * `Matrix33Math` (Removed in favour of usage of the `MatrixMath` class).
   * `Matrix44Math` (Removed in favour of usage of the `MatrixMath` class).
 
