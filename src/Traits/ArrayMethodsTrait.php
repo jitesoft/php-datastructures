@@ -19,7 +19,6 @@ trait ArrayMethodsTrait {
         $out   = StaticArrayMethods::map($this, $closure);
         $class = get_class($this);
         return new $class($out);
-
     }
 
     /**

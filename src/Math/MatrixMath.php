@@ -89,13 +89,14 @@ class MatrixMath {
             return $matrix[0][0];
         }
 
+        $sign = 1;
         // Go through each element in first row.
         for ($counter=0;$counter<$rcCount;$counter++) {
             // Create a cofactor sub-matrix ($rcCount-1 in size).
             $subMatrix = self::getSubMatrix($matrix, 0, $counter);
             // Calculate the determinant of the sub-matrix.
-            $sign         = Matrix::SIGN_CHART[0][$counter];
             $determinant += $sign * $matrix[0][$counter] * self::calculateDeterminant($subMatrix);
+            $sign         = -$sign;
         }
 
         return $determinant;

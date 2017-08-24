@@ -16,13 +16,6 @@ use Exception;
  */
 abstract class Matrix implements ArrayAccess {
 
-    const SIGN_CHART = [
-        [1, -1, 1, -1],
-        [-1, 1, -1, 1],
-        [1, -1, 1, -1],
-        [-1, 1, -1, 1]
-    ];
-
     /** @var int  */
     public const ROWS = 0;
     /** @var int */
@@ -176,9 +169,10 @@ abstract class Matrix implements ArrayAccess {
 
         $adj = $this->getAdjoinMatrix();
         for ($i=0; $i<static::ROWS; $i++) {
+            $sign = ($i%2 === 1) ? -1 : 1;
             for ($j=0; $j<static::COLUMNS; $j++) {
-                $sign        = Matrix::SIGN_CHART[$i][$j];
                 $adj[$i][$j] = $sign * $adj[$i][$j];
+                $sign        = -$sign;
             }
         }
 
