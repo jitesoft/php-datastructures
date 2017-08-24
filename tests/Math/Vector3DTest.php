@@ -42,6 +42,15 @@ class Vector3DTest extends TestCase {
         $this->assertEquals(9, $v1->getZ());
     }
 
+    public function testAddScalar() {
+        $v1  = new Vector3D(1,2,3);
+        $val = VectorMath::add($v1, 1);
+        $v1->add(1);
+        $this->assertEquals($val, $v1);
+
+        $this->assertEquals(new Vector3D(2,3,4), $v1);
+    }
+
     public function testSub() {
         $v1 = new Vector3D(10, 11, 12);
         $v2 = new Vector3D(1, 3, 5);
@@ -53,6 +62,15 @@ class Vector3DTest extends TestCase {
         $this->assertEquals(9, $v1->getX());
         $this->assertEquals(8, $v1->getY());
         $this->assertEquals(7, $v1->getZ());
+    }
+
+    public function testSubScalar() {
+        $v1  = new Vector3D(1,2,3);
+        $val = VectorMath::sub($v1, 2);
+        $v1->sub(2);
+
+        $this->assertEquals($v1, $val);
+        $this->assertEquals(new Vector3D(-1, 0, 1), $v1);
     }
 
     public function testMul() {

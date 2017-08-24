@@ -62,7 +62,16 @@ class Vector2DTest extends TestCase {
         $this->assertEquals($v1, $result);
         $this->assertEquals(30, $result["x"]);
         $this->assertEquals(40, $result["y"]);
+    }
 
+    public function testAddScalar() {
+        $v1  = new Vector2D(1,2);
+        $val = VectorMath::add($v1, 1);
+        $v1->add(1);
+        $this->assertEquals($val, $v1);
+
+
+        $this->assertEquals(new Vector2D(2,3), $v1);
     }
 
     public function testSub() {
@@ -75,6 +84,15 @@ class Vector2DTest extends TestCase {
         $this->assertEquals($v1, $result);
         $this->assertEquals(7, $v1->getX());
         $this->assertEquals(8, $v1->getY());
+    }
+
+    public function testSubScalar() {
+        $v1  = new Vector2D(1,2);
+        $val = VectorMath::sub($v1, 2);
+        $v1->sub(2);
+
+        $this->assertEquals($v1, $val);
+        $this->assertEquals(new Vector2D(-1, 0), $v1);
     }
 
     public function testMul() {

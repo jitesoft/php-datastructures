@@ -82,7 +82,7 @@ abstract class Vector  implements ArrayAccess {
     /**
      * Vector multiplication.
      *
-     * @param float|Vector $value
+     * @param float|int|Vector $value
      */
     public function mul($value) {
         $this->copy(VectorMath::mul($this, $value));
@@ -92,7 +92,7 @@ abstract class Vector  implements ArrayAccess {
     /**
      * Vector division.
      *
-     * @param float|Vector $value
+     * @param float|int|Vector $value
      */
     public function div($value) {
         $this->copy(VectorMath::div($this, $value));
@@ -101,18 +101,18 @@ abstract class Vector  implements ArrayAccess {
     /**
      * Vector addition.
      *
-     * @param Vector $value
+     * @param Vector|float|int $value
      */
-    public function add(Vector $value) {
+    public function add($value) {
         $this->copy(VectorMath::add($this, $value));
     }
 
     /**
      * Vector subtraction.
      *
-     * @param Vector $value
+     * @param Vector|float|int $value
      */
-    public function sub(Vector $value) {
+    public function sub($value) {
         $this->copy(VectorMath::sub($this, $value));
     }
 

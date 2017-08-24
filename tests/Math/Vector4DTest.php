@@ -6,22 +6,23 @@
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 namespace Jitesoft\Utilities\DataStructures\Tests\Math;
 
-use Jitesoft\Utilities\DataStructures\Math\Vector4D as Vector;
+use Jitesoft\Utilities\DataStructures\Math\Vector4D;
 use Jitesoft\Utilities\DataStructures\Math\VectorMath;
 use PHPUnit\Framework\TestCase;
 
 class Vector4DTest extends TestCase {
 
     public function testGet() {
-        $v = new Vector(1,2,3,4);
+        $v = new Vector4D(1,2,3,4);
 
         $this->assertEquals(1, $v->getX());
         $this->assertEquals(2, $v->getY());
         $this->assertEquals(3, $v->getZ());
         $this->assertEquals(4, $v->getW());
     }
+
     public function testSet() {
-        $v = new Vector(5,6,7,8);
+        $v = new Vector4D(5,6,7,8);
 
         $v->setX(1);
         $v->setY(2);
@@ -35,8 +36,8 @@ class Vector4DTest extends TestCase {
     }
 
     public function testMul() {
-        $v1 = new Vector(1,2,3,4);
-        $v2 = new Vector(2,3,4,5);
+        $v1 = new Vector4D(1,2,3,4);
+        $v2 = new Vector4D(2,3,4,5);
 
         $result = VectorMath::mul($v1, $v2);
         $v1->mul($v2);
@@ -50,8 +51,8 @@ class Vector4DTest extends TestCase {
 
 
     public function testDiv() {
-        $v1 = new Vector(2,12,6,25);
-        $v2 = new Vector(2,4,3,5);
+        $v1 = new Vector4D(2,12,6,25);
+        $v2 = new Vector4D(2,4,3,5);
 
         $result = VectorMath::div($v1, $v2);
         $v1->div($v2);
@@ -64,8 +65,8 @@ class Vector4DTest extends TestCase {
     }
 
     public function testAdd() {
-        $v1 = new Vector(1,2,3,4);
-        $v2 = new Vector(2,3,4,5);
+        $v1 = new Vector4D(1,2,3,4);
+        $v2 = new Vector4D(2,3,4,5);
 
         $result = VectorMath::add($v1, $v2);
         $v1->add($v2);
@@ -77,9 +78,18 @@ class Vector4DTest extends TestCase {
         $this->assertEquals(9, $v1->getW());
     }
 
+    public function testAddScalar() {
+        $v1  = new Vector4D(1,2,3,4);
+        $val = VectorMath::add($v1, 1);
+        $v1->add(1);
+        $this->assertEquals($val, $v1);
+
+        $this->assertEquals(new Vector4D(2,3,4,5), $v1);
+    }
+
     public function testSub() {
-        $v1 = new Vector(1,5,12,100);
-        $v2 = new Vector(2,3,4,5);
+        $v1 = new Vector4D(1,5,12,100);
+        $v2 = new Vector4D(2,3,4,5);
 
         $result = VectorMath::sub($v1, $v2);
         $v1->sub($v2);
@@ -88,11 +98,20 @@ class Vector4DTest extends TestCase {
         $this->assertEquals(-1, $v1->getX());
         $this->assertEquals(2, $v1->getY());
         $this->assertEquals(8, $v1->getZ());
-        $this->assertEquals(95, $v1->getW());}
+        $this->assertEquals(95, $v1->getW());
+    }
+
+    public function testSubScalar() {
+        $v1  = new Vector4D(1,2,3,4);
+        $val = VectorMath::sub($v1, 2);
+        $v1->sub(2);
+
+        $this->assertEquals($v1, $val);
+        $this->assertEquals(new Vector4D(-1, 0, 1, 2), $v1);
+    }
 
     public function testMulF() {
-        $v1 = new
-        Vector(1,2,3,4);
+        $v1 = new Vector4D(1,2,3,4);
 
         $result = VectorMath::mul($v1, 4);
         $v1->mul(4);
@@ -106,7 +125,7 @@ class Vector4DTest extends TestCase {
 
 
     public function testDivF() {
-        $v1 = new Vector(1,2,3,4);
+        $v1 = new Vector4D(1,2,3,4);
 
         $result = VectorMath::div($v1, 2);
         $v1->div(2);
@@ -120,8 +139,8 @@ class Vector4DTest extends TestCase {
     }
 
     public function testDot() {
-        $v1 = new Vector(1,2,3,4);
-        $v2 = new Vector(10,20,30,40);
+        $v1 = new Vector4D(1,2,3,4);
+        $v2 = new Vector4D(10,20,30,40);
 
         $result1 = VectorMath::dot($v1, $v2);
         $result2 = $v1->dot($v2);
@@ -131,8 +150,8 @@ class Vector4DTest extends TestCase {
     }
 
     public function testDistance() {
-        $v1 = new Vector(1,2,3,4);
-        $v2 = new Vector(10,20,30,40);
+        $v1 = new Vector4D(1,2,3,4);
+        $v2 = new Vector4D(10,20,30,40);
 
         $result1 = VectorMath::distance($v1, $v2);
         $result2 = $v1->distance($v2);
@@ -142,8 +161,8 @@ class Vector4DTest extends TestCase {
     }
 
     public function testDistance2() {
-        $v1 = new Vector(1,2,3,4);
-        $v2 = new Vector(10,20,30,40);
+        $v1 = new Vector4D(1,2,3,4);
+        $v2 = new Vector4D(10,20,30,40);
 
         $result1 = VectorMath::distance2($v1, $v2);
         $result2 = $v1->distance2($v2);
@@ -153,7 +172,7 @@ class Vector4DTest extends TestCase {
     }
 
     public function testNormalize() {
-        $vector = new Vector(10,20,30,40);
+        $vector = new Vector4D(10,20,30,40);
         $vector->normalize();
         $this->assertEquals(1, $vector->length());
 
@@ -165,17 +184,17 @@ class Vector4DTest extends TestCase {
     }
 
     public function testLength() {
-        $vector = new Vector(10,20,30,40);
+        $vector = new Vector4D(10,20,30,40);
         $this->assertEquals(sqrt(3000), $vector->length());
     }
 
     public function testLength2() {
-        $vector = new Vector(10,20,30,40);
+        $vector = new Vector4D(10,20,30,40);
         $this->assertEquals(3000, $vector->length2());
     }
 
     public function testOffsetExists() {
-        $vector = new Vector(1,2,3, 4);
+        $vector = new Vector4D(1,2,3, 4);
 
         $this->assertFalse($vector->offsetExists(4));
         $this->assertFalse($vector->offsetExists(-1));
@@ -199,7 +218,7 @@ class Vector4DTest extends TestCase {
 
 
     public function testOffsetGet() {
-        $vector = new Vector(1,2,3, 4);
+        $vector = new Vector4D(1,2,3, 4);
 
         $this->assertEquals(1, $vector[0]);
         $this->assertEquals(1, $vector['x']);
@@ -220,7 +239,7 @@ class Vector4DTest extends TestCase {
 
     public function testOffsetSet() {
 
-        $vector = new Vector(10,20,30, 40);
+        $vector = new Vector4D(10,20,30, 40);
 
         $vector[0] = 1;
         $this->assertEquals(1, $vector->getX());
@@ -260,6 +279,6 @@ class Vector4DTest extends TestCase {
         $this->expectException(\Exception::class);
         $this->expectExceptionMessage("Invalid method.");
 
-        (new Vector(1,2,3,4))->offsetUnset(1);
+        (new Vector4D(1,2,3,4))->offsetUnset(1);
     }
 }
