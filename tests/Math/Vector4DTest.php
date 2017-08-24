@@ -7,8 +7,7 @@
 namespace Jitesoft\Utilities\DataStructures\Tests\Math;
 
 use Jitesoft\Utilities\DataStructures\Math\Vector4D as Vector;
-
-use Jitesoft\Utilities\DataStructures\Math\Vector4DMath;
+use Jitesoft\Utilities\DataStructures\Math\VectorMath;
 use PHPUnit\Framework\TestCase;
 
 class Vector4DTest extends TestCase {
@@ -39,7 +38,7 @@ class Vector4DTest extends TestCase {
         $v1 = new Vector(1,2,3,4);
         $v2 = new Vector(2,3,4,5);
 
-        $result = Vector4DMath::mul($v1, $v2);
+        $result = VectorMath::mul($v1, $v2);
         $v1->mul($v2);
 
         $this->assertEquals($result, $v1);
@@ -54,7 +53,7 @@ class Vector4DTest extends TestCase {
         $v1 = new Vector(2,12,6,25);
         $v2 = new Vector(2,4,3,5);
 
-        $result = Vector4DMath::div($v1, $v2);
+        $result = VectorMath::div($v1, $v2);
         $v1->div($v2);
 
         $this->assertEquals($result, $v1);
@@ -68,7 +67,7 @@ class Vector4DTest extends TestCase {
         $v1 = new Vector(1,2,3,4);
         $v2 = new Vector(2,3,4,5);
 
-        $result = Vector4DMath::add($v1, $v2);
+        $result = VectorMath::add($v1, $v2);
         $v1->add($v2);
 
         $this->assertEquals($result, $v1);
@@ -82,7 +81,7 @@ class Vector4DTest extends TestCase {
         $v1 = new Vector(1,5,12,100);
         $v2 = new Vector(2,3,4,5);
 
-        $result = Vector4DMath::sub($v1, $v2);
+        $result = VectorMath::sub($v1, $v2);
         $v1->sub($v2);
 
         $this->assertEquals($result, $v1);
@@ -95,7 +94,7 @@ class Vector4DTest extends TestCase {
         $v1 = new
         Vector(1,2,3,4);
 
-        $result = Vector4DMath::mul($v1, 4);
+        $result = VectorMath::mul($v1, 4);
         $v1->mul(4);
 
         $this->assertEquals($result, $v1);
@@ -109,7 +108,7 @@ class Vector4DTest extends TestCase {
     public function testDivF() {
         $v1 = new Vector(1,2,3,4);
 
-        $result = Vector4DMath::div($v1, 2);
+        $result = VectorMath::div($v1, 2);
         $v1->div(2);
 
         $this->assertEquals($result, $v1);
@@ -124,7 +123,7 @@ class Vector4DTest extends TestCase {
         $v1 = new Vector(1,2,3,4);
         $v2 = new Vector(10,20,30,40);
 
-        $result1 = Vector4DMath::dot($v1, $v2);
+        $result1 = VectorMath::dot($v1, $v2);
         $result2 = $v1->dot($v2);
 
         $this->assertEquals($result1, $result2);
@@ -135,7 +134,7 @@ class Vector4DTest extends TestCase {
         $v1 = new Vector(1,2,3,4);
         $v2 = new Vector(10,20,30,40);
 
-        $result1 = Vector4DMath::distance($v1, $v2);
+        $result1 = VectorMath::distance($v1, $v2);
         $result2 = $v1->distance($v2);
 
         $this->assertEquals($result1, $result2);
@@ -146,7 +145,7 @@ class Vector4DTest extends TestCase {
         $v1 = new Vector(1,2,3,4);
         $v2 = new Vector(10,20,30,40);
 
-        $result1 = Vector4DMath::distance2($v1, $v2);
+        $result1 = VectorMath::distance2($v1, $v2);
         $result2 = $v1->distance2($v2);
 
         $this->assertEquals($result1, $result2);
