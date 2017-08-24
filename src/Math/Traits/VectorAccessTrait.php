@@ -23,8 +23,13 @@ trait VectorAccessTrait {
      * @throws Exception
      */
     private function convertOffset($offset, $default = null) {
-        if (array_key_exists(mb_strtoupper($offset), static::OFFSETS)) {
-            return static::OFFSETS[mb_strtoupper($offset)];
+        if (!is_int($offset)) {
+            $val    = array_search(mb_strtolower($offset), self::$offsets);
+            $offset = $val === false ? -1 : $val;
+        }
+
+        if ($offset >= 0 && $offset < count($this->elements)) {
+            return $offset;
         }
 
         if ($default !== null) {
@@ -48,7 +53,7 @@ trait VectorAccessTrait {
      */
     public function offsetGet($offset) {
         $offset = $this->convertOffset($offset);
-        return $this->{$offset};
+        return $this->elements[$offset];
     }
 
     /**
@@ -60,8 +65,8 @@ trait VectorAccessTrait {
         if (!is_numeric($value)) {
             throw new InvalidArgumentException("Invalid value. Value must be a number.");
         }
-        $offset          = $this->convertOffset($offset);
-        $this->{$offset} = $value;
+        $offset                  = $this->convertOffset($offset);
+        $this->elements[$offset] = $value;
     }
 
     /**
