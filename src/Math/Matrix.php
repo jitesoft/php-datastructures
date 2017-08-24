@@ -189,7 +189,7 @@ abstract class Matrix implements ArrayAccess {
                     "Out of range. This matrix has %d * %d indexes.",
                     static::ROWS,
                     static::COLUMNS
-                    )
+                 )
             );
         }
 
@@ -229,19 +229,8 @@ abstract class Matrix implements ArrayAccess {
      */
     public function toArray() {
         $out = [];
-
         for ($i=static::ROWS;$i-->0;) {
-            $out[$i] = [];
-            for ($j=static::COLUMNS;$j-->0;) {
-                $out[$i][$j] = $this[$i][$j];
-            }
-        }
-
-        for ($i=0; $i<static::ROWS; $i++) {
-            $out[$i] = [];
-            for ($j=0; $j<static::COLUMNS; $j++) {
-                $out[$i][$j] = $this[$i][$j];
-            }
+            $out[$i] = $this[$i]->toArray();
         }
         return $out;
     }
@@ -253,12 +242,8 @@ abstract class Matrix implements ArrayAccess {
      */
     public function fromArray(array $array) {
         $rows = count($array);
-        $cols = count($array[0]);
-
         for ($i=$rows;$i-->0;) {
-            for ($j=$cols;$j-->0;) {
-                $this[$i][$j] = $array[$i][$j];
-            }
+            $this[$i]->fromArray($array[$i]);
         }
     }
 }
