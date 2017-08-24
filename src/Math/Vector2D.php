@@ -26,8 +26,8 @@ class Vector2D extends Vector {
 
     /** @var array */
     protected const OFFSETS = [
-        'x' => 'x', 'X' => 'x', 0 => 'x',
-        'y' => 'y', 'Y' => 'y', 1 => 'y',
+        'X' => 'x', 0 => 'x',
+        'Y' => 'y', 1 => 'y',
     ];
 
     /**

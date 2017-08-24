@@ -22,10 +22,10 @@ class Vector4D extends Vector {
 
     /** @var array */
     protected const OFFSETS = [
-        'x' => 'x', 'X' => 'x', 0 => 'x',
-        'y' => 'y', 'Y' => 'y', 1 => 'y',
-        'z' => 'z', 'Z' => 'z', 2 => 'z',
-        'w' => 'w', 'W' => 'w', 3 => 'w'
+        'X' => 'x', 0 => 'x',
+        'Y' => 'y', 1 => 'y',
+        'Z' => 'z', 2 => 'z',
+        'W' => 'w', 3 => 'w'
     ];
 
     /** @var float */
