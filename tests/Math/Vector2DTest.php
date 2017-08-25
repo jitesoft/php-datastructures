@@ -252,4 +252,19 @@ class Vector2DTest extends TestCase {
         (new Vector2D(1,2))->offsetUnset(1);
     }
 
+
+    public function testToArray() {
+        $v   = new Vector2D(1,2);
+        $out = $v->toArray();
+
+        $this->assertEquals([1,2], $out);
+    }
+
+    public function testFromArray() {
+        $v = new Vector2D(0,0);
+        $v->fromArray([1,2]);
+
+        $this->assertEquals(new Vector2D(1,2), $v);
+    }
+
 }

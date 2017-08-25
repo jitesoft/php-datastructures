@@ -281,4 +281,19 @@ class Vector4DTest extends TestCase {
 
         (new Vector4D(1,2,3,4))->offsetUnset(1);
     }
+
+
+    public function testToArray() {
+        $v   = new Vector4D(1,2,3, 4);
+        $out = $v->toArray();
+
+        $this->assertEquals([1,2,3, 4], $out);
+    }
+
+    public function testFromArray() {
+        $v = new Vector4D(0,0,0, 0);
+        $v->fromArray([1,2,3,4]);
+
+        $this->assertEquals(new Vector4D(1,2,3, 4), $v);
+    }
 }

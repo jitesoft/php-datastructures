@@ -18,25 +18,6 @@ namespace Jitesoft\Utilities\DataStructures\Math;
  */
 class Vector4D extends Vector {
 
-    public const ELEMENT_COUNT = 4;
-
-    /** @var array */
-    protected const OFFSETS = [
-        'X' => 'x', 0 => 'x',
-        'Y' => 'y', 1 => 'y',
-        'Z' => 'z', 2 => 'z',
-        'W' => 'w', 3 => 'w'
-    ];
-
-    /** @var float */
-    protected $x;
-    /** @var float */
-    protected $y;
-    /** @var float */
-    protected $z;
-    /** @var float */
-    protected $w;
-
     /**
      * Create a 4 dimensional vector.
      *
@@ -47,10 +28,10 @@ class Vector4D extends Vector {
      * @param float $w
      */
     public function __construct(float $x = 0, float $y = 0, float $z = 0, float $w = 0) {
-        $this->x = $x;
-        $this->y = $y;
-        $this->z = $z;
-        $this->w = $w;
+        $this->elements[0] = $x;
+        $this->elements[1] = $y;
+        $this->elements[2] = $z;
+        $this->elements[3] = $w;
     }
 
     /**
@@ -59,7 +40,7 @@ class Vector4D extends Vector {
      * @return float
      */
     public function getX(): float {
-        return $this->x;
+        return $this->elements[0];
     }
 
     /**
@@ -68,7 +49,7 @@ class Vector4D extends Vector {
      * @param float $x
      */
     public function setX(float $x) {
-        $this->x = $x;
+        $this->elements[0] = $x;
     }
 
     /**
@@ -77,7 +58,7 @@ class Vector4D extends Vector {
      * @return float
      */
     public function getY(): float {
-        return $this->y;
+        return $this->elements[1];
     }
 
     /**
@@ -86,7 +67,7 @@ class Vector4D extends Vector {
      * @param float $y
      */
     public function setY(float $y) {
-        $this->y = $y;
+        $this->elements[1] = $y;
     }
 
     /**
@@ -95,7 +76,7 @@ class Vector4D extends Vector {
      * @return float
      */
     public function getZ(): float {
-        return $this->z;
+        return $this->elements[2];
     }
 
     /**
@@ -104,7 +85,7 @@ class Vector4D extends Vector {
      * @param float $z
      */
     public function setZ(float $z) {
-        $this->z = $z;
+        $this->elements[2] = $z;
     }
 
     /**
@@ -113,7 +94,7 @@ class Vector4D extends Vector {
      * @return float
      */
     public function getW(): float {
-        return $this->w;
+        return $this->elements[3];
     }
 
     /**
@@ -122,6 +103,6 @@ class Vector4D extends Vector {
      * @param float $w
      */
     public function setW(float $w) {
-        $this->w = $w;
+        $this->elements[3] = $w;
     }
 }

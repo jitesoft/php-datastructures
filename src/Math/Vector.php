@@ -7,6 +7,7 @@
 namespace Jitesoft\Utilities\DataStructures\Math;
 
 use ArrayAccess;
+use Countable;
 use Jitesoft\Utilities\DataStructures\Math\Traits\VectorAccessTrait;
 
 /**
@@ -14,44 +15,27 @@ use Jitesoft\Utilities\DataStructures\Math\Traits\VectorAccessTrait;
  *
  * Baseclass for all vector structures.
  */
-abstract class Vector  implements ArrayAccess {
+abstract class Vector  implements ArrayAccess, Countable {
     use VectorAccessTrait;
 
-    /**
-     * Number of elements the vector consists of.
-     * Example:
-     * <pre>
-     * Vector2D consists of two elements [0, 1].
-     * Vector3D consists of three elements [0, 1, 2].
-     * </pre>
-     *
-     * Observe:
-     * The element count constant will be removed at a later point, so do not depend on it.
-     */
-    public const ELEMENT_COUNT = 0;
+    public function count() {
+        return count($this->elements);
+    }
 
-    /**
-     * Array of offsets used in VectorAccessTrait.
-     * Should map all possible offsets to the lower case character for the offset.
-     * Example:
-     * <pre>
-     * Vector2D offsets:
-     * [
-     *   0 => 'x', 'X' => 'x', 'x' => 'x',
-     *   1 => 'y', 'Y' => 'y', 'y' => 'y'
-     * ]
-     * </pre>
-     *
-     * Observe:
-     * The offsets mapping will be removed at a later point.
-     */
-    protected const OFFSETS = [];
+    /** @var string[] */
+    protected static $offsets = [
+        'x', 'y', 'z', 'w'
+    ];
+
+    /** @var float[] */
+    protected $elements;
 
     /**
      * @param Vector $vector
      */
     protected function copy(Vector $vector) {
-        for ($i=0;$i<static::ELEMENT_COUNT;$i++) {
+        $count = count($this->elements);
+        for ($i=0;$i<$count;$i++) {
             $this[$i] = $vector[$i];
         }
     }
@@ -72,7 +56,8 @@ abstract class Vector  implements ArrayAccess {
      */
     public function length2() : float {
         $value = 0;
-        for ($i=0;$i<static::ELEMENT_COUNT;$i++) {
+        $count = count($this->elements);
+        for ($i=0;$i<$count;$i++) {
             $value += ($this[$i] * $this[$i]);
         }
         return $value;
@@ -155,11 +140,34 @@ abstract class Vector  implements ArrayAccess {
         if ($len === 0.0) {
             return;
         }
-
-        for ($i=0;$i<static::ELEMENT_COUNT;$i++) {
+        $count = count($this->elements);
+        for ($i=0;$i<$count;$i++) {
             $this[$i] /= $len;
         }
     }
 
+    /**
+     * Convert the vector to an array.
+     */
+    public function toArray() {
+        $result = [];
+        $count  = count($this->elements);
+        for ($i=0;$i<$count;$i++) {
+            $result[] = $this->elements[$i];
+        }
+        return $result;
+    }
+
+    /**
+     * Set vector to values from passed array.
+     *
+     * @param float[] $vector
+     */
+    public function fromArray(array $vector) {
+        $count = count($vector);
+        for ($i=0;$i<$count;$i++) {
+            $this->elements[$i] = $vector[$i];
+        }
+    }
 
 }

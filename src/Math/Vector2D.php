@@ -17,19 +17,6 @@ namespace Jitesoft\Utilities\DataStructures\Math;
  */
 class Vector2D extends Vector {
 
-    public const ELEMENT_COUNT = 2;
-
-    /** @var float */
-    protected $x;
-    /** @var float */
-    protected $y;
-
-    /** @var array */
-    protected const OFFSETS = [
-        'X' => 'x', 0 => 'x',
-        'Y' => 'y', 1 => 'y',
-    ];
-
     /**
      * Create a Vector2D instance.
      *
@@ -39,8 +26,8 @@ class Vector2D extends Vector {
      * @param float $y Initial Y-Coordinate.
      */
     public function __construct(float $x = 0, float $y = 0) {
-        $this->x = $x;
-        $this->y = $y;
+        $this->elements[0] = $x;
+        $this->elements[1] = $y;
     }
 
     /**
@@ -60,7 +47,7 @@ class Vector2D extends Vector {
      * @return float
      */
     public function getX(): float {
-        return $this->x;
+        return $this->elements[0];
     }
 
     /**
@@ -69,7 +56,7 @@ class Vector2D extends Vector {
      * @param float $x
      */
     public function setX(float $x) {
-        $this->x = $x;
+        $this->elements[0] = $x;
     }
 
     /**
@@ -78,7 +65,7 @@ class Vector2D extends Vector {
      * @return float
      */
     public function getY(): float {
-        return $this->y;
+        return $this->elements[1];
     }
 
     /**
@@ -87,7 +74,7 @@ class Vector2D extends Vector {
      * @param float $y
      */
     public function setY(float $y) {
-        $this->y = $y;
+        $this->elements[1] = $y;
     }
 
 }
