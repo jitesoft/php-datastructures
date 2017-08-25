@@ -7,11 +7,14 @@
 namespace Jitesoft\Utilities\DataStructures\Tests\Math;
 
 use Exception;
+use Jitesoft\Utilities\DataStructures\Exceptions\InvalidOperationException;
+use Jitesoft\Utilities\DataStructures\Exceptions\NotImplementedException;
 use Jitesoft\Utilities\DataStructures\Math\Math;
 use Jitesoft\Utilities\DataStructures\Math\Matrix33;
 use Jitesoft\Utilities\DataStructures\Math\Matrix44;
 use Jitesoft\Utilities\DataStructures\Math\MatrixMath;
 use PHPUnit\Framework\TestCase;
+use InvalidArgumentException;
 
 class MatrixMathTest extends TestCase {
 
@@ -68,7 +71,7 @@ class MatrixMathTest extends TestCase {
     }
 
     public function testCalculateDeterminantInvalidMatrix() {
-        $this->expectException(Exception::class);
+        $this->expectException(InvalidArgumentException::class);
         $this->expectExceptionMessage(
             "Can only calculate determinant from square matrix (same amount of rows as columns)."
         );
@@ -177,7 +180,7 @@ class MatrixMathTest extends TestCase {
     }
 
     public function testMulMatrixNotSame() {
-        $this->expectException(Exception::class);
+        $this->expectException(NotImplementedException::class);
         $this->expectExceptionMessage(
             "Matrix multiplication without same row/column count not yet implemented."
         );
@@ -212,7 +215,7 @@ class MatrixMathTest extends TestCase {
     }
 
     public function testAddNotSame() {
-        $this->expectException(Exception::class);
+        $this->expectException(InvalidArgumentException::class);
         $this->expectExceptionMessage(
             "Can only add matrices of same size."
         );
@@ -244,7 +247,7 @@ class MatrixMathTest extends TestCase {
     }
 
     public function testSubNotSame() {
-        $this->expectException(Exception::class);
+        $this->expectException(InvalidArgumentException::class);
         $this->expectExceptionMessage(
             "Can only subtract matrices of same size."
         );

@@ -7,10 +7,14 @@
 namespace Jitesoft\Utilities\DataStructures\Tests\Math;
 
 use Exception;
+use Jitesoft\Utilities\DataStructures\Exceptions\InvalidOperationException;
+use Jitesoft\Utilities\DataStructures\Exceptions\NotImplementedException;
 use Jitesoft\Utilities\DataStructures\Math\Math;
 use Jitesoft\Utilities\DataStructures\Math\Matrix33;
 use Jitesoft\Utilities\DataStructures\Math\MatrixMath;
 use Jitesoft\Utilities\DataStructures\Math\Vector3D as Vector;
+use OutOfBoundsException;
+use InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
 
 class Matrix33Test extends TestCase {
@@ -40,7 +44,7 @@ class Matrix33Test extends TestCase {
     }
 
     public function testGetValueOutOfRange() {
-        $this->expectException(Exception::class);
+        $this->expectException(OutOfBoundsException::class);
         $this->expectExceptionMessage("Out of range. This matrix has 3 * 3 indexes.");
 
         $matrix = new Matrix33();
@@ -73,7 +77,7 @@ class Matrix33Test extends TestCase {
     }
 
     public function testSetInnerError() {
-        $this->expectException(Exception::class);
+        $this->expectException(InvalidOperationException::class);
         $this->expectExceptionMessage("Invalid operation.");
 
         $matrix    = new Matrix33();
@@ -81,7 +85,7 @@ class Matrix33Test extends TestCase {
     }
 
     public function testUnsetError() {
-        $this->expectException(Exception::class);
+        $this->expectException(InvalidOperationException::class);
         $this->expectExceptionMessage("Invalid operation.");
 
         $matrix = new Matrix33();
@@ -217,7 +221,7 @@ class Matrix33Test extends TestCase {
 
     public function testMulError() {
         $matrix = new Matrix33();
-        $this->expectException(Exception::class);
+        $this->expectException(InvalidArgumentException::class);
         $this->expectExceptionMessage("Invalid type. Can not multiply a matrix with string.");
 
         $matrix->mul("aaa");

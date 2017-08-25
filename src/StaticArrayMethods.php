@@ -9,6 +9,7 @@ namespace Jitesoft\Utilities\DataStructures;
 use ArrayAccess;
 use Closure;
 use Jitesoft\Utilities\DataStructures\Contracts\ListInterface;
+use Jitesoft\Utilities\DataStructures\Exceptions\NotImplementedException;
 use PHPUnit\Framework\Exception;
 
 /**
@@ -18,15 +19,15 @@ use PHPUnit\Framework\Exception;
  */
 final class StaticArrayMethods {
     /**
-     * @param mixed               $object - Object of the current Iteration.
-     * @param int                 $index  - Index of the current iteration.
-     * @param ListInterface|array $list   - The list which is being iterated.
+     * @param mixed $object - Object of the current Iteration.
+     * @param int $index - Index of the current iteration.
+     * @param ListInterface|array $list - The list which is being iterated.
      * @return mixed
-     *
+     * @throws NotImplementedException
      * @codeCoverageIgnore
      */
     private static function callback($object, int $index, $list) {
-        throw new Exception("...");
+        throw new NotImplementedException("...");
     }
 
     /**

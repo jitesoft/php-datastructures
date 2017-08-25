@@ -8,6 +8,8 @@ namespace Jitesoft\Utilities\DataStructures\Math\Traits;
 
 use Exception;
 use InvalidArgumentException;
+use Jitesoft\Utilities\DataStructures\Exceptions\NotImplementedException;
+use OutOfBoundsException;
 
 /**
  * Trait VectorAccessTrait
@@ -35,7 +37,7 @@ trait VectorAccessTrait {
         if ($default !== null) {
             return $default;
         }
-        throw new Exception("Out of range. Invalid offset.");
+        throw new OutOfBoundsException("Out of range. Invalid offset.");
     }
 
     /**
@@ -74,6 +76,6 @@ trait VectorAccessTrait {
      * @throws Exception
      */
     public function offsetUnset($offset) {
-        throw new Exception("Invalid method.");
+        throw new NotImplementedException("Invalid method.");
     }
 }

@@ -7,6 +7,8 @@
 namespace Jitesoft\Utilities\DataStructures\Math;
 
 use Exception;
+use InvalidArgumentException;
+use Jitesoft\Utilities\DataStructures\Exceptions\NotImplementedException;
 
 /**
  * Class MatrixMath
@@ -79,7 +81,7 @@ class MatrixMath {
         $determinant = 0;
         $rcCount     = count($matrix);
         if ($rcCount !== count($matrix[0])) {
-            throw new Exception(
+            throw new InvalidArgumentException(
                 "Can only calculate determinant from square matrix (same amount of rows as columns)."
             );
         }
@@ -126,7 +128,7 @@ class MatrixMath {
         }
 
         $type = gettype($value);
-        throw new Exception("Invalid type. Can not multiply a matrix with {$type}.");
+        throw new InvalidArgumentException("Invalid type. Can not multiply a matrix with {$type}.");
     }
 
     /**
@@ -145,7 +147,9 @@ class MatrixMath {
         $type2 = get_class($matrix2);
 
         if ($type !== $type2) {
-            throw new Exception("Matrix multiplication without same row/column count not yet implemented.");
+            throw new NotImplementedException(
+                "Matrix multiplication without same row/column count not yet implemented."
+            );
         }
 
         $result = new $type();
@@ -197,7 +201,7 @@ class MatrixMath {
         $type2 = get_class($matrix2);
 
         if ($type !== $type2) {
-            throw new Exception("Can only add matrices of same size.");
+            throw new InvalidArgumentException("Can only add matrices of same size.");
         }
 
         $result = new $type();
@@ -224,7 +228,7 @@ class MatrixMath {
         $type2 = get_class($matrix2);
 
         if ($type !== $type2) {
-            throw new Exception("Can only subtract matrices of same size.");
+            throw new InvalidArgumentException("Can only subtract matrices of same size.");
         }
 
 

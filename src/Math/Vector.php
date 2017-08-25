@@ -18,6 +18,9 @@ use Jitesoft\Utilities\DataStructures\Math\Traits\VectorAccessTrait;
 abstract class Vector  implements ArrayAccess, Countable {
     use VectorAccessTrait;
 
+    /**
+     * {@inheritDoc}
+     */
     public function count() {
         return count($this->elements);
     }

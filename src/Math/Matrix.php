@@ -7,7 +7,8 @@
 namespace Jitesoft\Utilities\DataStructures\Math;
 
 use ArrayAccess;
-use Exception;
+use Jitesoft\Utilities\DataStructures\Exceptions\InvalidOperationException;
+use OutOfBoundsException;
 
 /**
  * Class Matrix
@@ -184,7 +185,7 @@ abstract class Matrix implements ArrayAccess {
 
     public function offsetGet($offset) {
         if (!$this->offsetExists($offset)) {
-            throw new Exception(
+            throw new OutOfBoundsException(
                 sprintf(
                     "Out of range. This matrix has %d * %d indexes.",
                     static::ROWS,
@@ -201,12 +202,12 @@ abstract class Matrix implements ArrayAccess {
     }
 
     public function offsetSet($offset, $value) {
-        throw new Exception("Invalid operation.");
+        throw new InvalidOperationException("Invalid operation.");
 
     }
 
     public function offsetUnset($offset) {
-        throw new Exception("Invalid operation.");
+        throw new InvalidOperationException("Invalid operation.");
     }
 
     /**
