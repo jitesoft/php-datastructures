@@ -66,4 +66,3 @@ class Point2D {
     }
 
 }
-

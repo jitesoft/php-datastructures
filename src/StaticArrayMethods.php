@@ -141,7 +141,7 @@ final class StaticArrayMethods {
      * @return mixed|null
      */
     public static function last($array, ?Closure $closure = null) {
-        if($closure === null) {
+        if ($closure === null) {
             return $array[count($array)-1];
         }
 

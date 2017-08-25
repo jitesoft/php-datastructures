@@ -319,7 +319,7 @@ class LinkedList implements IndexedListInterface {
     public function clear(): bool {
         $this->rootNode = null;
         $this->lastNode = null;
-        $this->count = 0;
+        $this->count    = 0;
         return true;
     }
 
