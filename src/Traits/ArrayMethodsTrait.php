@@ -9,6 +9,9 @@ namespace Jitesoft\Utilities\DataStructures\Traits;
 use Closure;
 use Jitesoft\Utilities\DataStructures\StaticArrayMethods;
 
+/**
+ * Trait ArrayMethodsTrait
+ */
 trait ArrayMethodsTrait {
 
     /**

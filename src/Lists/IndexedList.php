@@ -12,6 +12,13 @@ use Jitesoft\Utilities\DataStructures\Contracts\IndexedListInterface;
 use Jitesoft\Utilities\DataStructures\Traits\ArrayMethodsTrait;
 use OutOfBoundsException;
 
+/**
+ * Class IndexedList
+ *
+ * A Indexed list structure using an array as base.
+ * This class is sort of like a wrapper for the array structure to enable
+ * easier access to methods that are made for lists.
+ */
 class IndexedList implements IndexedListInterface {
     use ArrayMethodsTrait;
 

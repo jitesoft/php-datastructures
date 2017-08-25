@@ -10,7 +10,9 @@ use Jitesoft\Utilities\DataStructures\Contracts\QueueInterface;
 use Jitesoft\Utilities\DataStructures\Internal\Node;
 
 /**
- * Linked list queue structure.
+ * Class LinkedQueue
+ *
+ * A Queue (FiFo) structure built as a linked list.
  */
 class LinkedQueue implements QueueInterface {
     /** @var int */

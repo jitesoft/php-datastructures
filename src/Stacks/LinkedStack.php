@@ -9,6 +9,11 @@ namespace Jitesoft\Utilities\DataStructures\Stacks;
 use Jitesoft\Utilities\DataStructures\Contracts\StackInterface;
 use Jitesoft\Utilities\DataStructures\Internal\Node;
 
+/**
+ * Class LinkedStack
+ *
+ * A Stack (LiFo) structure implemented as a linked list.
+ */
 class LinkedStack implements StackInterface {
 
     /** @var Node|null */

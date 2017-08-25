@@ -36,7 +36,7 @@ final class StaticArrayMethods {
      * Loops through each object in the List and applies the closure on it.
      * If closure returns false, it will stop the iteration and end the method, i.e, used as a break.
      *
-     * @param ListInterface|ArrayAccess $array
+     * @param ListInterface|ArrayAccess|array $array
      * @param Closure                   $closure {@see StaticArrayMethods::callback()}
      */
     public static function forEach($array, Closure $closure): void {
@@ -55,9 +55,9 @@ final class StaticArrayMethods {
      * Loops through each object in the List and applies the closure on it.
      * Any value returned from the closure will end up in the result array returned when iteration is complete.
      *
-     * @param ListInterface|ArrayAccess $array
+     * @param ListInterface|ArrayAccess|array $array
      * @param Closure                   $closure {@see StaticArrayMethods::callback()}
-     * @return ListInterface|array
+     * @return array
      */
     public static function map($array, Closure $closure) {
         $result = [];
@@ -75,9 +75,9 @@ final class StaticArrayMethods {
      * If closure returns true, the object will be added to the resulting array returned at the end of the iteration.
      * If closure returns false, the object will not be added.
      *
-     * @param ListInterface|ArrayAccess $array
+     * @param ListInterface|ArrayAccess|array $array
      * @param Closure                   $closure {@see StaticArrayMethods::callback()}
-     * @return ListInterface|array
+     * @return array
      */
     public static function filter($array, Closure $closure) {
         $result = [];
@@ -104,7 +104,7 @@ final class StaticArrayMethods {
      * 2) Without closure:
      * First object in the List will be returned.
      *
-     * @param ListInterface|ArrayAccess $array
+     * @param ListInterface|ArrayAccess|array $array
      * @param Closure|null              $closure {@see StaticArrayMethods::callback()}
      * @return mixed|null
      */
@@ -136,7 +136,7 @@ final class StaticArrayMethods {
      * 2) Without closure:
      * Last object in the List will be returned.
      *
-     * @param ListInterface|ArrayAccess $array
+     * @param ListInterface|ArrayAccess|array $array
      * @param Closure|null $closure
      * @return mixed|null
      */

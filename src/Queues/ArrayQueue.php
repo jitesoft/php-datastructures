@@ -9,6 +9,11 @@ namespace Jitesoft\Utilities\DataStructures\Queues;
 use Jitesoft\Utilities\DataStructures\Contracts\QueueInterface;
 use Jitesoft\Utilities\DataStructures\StaticArrayMethods;
 
+/**
+ * Class ArrayQueue
+ *
+ * A Queue (FiFo) structure using an array as base.
+ */
 class ArrayQueue implements QueueInterface {
 
     /** @var int */

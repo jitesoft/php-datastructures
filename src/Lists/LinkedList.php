@@ -13,6 +13,11 @@ use Jitesoft\Utilities\DataStructures\Internal\Node;
 use Jitesoft\Utilities\DataStructures\Traits\ArrayMethodsTrait;
 use OutOfBoundsException;
 
+/**
+ * Class LinkedList
+ *
+ * A List structure using a list of linked nodes.
+ */
 class LinkedList implements IndexedListInterface {
     use ArrayMethodsTrait;
 
