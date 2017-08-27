@@ -14,6 +14,9 @@ use OutOfBoundsException;
  * Class Matrix
  *
  * The base class used by all matrix classes.
+ *
+ * @deprecated as of 1.2.0
+ * @see https://github.com/jitesoft/php-math
  */
 abstract class Matrix implements ArrayAccess {
 

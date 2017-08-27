@@ -15,6 +15,9 @@ use OutOfBoundsException;
  * Trait VectorAccessTrait
  *
  * Trait used by Vector structures to enable array access by any type of offset set in the $offset variable.
+ *
+ * @deprecated as of 1.2.0
+ * @see https://github.com/jitesoft/php-math
  */
 trait VectorAccessTrait {
 

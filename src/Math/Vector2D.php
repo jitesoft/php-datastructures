@@ -14,6 +14,9 @@ namespace Jitesoft\Utilities\DataStructures\Math;
  * A vector consists of two floating point numbers and can be accessed through
  * either their get-accessors (getX, getY) or through array access.
  * (x/X/0, y/Y/1).
+ *
+ * @deprecated as of 1.2.0
+ * @see https://github.com/jitesoft/php-math
  */
 class Vector2D extends Vector {
 

@@ -2,7 +2,7 @@
     "name": "jitesoft/datastructures",
     "description": "Misc data structures for php.",
     "type": "library",
-    "keywords": [ "data structure", "math", "vector", "list", "array", "queue", "stack", "matrix" ],
+    "keywords": [ "data structure", "list", "array", "queue", "stack" ],
     "license": "MIT",
     "support": {
         "source": "https://github.com/jitesoft/php-datastructures",
@@ -24,11 +24,6 @@
     "autoload": {
         "psr-4": {
             "Jitesoft\\Utilities\\DataStructures\\": "src/"
-        }
-    },
-    "autoload-dev": {
-        "psr-4": {
-            "Jitesoft\\Utilities\\DataStructures\\Tests\\": "tests/"
         }
     }
 }

@@ -6,6 +6,14 @@
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 namespace Jitesoft\Utilities\DataStructures\Math;
 
+/**
+ * Class VectorMath
+ *
+ * Math helper class for all vector implementations.
+ *
+ * @deprecated as of 1.2.0
+ * @see https://github.com/jitesoft/php-math
+ */
 class VectorMath {
 
     /**

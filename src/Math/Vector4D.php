@@ -15,6 +15,9 @@ namespace Jitesoft\Utilities\DataStructures\Math;
  * A vector consists of four floating point numbers and can be accessed through
  * either their get-accessors (getX, getY, getZ, getW) or through array access.
  * (x/X/0, y/Y/1, z/Z/2, w/W/3).
+ *
+ * @deprecated as of 1.2.0
+ * @see https://github.com/jitesoft/php-math
  */
 class Vector4D extends Vector {
 

@@ -14,6 +14,9 @@ use Jitesoft\Utilities\DataStructures\Exceptions\NotImplementedException;
  * Class MatrixMath
  *
  * Math helper class for all matrix implementations.
+ *
+ * @deprecated as of 1.2.0
+ * @see https://github.com/jitesoft/php-math
  */
 class MatrixMath {
 

@@ -10,6 +10,9 @@ namespace Jitesoft\Utilities\DataStructures\Math;
  * Class Point2D
  *
  * A point in a two dimensional space.
+ *
+ * @deprecated as of 1.2.0
+ * @see https://github.com/jitesoft/php-math
  */
 class Point2D {
 

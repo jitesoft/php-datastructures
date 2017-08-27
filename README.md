@@ -21,9 +21,11 @@ If you got a specific request, feel free to add a query through the [issue track
 ## Installation and Usage.
 
 Either clone the repository or require the package from composer:
+
 ```
 composer require jitesoft/datastructures
 ```
+
 Usage is quite self-explanatory, if not, feel free to add a issue for further documentation in the  [issue tracker](https://github.com/jitesoft/php-datastructures/issues).
   
 ## Currently implemented classes.
@@ -39,6 +41,9 @@ The following classes are currently implemented:
 * Stack types (`Jitesoft\Utilities\DataStructures\Stacks`) (LiFo queue)
   * `LinkedStack` - A stack implementation with a linked list as base.
   * `ArrayStack`  - A stack implementation with an array as base.
+
+### Deprecated
+
 * Math (`Jitesoft\Utilities\DataStructures\Math`) (Misc math classes and functions).
   * `Math`        - Misc static math helpers.
   * `Point2D`     - A point structure in 2D space.
@@ -50,8 +55,8 @@ The following classes are currently implemented:
   * `Matrix33`    - A matrix structure with 3*3 indexes.
   * `Matrix44`    - A matrix structure with 4*4 indexes.
   * `MatrixMath`  - Common math for all matrices.
-
-### Deprecated
+  
+All math classes have been moved to its own project and repository at [github](https://github.com/jitesoft/php-math).
 
 ### Removed
 

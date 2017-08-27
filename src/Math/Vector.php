@@ -14,6 +14,9 @@ use Jitesoft\Utilities\DataStructures\Math\Traits\VectorAccessTrait;
  * Class Vector
  *
  * Baseclass for all vector structures.
+ *
+ * @deprecated as of 1.2.0
+ * @see https://github.com/jitesoft/php-math
  */
 abstract class Vector  implements ArrayAccess, Countable {
     use VectorAccessTrait;

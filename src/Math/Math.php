@@ -10,6 +10,9 @@ namespace Jitesoft\Utilities\DataStructures\Math;
  * Class Math
  *
  * Misc math methods.
+ *
+ * @deprecated as of 1.2.0
+ * @see https://github.com/jitesoft/php-math
  */
 class Math {
 
