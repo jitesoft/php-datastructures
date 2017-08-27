@@ -10,6 +10,9 @@ namespace Jitesoft\Utilities\DataStructures\Math;
  * Class Matrix44
  *
  * A 4x4 matrix structure.
+ *
+ * @deprecated as of 1.2.0
+ * @see https://github.com/jitesoft/php-math
  */
 class Matrix44 extends Matrix {
 

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<ruleset name="Jite rule set">
+<ruleset name="Jitesoft php rule set">
     <description>
-        PHPCS Rule set for PHP projects made by Johannes Tegnér
+        PHPCS Rule set for PHP projects made by Jitesoft.
     </description>
     <rule ref="Generic.Classes.DuplicateClassName"/>
     <rule ref="Generic.CodeAnalysis.EmptyStatement"/>
@@ -16,7 +16,6 @@
     <rule ref="Generic.Commenting.Fixme"/>
     <rule ref="Generic.ControlStructures.InlineControlStructure"/>
     <rule ref="Generic.Files.ByteOrderMark"/>
-    <rule ref="Generic.Files.LineEndings"/>
     <rule ref="Generic.Files.LineLength">
         <properties>
             <property name="lineLimit" value="120"/>

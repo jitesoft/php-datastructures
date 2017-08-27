@@ -8,6 +8,11 @@ namespace Jitesoft\Utilities\DataStructures\Contracts;
 
 use ArrayAccess;
 
+/**
+ * Interface IndexedListInterface
+ *
+ * Interface for indexed lists.
+ */
 interface IndexedListInterface extends ListInterface {
 
     /**

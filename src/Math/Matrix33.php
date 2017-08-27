@@ -10,6 +10,9 @@ namespace Jitesoft\Utilities\DataStructures\Math;
  * Class Matrix33
  *
  * A 3x3 matrix structure.
+ *
+ * @deprecated as of 1.2.0
+ * @see https://github.com/jitesoft/php-math
  */
 class Matrix33 extends Matrix {
 

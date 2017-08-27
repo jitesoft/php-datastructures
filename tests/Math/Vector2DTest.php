@@ -8,14 +8,14 @@
 namespace Jitesoft\Utilities\DataStructures\Tests\Math;
 
 use Jitesoft\Utilities\DataStructures\Math\Vector2D;
-use Exception;
 use Jitesoft\Utilities\DataStructures\Math\VectorMath;
+use OutOfBoundsException;
 use PHPUnit\Framework\TestCase;
 
 class Vector2DTest extends TestCase {
 
     public function testVectorAccessGetException() {
-        $this->expectException(Exception::class);
+        $this->expectException(OutOfBoundsException::class);
         $this->expectExceptionMessage("Out of range. Invalid offset.");
         $v = new Vector2D(1,2);
         $v["j"];

@@ -8,6 +8,11 @@ namespace Jitesoft\Utilities\DataStructures\Stacks;
 
 use Jitesoft\Utilities\DataStructures\Contracts\StackInterface;
 
+/**
+ * Class ArrayStack
+ *
+ * A Stack (LiFo) structure using an array as underlying structure.
+ */
 class ArrayStack implements StackInterface {
 
     /** @var array */

@@ -7,11 +7,22 @@
          convertNoticesToExceptions="true"
          convertWarningsToExceptions="true"
          processIsolation="false"
-         stopOnFailure="false"
-         syntaxCheck="false">
+         stopOnFailure="false">
     <testsuites>
-        <testsuite name="Tests">
-            <directory suffix=".php">./tests</directory>
+        <testsuite name="Maths">
+            <directory suffix="Test.php">./tests/Math</directory>
+        </testsuite>
+        <testsuite name="Lists">
+            <directory suffix="Test.php">./tests/Lists</directory>
+        </testsuite>
+        <testsuite name="Queues">
+            <directory suffix="Test.php">./tests/Queues</directory>
+        </testsuite>
+        <testsuite name="Stacks">
+            <directory suffix="Test.php">./tests/Stacks</directory>
+        </testsuite>
+        <testsuite name="Misc">
+            <directory suffix="Test.php">./tests/Internal</directory>
         </testsuite>
     </testsuites>
     <filter>

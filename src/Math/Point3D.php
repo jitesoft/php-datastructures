@@ -12,6 +12,9 @@ namespace Jitesoft\Utilities\DataStructures\Math;
  * Class Point3D
  *
  * A point in a three dimensional space.
+ *
+ * @deprecated as of 1.2.0
+ * @see https://github.com/jitesoft/php-math
  */
 class Point3D {
 

@@ -13,6 +13,11 @@ use Jitesoft\Utilities\DataStructures\Internal\Node;
 use Jitesoft\Utilities\DataStructures\Traits\ArrayMethodsTrait;
 use OutOfBoundsException;
 
+/**
+ * Class LinkedList
+ *
+ * A List structure using a list of linked nodes.
+ */
 class LinkedList implements IndexedListInterface {
     use ArrayMethodsTrait;
 
@@ -319,7 +324,7 @@ class LinkedList implements IndexedListInterface {
     public function clear(): bool {
         $this->rootNode = null;
         $this->lastNode = null;
-        $this->count = 0;
+        $this->count    = 0;
         return true;
     }
 

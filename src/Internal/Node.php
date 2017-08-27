@@ -11,6 +11,8 @@ use InvalidArgumentException;
 /**
  * Class Node
  * @internal
+ *
+ * Node structure used by tree and linked list -structures.
  */
 class Node {
 
