@@ -44,28 +44,26 @@ The following classes are currently implemented:
 
 ### Deprecated
 
-* Math (`Jitesoft\Utilities\DataStructures\Math`) (Misc math classes and functions).
-  * `Math`        - Misc static math helpers.
-  * `Point2D`     - A point structure in 2D space.
-  * `Point3D`     - A point structure in 3D space.
-  * `Vector2D`    - A vector structure in 2D space.
-  * `Vector3D`    - A vector structure in 3D space.
-  * `Vector4D`    - A vector structure in 4D space.
-  * `VectorMath`  - Common math for all vector types.
-  * `Matrix33`    - A matrix structure with 3*3 indexes.
-  * `Matrix44`    - A matrix structure with 4*4 indexes.
-  * `MatrixMath`  - Common math for all matrices.
-  
-All math classes have been moved to its own project and repository at [github](https://github.com/jitesoft/php-math).
-
 ### Removed
 
 * Math (`Jitesoft\Utilities\DataStructures\Math`)
-  * `Vector2DMath` (Removed in favour of usage of the `VectorMath` class).
-  * `Vector3DMath` (Removed in favour of usage of the `VectorMath` class).
-  * `Vector4DMath` (Removed in favour of usage of the `VectorMath` class).
-  * `Matrix33Math` (Removed in favour of usage of the `MatrixMath` class).
-  * `Matrix44Math` (Removed in favour of usage of the `MatrixMath` class).
+    * `Vector2DMath` (Removed in version 1.1.0)
+    * `Vector3DMath` (Removed in version 1.1.0)
+    * `Vector4DMath` (Only available in dev branch, never in a version)
+    * `Matrix33Math` (Only available in dev branch, never in a version)
+    * `Matrix44Math` (Only available in dev branch, never in a version)
+    * `Math`         (Deprecated in version 1.2 removed in version 2.0.0)
+    * `Point2D`      (Deprecated in version 1.2 removed in version 2.0.0)
+    * `Point3D`      (Deprecated in version 1.2 removed in version 2.0.0)
+    * `Vector2D`     (Deprecated in version 1.2 removed in version 2.0.0)
+    * `Vector3D`     (Deprecated in version 1.2 removed in version 2.0.0)
+    * `Vector4D`     (Deprecated in version 1.2 removed in version 2.0.0)
+    * `VectorMath`   (Deprecated in version 1.2 removed in version 2.0.0)
+    * `Matrix33`     (Deprecated in version 1.2 removed in version 2.0.0)
+    * `Matrix44`     (Deprecated in version 1.2 removed in version 2.0.0)
+    * `MatrixMath`   (Deprecated in version 1.2 removed in version 2.0.0)
+
+All math classes have been moved to its own project and repository at [github](https://github.com/jitesoft/php-math).
 
 ## Development & Contributions.
 
