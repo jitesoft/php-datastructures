@@ -33,16 +33,16 @@ Usage is quite self-explanatory, if not, feel free to add a issue for further do
 The following classes are currently implemented:  
 
 * List types (`Jitesoft\Utilities\DataStructures\Lists`)
-    * `IndexedList` - A indexed list implementation wrapping the native array.
-    * `LinkedList`  - A indexed list implementation as a linked list.
+  * `IndexedList` - A indexed list implementation wrapping the native array.
+  * `LinkedList`  - A indexed list implementation as a linked list.
 * Queue types (`Jitesoft\Utilities\DataStructures\Queues`) (FiFo queue)
-    * `LinkedQueue` - A queue implementation with a linked list as base.
-    * `ArrayQueue`  - A queue implementation with an array as base.
+  * `LinkedQueue` - A queue implementation with a linked list as base.
+  * `ArrayQueue`  - A queue implementation with an array as base.
 * Stack types (`Jitesoft\Utilities\DataStructures\Stacks`) (LiFo queue)
-    * `LinkedStack` - A stack implementation with a linked list as base.
-    * `ArrayStack`  - A stack implementation with an array as base.
-  Grid types (`Jitesoft\Utilities\DataStructures\Grids`)
-    * `Grid`        - A grid implementation with a IndexedList as container.
+  * `LinkedStack` - A stack implementation with a linked list as base.
+  * `ArrayStack`  - A stack implementation with an array as base.
+* Grid types (`Jitesoft\Utilities\DataStructures\Grids`)
+  * `Grid`        - A grid implementation with a IndexedList as container.
   
 
 ### Deprecated
