@@ -17,9 +17,9 @@ interface GridInterface {
     /**
      * GridInterface constructor.
      *
-     * @param int $sizeX Number of horizontal cells.
-     * @param int $sizeY Number of vertical cells.
-     * @param int $cellSize Size of the cells.
+     * @param int $sizeX Horizontal size in full units.
+     * @param int $sizeY Vertical size in full units.
+     * @param int $cellSize Size of the cells in full units.
      */
     public function __construct(int $sizeX, int $sizeY, int $cellSize);
 
@@ -69,16 +69,9 @@ interface GridInterface {
     public function getGridHeight() : int;
 
     /**
-     * Get the size in units of the grid as a Vector2D.
+     * Get the cell count as a int.
      *
-     * @return Vector2D
+     * @return int
      */
-    public function getGridSize() : Vector2D;
-
-    /**
-     * Get the cell count as a Vector2D.
-     *
-     * @return Vector2D
-     */
-    public function getCellCount() : Vector2D;
+    public function getCellCount() : int;
 }
