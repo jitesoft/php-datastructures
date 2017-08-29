@@ -6,12 +6,15 @@
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 namespace Jitesoft\Utilities\DataStructures\Grids;
 
-use Jitesoft\Utilities\DataStructures\Contracts\GridCellInterface;
-use Jitesoft\Utilities\DataStructures\Contracts\GridInterface;
 use Jitesoft\Utilities\DataStructures\Contracts\ListInterface;
 use Jitesoft\Utilities\DataStructures\Lists\IndexedList;
 use Jitesoft\Utilities\Math\Vector2D;
 
+/**
+ * Class Grid
+ *
+ * A 2D grid using a IndexedList as a base structure.
+ */
 class Grid implements GridInterface {
 
     /** @var int */
@@ -111,4 +114,5 @@ class Grid implements GridInterface {
     public function getCellCount(): int {
         return $this->cellCountY * $this->cellCountX;
     }
+
 }

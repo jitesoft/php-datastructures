@@ -8,7 +8,6 @@ namespace Jitesoft\Utilities\DataStructures\Lists;
 
 use ArrayAccess;
 use InvalidArgumentException;
-use Jitesoft\Utilities\DataStructures\Contracts\IndexedListInterface;
 use Jitesoft\Utilities\DataStructures\Traits\ArrayMethodsTrait;
 use OutOfBoundsException;
 

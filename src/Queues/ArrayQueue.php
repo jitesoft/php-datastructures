@@ -6,7 +6,6 @@
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 namespace Jitesoft\Utilities\DataStructures\Queues;
 
-use Jitesoft\Utilities\DataStructures\Contracts\QueueInterface;
 use Jitesoft\Utilities\DataStructures\StaticArrayMethods;
 
 /**

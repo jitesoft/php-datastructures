@@ -10,6 +10,9 @@ use Jitesoft\Utilities\DataStructures\Internal\Node;
 use PHPUnit\Framework\TestCase;
 use InvalidArgumentException;
 
+/**
+ * @group LinkedStructures
+ */
 class NodeTest extends TestCase {
 
     public function testSingleLink() {

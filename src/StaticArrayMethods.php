@@ -9,7 +9,7 @@ namespace Jitesoft\Utilities\DataStructures;
 use ArrayAccess;
 use Closure;
 use Jitesoft\Exceptions\LazyExceptions\NotImplementedException;
-use Jitesoft\Utilities\DataStructures\Contracts\ListInterface;
+use Jitesoft\Utilities\DataStructures\Lists\ListInterface;
 
 
 /**

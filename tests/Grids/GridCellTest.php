@@ -42,7 +42,6 @@ class GridCellTest extends TestCase {
         $this->assertEquals("test obhect2", $this->cell->getObjects()[1]);
     }
 
-
     public function testAdd() {
         $this->assertCount(0, $this->cell->getObjects());
         $this->cell->add("Object1");
@@ -127,4 +126,5 @@ class GridCellTest extends TestCase {
     public function testGetPosition() {
         $this->assertEquals(new Vector2D(20, 20), $this->cell->getPosition());
     }
+
 }

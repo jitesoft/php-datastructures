@@ -6,12 +6,16 @@
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 namespace Jitesoft\Utilities\DataStructures\Grids;
 
-use Jitesoft\Utilities\DataStructures\Contracts\GridCellInterface;
-use Jitesoft\Utilities\DataStructures\Contracts\IndexedListInterface;
 use Jitesoft\Utilities\DataStructures\Lists\IndexedList;
+use Jitesoft\Utilities\DataStructures\Lists\IndexedListInterface;
 use Jitesoft\Utilities\Math\Vector2D;
 use Jitesoft\Utilities\Math\VectorMath;
 
+/**
+ * Class GridCell
+ *
+ * Grid cell implementation.
+ */
 class GridCell implements GridCellInterface {
 
     /** @var IndexedListInterface */
@@ -150,4 +154,5 @@ class GridCell implements GridCellInterface {
     public function getCenter(): Vector2D {
         return $this->center;
     }
+
 }

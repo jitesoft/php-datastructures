@@ -10,6 +10,11 @@ use Jitesoft\Utilities\DataStructures\Stacks\LinkedStack;
 use Jitesoft\Utilities\DataStructures\Tests\Traits\StackTestTrait;
 use PHPUnit\Framework\TestCase;
 
+/**
+ * @group LinkedStructures
+ * @group Stacks
+ * @group Lists
+ */
 class LinkedStackTest extends TestCase {
     use StackTestTrait;
 

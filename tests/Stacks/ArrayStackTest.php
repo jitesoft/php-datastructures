@@ -10,6 +10,10 @@ use Jitesoft\Utilities\DataStructures\Stacks\ArrayStack;
 use Jitesoft\Utilities\DataStructures\Tests\Traits\StackTestTrait;
 use PHPUnit\Framework\TestCase;
 
+/**
+ * @group Stacks
+ * @group Lists
+ */
 class ArrayStackTest extends TestCase {
     use StackTestTrait;
 

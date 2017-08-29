@@ -4,10 +4,10 @@
 
   © - Jitesoft 2017
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
-namespace Jitesoft\Utilities\DataStructures\Contracts;
+namespace Jitesoft\Utilities\DataStructures\Lists;
 
 use ArrayAccess;
-use Countable;
+use Jitesoft\Utilities\DataStructures\CollectionInterface;
 
 /**
  * Base interface for all List classes.

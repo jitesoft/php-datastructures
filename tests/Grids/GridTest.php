@@ -24,7 +24,6 @@ class GridTest extends TestCase {
         $this->grid = new Grid(1024,512,50);
     }
 
-
     public function testGetCellCount() {
         $this->assertEquals(200, $this->grid->getCellCount());
     }
@@ -83,4 +82,5 @@ class GridTest extends TestCase {
         $this->assertCount(1, $g1->getObjects());
         $this->assertEquals("New object!", $g1->getObjects()[0]);
     }
+
 }
