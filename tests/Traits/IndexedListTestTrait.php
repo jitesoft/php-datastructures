@@ -7,7 +7,7 @@
 namespace Jitesoft\Utilities\DataStructures\Tests\Traits;
 
 use InvalidArgumentException;
-use Jitesoft\Utilities\DataStructures\Contracts\IndexedListInterface;
+use Jitesoft\Utilities\DataStructures\Lists\IndexedListInterface;
 use OutOfBoundsException;
 use PHPUnit\Framework\TestCase;
 

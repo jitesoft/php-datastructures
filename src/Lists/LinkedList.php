@@ -362,4 +362,19 @@ class LinkedList implements IndexedListInterface {
         }
         return $node;
     }
+
+    /**
+     * Convert the list object into a native php array.
+     *
+     * @return array
+     */
+    public function toArray(): array {
+        $out  = [];
+        $node = $this->rootNode;
+        while ($node !== null) {
+            $out[] = $node->getItem();
+            $node  = $node->getLink(0);
+        }
+        return $out;
+    }
 }

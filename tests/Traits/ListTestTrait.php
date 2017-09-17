@@ -6,7 +6,7 @@
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 namespace Jitesoft\Utilities\DataStructures\Tests\Traits;
 
-use Jitesoft\Utilities\DataStructures\Contracts\ListInterface;
+use Jitesoft\Utilities\DataStructures\Lists\ListInterface;
 
 trait ListTestTrait {
 
@@ -14,7 +14,7 @@ trait ListTestTrait {
     protected $implementation;
 
     public function testCreate() {
-        $class = get_class($this->implementation);
+        $class          = get_class($this->implementation);
         $implementation = new $class([1,2,3]);
         $this->assertCount(3, $implementation);
         $this->assertEquals(1,$implementation[0]);
@@ -64,5 +64,12 @@ trait ListTestTrait {
         $this->implementation->clear();
         $this->assertCount(0, $this->implementation);
         $this->assertEmpty($this->implementation);
+    }
+
+    public function testToArray() {
+        $this->implementation->addRange(["a", "b", "c", "d"]);
+        $array = $this->implementation->toArray();
+        $this->assertCount(4, $array);
+        $this->assertEquals(["a", "b", "c", "d"], $array);
     }
 }

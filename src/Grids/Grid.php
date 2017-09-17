@@ -6,8 +6,8 @@
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 namespace Jitesoft\Utilities\DataStructures\Grids;
 
-use Jitesoft\Utilities\DataStructures\Contracts\ListInterface;
 use Jitesoft\Utilities\DataStructures\Lists\IndexedList;
+use Jitesoft\Utilities\DataStructures\Lists\ListInterface;
 use Jitesoft\Utilities\Math\Vector2D;
 
 /**

@@ -9,19 +9,18 @@ namespace Jitesoft\Utilities\DataStructures;
 use ArrayAccess;
 use Closure;
 use Jitesoft\Exceptions\LazyExceptions\NotImplementedException;
-use Jitesoft\Utilities\DataStructures\Lists\ListInterface;
 
 
 /**
  * Class StaticArrayMethods
  *
- * A collection of static methods used on array or ListInterface objects.
+ * A collection of static methods used on array or ArrayAccess objects.
  */
-final class StaticArrayMethods {
+final class Arrays {
     /**
      * @param mixed $object - Object of the current Iteration.
      * @param int $index - Index of the current iteration.
-     * @param ListInterface|array $list - The list which is being iterated.
+     * @param ArrayAccess|array $list - The list which is being iterated.
      * @return mixed
      * @throws NotImplementedException
      * @codeCoverageIgnore
@@ -36,7 +35,7 @@ final class StaticArrayMethods {
      * Loops through each object in the List and applies the closure on it.
      * If closure returns false, it will stop the iteration and end the method, i.e, used as a break.
      *
-     * @param ListInterface|ArrayAccess|array $array
+     * @param ArrayAccess|array $array
      * @param Closure                   $closure {@see StaticArrayMethods::callback()}
      */
     public static function forEach($array, Closure $closure): void {
@@ -55,7 +54,7 @@ final class StaticArrayMethods {
      * Loops through each object in the List and applies the closure on it.
      * Any value returned from the closure will end up in the result array returned when iteration is complete.
      *
-     * @param ListInterface|ArrayAccess|array $array
+     * @param ArrayAccess|array $array
      * @param Closure                   $closure {@see StaticArrayMethods::callback()}
      * @return array
      */
@@ -69,13 +68,13 @@ final class StaticArrayMethods {
     }
 
     /**
-     * Filters a ListInterface implementation.
+     * Filters a ArrayAccess implementation.
      *
      * Loops through each object in the List and applies the closure to it.
      * If closure returns true, the object will be added to the resulting array returned at the end of the iteration.
      * If closure returns false, the object will not be added.
      *
-     * @param ListInterface|ArrayAccess|array $array
+     * @param ArrayAccess|array $array
      * @param Closure                   $closure {@see StaticArrayMethods::callback()}
      * @return array
      */
@@ -104,16 +103,16 @@ final class StaticArrayMethods {
      * 2) Without closure:
      * First object in the List will be returned.
      *
-     * @param ListInterface|ArrayAccess|array $array
+     * @param ArrayAccess|array $array
      * @param Closure|null              $closure {@see StaticArrayMethods::callback()}
      * @return mixed|null
      */
     public static function first($array, ?Closure $closure = null) {
-        if ($closure === null) {
+        $count = count($array);
+        if ($closure === null && $count > 0) {
             return $array[0];
         }
 
-        $count = count($array);
         for ($i=0;$i<$count;$i++) {
             if ($closure($array[$i], $i, $array)) {
                 return $array[$i];
@@ -136,20 +135,22 @@ final class StaticArrayMethods {
      * 2) Without closure:
      * Last object in the List will be returned.
      *
-     * @param ListInterface|ArrayAccess|array $array
+     * @param ArrayAccess|array $array
      * @param Closure|null $closure
      * @return mixed|null
      */
     public static function last($array, ?Closure $closure = null) {
-        if ($closure === null) {
-            return $array[count($array)-1];
+        $count = count($array);
+        if ($closure === null && $count > 0) {
+            return $array[$count - 1];
         }
 
-        for ($i=count($array);$i-->0;) {
+        for ($i=$count;$i-->0;) {
             if ($closure($array[$i], $i, $array)) {
                 return $array[$i];
             }
         }
         return null;
     }
+
 }

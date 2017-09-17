@@ -285,4 +285,13 @@ class IndexedList implements IndexedListInterface {
             throw new OutOfBoundsException("Array out of bounds.");
         }
     }
+
+    /**
+     * Convert the list object into a native php array.
+     *
+     * @return array
+     */
+    public function toArray(): array {
+        return $this->innerArray;
+    }
 }
