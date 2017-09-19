@@ -16,9 +16,9 @@ interface ListInterface extends CollectionInterface, ArrayAccess {
 
     /**
      * ListInterface constructor.
-     * @param array $from
+     * @param ArrayAccess|array $from
      */
-    public function __construct(array $from = []);
+    public function __construct($from = []);
 
     /**
      * Convert the list object into a native php array.
