@@ -257,10 +257,10 @@ class LinkedList implements IndexedListInterface {
     /**
      * Add objects to the list.
      *
-     * @param array $range
+     * @param array|ArrayAccess $range
      * @return bool
      */
-    public function addRange(array $range): bool {
+    public function addRange($range): bool {
         if ($this->rootNode === null) {
             $this->getOrCreateRoot($range[0]);
             array_splice($range, 0, 1);
@@ -280,7 +280,7 @@ class LinkedList implements IndexedListInterface {
      * ListInterface constructor.
      * @param array $from
      */
-    public function __construct(array $from = []) {
+    public function __construct($from = []) {
         if (!empty($from)) {
             $this->addRange($from);
         }
