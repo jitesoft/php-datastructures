@@ -31,7 +31,8 @@ Usage is quite self-explanatory, if not, feel free to add a issue for further do
 ## Currently implemented classes.
 
 The following classes are currently implemented:  
-
+* Static classes (`Jitesoft\DataStructures`)
+  * `Arrays`      - Static array methods.
 * List types (`Jitesoft\Utilities\DataStructures\Lists`)
   * `IndexedList` - A indexed list implementation wrapping the native array.
   * `LinkedList`  - A indexed list implementation as a linked list.
