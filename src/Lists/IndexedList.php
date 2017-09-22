@@ -8,7 +8,6 @@ namespace Jitesoft\Utilities\DataStructures\Lists;
 
 use ArrayAccess;
 use InvalidArgumentException;
-use Jitesoft\Utilities\DataStructures\Contracts\IndexedListInterface;
 use Jitesoft\Utilities\DataStructures\Traits\ArrayMethodsTrait;
 use OutOfBoundsException;
 
@@ -285,5 +284,14 @@ class IndexedList implements IndexedListInterface {
         if ($offset > $high || $offset < $low) {
             throw new OutOfBoundsException("Array out of bounds.");
         }
+    }
+
+    /**
+     * Convert the list object into a native php array.
+     *
+     * @return array
+     */
+    public function toArray(): array {
+        return $this->innerArray;
     }
 }

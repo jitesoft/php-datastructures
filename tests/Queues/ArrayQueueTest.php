@@ -10,6 +10,10 @@ use Jitesoft\Utilities\DataStructures\Queues\ArrayQueue;
 use Jitesoft\Utilities\DataStructures\Tests\Traits\QueueTestTrait;
 use PHPUnit\Framework\TestCase;
 
+/**
+ * @group Queues
+ * @group Lists
+ */
 class ArrayQueueTest extends TestCase {
     use QueueTestTrait;
 

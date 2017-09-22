@@ -6,8 +6,6 @@
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 namespace Jitesoft\Utilities\DataStructures\Stacks;
 
-use Jitesoft\Utilities\DataStructures\Contracts\StackInterface;
-
 /**
  * Class ArrayStack
  *

@@ -11,6 +11,10 @@ use Jitesoft\Utilities\DataStructures\Tests\Traits\ArrayMethodsTestTrait;
 use Jitesoft\Utilities\DataStructures\Tests\Traits\IndexedListTestTrait;
 use PHPUnit\Framework\TestCase;
 
+/**
+ * @group IndexedLists
+ * @group Lists
+ */
 class IndexedListTest extends TestCase {
     use IndexedListTestTrait;
     use ArrayMethodsTestTrait;

@@ -4,10 +4,10 @@
 
   © - Jitesoft 2017
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
-namespace Jitesoft\Utilities\DataStructures\Contracts;
+namespace Jitesoft\Utilities\DataStructures\Lists;
 
 use ArrayAccess;
-use Countable;
+use Jitesoft\Utilities\DataStructures\CollectionInterface;
 
 /**
  * Base interface for all List classes.
@@ -19,4 +19,11 @@ interface ListInterface extends CollectionInterface, ArrayAccess {
      * @param array $from
      */
     public function __construct(array $from = []);
+
+    /**
+     * Convert the list object into a native php array.
+     *
+     * @return array
+     */
+    public function toArray() : array;
 }

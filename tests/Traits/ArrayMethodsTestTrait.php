@@ -7,7 +7,7 @@
 namespace Jitesoft\Utilities\DataStructures\Tests\Traits;
 
 use ArrayAccess;
-use Jitesoft\Utilities\DataStructures\StaticArrayMethods;
+use Jitesoft\Utilities\DataStructures\Arrays;
 use Jitesoft\Utilities\DataStructures\Traits\ArrayMethodsTrait;
 
 trait ArrayMethodsTestTrait {
@@ -35,7 +35,7 @@ trait ArrayMethodsTestTrait {
         $this->assertEquals(3, $count);
 
         $count = 0;
-        StaticArrayMethods::forEach($this->implementation, function($object, $index, $array) use(&$count) {
+        Arrays::forEach($this->implementation, function($object, $index, $array) use(&$count) {
             $this->assertNotNull($object);
             $this->assertTrue(isset($array[$index]));
             $this->assertSame($object, $array[$index]);
@@ -59,7 +59,7 @@ trait ArrayMethodsTestTrait {
         $this->assertEquals(2, $count);
 
         $count = 0;
-        StaticArrayMethods::forEach($this->implementation, function($o, $index) use(&$count) {
+        Arrays::forEach($this->implementation, function($o, $index) use(&$count) {
             if ($index === 2) {
                 return false;
             }
@@ -85,7 +85,7 @@ trait ArrayMethodsTestTrait {
         $this->assertEquals(6, $count);
 
         $count = 0;
-        $out2  = StaticArrayMethods::map($this->implementation, function($object, $index, $array) use(&$count) {
+        $out2  = Arrays::map($this->implementation, function($object, $index, $array) use(&$count) {
             $this->assertEquals($object, $array[$index]);
             $this->assertNotNull($object);
 
@@ -129,7 +129,7 @@ trait ArrayMethodsTestTrait {
         $this->assertEquals(3, $out[3]);
 
         $count = 0;
-        $out   = StaticArrayMethods::filter($this->implementation, function($object, $index, $array) use(&$count) {
+        $out   = Arrays::filter($this->implementation, function($object, $index, $array) use(&$count) {
             $count++;
 
             $this->assertEquals($object, $array[$index]);
@@ -160,11 +160,11 @@ trait ArrayMethodsTestTrait {
         $this->assertEquals(5, $count);
 
 
-        $first = StaticArrayMethods::first($this->implementation);
+        $first = Arrays::first($this->implementation);
         $this->assertEquals(1, $first);
         $count = 0;
 
-        $first = StaticArrayMethods::first($this->implementation, function($object, $index, $array) use(&$count) {
+        $first = Arrays::first($this->implementation, function($object, $index, $array) use(&$count) {
             $count++;
 
             $this->assertEquals($object, $array[$index]);
@@ -202,11 +202,11 @@ trait ArrayMethodsTestTrait {
         $this->assertEquals(5, $count);
 
 
-        $last = StaticArrayMethods::last($this->implementation);
+        $last = Arrays::last($this->implementation);
         $this->assertEquals(5, $last);
         $count = 0;
 
-        $last = StaticArrayMethods::last($this->implementation, function($object, $index, $array) use(&$count) {
+        $last = Arrays::last($this->implementation, function($object, $index, $array) use(&$count) {
             $count++;
 
             $this->assertEquals($object, $array[$index]);

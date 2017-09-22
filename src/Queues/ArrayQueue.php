@@ -6,8 +6,7 @@
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 namespace Jitesoft\Utilities\DataStructures\Queues;
 
-use Jitesoft\Utilities\DataStructures\Contracts\QueueInterface;
-use Jitesoft\Utilities\DataStructures\StaticArrayMethods;
+use Jitesoft\Utilities\DataStructures\Arrays;
 
 /**
  * Class ArrayQueue
@@ -95,7 +94,7 @@ class ArrayQueue implements QueueInterface {
 
         $element = array_splice($this->inner, 0, 1);
         $this->count--;
-        return StaticArrayMethods::first($element);
+        return Arrays::first($element);
     }
 
     /**

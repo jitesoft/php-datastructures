@@ -8,7 +8,6 @@ namespace Jitesoft\Utilities\DataStructures\Lists;
 
 use ArrayAccess;
 use InvalidArgumentException;
-use Jitesoft\Utilities\DataStructures\Contracts\IndexedListInterface;
 use Jitesoft\Utilities\DataStructures\Internal\Node;
 use Jitesoft\Utilities\DataStructures\Traits\ArrayMethodsTrait;
 use OutOfBoundsException;
@@ -362,5 +361,20 @@ class LinkedList implements IndexedListInterface {
             $node = $node->getLink(0);
         }
         return $node;
+    }
+
+    /**
+     * Convert the list object into a native php array.
+     *
+     * @return array
+     */
+    public function toArray(): array {
+        $out  = [];
+        $node = $this->rootNode;
+        while ($node !== null) {
+            $out[] = $node->getItem();
+            $node  = $node->getLink(0);
+        }
+        return $out;
     }
 }
