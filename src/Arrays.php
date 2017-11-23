@@ -8,7 +8,7 @@ namespace Jitesoft\Utilities\DataStructures;
 
 use ArrayAccess;
 use Closure;
-use Jitesoft\Exceptions\LazyExceptions\NotImplementedException;
+use Jitesoft\Exceptions\Lazy\NotImplementedException;
 
 
 /**

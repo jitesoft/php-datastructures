@@ -16,7 +16,7 @@
     ],
     "require": {
         "php": ">7.1",
-        "jitesoft/exceptions": "^1.0",
+        "jitesoft/exceptions": "^2.0",
         "jitesoft/math": "^1.0"
     },
     "require-dev": {
