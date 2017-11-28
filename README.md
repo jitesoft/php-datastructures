@@ -37,6 +37,11 @@ The following classes are currently implemented:
 * List types (`Jitesoft\Utilities\DataStructures\Lists`)
   * `IndexedList` - A indexed list implementation wrapping the native array.
   * `LinkedList`  - A indexed list implementation as a linked list.
+  * Sorting   (`Jitesoft\Utilities\DataStructures\Lists\Sorting`)
+    * `AbstractSort` - Class used to implement user defined sorting methods.
+    * `NativeSort`   - A implementation of the `AbstractSort` using `usort`.
+    * `GnomeSort`    - A implementation of the `AbstractSort` using the Gnome sort sorting algorithm.
+    * `QuickSort`    - A implementation of the `AbstractSort` using the Quick sort sorting algorithm.
 * Queue types (`Jitesoft\Utilities\DataStructures\Queues`) (FiFo queue)
   * `LinkedQueue` - A queue implementation with a linked list as base.
   * `ArrayQueue`  - A queue implementation with an array as base.
@@ -48,26 +53,10 @@ The following classes are currently implemented:
 * Map types (`Jitesoft\Utilities\DataStructures\Maps`)
   * `SimpleMap`   - A simple map structure wrapping the native array.
 
+
 ### Deprecated
 
 ### Removed
-
-* Math (`Jitesoft\Utilities\DataStructures\Math`)
-    * `Vector2DMath` (Removed in version 1.1.0)
-    * `Vector3DMath` (Removed in version 1.1.0)
-    * `Vector4DMath` (Only available in dev branch, never in a version)
-    * `Matrix33Math` (Only available in dev branch, never in a version)
-    * `Matrix44Math` (Only available in dev branch, never in a version)
-    * `Math`         (Deprecated in version 1.2 removed in version 2.0.0)
-    * `Point2D`      (Deprecated in version 1.2 removed in version 2.0.0)
-    * `Point3D`      (Deprecated in version 1.2 removed in version 2.0.0)
-    * `Vector2D`     (Deprecated in version 1.2 removed in version 2.0.0)
-    * `Vector3D`     (Deprecated in version 1.2 removed in version 2.0.0)
-    * `Vector4D`     (Deprecated in version 1.2 removed in version 2.0.0)
-    * `VectorMath`   (Deprecated in version 1.2 removed in version 2.0.0)
-    * `Matrix33`     (Deprecated in version 1.2 removed in version 2.0.0)
-    * `Matrix44`     (Deprecated in version 1.2 removed in version 2.0.0)
-    * `MatrixMath`   (Deprecated in version 1.2 removed in version 2.0.0)
 
 All math classes have been moved to its own project and repository at [github](https://github.com/jitesoft/php-math).
 
