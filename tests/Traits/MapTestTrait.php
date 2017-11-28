@@ -143,7 +143,7 @@ trait MapTestTrait {
 
         $this->assertCount(2, $this->implementation);
         $this->assertTrue($this->implementation->has('key2'));
-        $this->implementation->unset('key2');
+        unset($this->implementation['key2']);
         $this->assertFalse($this->implementation->has('key2'));
         $this->assertCount(1, $this->implementation);
     }
