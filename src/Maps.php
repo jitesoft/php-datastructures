@@ -12,6 +12,11 @@ use Jitesoft\Exceptions\Logic\InvalidArgumentException;
 use Jitesoft\Exceptions\Lazy\NotImplementedException;
 use Jitesoft\Utilities\DataStructures\Maps\MapInterface;
 
+/**
+ * Class Maps
+ *
+ * A collection of static methods to use on Map instances or associative arrays.
+ */
 final class Maps {
     private function __construct() { }
 

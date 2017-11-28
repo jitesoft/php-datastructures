@@ -7,14 +7,13 @@
 namespace Jitesoft\Utilities\DataStructures;
 
 use ArrayAccess;
-use Closure;
 use Jitesoft\Exceptions\Lazy\NotImplementedException;
 
 
 /**
  * Class Arrays
  *
- * A collection of static methods used on array or ArrayAccess objects.
+ * A collection of static methods used on arrays, ArrayAccess or ListInterface objects.
  */
 final class Arrays {
     private function __construct() { }

@@ -13,6 +13,11 @@ use Jitesoft\Utilities\DataStructures\Lists\IndexedListInterface;
 use Jitesoft\Utilities\DataStructures\Traits\MapMethodsTrait;
 use Traversable;
 
+/**
+ * Class SimpleMap
+ *
+ * A map structure which uses a native associative array as base.
+ */
 class SimpleMap implements MapInterface {
     use MapMethodsTrait;
 
