@@ -223,4 +223,40 @@ trait ArrayMethodsTestTrait {
 
         $this->assertNull($lastNull);
     }
+
+    public function testGnomeSort() {
+        $this->fill(2,6,3,5,8,23,1,1010);
+
+        $out = $this->implementation->sort(function($a, $b) {
+            return $a-$b;
+        }, Arrays::GNOME_SORT);
+
+        $this->assertEquals([
+            1, 2, 3, 5, 6, 8, 23, 1010
+        ], $out->toArray());
+    }
+
+    public function testQuickSort() {
+        $this->fill(2,6,3,5,8,23,1,1010);
+
+        $out = $this->implementation->sort(function($a, $b) {
+            return $a-$b;
+        }, Arrays::QUICK_SORT);
+
+        $this->assertEquals([
+            1, 2, 3, 5, 6, 8, 23, 1010
+        ], $out->toArray());
+    }
+
+    public function testNativeSort() {
+        $this->fill(2,6,3,5,8,23,1,1010);
+
+        $out = $this->implementation->sort(function($a, $b) {
+            return $a-$b;
+        }, Arrays::NATIVE_SORT);
+
+        $this->assertEquals([
+            1, 2, 3, 5, 6, 8, 23, 1010
+        ], $out->toArray());
+    }
 }

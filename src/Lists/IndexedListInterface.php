@@ -64,8 +64,8 @@ interface IndexedListInterface extends ListInterface {
     /**
      * Add objects to the list.
      *
-     * @param array $range
+     * @param array|ArrayAccess $range
      * @return bool
      */
-    public function addRange(array $range): bool;
+    public function addRange($range): bool;
 }
