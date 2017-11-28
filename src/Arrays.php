@@ -7,6 +7,7 @@
 namespace Jitesoft\Utilities\DataStructures;
 
 use ArrayAccess;
+use Jitesoft\Exceptions\Logic\InvalidArgumentException;
 use Jitesoft\Utilities\DataStructures\Lists\Sorting\AbstractSort;
 use Jitesoft\Utilities\DataStructures\Lists\Sorting\GnomeSort;
 use Jitesoft\Utilities\DataStructures\Lists\Sorting\NativeSort;
@@ -163,20 +164,6 @@ final class Arrays {
         return null;
     }
 
-    /**
-     * @param array ...$arrays
-     * @return array
-     */
-    public static function merge(... $arrays) {
-        $out = [];
-        foreach ($arrays as $array) {
-            foreach ($array as $v) {
-                $out[] = $v;
-            }
-        }
-        return $out;
-    }
-
 
     /**
      * Sorts a given array using the provided comparator callable and sorting type.
@@ -185,24 +172,22 @@ final class Arrays {
      * @param $array
      * @param callable|null $compare
      * @param string $sortType
-     * @return array|ArrayAccess
+     * @return array
+     * @throws InvalidArgumentException
      */
     public static function sort($array, ?callable $compare = null, $sortType = self::NATIVE_SORT) {
         if (!is_subclass_of($sortType, AbstractSort::class)) {
-            throw new \InvalidArgumentException(
-                "The argument for sortType ({$sortType}), does not derive from the AbstractSort class."
+            throw new InvalidArgumentException(
+                sprintf('The argument for sortType (%s) does not derive from the AbstractSort class.', $sortType),
+                '$sortType',
+                'sort',
+                'Arrays'
             );
         }
 
         if ($compare === null) {
             $compare = function($a, $b) {
-                if ($a < $b) {
-                    return -1;
-                }
-                if ($a > $b) {
-                    return 1;
-                }
-                return 0;
+                return $a - $b;
             };
         }
 
