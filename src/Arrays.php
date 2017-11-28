@@ -187,7 +187,7 @@ final class Arrays {
      * @param string $sortType
      * @return array|ArrayAccess
      */
-    public static function sort($array, ?callable $compare = null, $sortType = self::QUICK_SORT) {
+    public static function sort($array, ?callable $compare = null, $sortType = self::NATIVE_SORT) {
         if (!is_subclass_of($sortType, AbstractSort::class)) {
             throw new \InvalidArgumentException(
                 "The argument for sortType ({$sortType}), does not derive from the AbstractSort class."
