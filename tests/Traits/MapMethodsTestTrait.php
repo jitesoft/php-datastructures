@@ -21,7 +21,7 @@ trait MapMethodsTestTrait {
 
     private function fill(array $arr) {
         foreach ($arr as $key => $value) {
-            $this->implementation->set($key, $value);
+            $this->implementation->add($key, $value);
         }
     }
 

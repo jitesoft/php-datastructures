@@ -6,9 +6,9 @@
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 namespace Jitesoft\Utilities\DataStructures\Tests\Traits;
 
-use InvalidArgumentException;
+use Jitesoft\Exceptions\Logic\InvalidArgumentException;
 use Jitesoft\Utilities\DataStructures\Lists\IndexedListInterface;
-use OutOfBoundsException;
+use Jitesoft\Exceptions\Logic\OutOfBoundsException;
 use PHPUnit\Framework\TestCase;
 
 trait IndexedListTestTrait {

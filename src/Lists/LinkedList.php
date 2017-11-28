@@ -7,10 +7,10 @@
 namespace Jitesoft\Utilities\DataStructures\Lists;
 
 use ArrayAccess;
-use InvalidArgumentException;
+use Jitesoft\Exceptions\Logic\InvalidArgumentException;
 use Jitesoft\Utilities\DataStructures\Internal\Node;
 use Jitesoft\Utilities\DataStructures\Traits\ArrayMethodsTrait;
-use OutOfBoundsException;
+use Jitesoft\Exceptions\Logic\OutOfBoundsException;
 
 /**
  * Class LinkedList
@@ -331,6 +331,8 @@ class LinkedList implements IndexedListInterface {
      * @param int $offset
      * @param int $high
      * @param int $low
+     * @throws InvalidArgumentException
+     * @throws OutOfBoundsException
      */
     private function boundsCheck($offset, int $high, int $low = 0) {
         if (!is_integer($offset)) {

@@ -7,9 +7,9 @@
 namespace Jitesoft\Utilities\DataStructures\Lists;
 
 use ArrayAccess;
-use InvalidArgumentException;
+use Jitesoft\Exceptions\Logic\InvalidArgumentException;
 use Jitesoft\Utilities\DataStructures\Traits\ArrayMethodsTrait;
-use OutOfBoundsException;
+use Jitesoft\Exceptions\Logic\OutOfBoundsException;
 
 /**
  * Class IndexedList

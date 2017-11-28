@@ -8,7 +8,7 @@
 
 namespace Jitesoft\Utilities\DataStructures;
 
-use InvalidArgumentException;
+use Jitesoft\Exceptions\Logic\InvalidArgumentException;
 use Jitesoft\Exceptions\Lazy\NotImplementedException;
 use Jitesoft\Utilities\DataStructures\Maps\MapInterface;
 

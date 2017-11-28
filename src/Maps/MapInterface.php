@@ -6,11 +6,19 @@
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 namespace Jitesoft\Utilities\DataStructures\Maps;
 
-use InvalidArgumentException;
+use Jitesoft\Exceptions\Logic\InvalidArgumentException;
 use Jitesoft\Utilities\DataStructures\CollectionInterface;
 use Jitesoft\Utilities\DataStructures\Lists\IndexedListInterface;
+use ArrayAccess;
 
-interface MapInterface extends CollectionInterface {
+interface MapInterface extends CollectionInterface, ArrayAccess {
+
+    /**
+     * MapInterface constructor.
+     *
+     * @param array|null $array Optional associative array to use as base.
+     */
+    public function __construct(?array $array = null);
 
     /**
      * Get the value of a given key.
@@ -30,7 +38,7 @@ interface MapInterface extends CollectionInterface {
      * @param mixed $value
      * @return bool
      */
-    public function set(string $key, $value): bool;
+    public function add(string $key, $value): bool;
 
     /**
      * Check if a key exists in the map.

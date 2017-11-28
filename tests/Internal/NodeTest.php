@@ -8,7 +8,7 @@ namespace Jitesoft\Utilities\DataStructures\Tests\Internal;
 
 use Jitesoft\Utilities\DataStructures\Internal\Node;
 use PHPUnit\Framework\TestCase;
-use InvalidArgumentException;
+use Jitesoft\Exceptions\Logic\InvalidArgumentException;
 
 /**
  * @group LinkedStructures

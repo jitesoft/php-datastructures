@@ -6,7 +6,7 @@
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 namespace Jitesoft\Utilities\DataStructures\Tests\Traits;
 
-use Jitesoft\Utilities\DataStructures\Contracts\StackInterface;
+use Jitesoft\Utilities\DataStructures\Stacks\StackInterface;
 
 trait StackTestTrait {
 
