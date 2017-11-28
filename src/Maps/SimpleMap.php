@@ -6,10 +6,12 @@
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 namespace Jitesoft\Utilities\DataStructures\Maps;
 
+use ArrayIterator;
 use Jitesoft\Exceptions\Logic\InvalidArgumentException;
 use Jitesoft\Utilities\DataStructures\Lists\IndexedList;
 use Jitesoft\Utilities\DataStructures\Lists\IndexedListInterface;
 use Jitesoft\Utilities\DataStructures\Traits\MapMethodsTrait;
+use Traversable;
 
 class SimpleMap implements MapInterface {
     use MapMethodsTrait;
@@ -232,5 +234,16 @@ class SimpleMap implements MapInterface {
             $this->count--;
         }
         return $result;
+    }
+
+    /**
+     * Retrieve an external iterator
+     * @link http://php.net/manual/en/iteratoraggregate.getiterator.php
+     * @return Traversable An instance of an object implementing <b>Iterator</b> or
+     * <b>Traversable</b>
+     * @since 5.0.0
+     */
+    public function getIterator() {
+        return new ArrayIterator($this->innerMap);
     }
 }

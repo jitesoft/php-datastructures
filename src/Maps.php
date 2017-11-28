@@ -37,7 +37,17 @@ final class Maps {
      * @param callable           $action {@see Maps::callback()}
      * @throws InvalidArgumentException
      */
-    public static function forEach($map, callable $action) {}
+    public static function forEach($map, callable $action) {
+        if (!is_array($map) && !($map instanceof MapInterface)) {
+            throw new InvalidArgumentException('Passed argument was not a map.');
+        }
+
+        foreach ($map as $key => $value) {
+            if ($action($value, $key, $map) === false) {
+                break;
+            }
+        }
+    }
 
     /**
      * Method to iterate and apply a callback to each value in a MapInterface implementation.
@@ -50,7 +60,23 @@ final class Maps {
      * @throws InvalidArgumentException
      * @return MapInterface|array
      */
-    public static function map($map, callable $action) {}
+    public static function map($map, callable $action) {
+        if (!is_array($map) && !($map instanceof MapInterface)) {
+            throw new InvalidArgumentException('Passed argument was not a map.');
+        }
+
+        $result = [];
+
+        foreach ($map as $key => $value) {
+            $result[$key] = $action($value, $key, $map);
+        }
+
+        if ($map instanceof MapInterface) {
+            $class = get_class($map);
+            return new $class($result);
+        }
+        return $result;
+    }
 
     /**
      * Loops through the Map and applies the action to it.
@@ -61,7 +87,24 @@ final class Maps {
      * @throws InvalidArgumentException
      * @return MapInterface|array
      */
-    public static function filter($map, callable $action) {}
+    public static function filter($map, callable $action) {
+        if (!is_array($map) && !($map instanceof MapInterface)) {
+            throw new InvalidArgumentException('Passed argument was not a map.');
+        }
+
+        $result = [];
+        foreach ($map as $key => $value) {
+            if ($action($value, $key, $map)) {
+                $result[$key] = $value;
+            }
+        }
+
+        if ($map instanceof MapInterface) {
+            $class = get_class($map);
+            return new $class($result);
+        }
+        return $result;
+    }
 
     /**
      * Fetches the first value on which the action returns true.
@@ -71,7 +114,18 @@ final class Maps {
      * @throws InvalidArgumentException
      * @return mixed
      */
-    public static function first($map, callable $action) {}
+    public static function first($map, callable $action) {
+        if (!is_array($map) && !($map instanceof MapInterface)) {
+            throw new InvalidArgumentException('Passed argument was not a map.');
+        }
+
+        foreach ($map as $key => $value) {
+            if ($action($value, $key, $map)) {
+                return $value;
+            }
+        }
+        return null;
+    }
 
     /**
      * Fetches the last value on which the action returns true.
@@ -81,6 +135,18 @@ final class Maps {
      * @throws InvalidArgumentException
      * @return mixed
      */
-    public static function last($map, callable $action) {}
+    public static function last($map, callable $action) {
+        if (!is_array($map) && !($map instanceof MapInterface)) {
+            throw new InvalidArgumentException('Passed argument was not a map.');
+        }
+
+        $result = null;
+        foreach ($map as $key => $value) {
+            if ($action($value, $key, $map)) {
+                $result = $value;
+            }
+        }
+        return $result;
+    }
 
 }

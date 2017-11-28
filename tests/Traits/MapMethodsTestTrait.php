@@ -127,7 +127,7 @@ trait MapMethodsTestTrait {
         $this->assertEquals(3, $count);
         $this->assertEquals(2, $out[1]);
         $this->assertEquals(4, $out[3]);
-        $this->assertEquals(6, $out[5]);
+        $this->assertFalse($out->has(5));
 
         $count = 0;
         $out   = Maps::filter($this->implementation, function($value, $key, $map) use(&$count) {
@@ -141,7 +141,7 @@ trait MapMethodsTestTrait {
         $this->assertEquals(3, $count);
         $this->assertEquals(2, $out[1]);
         $this->assertEquals(4, $out[3]);
-        $this->assertEquals(6, $out[5]);
+        $this->assertFalse($out->has(5));
     }
 
     public function testFirst() {
@@ -159,6 +159,7 @@ trait MapMethodsTestTrait {
         $this->assertEquals(6, $first);
         $this->assertEquals(3, $count);
 
+        $count = 0;
         $first = Maps::first($this->implementation, function($value, $key, $map) use(&$count) {
             $count++;
 

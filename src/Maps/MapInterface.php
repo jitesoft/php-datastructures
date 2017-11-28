@@ -10,8 +10,9 @@ use Jitesoft\Exceptions\Logic\InvalidArgumentException;
 use Jitesoft\Utilities\DataStructures\CollectionInterface;
 use Jitesoft\Utilities\DataStructures\Lists\IndexedListInterface;
 use ArrayAccess;
+use IteratorAggregate;
 
-interface MapInterface extends CollectionInterface, ArrayAccess {
+interface MapInterface extends CollectionInterface, ArrayAccess, IteratorAggregate {
 
     /**
      * MapInterface constructor.
