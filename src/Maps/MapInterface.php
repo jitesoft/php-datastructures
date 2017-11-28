@@ -32,13 +32,25 @@ interface MapInterface extends CollectionInterface, ArrayAccess {
 
     /**
      * Set a given keys value.
-     * If the key already exists, it will be overwritten.
+     * If the key already exists a InvalidArgumentException will be thrown.
+     *
+     * @param string $key
+     * @param mixed $value
+     * @return bool
+     * @throws InvalidArgumentException
+     */
+    public function add(string $key, $value): bool;
+
+    /**
+     * Sets a value to a key.
+     * This function can be used safely to add/set values without raising exceptions.
+     * If the key already exist the value will be replaced with passed value.
      *
      * @param string $key
      * @param mixed $value
      * @return bool
      */
-    public function add(string $key, $value): bool;
+    public function set(string $key, $value): bool;
 
     /**
      * Check if a key exists in the map.
