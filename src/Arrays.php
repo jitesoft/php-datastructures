@@ -7,6 +7,11 @@
 namespace Jitesoft\Utilities\DataStructures;
 
 use ArrayAccess;
+use Jitesoft\Exceptions\Logic\InvalidArgumentException;
+use Jitesoft\Utilities\DataStructures\Lists\Sorting\AbstractSort;
+use Jitesoft\Utilities\DataStructures\Lists\Sorting\GnomeSort;
+use Jitesoft\Utilities\DataStructures\Lists\Sorting\NativeSort;
+use Jitesoft\Utilities\DataStructures\Lists\Sorting\QuickSort;
 use Jitesoft\Exceptions\Lazy\NotImplementedException;
 
 
@@ -16,6 +21,11 @@ use Jitesoft\Exceptions\Lazy\NotImplementedException;
  * A collection of static methods used on arrays, ArrayAccess or ListInterface objects.
  */
 final class Arrays {
+
+    public const GNOME_SORT  = GnomeSort::class;
+    public const QUICK_SORT  = QuickSort::class;
+    public const NATIVE_SORT = NativeSort::class;
+
     private function __construct() { }
 
     /**
@@ -152,6 +162,37 @@ final class Arrays {
             }
         }
         return null;
+    }
+
+
+    /**
+     * Sorts a given array using the provided comparator callable and sorting type.
+     * The sort type needs to be a class name extending the
+     *
+     * @param $array
+     * @param callable|null $compare
+     * @param string $sortType
+     * @return array
+     * @throws InvalidArgumentException
+     */
+    public static function sort($array, ?callable $compare = null, $sortType = self::NATIVE_SORT) {
+        if (!is_subclass_of($sortType, AbstractSort::class)) {
+            throw new InvalidArgumentException(
+                sprintf('The argument for sortType (%s) does not derive from the AbstractSort class.', $sortType),
+                '$sortType',
+                'sort',
+                'Arrays'
+            );
+        }
+
+        if ($compare === null) {
+            $compare = function($a, $b) {
+                return $a - $b;
+            };
+        }
+
+        /** @var $sortType AbstractSort */
+        return $sortType::sort($array, $compare);
     }
 
 }

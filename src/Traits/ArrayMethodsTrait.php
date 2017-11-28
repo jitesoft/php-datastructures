@@ -6,7 +6,6 @@
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 namespace Jitesoft\Utilities\DataStructures\Traits;
 
-use Closure;
 use Jitesoft\Utilities\DataStructures\Arrays;
 
 /**
@@ -15,45 +14,56 @@ use Jitesoft\Utilities\DataStructures\Arrays;
 trait ArrayMethodsTrait {
 
     /**
-     * @param Closure $closure
+     * @param callable $closure
      * @return static
      */
-    public function map(Closure $closure) {
+    public function map(callable $closure) {
         $out   = Arrays::map($this->toArray(), $closure);
         $class = get_class($this);
         return new $class($out);
     }
 
     /**
-     * @param Closure $closure
+     * @param callable $closure
      */
-    public function forEach(Closure $closure): void {
+    public function forEach(callable $closure): void {
         Arrays::forEach($this->toArray(), $closure);
     }
 
     /**
-     * @param Closure $closure
+     * @param callable $closure
      * @return static
      */
-    public function filter(Closure $closure) {
+    public function filter(callable $closure) {
         $out   = Arrays::filter($this->toArray(), $closure);
         $class = get_class($this);
         return new $class($out);
     }
 
     /**
-     * @param Closure|null $closure
+     * @param callable|null $closure
      * @return mixed
      */
-    public function first(?Closure $closure = null) {
+    public function first(?callable $closure = null) {
         return Arrays::first($this->toArray(), $closure);
     }
 
     /**
-     * @param Closure|null $closure
+     * @param callable|null $closure
      * @return mixed
      */
-    public function last(?Closure $closure = null) {
+    public function last(?callable $closure = null) {
         return Arrays::last($this->toArray(), $closure);
+    }
+
+    /**
+     * @param callable|null $compare
+     * @param string $sortType
+     * @return static
+     */
+    public function sort(?callable $compare = null, string $sortType = Arrays::QUICK_SORT) {
+        $out   = Arrays::sort($this->toArray(), $compare, $sortType);
+        $class = get_class($this);
+        return new $class($out);
     }
 }

@@ -7,6 +7,7 @@
 namespace Jitesoft\Utilities\DataStructures\Tests\Traits;
 
 use ArrayAccess;
+use Jitesoft\Exceptions\Logic\InvalidArgumentException;
 use Jitesoft\Utilities\DataStructures\Arrays;
 use Jitesoft\Utilities\DataStructures\Traits\ArrayMethodsTrait;
 
@@ -223,4 +224,105 @@ trait ArrayMethodsTestTrait {
 
         $this->assertNull($lastNull);
     }
+
+    public function testGnomeSort() {
+        $this->fill(2,6,3,5,8,23,1,1010);
+
+        $out = $this->implementation->sort(function($a, $b) {
+            return $a-$b;
+        }, Arrays::GNOME_SORT);
+
+        $this->assertEquals([
+            1, 2, 3, 5, 6, 8, 23, 1010
+        ], $out->toArray());
+    }
+
+    public function testQuickSort() {
+        $this->fill(2,6,3,5,8,23,1,1010);
+
+        $out = $this->implementation->sort(function($a, $b) {
+            return $a-$b;
+        }, Arrays::QUICK_SORT);
+
+        $this->assertEquals([
+            1, 2, 3, 5, 6, 8, 23, 1010
+        ], $out->toArray());
+    }
+
+    public function testNativeSort() {
+        $this->fill(2,6,3,5,8,23,1,1010);
+
+        $out = $this->implementation->sort(function($a, $b) {
+            return $a-$b;
+        }, Arrays::NATIVE_SORT);
+
+        $this->assertEquals([
+            1, 2, 3, 5, 6, 8, 23, 1010
+        ], $out->toArray());
+    }
+
+    public function testNativeSortArray() {
+        $arr = [2,6,3,5,8,23,1,1010];
+
+        $out = Arrays::sort($arr, function($a, $b) {
+            return $a-$b;
+        }, Arrays::NATIVE_SORT);
+
+        $this->assertEquals([
+            1, 2, 3, 5, 6, 8, 23, 1010
+        ], $out);
+    }
+
+
+    public function testQuickSortArray() {
+        $arr = [2,6,3,5,8,23,1,1010];
+
+        $out = Arrays::sort($arr, function($a, $b) {
+            return $a-$b;
+        }, Arrays::QUICK_SORT);
+
+        $this->assertEquals([
+            1, 2, 3, 5, 6, 8, 23, 1010
+        ], $out);
+    }
+
+    public function testGnomeSortArray() {
+        $arr = [2,6,3,5,8,23,1,1010];
+
+        $out = Arrays::sort($arr, function($a, $b) {
+            return $a-$b;
+        }, Arrays::GNOME_SORT);
+
+        $this->assertEquals([
+            1, 2, 3, 5, 6, 8, 23, 1010
+        ], $out);
+    }
+
+    public function testSortNoComparatorNoMethod() {
+        $arr = [2,6,3,5,8,23,1,1010];
+
+        $out = Arrays::sort($arr);
+
+        $this->assertEquals([
+            1, 2, 3, 5, 6, 8, 23, 1010
+        ], $out);
+
+        $this->fill(2,6,3,5,8,23,1,1010);
+
+        $out = $this->implementation->sort();
+
+        $this->assertEquals([
+            1, 2, 3, 5, 6, 8, 23, 1010
+        ], $out->toArray());
+    }
+
+    public function testSortInvalidSort() {
+        $this->expectException(InvalidArgumentException::class);
+        $this->expectExceptionMessage(
+            'The argument for sortType (ABC123) does not derive from the AbstractSort class.'
+        );
+
+        $this->implementation->sort(null, 'ABC123');
+    }
+
 }

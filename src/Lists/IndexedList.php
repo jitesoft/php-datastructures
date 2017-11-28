@@ -28,7 +28,7 @@ class IndexedList implements IndexedListInterface {
      * ListInterface constructor.
      * @param array $from
      */
-    public function __construct(array $from = []) {
+    public function __construct($from = []) {
         foreach ($from as $item) {
             $this->innerArray[] = $item;
         }
@@ -178,7 +178,7 @@ class IndexedList implements IndexedListInterface {
      * @param array|ArrayAccess $range
      * @return bool
      */
-    public function addRange(array $range): bool {
+    public function addRange($range): bool {
         foreach ($range as $obj) {
             $this->innerArray[] = $obj;
         }
