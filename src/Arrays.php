@@ -7,16 +7,17 @@
 namespace Jitesoft\Utilities\DataStructures;
 
 use ArrayAccess;
-use Closure;
 use Jitesoft\Exceptions\Lazy\NotImplementedException;
 
 
 /**
- * Class StaticArrayMethods
+ * Class Arrays
  *
- * A collection of static methods used on array or ArrayAccess objects.
+ * A collection of static methods used on arrays, ArrayAccess or ListInterface objects.
  */
 final class Arrays {
+    private function __construct() { }
+
     /**
      * @param mixed $object - Object of the current Iteration.
      * @param int $index - Index of the current iteration.
@@ -36,9 +37,9 @@ final class Arrays {
      * If closure returns false, it will stop the iteration and end the method, i.e, used as a break.
      *
      * @param ArrayAccess|array $array
-     * @param Closure                   $closure {@see StaticArrayMethods::callback()}
+     * @param callable          $closure {@see Arrays::callback()}
      */
-    public static function forEach($array, Closure $closure): void {
+    public static function forEach($array, callable $closure): void {
         $count = count($array);
         for ($i=0;$i<$count;$i++) {
             $result = $closure($array[$i], $i, $array);
@@ -55,10 +56,10 @@ final class Arrays {
      * Any value returned from the closure will end up in the result array returned when iteration is complete.
      *
      * @param ArrayAccess|array $array
-     * @param Closure                   $closure {@see StaticArrayMethods::callback()}
+     * @param callable          $closure {@see Arrays::callback()}
      * @return array
      */
-    public static function map($array, Closure $closure) {
+    public static function map($array, callable $closure) {
         $result = [];
         $count  = count($array);
         for ($i=0;$i<$count;$i++) {
@@ -75,10 +76,10 @@ final class Arrays {
      * If closure returns false, the object will not be added.
      *
      * @param ArrayAccess|array $array
-     * @param Closure                   $closure {@see StaticArrayMethods::callback()}
+     * @param callable          $closure {@see Arrays::callback()}
      * @return array
      */
-    public static function filter($array, Closure $closure) {
+    public static function filter($array, callable $closure) {
         $result = [];
         $count  = count($array);
         for ($i=0;$i<$count;$i++) {
@@ -104,10 +105,10 @@ final class Arrays {
      * First object in the List will be returned.
      *
      * @param ArrayAccess|array $array
-     * @param Closure|null              $closure {@see StaticArrayMethods::callback()}
+     * @param callable|null     $closure {@see Arrays::callback()}
      * @return mixed|null
      */
-    public static function first($array, ?Closure $closure = null) {
+    public static function first($array, ?callable $closure = null) {
         $count = count($array);
         if ($closure === null && $count > 0) {
             return $array[0];
@@ -136,10 +137,10 @@ final class Arrays {
      * Last object in the List will be returned.
      *
      * @param ArrayAccess|array $array
-     * @param Closure|null $closure
+     * @param callable|null     $closure $closure {@see Arrays::callback()}
      * @return mixed|null
      */
-    public static function last($array, ?Closure $closure = null) {
+    public static function last($array, ?callable $closure = null) {
         $count = count($array);
         if ($closure === null && $count > 0) {
             return $array[$count - 1];

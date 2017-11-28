@@ -6,7 +6,7 @@
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 namespace Jitesoft\Utilities\DataStructures\Internal;
 
-use InvalidArgumentException;
+use Jitesoft\Exceptions\Logic\InvalidArgumentException;
 
 /**
  * Class Node

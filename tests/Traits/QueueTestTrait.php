@@ -6,7 +6,7 @@
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 namespace Jitesoft\Utilities\DataStructures\Tests\Traits;
 
-use Jitesoft\Utilities\DataStructures\Contracts\QueueInterface;
+use Jitesoft\Utilities\DataStructures\Queues\QueueInterface;
 
 trait QueueTestTrait {
 

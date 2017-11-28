@@ -33,6 +33,7 @@ Usage is quite self-explanatory, if not, feel free to add a issue for further do
 The following classes are currently implemented:  
 * Static classes (`Jitesoft\DataStructures`)
   * `Arrays`      - Static array methods.
+  * `Maps`        - Static map methods.
 * List types (`Jitesoft\Utilities\DataStructures\Lists`)
   * `IndexedList` - A indexed list implementation wrapping the native array.
   * `LinkedList`  - A indexed list implementation as a linked list.
@@ -44,7 +45,8 @@ The following classes are currently implemented:
   * `ArrayStack`  - A stack implementation with an array as base.
 * Grid types (`Jitesoft\Utilities\DataStructures\Grids`)
   * `Grid`        - A grid implementation with a IndexedList as container.
-  
+* Map types (`Jitesoft\Utilities\DataStructures\Maps`)
+  * `SimpleMap`   - A simple map structure wrapping the native array.
 
 ### Deprecated
 
