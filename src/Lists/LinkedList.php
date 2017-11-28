@@ -7,10 +7,10 @@
 namespace Jitesoft\Utilities\DataStructures\Lists;
 
 use ArrayAccess;
-use InvalidArgumentException;
+use Jitesoft\Exceptions\Logic\InvalidArgumentException;
 use Jitesoft\Utilities\DataStructures\Internal\Node;
 use Jitesoft\Utilities\DataStructures\Traits\ArrayMethodsTrait;
-use OutOfBoundsException;
+use Jitesoft\Exceptions\Logic\OutOfBoundsException;
 
 /**
  * Class LinkedList
@@ -257,10 +257,10 @@ class LinkedList implements IndexedListInterface {
     /**
      * Add objects to the list.
      *
-     * @param array $range
+     * @param array|ArrayAccess $range
      * @return bool
      */
-    public function addRange(array $range): bool {
+    public function addRange($range): bool {
         if ($this->rootNode === null) {
             $this->getOrCreateRoot($range[0]);
             array_splice($range, 0, 1);
@@ -280,7 +280,7 @@ class LinkedList implements IndexedListInterface {
      * ListInterface constructor.
      * @param array $from
      */
-    public function __construct(array $from = []) {
+    public function __construct($from = []) {
         if (!empty($from)) {
             $this->addRange($from);
         }
@@ -331,6 +331,8 @@ class LinkedList implements IndexedListInterface {
      * @param int $offset
      * @param int $high
      * @param int $low
+     * @throws InvalidArgumentException
+     * @throws OutOfBoundsException
      */
     private function boundsCheck($offset, int $high, int $low = 0) {
         if (!is_integer($offset)) {

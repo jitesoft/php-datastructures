@@ -24,6 +24,9 @@
         <testsuite name="Grids">
             <directory suffix="Test.php">./tests/Grids</directory>
         </testsuite>
+        <testsuite name="Maps">
+            <directory suffix="Test.php">./tests/Maps</directory>
+        </testsuite>
     </testsuites>
     <filter>
         <whitelist>
