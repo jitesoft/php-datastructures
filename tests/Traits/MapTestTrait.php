@@ -7,7 +7,6 @@
 namespace Jitesoft\Utilities\DataStructures\Tests\Traits;
 
 use Jitesoft\Exceptions\Logic\InvalidArgumentException;
-use Jitesoft\Utilities\DataStructures\Arrays;
 use Jitesoft\Utilities\DataStructures\Maps\MapInterface;
 
 trait MapTestTrait {
@@ -26,6 +25,7 @@ trait MapTestTrait {
         $this->implementation->add('abc', 123);
         $this->expectException(InvalidArgumentException::class);
         $this->expectExceptionMessage('Key "abc" already exist.');
+        $this->implementation->add('abc', 123);
     }
 
     public function testCount() {
@@ -120,8 +120,8 @@ trait MapTestTrait {
 
         $keys = $this->implementation->keys();
 
-        $this->assertTrue(array_key_exists('key1', $keys));
-        $this->assertTrue(array_key_exists('key2', $keys));
+        $this->assertTrue(in_array('key1', $keys->toArray()));
+        $this->assertTrue(in_array('key2', $keys->toArray()));
         $this->assertCount(2, $keys);
     }
 
@@ -131,8 +131,8 @@ trait MapTestTrait {
 
         $values = $this->implementation->values();
 
-        $this->assertTrue(array_key_exists('value1', $values));
-        $this->assertTrue(array_key_exists('value2', $values));
+        $this->assertTrue(in_array('value1', $values->toArray()));
+        $this->assertTrue(in_array('value2', $values->toArray()));
         $this->assertCount(2, $values);
     }
 

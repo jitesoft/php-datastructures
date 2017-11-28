@@ -7,9 +7,27 @@
 namespace Jitesoft\Utilities\DataStructures\Maps;
 
 use Jitesoft\Exceptions\Logic\InvalidArgumentException;
+use Jitesoft\Utilities\DataStructures\Lists\IndexedList;
 use Jitesoft\Utilities\DataStructures\Lists\IndexedListInterface;
+use Jitesoft\Utilities\DataStructures\Traits\MapMethodsTrait;
 
 class SimpleMap implements MapInterface {
+    use MapMethodsTrait;
+
+    /** @var array */
+    private $innerMap;
+    /** @var int */
+    private $count;
+
+    /**
+     * MapInterface constructor.
+     *
+     * @param array|null $array Optional associative array to use as base.
+     */
+    public function __construct(?array $array = null) {
+        $this->innerMap = $array ?? [];
+        $this->count    = count($this->innerMap);
+    }
 
     /**
      * Get number of objects in the collection.
@@ -18,7 +36,7 @@ class SimpleMap implements MapInterface {
      * @return int
      */
     public function length(): int {
-        // TODO: Implement length() method.
+        return $this->count();
     }
 
     /**
@@ -27,7 +45,7 @@ class SimpleMap implements MapInterface {
      * @return int
      */
     public function count(): int {
-        // TODO: Implement count() method.
+        return $this->count;
     }
 
     /**
@@ -37,7 +55,7 @@ class SimpleMap implements MapInterface {
      * @return int
      */
     public function size(): int {
-        // TODO: Implement size() method.
+        return $this->count();
     }
 
     /**
@@ -46,7 +64,9 @@ class SimpleMap implements MapInterface {
      * @return bool
      */
     public function clear(): bool {
-        // TODO: Implement clear() method.
+        $this->count    = 0;
+        $this->innerMap = [];
+        return true;
     }
 
     /**
@@ -62,7 +82,7 @@ class SimpleMap implements MapInterface {
      * @since 5.0.0
      */
     public function offsetExists($offset) {
-        // TODO: Implement offsetExists() method.
+        return $this->has($offset);
     }
 
     /**
@@ -75,7 +95,7 @@ class SimpleMap implements MapInterface {
      * @since 5.0.0
      */
     public function offsetGet($offset) {
-        // TODO: Implement offsetGet() method.
+        return $this->get($offset);
     }
 
     /**
@@ -91,7 +111,7 @@ class SimpleMap implements MapInterface {
      * @since 5.0.0
      */
     public function offsetSet($offset, $value) {
-        // TODO: Implement offsetSet() method.
+        $this->set($offset, $value);
     }
 
     /**
@@ -104,17 +124,9 @@ class SimpleMap implements MapInterface {
      * @since 5.0.0
      */
     public function offsetUnset($offset) {
-        // TODO: Implement offsetUnset() method.
+        $this->unset($offset);
     }
 
-    /**
-     * MapInterface constructor.
-     *
-     * @param array|null $array Optional associative array to use as base.
-     */
-    public function __construct($array = null) {
-        parent::__construct($array);
-    }
 
     /**
      * Get the value of a given key.
@@ -125,19 +137,49 @@ class SimpleMap implements MapInterface {
      * @throws InvalidArgumentException
      */
     public function get(string $key) {
-        // TODO: Implement get() method.
+        if (!$this->has($key)) {
+            throw new InvalidArgumentException(
+                sprintf('Key "%s" does not exist.', $key)
+            );
+        }
+
+        return $this->innerMap[$key];
     }
 
     /**
      * Set a given keys value.
-     * If the key already exists, it will be overwritten.
+     * If the key already exists a InvalidArgumentException will be thrown.
+     *
+     * @param string $key
+     * @param mixed $value
+     * @return bool
+     * @throws InvalidArgumentException
+     */
+    public function add(string $key, $value): bool {
+        if ($this->has($key)) {
+            throw new InvalidArgumentException(
+                sprintf('Key "%s" already exist.', $key)
+            );
+        }
+
+        $this->innerMap[$key] = $value;
+        $this->count++;
+        return true;
+    }
+
+    /**
+     * Sets a value to a key.
+     * This function can be used safely to add/set values without raising exceptions.
+     * If the key already exist the value will be replaced with passed value.
      *
      * @param string $key
      * @param mixed $value
      * @return bool
      */
-    public function add(string $key, $value): bool {
-        // TODO: Implement add() method.
+    public function set(string $key, $value): bool {
+        $this->innerMap[$key] = $value;
+        $this->count          = count($this->innerMap);
+        return true;
     }
 
     /**
@@ -147,7 +189,7 @@ class SimpleMap implements MapInterface {
      * @return bool
      */
     public function has(string $key): bool {
-        // TODO: Implement has() method.
+        return array_key_exists($key, $this->innerMap);
     }
 
     /**
@@ -156,7 +198,7 @@ class SimpleMap implements MapInterface {
      * @return array
      */
     public function toAssocArray(): array {
-        // TODO: Implement toAssocArray() method.
+        return $this->innerMap;
     }
 
     /**
@@ -165,7 +207,7 @@ class SimpleMap implements MapInterface {
      * @return IndexedListInterface|string[]
      */
     public function keys(): IndexedListInterface {
-        // TODO: Implement keys() method.
+        return new IndexedList(array_keys($this->innerMap));
     }
 
     /**
@@ -174,7 +216,7 @@ class SimpleMap implements MapInterface {
      * @return IndexedListInterface|mixed[]
      */
     public function values(): IndexedListInterface {
-        // TODO: Implement values() method.
+        return new IndexedList(array_values($this->innerMap));
     }
 
     /**
@@ -184,6 +226,11 @@ class SimpleMap implements MapInterface {
      * @return bool
      */
     public function unset(string $key): bool {
-        // TODO: Implement unset() method.
+        unset($this->innerMap[$key]);
+        $result =  !$this->has($key);
+        if ($result) {
+            $this->count--;
+        }
+        return $result;
     }
 }
