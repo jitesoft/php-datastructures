@@ -24,9 +24,6 @@ final class QuickSort extends AbstractSort {
      */
     public static function sort($array, callable $compare) {
         $len = count($array);
-
-        $out = clone($array);
-
         if ($len > 1) {
 
             $pivot      = $array[0];
@@ -38,8 +35,6 @@ final class QuickSort extends AbstractSort {
 
             return array_merge(self::sort($partitions[0], $compare), [ $pivot ], self::sort($partitions[1], $compare));
         }
-
-
 
         return $array;
     }

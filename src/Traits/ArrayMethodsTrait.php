@@ -62,7 +62,7 @@ trait ArrayMethodsTrait {
      * @return static
      */
     public function sort(?callable $compare = null, string $sortType = Arrays::QUICK_SORT) {
-        $out   = Arrays::sort($this, $compare, $sortType);
+        $out   = Arrays::sort($this->toArray(), $compare, $sortType);
         $class = get_class($this);
         return new $class($out);
     }
