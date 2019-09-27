@@ -18,18 +18,19 @@ use Jitesoft\Utilities\DataStructures\Maps\MapInterface;
  * A collection of static methods to use on Map instances or associative arrays.
  */
 final class Maps {
+
     private function __construct() { }
 
     /**
-     * @param mixed $value             - Value of the current Iteration.
-     * @param mixed $key               - Key of the current iteration.
-     * @param MapInterface|array $list - The map which is being iterated.
+     * @param mixed              $value - Value of the current Iteration.
+     * @param mixed              $key   - Key of the current iteration.
+     * @param MapInterface|array $list  - The map which is being iterated.
      * @return mixed
      * @throws NotImplementedException
      * @codeCoverageIgnore
      */
     private static function callback($value, $key, $list) {
-        throw new NotImplementedException("...");
+        throw new NotImplementedException('...');
     }
 
     /**

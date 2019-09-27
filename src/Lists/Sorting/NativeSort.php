@@ -21,11 +21,12 @@ final class NativeSort extends AbstractSort {
      * Sort a given array by using the compare callable passed as second argument.
      *
      * @param array|ArrayAccess $array
-     * @param callable $compare
+     * @param callable          $compare
      * @return array|ArrayAccess
      */
     public static function sort($array, callable $compare) {
         usort($array, $compare);
         return $array;
     }
+
 }

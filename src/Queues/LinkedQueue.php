@@ -14,7 +14,7 @@ use Jitesoft\Utilities\DataStructures\Internal\Node;
  * A Queue (FiFo) structure built as a linked list.
  */
 class LinkedQueue implements QueueInterface {
-    /** @var int */
+    /** @var integer */
     private $count;
     /** @var null|Node */
     private $first;
@@ -34,7 +34,7 @@ class LinkedQueue implements QueueInterface {
      * Get number of objects in the collection.
      *
      * @alias count()
-     * @return int
+     * @return integer
      */
     public function length(): int {
         return $this->count;
@@ -43,7 +43,7 @@ class LinkedQueue implements QueueInterface {
     /**
      * Get number of objects in the collection.
      *
-     * @return int
+     * @return integer
      */
     public function count(): int {
         return $this->count;
@@ -53,7 +53,7 @@ class LinkedQueue implements QueueInterface {
      * Get number of objects in the collection.
      *
      * @alias count()
-     * @return int
+     * @return integer
      */
     public function size(): int {
         return $this->count;
@@ -62,7 +62,7 @@ class LinkedQueue implements QueueInterface {
     /**
      * Clear the collection of all objects.
      *
-     * @return bool
+     * @return boolean
      */
     public function clear(): bool {
         $this->first = null;
@@ -75,10 +75,9 @@ class LinkedQueue implements QueueInterface {
      * Adds one or multiple objects to the end of the queue.
      *
      * @param $object - One or multiple objects to enqueue.
-     * @return bool
+     * @return boolean
      */
     public function enqueue(...$object): bool {
-
         if ($this->first === null) {
             $this->first = new Node($object[0], 1);
             $this->last  = $this->first;
@@ -129,4 +128,5 @@ class LinkedQueue implements QueueInterface {
 
         return $this->first->getItem();
     }
+
 }

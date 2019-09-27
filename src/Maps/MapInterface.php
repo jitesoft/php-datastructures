@@ -36,8 +36,8 @@ interface MapInterface extends CollectionInterface, ArrayAccess, IteratorAggrega
      * If the key already exists a InvalidArgumentException will be thrown.
      *
      * @param string $key
-     * @param mixed $value
-     * @return bool
+     * @param mixed  $value
+     * @return boolean
      * @throws InvalidArgumentException
      */
     public function add(string $key, $value): bool;
@@ -48,8 +48,8 @@ interface MapInterface extends CollectionInterface, ArrayAccess, IteratorAggrega
      * If the key already exist the value will be replaced with passed value.
      *
      * @param string $key
-     * @param mixed $value
-     * @return bool
+     * @param mixed  $value
+     * @return boolean
      */
     public function set(string $key, $value): bool;
 
@@ -57,7 +57,7 @@ interface MapInterface extends CollectionInterface, ArrayAccess, IteratorAggrega
      * Check if a key exists in the map.
      *
      * @param string $key
-     * @return bool
+     * @return boolean
      */
     public function has(string $key): bool;
 
@@ -86,7 +86,7 @@ interface MapInterface extends CollectionInterface, ArrayAccess, IteratorAggrega
      * Removes a given key-value pair.
      *
      * @param string $key
-     * @return bool
+     * @return boolean
      */
     public function unset(string $key): bool;
 

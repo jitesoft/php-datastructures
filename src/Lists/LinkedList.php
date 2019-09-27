@@ -24,10 +24,11 @@ class LinkedList implements IndexedListInterface {
     private $rootNode = null;
     /** @var Node|null */
     private $lastNode = null;
-    /** @var int */
+    /** @var integer */
     private $count = 0;
 
-    //region ArrayAccess
+    // region ArrayAccess
+
     /**
      * Whether a offset exists
      * @link http://php.net/manual/en/arrayaccess.offsetexists.php
@@ -41,7 +42,7 @@ class LinkedList implements IndexedListInterface {
      * @since 5.0.0
      */
     public function offsetExists($offset) {
-        if (!is_integer($offset) || ($offset > $this->count-1 || $offset < 0)) {
+        if (!is_integer($offset) || ($offset > $this->count - 1 || $offset < 0)) {
             return false;
         }
 
@@ -68,14 +69,14 @@ class LinkedList implements IndexedListInterface {
      * @param mixed $offset <p>
      * The offset to assign the value to.
      * </p>
-     * @param mixed $value <p>
-     * The value to set.
-     * </p>
+     * @param mixed $value  <p>
+     *  The value to set.
+     *  </p>
      * @return void
      * @since 5.0.0
      */
     public function offsetSet($offset, $value) {
-        $this->boundsCheck($offset, $this->count+1, 0);
+        $this->boundsCheck($offset, $this->count + 1, 0);
         $this->insert($value, $offset);
     }
 
@@ -92,13 +93,13 @@ class LinkedList implements IndexedListInterface {
         $this->removeAt($offset, true);
     }
 
-    //endregion
+    // endregion
 
     /**
      * Add a object to the list.
      *
      * @param $object
-     * @return bool
+     * @return boolean
      */
     public function add($object): bool {
         if ($this->lastNode === null) {
@@ -117,7 +118,7 @@ class LinkedList implements IndexedListInterface {
      * Remove a object from the list.
      *
      * @param $object
-     * @return bool
+     * @return boolean
      */
     public function remove($object): bool {
         if ($this->count === 0) {
@@ -150,8 +151,6 @@ class LinkedList implements IndexedListInterface {
             $remove->setLink(0, null);
         }
 
-
-
         $this->lastNode = $remove->getLink(0) === null ? $prev : $this->lastNode;
         $this->count--;
         return true;
@@ -161,8 +160,8 @@ class LinkedList implements IndexedListInterface {
      * Insert a object at the specific location.
      *
      * @param $object
-     * @param int $index
-     * @return bool
+     * @param integer $index
+     * @return boolean
      */
     public function insert($object, int $index): bool {
         if ($index === $this->count) {
@@ -172,7 +171,7 @@ class LinkedList implements IndexedListInterface {
 
         $node = $this->getOrCreateRoot(null);
 
-        for ($i=$index-1;$i-->0;) {
+        for ($i = $index - 1;$i-- > 0;) {
             $node = $node->getLink(0);
         }
 
@@ -190,9 +189,9 @@ class LinkedList implements IndexedListInterface {
     /**
      * Remove a object at a specific location.
      *
-     * @param int $index
-     * @param bool $cyclic [always true].
-     * @return bool
+     * @param integer $index
+     * @param boolean $cyclic [always true].
+     * @return boolean
      */
     public function removeAt(int $index, bool $cyclic = true): bool {
         $this->boundsCheck($index, $this->count, 0);
@@ -201,7 +200,7 @@ class LinkedList implements IndexedListInterface {
         $node     = null;
 
         if ($index !== 0) {
-            $node     = $this->getNode($index-1);
+            $node     = $this->getNode($index - 1);
             $toRemove = $node->getLink(0);
         }
 
@@ -228,8 +227,8 @@ class LinkedList implements IndexedListInterface {
      * Insert a range of objects into the List.
      *
      * @param array|ArrayAccess $range
-     * @param int $index
-     * @return bool
+     * @param integer           $index
+     * @return boolean
      */
     public function insertRange($range, int $index): bool {
         if ($this->count === $index) {
@@ -238,7 +237,7 @@ class LinkedList implements IndexedListInterface {
         $this->boundsCheck($index, $this->count, 0);
         $node = $this->getOrCreateRoot(null);
 
-        for ($i=$index-1;$i-->0;) {
+        for ($i = $index - 1;$i-- > 0;) {
             $node = $node->getLink(0);
         }
         $child = $node->getLink(0);
@@ -258,7 +257,7 @@ class LinkedList implements IndexedListInterface {
      * Add objects to the list.
      *
      * @param array|ArrayAccess $range
-     * @return bool
+     * @return boolean
      */
     public function addRange($range): bool {
         if ($this->rootNode === null) {
@@ -290,7 +289,7 @@ class LinkedList implements IndexedListInterface {
      * Get number of objects in the list.
      *
      * @alias count()
-     * @return int
+     * @return integer
      */
     public function length(): int {
         return $this->count;
@@ -299,7 +298,7 @@ class LinkedList implements IndexedListInterface {
     /**
      * Get number of objects in the list.
      *
-     * @return int
+     * @return integer
      */
     public function count(): int {
         return $this->count;
@@ -309,7 +308,7 @@ class LinkedList implements IndexedListInterface {
      * Get number of objects in the list.
      *
      * @alias count()
-     * @return int
+     * @return integer
      */
     public function size(): int {
         return $this->count;
@@ -318,7 +317,7 @@ class LinkedList implements IndexedListInterface {
     /**
      * Clear the list of all objects.
      *
-     * @return bool
+     * @return boolean
      */
     public function clear(): bool {
         $this->rootNode = null;
@@ -328,19 +327,19 @@ class LinkedList implements IndexedListInterface {
     }
 
     /**
-     * @param int $offset
-     * @param int $high
-     * @param int $low
+     * @param integer $offset
+     * @param integer $high
+     * @param integer $low
      * @throws InvalidArgumentException
      * @throws OutOfBoundsException
      */
     private function boundsCheck($offset, int $high, int $low = 0) {
         if (!is_integer($offset)) {
-            throw new InvalidArgumentException("Invalid indexer access. Argument was not of integer type.");
+            throw new InvalidArgumentException('Invalid indexer access. Argument was not of integer type.');
         }
 
         if ($offset > $high || $offset < $low) {
-            throw new OutOfBoundsException("Array out of bounds.");
+            throw new OutOfBoundsException('Array out of bounds.');
         }
     }
 
@@ -359,7 +358,7 @@ class LinkedList implements IndexedListInterface {
 
     private function getNode($index) {
         $node = $this->rootNode;
-        for ($i=$index;$i-->0;) {
+        for ($i = $index;$i-- > 0;) {
             $node = $node->getLink(0);
         }
         return $node;
@@ -379,4 +378,5 @@ class LinkedList implements IndexedListInterface {
         }
         return $out;
     }
+
 }

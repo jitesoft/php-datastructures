@@ -39,7 +39,7 @@ class IndexedList implements IndexedListInterface {
      * Add a object to the list.
      *
      * @param $object
-     * @return bool
+     * @return boolean
      */
     public function add($object): bool {
         $this->innerArray[] = $object;
@@ -51,7 +51,7 @@ class IndexedList implements IndexedListInterface {
      * Remove a object from the list.
      *
      * @param $object
-     * @return bool
+     * @return boolean
      */
     public function remove($object): bool {
         if (!in_array($object, $this->innerArray)) {
@@ -76,18 +76,17 @@ class IndexedList implements IndexedListInterface {
      * Get number of objects in the list.
      *
      * @alias count()
-     * @return int
+     * @return integer
      */
     public function length(): int {
         return $this->count;
     }
 
-
     /**
      * Get number of objects in the list.
      *
      * @alias count()
-     * @return int
+     * @return integer
      */
     public function size(): int {
         return $this->count;
@@ -96,7 +95,7 @@ class IndexedList implements IndexedListInterface {
     /**
      * Get number of objects in the list.
      *
-     * @return int
+     * @return integer
      */
     public function count(): int {
         return $this->count;
@@ -105,7 +104,7 @@ class IndexedList implements IndexedListInterface {
     /**
      * Clear the list of all objects.
      *
-     * @return bool
+     * @return boolean
      */
     public function clear(): bool {
         unset($this->innerArray);
@@ -118,14 +117,14 @@ class IndexedList implements IndexedListInterface {
      * Insert a object at the specific location.
      *
      * @param $object
-     * @param int $index
-     * @return bool
+     * @param integer $index
+     * @return boolean
      */
     public function insert($object, int $index): bool {
-        $this->boundsCheck($index, $this->count+1, 0);
+        $this->boundsCheck($index, $this->count + 1, 0);
 
         $temp = [];
-        for ($i=0;$i<$this->count;$i++) {
+        for ($i = 0;$i < $this->count;$i++) {
             if ($i === $index) {
                 $temp[] = $object;
             }
@@ -139,11 +138,11 @@ class IndexedList implements IndexedListInterface {
     /**
      * Remove a object at a specific location.
      *
-     * @param int $index
-     * @param bool $cyclic If true, the array will move all objects after the removed object to keep the array order.
-     *                      If false, the last index will be placed at the removed objects index to speed up the
-     *                      execution.
-     * @return bool
+     * @param integer $index
+     * @param boolean $cyclic If true, the array will move all objects after the removed object to keep the array order.
+     *                         If false, the last index will be placed at the removed objects index to speed up the
+     *                         execution.
+     * @return boolean
      */
     public function removeAt(int $index, bool $cyclic = false): bool {
         $this->boundsCheck($index, $this->count, 0);
@@ -162,10 +161,10 @@ class IndexedList implements IndexedListInterface {
             }
             $this->innerArray = $temporary;
         } else {
-            if ($index !== $this->count -1) {
-                $this->innerArray[$index] = $this->innerArray[$this->count-1];
+            if ($index !== $this->count - 1) {
+                $this->innerArray[$index] = $this->innerArray[$this->count - 1];
             }
-            unset($this->innerArray[$this->count-1]);
+            unset($this->innerArray[$this->count - 1]);
         }
 
         $this->count--;
@@ -176,7 +175,7 @@ class IndexedList implements IndexedListInterface {
      * Add a range of objects to the list.
      *
      * @param array|ArrayAccess $range
-     * @return bool
+     * @return boolean
      */
     public function addRange($range): bool {
         foreach ($range as $obj) {
@@ -190,12 +189,12 @@ class IndexedList implements IndexedListInterface {
      * Insert a range of objects into the List.
      *
      * @param array|ArrayAccess $range
-     * @param int $index
-     * @return bool
+     * @param integer           $index
+     * @return boolean
      */
     public function insertRange($range, int $index): bool {
         $temp = [];
-        for ($i=0;$i<$this->count;$i++) {
+        for ($i = 0;$i < $this->count;$i++) {
             if ($i === $index) {
                 foreach ($range as $o) {
                     $temp[] = $o;
@@ -208,7 +207,7 @@ class IndexedList implements IndexedListInterface {
         return true;
     }
 
-    //region ArrayAccess.
+    // region ArrayAccess.
 
     /**
      * Whether a offset exists
@@ -246,14 +245,14 @@ class IndexedList implements IndexedListInterface {
      * @param mixed $offset <p>
      * The offset to assign the value to.
      * </p>
-     * @param mixed $value <p>
-     * The value to set.
-     * </p>
+     * @param mixed $value  <p>
+     *  The value to set.
+     *  </p>
      * @return void
      * @since 5.0.0
      */
     public function offsetSet($offset, $value) {
-        $this->boundsCheck($offset, $this->count()+1, 0);
+        $this->boundsCheck($offset, $this->count() + 1, 0);
         if (!isset($this->innerArray[$offset])) {
             $this->count++;
         }
@@ -274,15 +273,14 @@ class IndexedList implements IndexedListInterface {
         $this->removeAt($offset, true);
     }
 
-    //endregion
-
+    // endregion
     private function boundsCheck($offset, int $high, int $low = 0) {
         if (!is_integer($offset)) {
-            throw new InvalidArgumentException("Invalid indexer access. Argument was not of integer type.");
+            throw new InvalidArgumentException('Invalid indexer access. Argument was not of integer type.');
         }
 
         if ($offset > $high || $offset < $low) {
-            throw new OutOfBoundsException("Array out of bounds.");
+            throw new OutOfBoundsException('Array out of bounds.');
         }
     }
 
@@ -294,4 +292,5 @@ class IndexedList implements IndexedListInterface {
     public function toArray(): array {
         return $this->innerArray;
     }
+
 }

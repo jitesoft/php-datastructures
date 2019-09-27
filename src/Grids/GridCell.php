@@ -20,11 +20,11 @@ class GridCell implements GridCellInterface {
 
     /** @var IndexedListInterface */
     private $objects;
-    /** @var int */
+    /** @var integer */
     protected $indexX;
-    /** @var int */
+    /** @var integer */
     protected $indexY;
-    /** @var int */
+    /** @var integer */
     protected $cellSize;
     /** @var Vector2D */
     protected $center;
@@ -34,9 +34,9 @@ class GridCell implements GridCellInterface {
     /**
      * GridCellInterface constructor.
      *
-     * @param int $indexX
-     * @param int $indexY
-     * @param int $cellSize
+     * @param integer  $indexX
+     * @param integer  $indexY
+     * @param integer  $cellSize
      * @param Vector2D $center
      */
     public function __construct(int $indexX, int $indexY, int $cellSize, Vector2D $center) {
@@ -46,7 +46,7 @@ class GridCell implements GridCellInterface {
         $this->indexY   = $indexY;
         $this->center   = $center;
 
-        $upperRightCorner = VectorMath::sub($this->center, ($cellSize*0.5));
+        $upperRightCorner = VectorMath::sub($this->center, ($cellSize * 0.5));
         $centToCorn       = VectorMath::sub($upperRightCorner, $this->center);
         $this->radius     = $centToCorn->length();
     }
@@ -54,7 +54,7 @@ class GridCell implements GridCellInterface {
     /**
      * Get the cells X index in its grid.
      *
-     * @return int
+     * @return integer
      */
     public function getIndexX(): int {
         return $this->indexX;
@@ -63,7 +63,7 @@ class GridCell implements GridCellInterface {
     /**
      * Get the sells Y index in its grid.
      *
-     * @return int
+     * @return integer
      */
     public function getIndexY(): int {
         return $this->indexY;
@@ -91,7 +91,7 @@ class GridCell implements GridCellInterface {
      * Add a object to the cell.
      *
      * @param $object
-     * @return bool
+     * @return boolean
      */
     public function add($object): bool {
         return $this->objects->add($object);
@@ -101,8 +101,8 @@ class GridCell implements GridCellInterface {
      * Insert a object into the cell at a given index.
      *
      * @param $object
-     * @param int $index
-     * @return bool
+     * @param integer $index
+     * @return boolean
      */
     public function insert($object, int $index): bool {
         return $this->objects->insert($object, $index);
@@ -112,7 +112,7 @@ class GridCell implements GridCellInterface {
      * Remove a object from the cell.
      *
      * @param $object
-     * @return bool
+     * @return boolean
      */
     public function remove($object): bool {
         return $this->objects->remove($object);
@@ -122,7 +122,7 @@ class GridCell implements GridCellInterface {
      * Remove a object from the cell at a given index.
      *
      * @param $index
-     * @return bool
+     * @return boolean
      */
     public function removeAt($index): bool {
         return $this->objects->removeAt($index);
@@ -131,7 +131,7 @@ class GridCell implements GridCellInterface {
     /**
      * Clear all the objects in the cell.
      *
-     * @return bool
+     * @return boolean
      */
     public function clear(): bool {
         return $this->objects->clear();

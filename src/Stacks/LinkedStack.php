@@ -19,14 +19,14 @@ class LinkedStack implements StackInterface {
     private $top = null;
     /** @var Node|null */
     private $bottom = null;
-    /** @var int */
+    /** @var integer */
     private $count = 0;
 
     /**
      * Get number of objects in the collection.
      *
      * @alias count()
-     * @return int
+     * @return integer
      */
     public function length(): int {
         return $this->count;
@@ -35,7 +35,7 @@ class LinkedStack implements StackInterface {
     /**
      * Get number of objects in the collection.
      *
-     * @return int
+     * @return integer
      */
     public function count(): int {
         return $this->count;
@@ -45,7 +45,7 @@ class LinkedStack implements StackInterface {
      * Get number of objects in the collection.
      *
      * @alias count()
-     * @return int
+     * @return integer
      */
     public function size(): int {
         return $this->count;
@@ -54,7 +54,7 @@ class LinkedStack implements StackInterface {
     /**
      * Clear the collection of all objects.
      *
-     * @return bool
+     * @return boolean
      */
     public function clear(): bool {
         $this->bottom = null;
@@ -67,7 +67,7 @@ class LinkedStack implements StackInterface {
      * Adds one or more object to the top of the stack.
      *
      * @param $objects
-     * @return bool
+     * @return boolean
      */
     public function push(...$objects): bool {
         if ($this->top === null) {
@@ -115,4 +115,5 @@ class LinkedStack implements StackInterface {
 
         return $this->top->getItem();
     }
+
 }

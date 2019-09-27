@@ -15,7 +15,7 @@ use Jitesoft\Utilities\DataStructures\Arrays;
  */
 class ArrayQueue implements QueueInterface {
 
-    /** @var int */
+    /** @var integer */
     private $count;
     /** @var array */
     private $inner;
@@ -32,7 +32,7 @@ class ArrayQueue implements QueueInterface {
      * Get number of objects in the collection.
      *
      * @alias count()
-     * @return int
+     * @return integer
      */
     public function length(): int {
         return $this->count;
@@ -41,7 +41,7 @@ class ArrayQueue implements QueueInterface {
     /**
      * Get number of objects in the collection.
      *
-     * @return int
+     * @return integer
      */
     public function count(): int {
         return $this->count;
@@ -51,7 +51,7 @@ class ArrayQueue implements QueueInterface {
      * Get number of objects in the collection.
      *
      * @alias count()
-     * @return int
+     * @return integer
      */
     public function size(): int {
         return $this->count;
@@ -60,7 +60,7 @@ class ArrayQueue implements QueueInterface {
     /**
      * Clear the collection of all objects.
      *
-     * @return bool
+     * @return boolean
      */
     public function clear(): bool {
         $this->inner = [];
@@ -72,7 +72,7 @@ class ArrayQueue implements QueueInterface {
      * Adds one or multiple objects to the end of the queue.
      *
      * @param $object - One or multiple objects to enqueue.
-     * @return bool
+     * @return boolean
      */
     public function enqueue(...$object): bool {
         foreach ($object as $o) {
@@ -105,4 +105,5 @@ class ArrayQueue implements QueueInterface {
     public function peek() {
         return $this->count === 0 ? null : $this->inner[0];
     }
+
 }

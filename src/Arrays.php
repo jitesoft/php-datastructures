@@ -29,15 +29,15 @@ final class Arrays {
     private function __construct() { }
 
     /**
-     * @param mixed $object - Object of the current Iteration.
-     * @param int $index - Index of the current iteration.
-     * @param ArrayAccess|array $list - The list which is being iterated.
+     * @param mixed             $object - Object of the current Iteration.
+     * @param integer           $index  - Index of the current iteration.
+     * @param ArrayAccess|array $list   - The list which is being iterated.
      * @return mixed
      * @throws NotImplementedException
      * @codeCoverageIgnore
      */
     private static function callback($object, int $index, $list) {
-        throw new NotImplementedException("...");
+        throw new NotImplementedException('...');
     }
 
     /**
@@ -51,7 +51,7 @@ final class Arrays {
      */
     public static function forEach($array, callable $closure): void {
         $count = count($array);
-        for ($i=0;$i<$count;$i++) {
+        for ($i = 0;$i < $count;$i++) {
             $result = $closure($array[$i], $i, $array);
             if ($result === false) {
                 return;
@@ -72,7 +72,7 @@ final class Arrays {
     public static function map($array, callable $closure) {
         $result = [];
         $count  = count($array);
-        for ($i=0;$i<$count;$i++) {
+        for ($i = 0;$i < $count;$i++) {
             $result[] = $closure($array[$i], $i, $array);
         }
         return $result;
@@ -92,7 +92,7 @@ final class Arrays {
     public static function filter($array, callable $closure) {
         $result = [];
         $count  = count($array);
-        for ($i=0;$i<$count;$i++) {
+        for ($i = 0;$i < $count;$i++) {
             if ($closure($array[$i], $i, $array) === true) {
                 $result[] = $array[$i];
             }
@@ -124,7 +124,7 @@ final class Arrays {
             return $array[0];
         }
 
-        for ($i=0;$i<$count;$i++) {
+        for ($i = 0;$i < $count;$i++) {
             if ($closure($array[$i], $i, $array)) {
                 return $array[$i];
             }
@@ -156,7 +156,7 @@ final class Arrays {
             return $array[$count - 1];
         }
 
-        for ($i=$count;$i-->0;) {
+        for ($i = $count;$i-- > 0;) {
             if ($closure($array[$i], $i, $array)) {
                 return $array[$i];
             }
@@ -164,14 +164,13 @@ final class Arrays {
         return null;
     }
 
-
     /**
      * Sorts a given array using the provided comparator callable and sorting type.
      * The sort type needs to be a class name extending the
      *
      * @param $array
      * @param callable|null $compare
-     * @param string $sortType
+     * @param string        $sortType
      * @return array
      * @throws InvalidArgumentException
      */

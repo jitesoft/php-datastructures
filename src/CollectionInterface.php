@@ -17,14 +17,14 @@ interface CollectionInterface extends Countable {
      * Get number of objects in the collection.
      *
      * @alias count()
-     * @return int
+     * @return integer
      */
     public function length(): int;
 
     /**
      * Get number of objects in the collection.
      *
-     * @return int
+     * @return integer
      */
     public function count(): int;
 
@@ -32,14 +32,15 @@ interface CollectionInterface extends Countable {
      * Get number of objects in the collection.
      *
      * @alias count()
-     * @return int
+     * @return integer
      */
     public function size(): int;
 
     /**
      * Clear the collection of all objects.
      *
-     * @return bool
+     * @return boolean
      */
     public function clear(): bool;
+
 }

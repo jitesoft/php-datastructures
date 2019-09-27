@@ -19,7 +19,7 @@ trait MapMethodsTrait {
      * Loops through the Map and passes the value, key and Map to the action for each iteration.
      * If the action returns false, it will stop the loop, i.e., as a break.
      *
-     * @param callable     $action {@see Maps::callback()}
+     * @param callable $action {@see Maps::callback()}
      */
     public function forEach(callable $action) {
         Maps::forEach($this, $action);
@@ -31,7 +31,7 @@ trait MapMethodsTrait {
      * Loops through the Map and passes the value, key and Map to the action for each iteration.
      * Value returned from the method will be added to the returned map.
      *
-     * @param callable     $action {@see Maps::callback()}
+     * @param callable $action {@see Maps::callback()}
      * @return MapInterface
      */
     public function map(callable $action) : MapInterface {
@@ -42,7 +42,7 @@ trait MapMethodsTrait {
      * Loops through the Map and applies the action to it.
      * If action returns true, the object will be added to the resulting map returned at the end of the iteration.
      *
-     * @param callable           $action {@see Maps::callback()}
+     * @param callable $action {@see Maps::callback()}
      * @return MapInterface
      */
     public function filter(callable $action) : MapInterface {

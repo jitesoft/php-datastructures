@@ -26,4 +26,5 @@ interface ListInterface extends CollectionInterface, ArrayAccess {
      * @return array
      */
     public function toArray() : array;
+
 }

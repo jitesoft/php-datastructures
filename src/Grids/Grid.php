@@ -17,15 +17,15 @@ use Jitesoft\Utilities\Math\Vector2D;
  */
 class Grid implements GridInterface {
 
-    /** @var int */
+    /** @var integer */
     protected $width;
-    /** @var int */
+    /** @var integer */
     protected $height;
-    /** @var int */
+    /** @var integer */
     protected $cellSize;
-    /** @var int */
+    /** @var integer */
     protected $cellCountX;
-    /** @var int */
+    /** @var integer */
     protected $cellCountY;
     /** @var ListInterface|GridCell[] */
     protected $cells;
@@ -45,8 +45,8 @@ class Grid implements GridInterface {
 
         $startPoint = new Vector2D(0, 0); // Upper right.
 
-        for ($x=0;$x<$this->cellCountX;$x++) {
-            for ($y=0;$y<$this->cellCountY;$y++) {
+        for ($x = 0;$x < $this->cellCountX;$x++) {
+            for ($y = 0;$y < $this->cellCountY;$y++) {
                 $this->cells->add(new GridCell($x, $y, $cellSize, $startPoint));
                 $startPoint['x'] += $cellSize;
             }
@@ -67,7 +67,7 @@ class Grid implements GridInterface {
      */
     public function clearGrid(): bool {
         $result = true;
-        for ($i=$this->cells->length();$i-->0;) {
+        for ($i = $this->cells->length();$i-- > 0;) {
             $result = ($result === false ? false : $this->cells[$i]->clear());
         }
         return $result;
@@ -84,7 +84,7 @@ class Grid implements GridInterface {
         $x = (int)$position['x'] / $this->cellSize;
         $y = (int)$position['y'] / $this->cellSize;
 
-        return $this->cells[(int)($x + ($y*$this->cellCountX))];
+        return $this->cells[(int)($x + ($y * $this->cellCountX))];
     }
 
     /**

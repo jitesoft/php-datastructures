@@ -19,7 +19,7 @@ final class QuickSort extends AbstractSort {
      * Sort a given array by using the compare callable passed as second argument.
      *
      * @param array|ArrayAccess $array
-     * @param callable $compare
+     * @param callable          $compare
      * @return array|ArrayAccess
      */
     public static function sort($array, callable $compare) {
@@ -29,7 +29,7 @@ final class QuickSort extends AbstractSort {
             $pivot      = $array[0];
             $partitions = [0 => [],1 => []];
 
-            for ($i=$len;$i-->1;) {
+            for ($i = $len;$i-- > 1;) {
                 $partitions[ ($pivot > $array[$i]) ? 0 : 1 ][] = $array[$i];
             }
 
@@ -38,4 +38,5 @@ final class QuickSort extends AbstractSort {
 
         return $array;
     }
+
 }

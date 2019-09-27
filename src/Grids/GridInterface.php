@@ -17,32 +17,32 @@ interface GridInterface {
     /**
      * GridInterface constructor.
      *
-     * @param int $sizeX Horizontal size in full units.
-     * @param int $sizeY Vertical size in full units.
-     * @param int $cellSize Size of the cells in full units.
+     * @param integer $sizeX    Horizontal size in full units.
+     * @param integer $sizeY    Vertical size in full units.
+     * @param integer $cellSize Size of the cells in full units.
      */
     public function __construct(int $sizeX, int $sizeY, int $cellSize);
 
     /**
      * Insert a object into a cell or multiple cells.
      *
-     * @param mixed $object Object to insert.
+     * @param mixed    $object   Object to insert.
      * @param Vector2D $position
-     * @return bool
+     * @return boolean
      */
     public function addToCell($object, Vector2D $position) : bool;
 
     /**
      * Remove all items from all grid cells.
      *
-     * @return bool
+     * @return boolean
      */
     public function clearGrid() : bool;
 
     /**
      * Get a single sell by position or index.
      *
-     * @param int|Vector2D $position Position either as a index or as a vector position.
+     * @param integer|Vector2D $position Position either as a index or as a vector position.
      * @return GridCellInterface|null
      */
     public function getCell($position) : ?GridCellInterface;
@@ -50,28 +50,29 @@ interface GridInterface {
     /**
      * Get the size of a single cell.
      *
-     * @return int
+     * @return integer
      */
     public function getCellSize() : int;
 
     /**
      * Get the width in units of the grid.
      *
-     * @return int
+     * @return integer
      */
     public function getGridWidth() : int;
 
     /**
      * Get the height in units of the grid.
      *
-     * @return int
+     * @return integer
      */
     public function getGridHeight() : int;
 
     /**
      * Get the cell count as a int.
      *
-     * @return int
+     * @return integer
      */
     public function getCellCount() : int;
+
 }

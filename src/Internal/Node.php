@@ -22,29 +22,29 @@ class Node {
     /**
      * Node constructor.
      * @param     $object
-     * @param int $links
+     * @param integer $links
      * @internal
      */
     public function __construct($object, int $links) {
-        for ($i=0;$i<$links;$i++) {
+        for ($i = 0;$i < $links;$i++) {
             $this->links[] = null;
         }
         $this->object = $object;
     }
 
     /**
-     * @param int $index
+     * @param integer $index
      */
     private function boundsCheck(int $index) {
         $linkCount = count($this->links);
-        if ($index < 0 || $index > $linkCount-1) {
-            $message = sprintf("The node only have %d link%s.", $linkCount, ($linkCount === 1 ? "" : "s"));
+        if ($index < 0 || $index > $linkCount - 1) {
+            $message = sprintf('The node only have %d link%s.', $linkCount, ($linkCount === 1 ? '' : 's'));
             throw new InvalidArgumentException($message);
         }
     }
 
     /**
-     * @param int $link
+     * @param integer $link
      * @return Node|null
      * @throws InvalidArgumentException
      */
@@ -68,11 +68,12 @@ class Node {
     }
 
     /**
-     * @param int $link
+     * @param integer   $link
      * @param Node|null $node
      */
     public function setLink(int $link, ?Node $node = null) {
         $this->boundsCheck($link);
         $this->links[$link] = $node;
     }
+
 }

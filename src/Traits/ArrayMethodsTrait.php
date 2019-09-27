@@ -58,7 +58,7 @@ trait ArrayMethodsTrait {
 
     /**
      * @param callable|null $compare
-     * @param string $sortType
+     * @param string        $sortType
      * @return static
      */
     public function sort(?callable $compare = null, string $sortType = Arrays::QUICK_SORT) {
@@ -66,4 +66,5 @@ trait ArrayMethodsTrait {
         $class = get_class($this);
         return new $class($out);
     }
+
 }

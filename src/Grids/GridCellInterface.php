@@ -17,9 +17,9 @@ interface GridCellInterface {
     /**
      * GridCellInterface constructor.
      *
-     * @param int $indexX
-     * @param int $indexY
-     * @param int $cellSize
+     * @param integer  $indexX
+     * @param integer  $indexY
+     * @param integer  $cellSize
      * @param Vector2D $center
      */
     public function __construct(int $indexX, int $indexY, int $cellSize, Vector2D $center);
@@ -27,14 +27,14 @@ interface GridCellInterface {
     /**
      * Get the cells X index in its grid.
      *
-     * @return int
+     * @return integer
      */
     public function getIndexX() : int;
 
     /**
      * Get the sells Y index in its grid.
      *
-     * @return int
+     * @return integer
      */
     public function getIndexY() : int;
 
@@ -56,7 +56,7 @@ interface GridCellInterface {
      * Add a object to the cell.
      *
      * @param $object
-     * @return bool
+     * @return boolean
      */
     public function add($object) : bool;
 
@@ -64,8 +64,8 @@ interface GridCellInterface {
      * Insert a object into the cell at a given index.
      *
      * @param $object
-     * @param int $index
-     * @return bool
+     * @param integer $index
+     * @return boolean
      */
     public function insert($object, int $index) : bool;
 
@@ -73,7 +73,7 @@ interface GridCellInterface {
      * Remove a object from the cell.
      *
      * @param $object
-     * @return bool
+     * @return boolean
      */
     public function remove($object) : bool;
 
@@ -81,14 +81,14 @@ interface GridCellInterface {
      * Remove a object from the cell at a given index.
      *
      * @param $index
-     * @return bool
+     * @return boolean
      */
     public function removeAt($index) : bool;
 
     /**
      * Clear all the objects in the cell.
      *
-     * @return bool
+     * @return boolean
      */
     public function clear() : bool;
 
@@ -105,4 +105,5 @@ interface GridCellInterface {
      * @return Vector2D
      */
     public function getCenter() : Vector2D;
+
 }

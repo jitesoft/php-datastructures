@@ -23,7 +23,7 @@ class SimpleMap implements MapInterface {
 
     /** @var array */
     private $innerMap;
-    /** @var int */
+    /** @var integer */
     private $count;
 
     /**
@@ -40,7 +40,7 @@ class SimpleMap implements MapInterface {
      * Get number of objects in the collection.
      *
      * @alias count()
-     * @return int
+     * @return integer
      */
     public function length(): int {
         return $this->count();
@@ -49,7 +49,7 @@ class SimpleMap implements MapInterface {
     /**
      * Get number of objects in the collection.
      *
-     * @return int
+     * @return integer
      */
     public function count(): int {
         return $this->count;
@@ -59,7 +59,7 @@ class SimpleMap implements MapInterface {
      * Get number of objects in the collection.
      *
      * @alias count()
-     * @return int
+     * @return integer
      */
     public function size(): int {
         return $this->count();
@@ -68,7 +68,7 @@ class SimpleMap implements MapInterface {
     /**
      * Clear the collection of all objects.
      *
-     * @return bool
+     * @return boolean
      */
     public function clear(): bool {
         $this->count    = 0;
@@ -111,9 +111,9 @@ class SimpleMap implements MapInterface {
      * @param mixed $offset <p>
      * The offset to assign the value to.
      * </p>
-     * @param mixed $value <p>
-     * The value to set.
-     * </p>
+     * @param mixed $value  <p>
+     *  The value to set.
+     *  </p>
      * @return void
      * @since 5.0.0
      */
@@ -133,7 +133,6 @@ class SimpleMap implements MapInterface {
     public function offsetUnset($offset) {
         $this->unset($offset);
     }
-
 
     /**
      * Get the value of a given key.
@@ -158,8 +157,8 @@ class SimpleMap implements MapInterface {
      * If the key already exists a InvalidArgumentException will be thrown.
      *
      * @param string $key
-     * @param mixed $value
-     * @return bool
+     * @param mixed  $value
+     * @return boolean
      * @throws InvalidArgumentException
      */
     public function add(string $key, $value): bool {
@@ -180,8 +179,8 @@ class SimpleMap implements MapInterface {
      * If the key already exist the value will be replaced with passed value.
      *
      * @param string $key
-     * @param mixed $value
-     * @return bool
+     * @param mixed  $value
+     * @return boolean
      */
     public function set(string $key, $value): bool {
         $this->innerMap[$key] = $value;
@@ -193,7 +192,7 @@ class SimpleMap implements MapInterface {
      * Check if a key exists in the map.
      *
      * @param string $key
-     * @return bool
+     * @return boolean
      */
     public function has(string $key): bool {
         return array_key_exists($key, $this->innerMap);
@@ -230,11 +229,11 @@ class SimpleMap implements MapInterface {
      * Removes a given key-value pair.
      *
      * @param string $key
-     * @return bool
+     * @return boolean
      */
     public function unset(string $key): bool {
         unset($this->innerMap[$key]);
-        $result =  !$this->has($key);
+        $result = !$this->has($key);
         if ($result) {
             $this->count--;
         }
@@ -251,4 +250,5 @@ class SimpleMap implements MapInterface {
     public function getIterator() {
         return new ArrayIterator($this->innerMap);
     }
+
 }

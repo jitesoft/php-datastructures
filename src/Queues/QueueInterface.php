@@ -17,7 +17,7 @@ interface QueueInterface extends CollectionInterface {
      * Adds one or multiple objects to the end of the queue.
      *
      * @param $object - One or multiple objects to enqueue.
-     * @return bool
+     * @return boolean
      */
     public function enqueue(...$object): bool;
 
@@ -34,4 +34,5 @@ interface QueueInterface extends CollectionInterface {
      * @return mixed
      */
     public function peek();
+
 }
