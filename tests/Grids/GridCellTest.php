@@ -19,7 +19,7 @@ class GridCellTest extends TestCase {
     /** @var GridCellInterface */
     protected $cell;
 
-    public function setUp() {
+    public function setUp(): void  {
         parent::setUp();
         $this->cell = new GridCell(3, 4, 5, new Vector2D(20, 20));
     }
@@ -116,7 +116,7 @@ class GridCellTest extends TestCase {
     }
 
     public function testGetRadius() {
-        $this->assertEquals(3.5355, $this->cell->getRadius(), "", 4);
+        $this->assertEqualsWithDelta(3.5355, $this->cell->getRadius(), 4, "");
     }
 
     public function testGetCenter() {

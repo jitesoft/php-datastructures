@@ -18,7 +18,7 @@ class GridTest extends TestCase {
     /** @var Grid */
     protected $grid;
 
-    public function setUp() {
+    public function setUp(): void  {
         parent::setUp();
 
         $this->grid = new Grid(1024,512,50);

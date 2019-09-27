@@ -18,7 +18,7 @@ class ArrayQueueTest extends TestCase {
     use QueueTestTrait;
 
 
-    public function setUp() {
+    public function setUp(): void  {
         parent::setUp();
 
         $this->implementation = new ArrayQueue();

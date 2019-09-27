@@ -18,7 +18,7 @@ use PHPUnit\Framework\TestCase;
 class LinkedStackTest extends TestCase {
     use StackTestTrait;
 
-    public function setUp() {
+    public function setUp(): void  {
         parent::setUp();
         $this->implementation = new LinkedStack();
     }

@@ -20,7 +20,7 @@ class LinkedListTest extends TestCase {
     use IndexedListTestTrait;
     use ArrayMethodsTestTrait;
 
-    public function setUp() {
+    public function setUp(): void  {
         parent::setUp();
 
         $this->implementation = new LinkedList();

@@ -17,7 +17,7 @@ use PHPUnit\Framework\TestCase;
 class ArrayStackTest extends TestCase {
     use StackTestTrait;
 
-    protected function setUp() {
+    protected function setUp(): void  {
         parent::setUp();
 
         $this->implementation = new ArrayStack();

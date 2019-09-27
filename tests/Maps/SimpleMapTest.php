@@ -17,7 +17,7 @@ class SimpleMapTest extends TestCase {
     use MapTestTrait;
     use MapMethodsTestTrait;
 
-    protected function setUp() {
+    protected function setUp(): void  {
         parent::setUp();
 
         $this->implementation = new SimpleMap();
