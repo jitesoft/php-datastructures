@@ -6,6 +6,7 @@
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 namespace Jitesoft\Utilities\DataStructures\Queues;
 
+use Jitesoft\Exceptions\Logic\InvalidArgumentException;
 use Jitesoft\Utilities\DataStructures\Internal\Node;
 
 /**
@@ -33,7 +34,7 @@ class LinkedQueue implements QueueInterface {
     /**
      * Get number of objects in the collection.
      *
-     * @alias count()
+     * @alias count
      * @return integer
      */
     public function length(): int {
@@ -52,7 +53,7 @@ class LinkedQueue implements QueueInterface {
     /**
      * Get number of objects in the collection.
      *
-     * @alias count()
+     * @alias count
      * @return integer
      */
     public function size(): int {
@@ -74,8 +75,9 @@ class LinkedQueue implements QueueInterface {
     /**
      * Adds one or multiple objects to the end of the queue.
      *
-     * @param $object - One or multiple objects to enqueue.
+     * @param array|mixed ...$object One or multiple objects to enqueue.
      * @return boolean
+     * @throws InvalidArgumentException Should not happen. Exception is deprecated and will not be thrown in future versions.
      */
     public function enqueue(...$object): bool {
         if ($this->first === null) {
@@ -100,6 +102,7 @@ class LinkedQueue implements QueueInterface {
      * Returns the first object and removes it from the queue.
      *
      * @return mixed
+     * @throws InvalidArgumentException Should not happen. Exception is deprecated and will not be thrown in future versions.
      */
     public function dequeue() {
         if ($this->count <= 0) {

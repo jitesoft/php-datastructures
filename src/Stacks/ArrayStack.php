@@ -18,6 +18,9 @@ class ArrayStack implements StackInterface {
     /** @var integer */
     private $count;
 
+    /**
+     * ArrayStack constructor.
+     */
     public function __construct() {
         $this->inner = [];
         $this->count = 0;
@@ -26,7 +29,7 @@ class ArrayStack implements StackInterface {
     /**
      * Get number of objects in the collection.
      *
-     * @alias count()
+     * @alias count
      * @return integer
      */
     public function length(): int {
@@ -45,7 +48,7 @@ class ArrayStack implements StackInterface {
     /**
      * Get number of objects in the collection.
      *
-     * @alias count()
+     * @alias count
      * @return integer
      */
     public function size(): int {
@@ -66,7 +69,7 @@ class ArrayStack implements StackInterface {
     /**
      * Adds one or more object to the top of the stack.
      *
-     * @param $objects
+     * @param array|mixed ...$objects Objects to push onto the stack.
      * @return boolean
      */
     public function push(...$objects): bool {

@@ -20,8 +20,8 @@ abstract class AbstractSort {
     /**
      * Sort a given array by using the compare callable passed as second argument.
      *
-     * @param array|ArrayAccess $array
-     * @param callable          $compare
+     * @param array|ArrayAccess $array   Array to sort.
+     * @param callable          $compare Comparator function.
      * @return array|ArrayAccess
      */
     public abstract static function sort($array, callable $compare);

@@ -6,6 +6,8 @@
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 namespace Jitesoft\Utilities\DataStructures\Grids;
 
+use Jitesoft\Exceptions\Logic\InvalidArgumentException;
+use Jitesoft\Exceptions\Logic\OutOfBoundsException;
 use Jitesoft\Utilities\DataStructures\Lists\IndexedList;
 use Jitesoft\Utilities\DataStructures\Lists\IndexedListInterface;
 use Jitesoft\Utilities\Math\Vector2D;
@@ -34,18 +36,20 @@ class GridCell implements GridCellInterface {
     /**
      * GridCellInterface constructor.
      *
-     * @param integer  $indexX
-     * @param integer  $indexY
-     * @param integer  $cellSize
-     * @param Vector2D $center
+     * @param integer  $indexX   Maximum X.
+     * @param integer  $indexY   Maximum Y.
+     * @param integer  $cellSize Size of each cell.
+     * @param Vector2D $center   Center cell.
      */
-    public function __construct(int $indexX, int $indexY, int $cellSize, Vector2D $center) {
-        $this->objects  = new IndexedList();
-        $this->cellSize = $cellSize;
-        $this->indexX   = $indexX;
-        $this->indexY   = $indexY;
-        $this->center   = $center;
-
+    public function __construct(int $indexX,
+                                int $indexY,
+                                int $cellSize,
+                                Vector2D $center) {
+        $this->objects    = new IndexedList();
+        $this->cellSize   = $cellSize;
+        $this->indexX     = $indexX;
+        $this->indexY     = $indexY;
+        $this->center     = $center;
         $upperRightCorner = VectorMath::sub($this->center, ($cellSize * 0.5));
         $centToCorn       = VectorMath::sub($upperRightCorner, $this->center);
         $this->radius     = $centToCorn->length();
@@ -90,7 +94,7 @@ class GridCell implements GridCellInterface {
     /**
      * Add a object to the cell.
      *
-     * @param $object
+     * @param mixed $object Object to add.
      * @return boolean
      */
     public function add($object): bool {
@@ -100,9 +104,11 @@ class GridCell implements GridCellInterface {
     /**
      * Insert a object into the cell at a given index.
      *
-     * @param $object
-     * @param integer $index
+     * @param mixed   $object Object to insert.
+     * @param integer $index  Index to insert object at.
      * @return boolean
+     * @throws InvalidArgumentException Deprecated.
+     * @throws OutOfBoundsException     On out of bounds error.
      */
     public function insert($object, int $index): bool {
         return $this->objects->insert($object, $index);
@@ -111,7 +117,7 @@ class GridCell implements GridCellInterface {
     /**
      * Remove a object from the cell.
      *
-     * @param $object
+     * @param mixed $object Object to remove.
      * @return boolean
      */
     public function remove($object): bool {
@@ -121,10 +127,12 @@ class GridCell implements GridCellInterface {
     /**
      * Remove a object from the cell at a given index.
      *
-     * @param $index
+     * @param integer $index Index to remove.
      * @return boolean
+     * @throws InvalidArgumentException Deprecated.
+     * @throws OutOfBoundsException     On out of bounds error.
      */
-    public function removeAt($index): bool {
+    public function removeAt(int $index): bool {
         return $this->objects->removeAt($index);
     }
 

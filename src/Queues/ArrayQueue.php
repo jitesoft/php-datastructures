@@ -71,7 +71,7 @@ class ArrayQueue implements QueueInterface {
     /**
      * Adds one or multiple objects to the end of the queue.
      *
-     * @param $object - One or multiple objects to enqueue.
+     * @param array|mixed ...$object One or multiple objects to enqueue.
      * @return boolean
      */
     public function enqueue(...$object): bool {

@@ -27,7 +27,7 @@ interface GridInterface {
      * Insert a object into a cell or multiple cells.
      *
      * @param mixed    $object   Object to insert.
-     * @param Vector2D $position
+     * @param Vector2D $position Position to add object to.
      * @return boolean
      */
     public function addToCell($object, Vector2D $position) : bool;

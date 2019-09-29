@@ -15,12 +15,6 @@ use Jitesoft\Utilities\DataStructures\CollectionInterface;
 interface ListInterface extends CollectionInterface, ArrayAccess {
 
     /**
-     * ListInterface constructor.
-     * @param ArrayAccess|array $from
-     */
-    public function __construct($from = []);
-
-    /**
      * Convert the list object into a native php array.
      *
      * @return array

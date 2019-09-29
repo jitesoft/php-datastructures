@@ -20,15 +20,16 @@ use Jitesoft\Exceptions\Logic\OutOfBoundsException;
  */
 class IndexedList implements IndexedListInterface {
     use ArrayMethodsTrait;
-
+    /** @var array */
     private $innerArray = [];
-    private $count      = 0;
+    /** @var integer */
+    private $count = 0;
 
     /**
      * ListInterface constructor.
-     * @param array $from
+     * @param array $from Array to create list from.
      */
-    public function __construct($from = []) {
+    public function __construct(array $from = []) {
         foreach ($from as $item) {
             $this->innerArray[] = $item;
         }
@@ -38,7 +39,7 @@ class IndexedList implements IndexedListInterface {
     /**
      * Add a object to the list.
      *
-     * @param $object
+     * @param mixed $object Object to add.
      * @return boolean
      */
     public function add($object): bool {
@@ -50,7 +51,7 @@ class IndexedList implements IndexedListInterface {
     /**
      * Remove a object from the list.
      *
-     * @param $object
+     * @param mixed $object Object to remove.
      * @return boolean
      */
     public function remove($object): bool {
@@ -75,7 +76,7 @@ class IndexedList implements IndexedListInterface {
     /**
      * Get number of objects in the list.
      *
-     * @alias count()
+     * @alias count
      * @return integer
      */
     public function length(): int {
@@ -85,7 +86,7 @@ class IndexedList implements IndexedListInterface {
     /**
      * Get number of objects in the list.
      *
-     * @alias count()
+     * @alias count
      * @return integer
      */
     public function size(): int {
@@ -116,9 +117,11 @@ class IndexedList implements IndexedListInterface {
     /**
      * Insert a object at the specific location.
      *
-     * @param $object
-     * @param integer $index
+     * @param mixed   $object Object to insert.
+     * @param integer $index  Index to insert at.
      * @return boolean
+     * @throws InvalidArgumentException Deprecated.
+     * @throws OutOfBoundsException     On out-of-bounds error.
      */
     public function insert($object, int $index): bool {
         $this->boundsCheck($index, $this->count + 1, 0);
@@ -138,11 +141,13 @@ class IndexedList implements IndexedListInterface {
     /**
      * Remove a object at a specific location.
      *
-     * @param integer $index
+     * @param integer $index  Index to remove.
      * @param boolean $cyclic If true, the array will move all objects after the removed object to keep the array order.
-     *                         If false, the last index will be placed at the removed objects index to speed up the
-     *                         execution.
+     *                        If false, the last index will be placed at the removed objects index to speed up the
+     *                        execution.
      * @return boolean
+     * @throws InvalidArgumentException Deprecated exception.
+     * @throws OutOfBoundsException     In case index is out of bounds.
      */
     public function removeAt(int $index, bool $cyclic = false): bool {
         $this->boundsCheck($index, $this->count, 0);
@@ -174,7 +179,7 @@ class IndexedList implements IndexedListInterface {
     /**
      * Add a range of objects to the list.
      *
-     * @param array|ArrayAccess $range
+     * @param array|ArrayAccess $range Range to add.
      * @return boolean
      */
     public function addRange($range): bool {
@@ -188,8 +193,8 @@ class IndexedList implements IndexedListInterface {
     /**
      * Insert a range of objects into the List.
      *
-     * @param array|ArrayAccess $range
-     * @param integer           $index
+     * @param array|ArrayAccess $range Range to add.
+     * @param integer           $index Index to start insertion at.
      * @return boolean
      */
     public function insertRange($range, int $index): bool {
@@ -207,17 +212,11 @@ class IndexedList implements IndexedListInterface {
         return true;
     }
 
-    // region ArrayAccess.
-
     /**
      * Whether a offset exists
      * @link http://php.net/manual/en/arrayaccess.offsetexists.php
-     * @param mixed $offset <p>
-     * An offset to check for.
-     * </p>
+     * @param mixed $offset An offset to check for.
      * @return boolean true on success or false on failure.
-     * </p>
-     * <p>
      * The return value will be casted to boolean if non-boolean was returned.
      * @since 5.0.0
      */
@@ -227,11 +226,12 @@ class IndexedList implements IndexedListInterface {
 
     /**
      * Offset to retrieve
-     * @link http://php.net/manual/en/arrayaccess.offsetget.php
-     * @param mixed $offset <p>
-     * The offset to retrieve.
-     * </p>
+     *
+     * @link  http://php.net/manual/en/arrayaccess.offsetget.php
+     * @param mixed $offset The offset to retrieve.
      * @return mixed Can return all value types.
+     * @throws InvalidArgumentException Deprecated exception.
+     * @throws OutOfBoundsException     If index is out of bounds.
      * @since 5.0.0
      */
     public function offsetGet($offset) {
@@ -241,14 +241,13 @@ class IndexedList implements IndexedListInterface {
 
     /**
      * Offset to set
-     * @link http://php.net/manual/en/arrayaccess.offsetset.php
-     * @param mixed $offset <p>
-     * The offset to assign the value to.
-     * </p>
-     * @param mixed $value  <p>
-     *  The value to set.
-     *  </p>
+     *
+     * @link  http://php.net/manual/en/arrayaccess.offsetset.php
+     * @param mixed $offset The offset to assign the value to.
+     * @param mixed $value  The value to set.
      * @return void
+     * @throws InvalidArgumentException Deprecated exception.
+     * @throws OutOfBoundsException     If index is out of bounds.
      * @since 5.0.0
      */
     public function offsetSet($offset, $value) {
@@ -262,21 +261,33 @@ class IndexedList implements IndexedListInterface {
 
     /**
      * Offset to unset
-     * @link http://php.net/manual/en/arrayaccess.offsetunset.php
-     * @param mixed $offset <p>
-     * The offset to unset.
-     * </p>
+     *
+     * @link  http://php.net/manual/en/arrayaccess.offsetunset.php
+     * @param mixed $offset The offset to unset.
      * @return void
+     * @throws InvalidArgumentException Deprecated exception.
+     * @throws OutOfBoundsException     If index is out of range.
      * @since 5.0.0
      */
     public function offsetUnset($offset) {
         $this->removeAt($offset, true);
     }
 
-    // endregion
-    private function boundsCheck($offset, int $high, int $low = 0) {
+    /**
+     * Utility method to ease bounds checking.
+     *
+     * @param integer $offset Offset to check.
+     * @param integer $high   High limit.
+     * @param integer $low    Low limit.
+     * @throws InvalidArgumentException Deprecated exception.
+     * @throws OutOfBoundsException     In case offset is out of range.
+     * @return void
+     */
+    private function boundsCheck(int $offset, int $high, int $low = 0) {
         if (!is_integer($offset)) {
-            throw new InvalidArgumentException('Invalid indexer access. Argument was not of integer type.');
+            throw new InvalidArgumentException(
+                'Invalid indexer access. Argument was not of integer type.'
+            );
         }
 
         if ($offset > $high || $offset < $low) {

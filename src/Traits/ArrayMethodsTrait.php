@@ -6,6 +6,7 @@
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 namespace Jitesoft\Utilities\DataStructures\Traits;
 
+use Jitesoft\Exceptions\Logic\InvalidArgumentException;
 use Jitesoft\Utilities\DataStructures\Arrays;
 
 /**
@@ -14,7 +15,7 @@ use Jitesoft\Utilities\DataStructures\Arrays;
 trait ArrayMethodsTrait {
 
     /**
-     * @param callable $closure
+     * @param callable $closure Callback to invoke for each object.
      * @return static
      */
     public function map(callable $closure) {
@@ -24,14 +25,15 @@ trait ArrayMethodsTrait {
     }
 
     /**
-     * @param callable $closure
+     * @param callable $closure Callback to invoke on each object.
+     * @return void
      */
     public function forEach(callable $closure): void {
         Arrays::forEach($this->toArray(), $closure);
     }
 
     /**
-     * @param callable $closure
+     * @param callable $closure Callback to use for test for each object.
      * @return static
      */
     public function filter(callable $closure) {
@@ -41,7 +43,7 @@ trait ArrayMethodsTrait {
     }
 
     /**
-     * @param callable|null $closure
+     * @param callable|null $closure Callback to use for test for each object.
      * @return mixed
      */
     public function first(?callable $closure = null) {
@@ -49,7 +51,7 @@ trait ArrayMethodsTrait {
     }
 
     /**
-     * @param callable|null $closure
+     * @param callable|null $closure Callback to use for test for each object.
      * @return mixed
      */
     public function last(?callable $closure = null) {
@@ -57,11 +59,13 @@ trait ArrayMethodsTrait {
     }
 
     /**
-     * @param callable|null $compare
-     * @param string        $sortType
+     * @param callable|null $compare  Callback to use for test for each truple.
+     * @param string        $sortType Sorting algorithm.
      * @return static
+     * @throws InvalidArgumentException In case value is not an array.
      */
-    public function sort(?callable $compare = null, string $sortType = Arrays::QUICK_SORT) {
+    public function sort(?callable $compare = null,
+                        string $sortType = Arrays::QUICK_SORT) {
         $out   = Arrays::sort($this->toArray(), $compare, $sortType);
         $class = get_class($this);
         return new $class($out);

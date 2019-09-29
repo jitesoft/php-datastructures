@@ -18,7 +18,7 @@ interface IndexedListInterface extends ListInterface {
     /**
      * Add a object to the list.
      *
-     * @param $object
+     * @param mixed $object Object to add.
      * @return boolean
      */
     public function add($object): bool;
@@ -26,7 +26,7 @@ interface IndexedListInterface extends ListInterface {
     /**
      * Remove a object from the list.
      *
-     * @param $object
+     * @param mixed $object Object to remove.
      * @return boolean
      */
     public function remove($object): bool;
@@ -34,8 +34,8 @@ interface IndexedListInterface extends ListInterface {
     /**
      * Insert a object at the specific location.
      *
-     * @param $object
-     * @param integer $index
+     * @param mixed   $object Object to insert.
+     * @param integer $index  Index to insert at.
      * @return boolean
      */
     public function insert($object, int $index): bool;
@@ -43,7 +43,7 @@ interface IndexedListInterface extends ListInterface {
     /**
      * Remove a object at a specific location.
      *
-     * @param integer $index
+     * @param integer $index  Index to remove at.
      * @param boolean $cyclic If true, the array will move all objects after the removed object to keep the array order.
      *                        If false, the last index will be placed at the removed objects index to speed up the
      *                        execution.
@@ -54,8 +54,8 @@ interface IndexedListInterface extends ListInterface {
     /**
      * Insert a range of objects into the List.
      *
-     * @param array|ArrayAccess $range
-     * @param integer           $index
+     * @param array|ArrayAccess $range Objects to insert.
+     * @param integer           $index Index to start insertion at.
      * @return boolean
      */
     public function insertRange($range, int $index): bool;
@@ -63,7 +63,7 @@ interface IndexedListInterface extends ListInterface {
     /**
      * Add objects to the list.
      *
-     * @param array|ArrayAccess $range
+     * @param array|ArrayAccess $range Objects to add.
      * @return boolean
      */
     public function addRange($range): bool;

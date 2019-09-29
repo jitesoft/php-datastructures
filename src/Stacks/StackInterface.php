@@ -16,7 +16,7 @@ interface StackInterface extends CollectionInterface {
     /**
      * Adds one or more object to the top of the stack.
      *
-     * @param $objects
+     * @param array|mixed ...$objects Objects to add to stack.
      * @return boolean
      */
     public function push(...$objects): bool;

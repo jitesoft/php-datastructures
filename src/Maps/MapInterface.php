@@ -12,7 +12,9 @@ use Jitesoft\Utilities\DataStructures\Lists\IndexedListInterface;
 use ArrayAccess;
 use IteratorAggregate;
 
-interface MapInterface extends CollectionInterface, ArrayAccess, IteratorAggregate {
+interface MapInterface extends CollectionInterface,
+                               ArrayAccess,
+                               IteratorAggregate {
 
     /**
      * MapInterface constructor.
@@ -25,9 +27,9 @@ interface MapInterface extends CollectionInterface, ArrayAccess, IteratorAggrega
      * Get the value of a given key.
      * If the key does not exist, a InvalidArgumentException will be thrown.
      *
-     * @param string $key
+     * @param string $key Key to fetch.
      * @return mixed
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException On out of bounds error. Deprecated and will change to OutOfBoundsException in next major release.
      */
     public function get(string $key);
 
@@ -35,10 +37,10 @@ interface MapInterface extends CollectionInterface, ArrayAccess, IteratorAggrega
      * Set a given keys value.
      * If the key already exists a InvalidArgumentException will be thrown.
      *
-     * @param string $key
-     * @param mixed  $value
+     * @param string $key   Key to add.
+     * @param mixed  $value Value to add.
      * @return boolean
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException Thrown if there is already a key with given name.
      */
     public function add(string $key, $value): bool;
 
@@ -47,8 +49,8 @@ interface MapInterface extends CollectionInterface, ArrayAccess, IteratorAggrega
      * This function can be used safely to add/set values without raising exceptions.
      * If the key already exist the value will be replaced with passed value.
      *
-     * @param string $key
-     * @param mixed  $value
+     * @param string $key   Key to set.
+     * @param mixed  $value Value to set.
      * @return boolean
      */
     public function set(string $key, $value): bool;
@@ -56,7 +58,7 @@ interface MapInterface extends CollectionInterface, ArrayAccess, IteratorAggrega
     /**
      * Check if a key exists in the map.
      *
-     * @param string $key
+     * @param string $key Key to check for.
      * @return boolean
      */
     public function has(string $key): bool;
@@ -85,7 +87,7 @@ interface MapInterface extends CollectionInterface, ArrayAccess, IteratorAggrega
     /**
      * Removes a given key-value pair.
      *
-     * @param string $key
+     * @param string $key Key to unset.
      * @return boolean
      */
     public function unset(string $key): bool;

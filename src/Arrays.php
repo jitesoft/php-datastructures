@@ -26,19 +26,23 @@ final class Arrays {
     public const QUICK_SORT  = QuickSort::class;
     public const NATIVE_SORT = NativeSort::class;
 
+    /**
+     * Arrays constructor.
+     */
     private function __construct() { }
 
+//@codingStandardsIgnoreStart
     /**
-     * @param mixed             $object - Object of the current Iteration.
-     * @param integer           $index  - Index of the current iteration.
-     * @param ArrayAccess|array $list   - The list which is being iterated.
+     * @param mixed             $object Object of the current Iteration.
+     * @param integer           $index  Index of the current iteration.
+     * @param ArrayAccess|array $list   The list which is being iterated.
      * @return mixed
-     * @throws NotImplementedException
-     * @codeCoverageIgnore
+     * @throws NotImplementedException Method is not implemented as it should never be used.
      */
     private static function callback($object, int $index, $list) {
         throw new NotImplementedException('...');
     }
+// @codingStandardsIgnoreEnd
 
     /**
      * Foreach method for a ListInterface implementation.
@@ -46,8 +50,10 @@ final class Arrays {
      * Loops through each object in the List and applies the closure on it.
      * If closure returns false, it will stop the iteration and end the method, i.e, used as a break.
      *
-     * @param ArrayAccess|array $array
-     * @param callable          $closure {@see Arrays::callback()}
+     * @param ArrayAccess|array $array   Array to run foreach on.
+     * @param callable          $closure Closure to run on each item.
+     * @see Arrays::callback()
+     * @return void
      */
     public static function forEach($array, callable $closure): void {
         $count = count($array);
@@ -65,9 +71,10 @@ final class Arrays {
      * Loops through each object in the List and applies the closure on it.
      * Any value returned from the closure will end up in the result array returned when iteration is complete.
      *
-     * @param ArrayAccess|array $array
-     * @param callable          $closure {@see Arrays::callback()}
+     * @param ArrayAccess|array $array   Array to map.
+     * @param callable          $closure Closure to run on each item.
      * @return array
+     * @see Arrays::callback()
      */
     public static function map($array, callable $closure) {
         $result = [];
@@ -85,9 +92,10 @@ final class Arrays {
      * If closure returns true, the object will be added to the resulting array returned at the end of the iteration.
      * If closure returns false, the object will not be added.
      *
-     * @param ArrayAccess|array $array
-     * @param callable          $closure {@see Arrays::callback()}
+     * @param ArrayAccess|array $array   Array to filter.
+     * @param callable          $closure Closure to invoke on each item.
      * @return array
+     * @see Arrays::callback()
      */
     public static function filter($array, callable $closure) {
         $result = [];
@@ -114,9 +122,10 @@ final class Arrays {
      * 2) Without closure:
      * First object in the List will be returned.
      *
-     * @param ArrayAccess|array $array
-     * @param callable|null     $closure {@see Arrays::callback()}
+     * @param ArrayAccess|array $array   Array to find first on.
+     * @param callable|null     $closure Optional closure.
      * @return mixed|null
+     * @see Arrays::callback()
      */
     public static function first($array, ?callable $closure = null) {
         $count = count($array);
@@ -146,9 +155,10 @@ final class Arrays {
      * 2) Without closure:
      * Last object in the List will be returned.
      *
-     * @param ArrayAccess|array $array
-     * @param callable|null     $closure $closure {@see Arrays::callback()}
+     * @param ArrayAccess|array $array   Array to find last on.
+     * @param callable|null     $closure Optional closure.
      * @return mixed|null
+     * @see Arrays::callback()
      */
     public static function last($array, ?callable $closure = null) {
         $count = count($array);
@@ -168,16 +178,21 @@ final class Arrays {
      * Sorts a given array using the provided comparator callable and sorting type.
      * The sort type needs to be a class name extending the
      *
-     * @param $array
-     * @param callable|null $compare
-     * @param string        $sortType
+     * @param ArrayAccess|array|mixed $array    Array to sort.
+     * @param callable|null           $compare  Comparator function.
+     * @param string                  $sortType Type of sort algorithm.
      * @return array
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException On invalid sort type.
      */
-    public static function sort($array, ?callable $compare = null, $sortType = self::NATIVE_SORT) {
+    public static function sort($array,
+                                ?callable $compare = null,
+                                string $sortType = self::NATIVE_SORT) {
         if (!is_subclass_of($sortType, AbstractSort::class)) {
             throw new InvalidArgumentException(
-                sprintf('The argument for sortType (%s) does not derive from the AbstractSort class.', $sortType),
+                sprintf(
+                    'The argument for sortType (%s) is invalid.',
+                    $sortType
+                ),
                 '$sortType',
                 'sort',
                 'Arrays'
@@ -190,7 +205,6 @@ final class Arrays {
             };
         }
 
-        /** @var $sortType AbstractSort */
         return $sortType::sort($array, $compare);
     }
 

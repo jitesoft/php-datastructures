@@ -27,35 +27,27 @@ class LinkedList implements IndexedListInterface {
     /** @var integer */
     private $count = 0;
 
-    // region ArrayAccess
-
     /**
      * Whether a offset exists
-     * @link http://php.net/manual/en/arrayaccess.offsetexists.php
-     * @param mixed $offset <p>
-     * An offset to check for.
-     * </p>
-     * @return boolean true on success or false on failure.
-     * </p>
-     * <p>
-     * The return value will be casted to boolean if non-boolean was returned.
+     *
+     * @link  http://php.net/manual/en/arrayaccess.offsetexists.php
+     * @param mixed $offset An offset to check for.
+     * @return boolean true on success or false on failure. The return value will be casted to boolean if non-boolean was returned.
      * @since 5.0.0
      */
     public function offsetExists($offset) {
-        if (!is_integer($offset) || ($offset > $this->count - 1 || $offset < 0)) {
-            return false;
-        }
-
-        return true;
+        return is_integer($offset) &&
+            ($offset < $this->count - 1 && $offset > 0);
     }
 
     /**
      * Offset to retrieve
-     * @link http://php.net/manual/en/arrayaccess.offsetget.php
-     * @param mixed $offset <p>
-     * The offset to retrieve.
-     * </p>
+     *
+     * @link  http://php.net/manual/en/arrayaccess.offsetget.php
+     * @param mixed $offset The offset to retrieve.
      * @return mixed Can return all value types.
+     * @throws InvalidArgumentException In case of invalid key.
+     * @throws OutOfBoundsException     If key is out of bounds, i.e., does not exist.
      * @since 5.0.0
      */
     public function offsetGet($offset) {
@@ -65,14 +57,13 @@ class LinkedList implements IndexedListInterface {
 
     /**
      * Offset to set
-     * @link http://php.net/manual/en/arrayaccess.offsetset.php
-     * @param mixed $offset <p>
-     * The offset to assign the value to.
-     * </p>
-     * @param mixed $value  <p>
-     *  The value to set.
-     *  </p>
+     *
+     * @link  http://php.net/manual/en/arrayaccess.offsetset.php
+     * @param mixed $offset The offset to assign the value to.
+     * @param mixed $value  The value to set.
      * @return void
+     * @throws InvalidArgumentException In case of invalid key.
+     * @throws OutOfBoundsException     If key is out of bounds, i.e., does not exist.
      * @since 5.0.0
      */
     public function offsetSet($offset, $value) {
@@ -82,24 +73,24 @@ class LinkedList implements IndexedListInterface {
 
     /**
      * Offset to unset
-     * @link http://php.net/manual/en/arrayaccess.offsetunset.php
-     * @param mixed $offset <p>
-     * The offset to unset.
-     * </p>
+     *
+     * @link  http://php.net/manual/en/arrayaccess.offsetunset.php
+     * @param mixed $offset The offset to unset.
      * @return void
+     * @throws InvalidArgumentException In case of invalid key.
+     * @throws OutOfBoundsException     If key is out of bounds, i.e., does not exist.
      * @since 5.0.0
      */
     public function offsetUnset($offset) {
         $this->removeAt($offset, true);
     }
 
-    // endregion
-
     /**
      * Add a object to the list.
      *
-     * @param $object
+     * @param mixed $object Object to add.
      * @return boolean
+     * @throws InvalidArgumentException On out of bounds - Deprecated and will be using OutOfBoundsException in next major release.
      */
     public function add($object): bool {
         if ($this->lastNode === null) {
@@ -117,8 +108,9 @@ class LinkedList implements IndexedListInterface {
     /**
      * Remove a object from the list.
      *
-     * @param $object
+     * @param mixed $object Object to remove.
      * @return boolean
+     * @throws InvalidArgumentException On out of bounds - Deprecated and will be using OutOfBoundsException in next major release.
      */
     public function remove($object): bool {
         if ($this->count === 0) {
@@ -151,7 +143,7 @@ class LinkedList implements IndexedListInterface {
             $remove->setLink(0, null);
         }
 
-        $this->lastNode = $remove->getLink(0) === null ? $prev : $this->lastNode;
+        $this->lastNode = !$remove->getLink(0) ? $prev : $this->lastNode;
         $this->count--;
         return true;
     }
@@ -159,9 +151,11 @@ class LinkedList implements IndexedListInterface {
     /**
      * Insert a object at the specific location.
      *
-     * @param $object
-     * @param integer $index
+     * @param mixed   $object Object to insert.
+     * @param integer $index  Index to insert object at.
      * @return boolean
+     * @throws InvalidArgumentException On invalid object.
+     * @throws OutOfBoundsException     If index is out of bounds.
      */
     public function insert($object, int $index): bool {
         if ($index === $this->count) {
@@ -171,7 +165,7 @@ class LinkedList implements IndexedListInterface {
 
         $node = $this->getOrCreateRoot(null);
 
-        for ($i = $index - 1;$i-- > 0;) {
+        for ($i = $index - 1; $i-- > 0;) {
             $node = $node->getLink(0);
         }
 
@@ -189,9 +183,11 @@ class LinkedList implements IndexedListInterface {
     /**
      * Remove a object at a specific location.
      *
-     * @param integer $index
-     * @param boolean $cyclic [always true].
+     * @param integer $index  Index to remove.
+     * @param boolean $cyclic If to use a cyclic removal, iterating all objects down the list.
      * @return boolean
+     * @throws InvalidArgumentException On invalid object.
+     * @throws OutOfBoundsException     If index is out of bounds.
      */
     public function removeAt(int $index, bool $cyclic = true): bool {
         $this->boundsCheck($index, $this->count, 0);
@@ -226,9 +222,11 @@ class LinkedList implements IndexedListInterface {
     /**
      * Insert a range of objects into the List.
      *
-     * @param array|ArrayAccess $range
-     * @param integer           $index
+     * @param array|ArrayAccess $range Objects to add.
+     * @param integer           $index Index to start insertion at.
      * @return boolean
+     * @throws InvalidArgumentException On invalid object.
+     * @throws OutOfBoundsException     If index is out of bounds.
      */
     public function insertRange($range, int $index): bool {
         if ($this->count === $index) {
@@ -237,7 +235,7 @@ class LinkedList implements IndexedListInterface {
         $this->boundsCheck($index, $this->count, 0);
         $node = $this->getOrCreateRoot(null);
 
-        for ($i = $index - 1;$i-- > 0;) {
+        for ($i = $index - 1; $i-- > 0;) {
             $node = $node->getLink(0);
         }
         $child = $node->getLink(0);
@@ -256,8 +254,9 @@ class LinkedList implements IndexedListInterface {
     /**
      * Add objects to the list.
      *
-     * @param array|ArrayAccess $range
+     * @param array|ArrayAccess $range Range to add.
      * @return boolean
+     * @throws InvalidArgumentException Deprecated exception. Should never happen.
      */
     public function addRange($range): bool {
         if ($this->rootNode === null) {
@@ -277,9 +276,11 @@ class LinkedList implements IndexedListInterface {
 
     /**
      * ListInterface constructor.
-     * @param array $from
+     *
+     * @param array $from Array to create list from.
+     * @throws InvalidArgumentException Deprecated exception. Should never happen.
      */
-    public function __construct($from = []) {
+    public function __construct(array $from = []) {
         if (!empty($from)) {
             $this->addRange($from);
         }
@@ -288,7 +289,7 @@ class LinkedList implements IndexedListInterface {
     /**
      * Get number of objects in the list.
      *
-     * @alias count()
+     * @alias count
      * @return integer
      */
     public function length(): int {
@@ -307,7 +308,7 @@ class LinkedList implements IndexedListInterface {
     /**
      * Get number of objects in the list.
      *
-     * @alias count()
+     * @alias count
      * @return integer
      */
     public function size(): int {
@@ -327,15 +328,20 @@ class LinkedList implements IndexedListInterface {
     }
 
     /**
-     * @param integer $offset
-     * @param integer $high
-     * @param integer $low
-     * @throws InvalidArgumentException
-     * @throws OutOfBoundsException
+     * Util method to easier do bounds checks.
+     *
+     * @param integer $offset Offset to check.
+     * @param integer $high   Highest bound.
+     * @param integer $low    Lowest bound.
+     * @throws InvalidArgumentException In case offset is not an integer.
+     * @throws OutOfBoundsException     If index is out of bounds.
+     * @return void
      */
-    private function boundsCheck($offset, int $high, int $low = 0) {
+    private function boundsCheck(int $offset, int $high, int $low = 0) {
         if (!is_integer($offset)) {
-            throw new InvalidArgumentException('Invalid indexer access. Argument was not of integer type.');
+            throw new InvalidArgumentException(
+                'Invalid indexer access. Argument was not of integer type.'
+            );
         }
 
         if ($offset > $high || $offset < $low) {
@@ -344,7 +350,7 @@ class LinkedList implements IndexedListInterface {
     }
 
     /**
-     * @param mixed $value
+     * @param mixed $value Value to add to the root.
      * @return Node
      */
     private function getOrCreateRoot($value) {
@@ -356,9 +362,14 @@ class LinkedList implements IndexedListInterface {
         return $this->rootNode;
     }
 
-    private function getNode($index) {
+    /**
+     * @param integer $index Index to fetch.
+     * @return Node|null
+     * @throws InvalidArgumentException Deprecated exception.
+     */
+    private function getNode(int $index) {
         $node = $this->rootNode;
-        for ($i = $index;$i-- > 0;) {
+        for ($i = $index; $i-- > 0;) {
             $node = $node->getLink(0);
         }
         return $node;
@@ -368,6 +379,7 @@ class LinkedList implements IndexedListInterface {
      * Convert the list object into a native php array.
      *
      * @return array
+     * @throws InvalidArgumentException Deprecated exception.
      */
     public function toArray(): array {
         $out  = [];

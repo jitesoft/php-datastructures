@@ -6,6 +6,8 @@
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 namespace Jitesoft\Utilities\DataStructures\Stacks;
 
+use Jitesoft\Exceptions\Logic\InvalidArgumentException;
+use Jitesoft\Exceptions\Logic\OutOfBoundsException;
 use Jitesoft\Utilities\DataStructures\Internal\Node;
 
 /**
@@ -25,7 +27,7 @@ class LinkedStack implements StackInterface {
     /**
      * Get number of objects in the collection.
      *
-     * @alias count()
+     * @alias count
      * @return integer
      */
     public function length(): int {
@@ -44,7 +46,7 @@ class LinkedStack implements StackInterface {
     /**
      * Get number of objects in the collection.
      *
-     * @alias count()
+     * @alias count
      * @return integer
      */
     public function size(): int {
@@ -66,7 +68,7 @@ class LinkedStack implements StackInterface {
     /**
      * Adds one or more object to the top of the stack.
      *
-     * @param $objects
+     * @param array|mixed ...$objects Objects to push to the stack.
      * @return boolean
      */
     public function push(...$objects): bool {
@@ -90,6 +92,7 @@ class LinkedStack implements StackInterface {
      * Removes and returns the object at the top of the stack.
      *
      * @return mixed
+     * @throws InvalidArgumentException On error. This will change to OutOfBoundsException in next major release.
      */
     public function pop() {
         if ($this->count === 0) {

@@ -8,6 +8,7 @@ namespace Jitesoft\Utilities\DataStructures\Maps;
 
 use ArrayIterator;
 use Jitesoft\Exceptions\Logic\InvalidArgumentException;
+use Jitesoft\Exceptions\Logic\OutOfBoundsException;
 use Jitesoft\Utilities\DataStructures\Lists\IndexedList;
 use Jitesoft\Utilities\DataStructures\Lists\IndexedListInterface;
 use Jitesoft\Utilities\DataStructures\Traits\MapMethodsTrait;
@@ -39,7 +40,7 @@ class SimpleMap implements MapInterface {
     /**
      * Get number of objects in the collection.
      *
-     * @alias count()
+     * @alias count
      * @return integer
      */
     public function length(): int {
@@ -58,7 +59,7 @@ class SimpleMap implements MapInterface {
     /**
      * Get number of objects in the collection.
      *
-     * @alias count()
+     * @alias count
      * @return integer
      */
     public function size(): int {
@@ -77,58 +78,34 @@ class SimpleMap implements MapInterface {
     }
 
     /**
-     * Whether a offset exists
-     * @link http://php.net/manual/en/arrayaccess.offsetexists.php
-     * @param mixed $offset <p>
-     * An offset to check for.
-     * </p>
-     * @return boolean true on success or false on failure.
-     * </p>
-     * <p>
-     * The return value will be casted to boolean if non-boolean was returned.
-     * @since 5.0.0
+     * @param mixed $offset Offset to test for.
+     * @return mixed
      */
     public function offsetExists($offset) {
         return $this->has($offset);
     }
 
     /**
-     * Offset to retrieve
-     * @link http://php.net/manual/en/arrayaccess.offsetget.php
-     * @param mixed $offset <p>
-     * The offset to retrieve.
-     * </p>
-     * @return mixed Can return all value types.
-     * @since 5.0.0
+     * @param mixed $offset Offset to fetch.
+     * @return mixed
+     * @throws InvalidArgumentException On out of bounds error. Deprecated and will change to OutOfBoundsException in next major release.
      */
     public function offsetGet($offset) {
         return $this->get($offset);
     }
 
     /**
-     * Offset to set
-     * @link http://php.net/manual/en/arrayaccess.offsetset.php
-     * @param mixed $offset <p>
-     * The offset to assign the value to.
-     * </p>
-     * @param mixed $value  <p>
-     *  The value to set.
-     *  </p>
+     * @param mixed $offset Offset to set.
+     * @param mixed $value  Value to set.
      * @return void
-     * @since 5.0.0
      */
     public function offsetSet($offset, $value) {
         $this->set($offset, $value);
     }
 
     /**
-     * Offset to unset
-     * @link http://php.net/manual/en/arrayaccess.offsetunset.php
-     * @param mixed $offset <p>
-     * The offset to unset.
-     * </p>
+     * @param mixed $offset Offset to unset.
      * @return void
-     * @since 5.0.0
      */
     public function offsetUnset($offset) {
         $this->unset($offset);
@@ -138,9 +115,9 @@ class SimpleMap implements MapInterface {
      * Get the value of a given key.
      * If the key does not exist, a InvalidArgumentException will be thrown.
      *
-     * @param string $key
+     * @param string $key Key to fetch.
      * @return mixed
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException On out of bounds error. Deprecated and will change to OutOfBoundsException in next major release.
      */
     public function get(string $key) {
         if (!$this->has($key)) {
@@ -156,10 +133,10 @@ class SimpleMap implements MapInterface {
      * Set a given keys value.
      * If the key already exists a InvalidArgumentException will be thrown.
      *
-     * @param string $key
-     * @param mixed  $value
+     * @param string $key   Key to set.
+     * @param mixed  $value Object to add.
      * @return boolean
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException On out of bounds error. Deprecated and will change to OutOfBoundsException in next major release.
      */
     public function add(string $key, $value): bool {
         if ($this->has($key)) {
@@ -178,8 +155,8 @@ class SimpleMap implements MapInterface {
      * This function can be used safely to add/set values without raising exceptions.
      * If the key already exist the value will be replaced with passed value.
      *
-     * @param string $key
-     * @param mixed  $value
+     * @param string $key   Key to set.
+     * @param mixed  $value Value to set.
      * @return boolean
      */
     public function set(string $key, $value): bool {
@@ -191,7 +168,7 @@ class SimpleMap implements MapInterface {
     /**
      * Check if a key exists in the map.
      *
-     * @param string $key
+     * @param string $key Key to check for.
      * @return boolean
      */
     public function has(string $key): bool {
@@ -228,7 +205,7 @@ class SimpleMap implements MapInterface {
     /**
      * Removes a given key-value pair.
      *
-     * @param string $key
+     * @param string $key Key to unset.
      * @return boolean
      */
     public function unset(string $key): bool {
