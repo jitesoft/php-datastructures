@@ -37,7 +37,7 @@ class LinkedList implements IndexedListInterface {
      */
     public function offsetExists($offset) {
         return is_integer($offset) &&
-            ($offset < $this->count - 1 && $offset > 0);
+            ($offset < ($this->count) && $offset >= 0);
     }
 
     /**

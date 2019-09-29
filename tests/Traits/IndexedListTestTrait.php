@@ -26,8 +26,7 @@ trait IndexedListTestTrait {
     }
 
     public function testArrayAccessWithInvalidType() {
-        $this->expectException(InvalidArgumentException::class);
-        $this->expectExceptionMessage("Invalid indexer access. Argument was not of integer type.");
+        $this->expectException(\TypeError::class);
         $this->implementation["test"];
     }
 

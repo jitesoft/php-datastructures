@@ -38,7 +38,7 @@ trait ArrayMethodsTestTrait {
         $count = 0;
         Arrays::forEach($this->implementation, function($object, $index, $array) use(&$count) {
             $this->assertNotNull($object);
-            $this->assertTrue(isset($array[$index]));
+            $this->assertTrue(isset($array[$index]), "Index is: ${index}");
             $this->assertSame($object, $array[$index]);
             $count++;
         });
@@ -319,7 +319,7 @@ trait ArrayMethodsTestTrait {
     public function testSortInvalidSort() {
         $this->expectException(InvalidArgumentException::class);
         $this->expectExceptionMessage(
-            'The argument for sortType (ABC123) does not derive from the AbstractSort class.'
+            'The argument for sortType (ABC123) is invalid.'
         );
 
         $this->implementation->sort(null, 'ABC123');
