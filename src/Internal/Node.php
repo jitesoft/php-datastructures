@@ -7,6 +7,7 @@
 namespace Jitesoft\Utilities\DataStructures\Internal;
 
 use Jitesoft\Exceptions\Logic\InvalidArgumentException;
+use Jitesoft\Exceptions\Logic\OutOfBoundsException;
 
 /**
  * Class Node
@@ -36,25 +37,25 @@ class Node {
 
     /**
      * @param integer $index Index to check.
-     * @throws InvalidArgumentException In case too many links are passed. Deprecated Exception.
+     * @throws OutOfBoundsException Thrown if trying to access a link which is not supported.
      * @return void
      */
     private function boundsCheck(int $index) {
         $linkCount = count($this->links);
         if ($index < 0 || $index > $linkCount - 1) {
             $message = sprintf(
-                'The node only have %d link%s.',
+                'This node only have %d link%s.',
                 $linkCount,
                 ($linkCount === 1 ? '' : 's')
             );
-            throw new InvalidArgumentException($message);
+            throw new OutOfBoundsException($message);
         }
     }
 
     /**
      * @param integer $link Link to fetch.
      * @return Node|null
-     * @throws InvalidArgumentException Deprecated exception.
+     * @throws OutOfBoundsException Thrown if trying to access a link which is not supported.
      */
     public function getLink(int $link): ?Node {
         $this->boundsCheck($link);
@@ -79,7 +80,7 @@ class Node {
     /**
      * @param integer   $link Link to set.
      * @param Node|null $node Node to add.
-     * @throws InvalidArgumentException Deprecated exception.
+     * @throws OutOfBoundsException Thrown if trying to access a link which is not supported.
      * @return void
      */
     public function setLink(int $link, ?Node $node = null) {
