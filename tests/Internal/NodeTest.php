@@ -6,6 +6,7 @@
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 namespace Jitesoft\Utilities\DataStructures\Tests\Internal;
 
+use Jitesoft\Exceptions\Logic\OutOfBoundsException;
 use Jitesoft\Utilities\DataStructures\Internal\Node;
 use PHPUnit\Framework\TestCase;
 use Jitesoft\Exceptions\Logic\InvalidArgumentException;
@@ -19,8 +20,8 @@ class NodeTest extends TestCase {
         $node = new Node('Hej', 1);
         $this->assertNull($node->getLink(0));
 
-        $this->expectException(InvalidArgumentException::class);
-        $this->expectExceptionMessage('The node only have 1 link.');
+        $this->expectException(OutOfBoundsException::class);
+        $this->expectExceptionMessage('This node only have 1 link.');
         $node->getLink(1);
     }
 
@@ -30,8 +31,8 @@ class NodeTest extends TestCase {
         $this->assertNull($node->getLink(1));
         $this->assertNull($node->getLink(2));
 
-        $this->expectException(InvalidArgumentException::class);
-        $this->expectExceptionMessage('The node only have 3 links.');
+        $this->expectException(OutOfBoundsException::class);
+        $this->expectExceptionMessage('This node only have 3 links.');
         $node->getLink(3);
     }
 
@@ -45,8 +46,8 @@ class NodeTest extends TestCase {
     public function testSetLink() {
         $node = new Node('Hej', 1);
         $node->setLink(0, new Node('Hej2', 1));
-        $this->expectException(InvalidArgumentException::class);
-        $this->expectExceptionMessage('The node only have 1 link.');
+        $this->expectException(OutOfBoundsException::class);
+        $this->expectExceptionMessage('This node only have 1 link.');
         $node->setLink(1, new Node('Hej3', 1));
     }
 
@@ -55,8 +56,8 @@ class NodeTest extends TestCase {
         $node->setLink(0, new Node('Hej2', 1));
         $this->assertNotNull($node->getLink(0));
         $this->assertEquals('Hej2', $node->getLink(0)->getItem());
-        $this->expectException(InvalidArgumentException::class);
-        $this->expectExceptionMessage('The node only have 1 link.');
+        $this->expectException(OutOfBoundsException::class);
+        $this->expectExceptionMessage('This node only have 1 link.');
         $node->getLink(1);
     }
 

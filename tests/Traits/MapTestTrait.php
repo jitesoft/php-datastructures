@@ -6,7 +6,6 @@
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 namespace Jitesoft\Utilities\DataStructures\Tests\Traits;
 
-use Jitesoft\Exceptions\Logic\InvalidArgumentException;
 use Jitesoft\Exceptions\Logic\InvalidKeyException;
 use Jitesoft\Utilities\DataStructures\Maps\MapInterface;
 
@@ -24,7 +23,7 @@ trait MapTestTrait {
 
     public function testAddKeyExists() {
         $this->implementation->add('abc', 123);
-        $this->expectException(InvalidArgumentException::class);
+        $this->expectException(InvalidKeyException::class);
         $this->expectExceptionMessage('Key "abc" already exist.');
         $this->implementation->add('abc', 123);
     }
