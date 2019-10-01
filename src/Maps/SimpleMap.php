@@ -138,7 +138,7 @@ class SimpleMap implements MapInterface {
      * @return mixed
      */
     public function tryGet(string $key, $default = null) {
-        // TODO: Implement tryGet() method.
+        return $this->has($key) ? $this->innerMap[$key] : $default;
     }
 
     /**
