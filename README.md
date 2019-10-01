@@ -1,12 +1,9 @@
 # Data structures 
 
-[![Build Status](https://img.shields.io/travis/jitesoft/php-datastructures/master.svg?label=master)](https://travis-ci.org/jitesoft/php-datastructures)  
+[![Back project](https://img.shields.io/badge/Open%20Collective-Tip%20the%20devs!-blue.svg)](https://opencollective.com/jitesoft-open-source)
+[![pipeline status](https://gitlab.com/jitesoft/open-source/php/datastructures/badges/master/pipeline.svg)](https://gitlab.com/jitesoft/open-source/php/datastructures/commits/master)
+[![coverage report](https://gitlab.com/jitesoft/open-source/php/datastructures/badges/master/coverage.svg)](https://gitlab.com/jitesoft/open-source/php/datastructures/commits/master)
 
-[![Build Status](https://img.shields.io/travis/jitesoft/php-datastructures/develop.svg?label=develop)](https://travis-ci.org/jitesoft/php-datastructures)
-
-[![Dependency Status](https://gemnasium.com/badges/github.com/jitesoft/php-datastructures.svg)](https://gemnasium.com/github.com/jitesoft/php-datastructures)
-
-[![codecov](https://codecov.io/gh/jitesoft/php-datastructures/branch/master/graph/badge.svg)](https://codecov.io/gh/jitesoft/php-datastructures)
 
 A package consisting of a mix of data structures, classes and algorithms I find useful for php 7.1+.  
 
@@ -52,41 +49,3 @@ The following classes are currently implemented:
   * `Grid`        - A grid implementation with a IndexedList as container.
 * Map types (`Jitesoft\Utilities\DataStructures\Maps`)
   * `SimpleMap`   - A simple map structure wrapping the native array.
-
-
-### Deprecated
-
-### Removed
-
-All math classes have been moved to its own project and repository at [github](https://github.com/jitesoft/php-math).
-
-## Development & Contributions.
-
-Pull requests following the given code-standard (check `ruleset.xml`) with 100% coverage by tests will be reviewed for merge.  
-Any contributions is greatly appreciated!
-
-## License.
-
-```text
-MIT License
-
-Copyright (c) 2017 JiteSoft
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
-```
