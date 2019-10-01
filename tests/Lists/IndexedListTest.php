@@ -19,10 +19,10 @@ class IndexedListTest extends TestCase {
     use IndexedListTestTrait;
     use ArrayMethodsTestTrait;
 
-
     public function setUp(): void {
         parent::setUp();
 
         $this->implementation = new IndexedList();
     }
+
 }
