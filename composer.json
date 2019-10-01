@@ -4,6 +4,7 @@
     "type": "library",
     "keywords": [ "data structure", "list", "array", "queue", "stack" ],
     "license": "MIT",
+
     "support": {
         "source": "https://github.com/jitesoft/php-datastructures",
         "issues": "https://github.com/jitesoft/php-datastructures/issues"
