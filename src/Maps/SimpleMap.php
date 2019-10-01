@@ -123,7 +123,8 @@ class SimpleMap implements MapInterface {
     public function get(string $key) {
         if (!$this->has($key)) {
             throw new InvalidKeyException(
-                sprintf('Key "%s" does not exist.', $key)
+                sprintf('Key "%s" does not exist.', $key),
+                $key
             );
         }
 
@@ -153,7 +154,8 @@ class SimpleMap implements MapInterface {
     public function add(string $key, $value): bool {
         if ($this->has($key)) {
             throw new InvalidKeyException(
-                sprintf('Key "%s" already exist.', $key)
+                sprintf('Key "%s" already exist.', $key),
+                $key
             );
         }
 
