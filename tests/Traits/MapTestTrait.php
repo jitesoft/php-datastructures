@@ -1,4 +1,4 @@
-<?php
+<?php /** @noinspection ALL */
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
   MapTestTrait.php - Part of the php-datastructures project.
 
@@ -6,7 +6,7 @@
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 namespace Jitesoft\Utilities\DataStructures\Tests\Traits;
 
-use Jitesoft\Exceptions\Logic\InvalidArgumentException;
+use Jitesoft\Exceptions\Logic\InvalidKeyException;
 use Jitesoft\Utilities\DataStructures\Maps\MapInterface;
 
 trait MapTestTrait {
@@ -16,14 +16,14 @@ trait MapTestTrait {
 
     public function testAdd() {
         $this->assertEmpty($this->implementation);
-        $this->implementation->add("abc", 123);
-        $this->implementation->add('efg', "weeoo");
+        $this->implementation->add('abc', 123);
+        $this->implementation->add('efg', 'weeoo');
         $this->assertNotEmpty($this->implementation);
     }
 
     public function testAddKeyExists() {
         $this->implementation->add('abc', 123);
-        $this->expectException(InvalidArgumentException::class);
+        $this->expectException(InvalidKeyException::class);
         $this->expectExceptionMessage('Key "abc" already exist.');
         $this->implementation->add('abc', 123);
     }
@@ -66,7 +66,6 @@ trait MapTestTrait {
         $this->assertEmpty($this->implementation);
     }
 
-
     public function testGet() {
         $this->implementation->add('abc', 123);
         $this->implementation->add('efg', 456);
@@ -77,8 +76,21 @@ trait MapTestTrait {
         $this->assertEquals(456, $this->implementation->get('efg'));
     }
 
+    public function testTryGet() {
+        $this->implementation->add('abc', 123);
+        $this->implementation->add('efg', 456);
+        $this->implementation->add('hij', 789);
+
+        $this->assertEquals(123, $this->implementation->tryGet('abc'));
+        $this->assertEquals(789, $this->implementation->tryGet('hij'));
+        $this->assertEquals(456, $this->implementation->tryGet('efg'));
+
+        $this->assertEquals(null, $this->implementation->tryGet('dsadasdas'));
+        $this->assertEquals('not-set', $this->implementation->tryGet('dsadasadsdsa', 'not-set'));
+    }
+
     public function testGetNotExists() {
-        $this->expectException(InvalidArgumentException::class);
+        $this->expectException(InvalidKeyException::class);
         $this->expectExceptionMessage('Key "abc" does not exist.');
         $this->implementation->get('abc');
     }
@@ -108,10 +120,12 @@ trait MapTestTrait {
         $this->implementation->add('key1', 'value1');
         $this->implementation->add('key2', 'value2');
 
-        $this->assertEquals([
-            'key1' => 'value1',
-            'key2' => 'value2'
-        ], $this->implementation->toAssocArray());
+        $this->assertEquals(
+            [
+                'key1' => 'value1',
+                'key2' => 'value2'
+            ], $this->implementation->toAssocArray()
+        );
     }
 
     public function testKeys() {
@@ -137,7 +151,6 @@ trait MapTestTrait {
     }
 
     public function testUnset() {
-
         $this->implementation->add('key1', 'value1');
         $this->implementation->add('key2', 'value2');
 
@@ -150,16 +163,16 @@ trait MapTestTrait {
 
     public function testArrayAccessSet() {
         $this->assertCount(0, $this->implementation);
-        $this->implementation["test"] = 123;
+        $this->implementation['test'] = 123;
         $this->assertCount(1, $this->implementation);
         $this->assertEquals(123, $this->implementation->get('test'));
     }
 
     public function testArrayAccessSetExists() {
-        $this->implementation["test"] = 123;
+        $this->implementation['test'] = 123;
         $this->assertEquals(123, $this->implementation->get('test'));
-        $this->implementation["test"] = "changed";
-        $this->assertEquals("changed", $this->implementation->get('test'));
+        $this->implementation['test'] = 'changed';
+        $this->assertEquals('changed', $this->implementation->get('test'));
     }
 
     public function testArrayAccessGet() {
@@ -171,7 +184,7 @@ trait MapTestTrait {
     }
 
     public function testArrayAccessGetInvalidKey() {
-        $this->expectException(InvalidArgumentException::class);
+        $this->expectException(InvalidKeyException::class);
         $this->expectExceptionMessage('Key "abc" does not exist.');
         $this->implementation['abc'];
     }

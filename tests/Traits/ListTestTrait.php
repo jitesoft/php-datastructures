@@ -1,4 +1,4 @@
-<?php
+<?php /** @noinspection ALL */
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
   ListTestTrait.php - Part of the php-datastructures project.
 
@@ -24,9 +24,9 @@ trait ListTestTrait {
 
     public function testLength() {
         $this->assertEquals(0, $this->implementation->length());
-        $this->implementation[0] = "Test";
-        $this->implementation[1] = "TEST";
-        $this->implementation->insert("test...", 1);
+        $this->implementation[0] = 'Test';
+        $this->implementation[1] = 'TEST';
+        $this->implementation->insert('test...', 1);
         $this->assertEquals(3, $this->implementation->length());
         $this->implementation->removeAt(1);
         $this->assertEquals(2, $this->implementation->length());
@@ -34,7 +34,7 @@ trait ListTestTrait {
 
     public function testSize() {
         $this->assertEquals(0, $this->implementation->size());
-        $this->implementation->insertRange(["a", "b", "c"], 0);
+        $this->implementation->insertRange(['a', 'b', 'c'], 0);
         $this->assertEquals(3, $this->implementation->size());
         $this->implementation->removeAt(2);
         $this->assertEquals(2, $this->implementation->size());
@@ -42,24 +42,24 @@ trait ListTestTrait {
 
     public function testCount() {
         $this->assertEquals(0, $this->implementation->count());
-        $this->implementation->add("hej");
+        $this->implementation->add('hej');
         $this->assertEquals(1, $this->implementation->count());
-        $this->implementation->addRange(["a", "b", "c"]);
+        $this->implementation->addRange(['a', 'b', 'c']);
         $this->assertEquals(4, $this->implementation->count());
-        $this->implementation->remove("a");
+        $this->implementation->remove('a');
         $this->assertEquals(3, $this->implementation->count());
     }
 
     public function testCountable() {
         $this->assertCount(0, $this->implementation);
         $this->assertEquals(0, count($this->implementation));
-        $this->implementation->addRange(["a","b", 3]);
+        $this->implementation->addRange(['a','b', 3]);
         $this->assertCount(3, $this->implementation);
         $this->assertEquals(3, count($this->implementation));
     }
 
     public function testClear() {
-        $this->implementation->addRange(["a", "b", "c"]);
+        $this->implementation->addRange(['a', 'b', 'c']);
         $this->assertCount(3, $this->implementation);
         $this->implementation->clear();
         $this->assertCount(0, $this->implementation);
@@ -67,9 +67,10 @@ trait ListTestTrait {
     }
 
     public function testToArray() {
-        $this->implementation->addRange(["a", "b", "c", "d"]);
+        $this->implementation->addRange(['a', 'b', 'c', 'd']);
         $array = $this->implementation->toArray();
         $this->assertCount(4, $array);
-        $this->assertEquals(["a", "b", "c", "d"], $array);
+        $this->assertEquals(['a', 'b', 'c', 'd'], $array);
     }
+
 }

@@ -1,4 +1,4 @@
-<?php
+<?php /** @noinspection ALL */
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
   LinkedQueueTest.php - Part of the php-datastructures project.
 
@@ -18,7 +18,7 @@ use PHPUnit\Framework\TestCase;
 class LinkedQueueTest extends TestCase {
     use QueueTestTrait;
 
-    public function setUp(): void  {
+    public function setUp(): void {
         parent::setUp();
 
         $this->implementation = new LinkedQueue();

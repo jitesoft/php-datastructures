@@ -1,4 +1,4 @@
-<?php
+<?php /** @noinspection ALL */
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
   ArrayMethodsTestTrait.php - Part of the php-datastructures project.
 
@@ -23,49 +23,57 @@ trait ArrayMethodsTestTrait {
     }
 
     public function testForEach() {
-        $this->fill("One", "Two", "Three");
+        $this->fill('One', 'Two', 'Three');
 
         $count = 0;
-        $this->implementation->forEach(function($object, $index, $array) use(&$count) {
-            $this->assertNotNull($object);
-            $this->assertTrue(isset($array[$index]));
-            $this->assertSame($object, $array[$index]);
-            $count++;
-        });
+        $this->implementation->forEach(
+            function($object, $index, $array) use(&$count) {
+                $this->assertNotNull($object);
+                $this->assertTrue(isset($array[$index]));
+                $this->assertSame($object, $array[$index]);
+                $count++;
+            }
+        );
 
         $this->assertEquals(3, $count);
 
         $count = 0;
-        Arrays::forEach($this->implementation, function($object, $index, $array) use(&$count) {
-            $this->assertNotNull($object);
-            $this->assertTrue(isset($array[$index]), "Index is: ${index}");
-            $this->assertSame($object, $array[$index]);
-            $count++;
-        });
+        Arrays::forEach(
+            $this->implementation, function($object, $index, $array) use(&$count) {
+                $this->assertNotNull($object);
+                $this->assertTrue(isset($array[$index]), "Index is: ${index}");
+                $this->assertSame($object, $array[$index]);
+                $count++;
+            }
+        );
 
         $this->assertEquals(3, $count);
     }
 
     public function testForEachWithBreak() {
-        $this->fill("One", "Two", "Three");
+        $this->fill('One', 'Two', 'Three');
 
         $count = 0;
-        $this->implementation->forEach(function($o, $index) use(&$count) {
-            if ($index === 2) {
-                return false;
+        $this->implementation->forEach(
+            function($o, $index) use(&$count) {
+                if ($index === 2) {
+                    return false;
+                }
+                $count++;
             }
-            $count++;
-        });
+        );
 
         $this->assertEquals(2, $count);
 
         $count = 0;
-        Arrays::forEach($this->implementation, function($o, $index) use(&$count) {
-            if ($index === 2) {
-                return false;
+        Arrays::forEach(
+            $this->implementation, function($o, $index) use(&$count) {
+                if ($index === 2) {
+                    return false;
+                }
+                $count++;
             }
-            $count++;
-        });
+        );
 
         $this->assertEquals(2, $count);
     }
@@ -74,26 +82,30 @@ trait ArrayMethodsTestTrait {
         $this->fill(0,1,2,3,4,5);
 
         $count = 0;
-        $out   = $this->implementation->map(function($object, $index, $array) use(&$count) {
-            $this->assertEquals($object, $array[$index]);
-            $this->assertNotNull($object);
+        $out   = $this->implementation->map(
+            function($object, $index, $array) use(&$count) {
+                $this->assertEquals($object, $array[$index]);
+                $this->assertNotNull($object);
 
-            $count++;
+                $count++;
 
-            return $object + 1;
-        });
+                return $object + 1;
+            }
+        );
 
         $this->assertEquals(6, $count);
 
         $count = 0;
-        $out2  = Arrays::map($this->implementation, function($object, $index, $array) use(&$count) {
-            $this->assertEquals($object, $array[$index]);
-            $this->assertNotNull($object);
+        $out2  = Arrays::map(
+            $this->implementation, function($object, $index, $array) use(&$count) {
+                $this->assertEquals($object, $array[$index]);
+                $this->assertNotNull($object);
 
-            $count++;
+                $count++;
 
-            return $object + 1;
-        });
+                return $object + 1;
+            }
+        );
 
         $this->assertEquals(6, $count);
 
@@ -115,13 +127,15 @@ trait ArrayMethodsTestTrait {
         $this->fill(0,1,2,3,4,5);
 
         $count = 0;
-        $out   = $this->implementation->filter(function($object, $index, $array) use(&$count) {
-            $count++;
+        $out   = $this->implementation->filter(
+            function($object, $index, $array) use(&$count) {
+                $count++;
 
-            $this->assertEquals($object, $array[$index]);
-            $this->assertNotNull($object);
-            return $object <= 3;
-        });
+                $this->assertEquals($object, $array[$index]);
+                $this->assertNotNull($object);
+                return $object <= 3;
+            }
+        );
 
         $this->assertEquals(6, $count);
         $this->assertEquals(0, $out[0]);
@@ -130,13 +144,15 @@ trait ArrayMethodsTestTrait {
         $this->assertEquals(3, $out[3]);
 
         $count = 0;
-        $out   = Arrays::filter($this->implementation, function($object, $index, $array) use(&$count) {
-            $count++;
+        $out   = Arrays::filter(
+            $this->implementation, function($object, $index, $array) use(&$count) {
+                $count++;
 
-            $this->assertEquals($object, $array[$index]);
-            $this->assertNotNull($object);
-            return $object <= 3;
-        });
+                $this->assertEquals($object, $array[$index]);
+                $this->assertNotNull($object);
+                return $object <= 3;
+            }
+        );
 
         $this->assertEquals(6, $count);
         $this->assertEquals([0,1,2,3], $out);
@@ -149,40 +165,44 @@ trait ArrayMethodsTestTrait {
         $this->assertEquals(1, $first);
 
         $count = 0;
-        $first = $this->implementation->first(function($object, $index, $array) use(&$count) {
-            $count++;
+        $first = $this->implementation->first(
+            function($object, $index, $array) use(&$count) {
+                $count++;
 
-            $this->assertEquals($object, $array[$index]);
-            $this->assertNotNull($object);
-            return $object === 5;
-        });
+                $this->assertEquals($object, $array[$index]);
+                $this->assertNotNull($object);
+                return $object === 5;
+            }
+        );
 
         $this->assertEquals(5, $first);
         $this->assertEquals(5, $count);
-
 
         $first = Arrays::first($this->implementation);
         $this->assertEquals(1, $first);
         $count = 0;
 
-        $first = Arrays::first($this->implementation, function($object, $index, $array) use(&$count) {
-            $count++;
+        $first = Arrays::first(
+            $this->implementation, function($object, $index, $array) use(&$count) {
+                $count++;
 
-            $this->assertEquals($object, $array[$index]);
-            $this->assertNotNull($object);
-            return $object === 5;
-        });
+                $this->assertEquals($object, $array[$index]);
+                $this->assertNotNull($object);
+                return $object === 5;
+            }
+        );
 
         $this->assertEquals(5, $first);
         $this->assertEquals(5, $count);
 
-        $firstNull = $this->implementation->first(function($o) {
-            return $o === 100;
-        });
+        $firstNull = $this->implementation->first(
+            function($o) {
+                return $o === 100;
+            }
+        );
 
         $this->assertNull($firstNull);
     }
-
 
     public function testLast() {
         $this->fill(1,2,3,4,5);
@@ -191,36 +211,41 @@ trait ArrayMethodsTestTrait {
         $this->assertEquals(5, $last);
 
         $count = 0;
-        $last = $this->implementation->last(function($object, $index, $array) use(&$count) {
-            $count++;
+        $last  = $this->implementation->last(
+            function($object, $index, $array) use(&$count) {
+                $count++;
 
-            $this->assertEquals($object, $array[$index]);
-            $this->assertNotNull($object);
-            return $object === 1;
-        });
+                $this->assertEquals($object, $array[$index]);
+                $this->assertNotNull($object);
+                return $object === 1;
+            }
+        );
 
         $this->assertEquals(1, $last);
         $this->assertEquals(5, $count);
-
 
         $last = Arrays::last($this->implementation);
         $this->assertEquals(5, $last);
         $count = 0;
 
-        $last = Arrays::last($this->implementation, function($object, $index, $array) use(&$count) {
-            $count++;
+        $last = Arrays::last(
+            $this->implementation, function($object, $index, $array) use(&$count) {
+                $count++;
 
-            $this->assertEquals($object, $array[$index]);
-            $this->assertNotNull($object);
-            return $object === 1;
-        });
+                $this->assertEquals($object, $array[$index]);
+                $this->assertNotNull($object);
+                return $object === 1;
+            }
+        );
 
         $this->assertEquals(1, $last);
         $this->assertEquals(5, $count);
 
-        $lastNull = $this->implementation->last(function($o) {
-            return false;
-        });
+        $lastNull = $this->implementation->last(
+            function($o) {
+                return false;
+            }
+        );
 
         $this->assertNull($lastNull);
     }
@@ -228,74 +253,97 @@ trait ArrayMethodsTestTrait {
     public function testGnomeSort() {
         $this->fill(2,6,3,5,8,23,1,1010);
 
-        $out = $this->implementation->sort(function($a, $b) {
-            return $a-$b;
-        }, Arrays::GNOME_SORT);
+        $out = $this->implementation->sort(
+            function($a, $b) {
+                return $a - $b;
+            }, Arrays::GNOME_SORT
+        );
 
-        $this->assertEquals([
-            1, 2, 3, 5, 6, 8, 23, 1010
-        ], $out->toArray());
+        $this->assertEquals(
+            [
+                1, 2, 3, 5, 6, 8, 23, 1010
+            ], $out->toArray()
+        );
     }
 
     public function testQuickSort() {
         $this->fill(2,6,3,5,8,23,1,1010);
 
-        $out = $this->implementation->sort(function($a, $b) {
-            return $a-$b;
-        }, Arrays::QUICK_SORT);
+        $out = $this->implementation->sort(
+            function($a, $b) {
+                return $a - $b;
+            }, Arrays::QUICK_SORT
+        );
 
-        $this->assertEquals([
-            1, 2, 3, 5, 6, 8, 23, 1010
-        ], $out->toArray());
+        $this->assertEquals(
+            [
+                1, 2, 3, 5, 6, 8, 23, 1010
+            ], $out->toArray()
+        );
     }
 
     public function testNativeSort() {
         $this->fill(2,6,3,5,8,23,1,1010);
 
-        $out = $this->implementation->sort(function($a, $b) {
-            return $a-$b;
-        }, Arrays::NATIVE_SORT);
+        $out = $this->implementation->sort(
+            function($a, $b) {
+                return $a - $b;
+            }, Arrays::NATIVE_SORT
+        );
 
-        $this->assertEquals([
-            1, 2, 3, 5, 6, 8, 23, 1010
-        ], $out->toArray());
+        $this->assertEquals(
+            [
+                1, 2, 3, 5, 6, 8, 23, 1010
+            ], $out->toArray()
+        );
     }
 
     public function testNativeSortArray() {
         $arr = [2,6,3,5,8,23,1,1010];
 
-        $out = Arrays::sort($arr, function($a, $b) {
-            return $a-$b;
-        }, Arrays::NATIVE_SORT);
+        $out = Arrays::sort(
+            $arr, function($a, $b) {
+                return $a - $b;
+            }, Arrays::NATIVE_SORT
+        );
 
-        $this->assertEquals([
-            1, 2, 3, 5, 6, 8, 23, 1010
-        ], $out);
+        $this->assertEquals(
+            [
+                1, 2, 3, 5, 6, 8, 23, 1010
+            ], $out
+        );
     }
-
 
     public function testQuickSortArray() {
         $arr = [2,6,3,5,8,23,1,1010];
 
-        $out = Arrays::sort($arr, function($a, $b) {
-            return $a-$b;
-        }, Arrays::QUICK_SORT);
+        $out = Arrays::sort(
+            $arr, function($a, $b) {
+                return $a - $b;
+            }, Arrays::QUICK_SORT
+        );
 
-        $this->assertEquals([
-            1, 2, 3, 5, 6, 8, 23, 1010
-        ], $out);
+        $this->assertEquals(
+            [
+                1, 2, 3, 5, 6, 8, 23, 1010
+            ], $out
+        );
     }
 
     public function testGnomeSortArray() {
         $arr = [2,6,3,5,8,23,1,1010];
 
-        $out = Arrays::sort($arr, function($a, $b) {
-            return $a-$b;
-        }, Arrays::GNOME_SORT);
+        $out = Arrays::sort(
+            $arr, function($a, $b) {
+                return $a - $b;
+            }, Arrays::GNOME_SORT
+        );
 
-        $this->assertEquals([
-            1, 2, 3, 5, 6, 8, 23, 1010
-        ], $out);
+        $this->assertEquals(
+            [
+                1, 2, 3, 5, 6, 8, 23, 1010
+            ], $out
+        );
     }
 
     public function testSortNoComparatorNoMethod() {
@@ -303,17 +351,21 @@ trait ArrayMethodsTestTrait {
 
         $out = Arrays::sort($arr);
 
-        $this->assertEquals([
-            1, 2, 3, 5, 6, 8, 23, 1010
-        ], $out);
+        $this->assertEquals(
+            [
+                1, 2, 3, 5, 6, 8, 23, 1010
+            ], $out
+        );
 
         $this->fill(2,6,3,5,8,23,1,1010);
 
         $out = $this->implementation->sort();
 
-        $this->assertEquals([
-            1, 2, 3, 5, 6, 8, 23, 1010
-        ], $out->toArray());
+        $this->assertEquals(
+            [
+                1, 2, 3, 5, 6, 8, 23, 1010
+            ], $out->toArray()
+        );
     }
 
     public function testSortInvalidSort() {

@@ -4,20 +4,20 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "8e3d0593a1263b72c6eaf45b2d3b0ab2",
+    "content-hash": "72544961b37c6003f8695033b3a2f7f7",
     "packages": [
         {
             "name": "jitesoft/exceptions",
-            "version": "2.3.1",
+            "version": "2.3.2",
             "source": {
                 "type": "git",
                 "url": "https://gitlab.com/jitesoft/open-source/php/exceptions.git",
-                "reference": "24cf5aa83e1fab653876a03d6512ff23fddfeef7"
+                "reference": "10d9dbb08e832f383f5f26bfc0f7a482f9d4349d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://gitlab.com/api/v4/projects/jitesoft%2Fopen-source%2Fphp%2Fexceptions/repository/archive.zip?sha=24cf5aa83e1fab653876a03d6512ff23fddfeef7",
-                "reference": "24cf5aa83e1fab653876a03d6512ff23fddfeef7",
+                "url": "https://gitlab.com/api/v4/projects/jitesoft%2Fopen-source%2Fphp%2Fexceptions/repository/archive.zip?sha=10d9dbb08e832f383f5f26bfc0f7a482f9d4349d",
+                "reference": "10d9dbb08e832f383f5f26bfc0f7a482f9d4349d",
                 "shasum": ""
             },
             "require": {
@@ -50,7 +50,7 @@
             "keywords": [
                 "exceptions"
             ],
-            "time": "2019-09-02T09:47:46+00:00"
+            "time": "2019-10-01T07:49:58+00:00"
         },
         {
             "name": "jitesoft/math",

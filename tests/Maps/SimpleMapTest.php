@@ -1,11 +1,9 @@
-<?php
-
+<?php /** @noinspection ALL */
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
   SimpleMapTest.php - Part of the php-datastructures project.
 
   © - Jitesoft 2017
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
-
 namespace Jitesoft\Utilities\DataStructures\Tests\Maps;
 
 use Jitesoft\Utilities\DataStructures\Maps\SimpleMap;
@@ -17,9 +15,10 @@ class SimpleMapTest extends TestCase {
     use MapTestTrait;
     use MapMethodsTestTrait;
 
-    protected function setUp(): void  {
+    protected function setUp(): void {
         parent::setUp();
 
         $this->implementation = new SimpleMap();
     }
+
 }

@@ -4,6 +4,7 @@
     "type": "library",
     "keywords": [ "data structure", "list", "array", "queue", "stack" ],
     "license": "MIT",
+
     "support": {
         "source": "https://github.com/jitesoft/php-datastructures",
         "issues": "https://github.com/jitesoft/php-datastructures/issues"
@@ -16,7 +17,7 @@
     ],
     "require": {
         "php": ">7.1",
-        "jitesoft/exceptions": "^2.3.1",
+        "jitesoft/exceptions": "^2.3.2",
         "jitesoft/math": "^1.0"
     },
     "require-dev": {
@@ -32,5 +33,11 @@
         "psr-4": {
             "Jitesoft\\Utilities\\DataStructures\\Tests\\": "tests/"
         }
+    },
+    "scripts": {
+        "test": [
+            "phpunit --coverage-text --colors=never --config=phpunit.xml",
+            "phpcs --report=summary --standard=./ruleset.xml -p ./src"
+        ]
     }
 }

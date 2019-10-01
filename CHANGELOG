@@ -1,0 +1,18 @@
+4.0.0
+-------
+
+This would be a minor release if it was not for some minor breaking changes.
+
+* Added `tryGet` method to MAP interface / implementations.
+  The tryGet method accepts a key and an optional default return value
+  in case the key does not exist.
+* Made some minor cleanup to the codebase and tests to make sure that the
+  required standards are followed.
+
+**breaking changes**
+
+* Updated exceptions that are thrown when trying to access a key in a map structure.
+  This now throws an InvalidKeyException (still inheriting from JitesoftException)
+  instead of a InvalidArgumentException.
+* Updated exception thrown when trying to access a invalid link in a node. This
+  now throws an OutOfBoundsException instead of an InvalidArgumentException.

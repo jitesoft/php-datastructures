@@ -1,4 +1,4 @@
-<?php
+<?php /** @noinspection ALL */
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
   ArrayQueueTest.php - Part of the php-datastructures project.
 
@@ -17,8 +17,7 @@ use PHPUnit\Framework\TestCase;
 class ArrayQueueTest extends TestCase {
     use QueueTestTrait;
 
-
-    public function setUp(): void  {
+    public function setUp(): void {
         parent::setUp();
 
         $this->implementation = new ArrayQueue();

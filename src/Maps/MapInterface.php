@@ -6,7 +6,7 @@
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 namespace Jitesoft\Utilities\DataStructures\Maps;
 
-use Jitesoft\Exceptions\Logic\InvalidArgumentException;
+use Jitesoft\Exceptions\Logic\InvalidKeyException;
 use Jitesoft\Utilities\DataStructures\CollectionInterface;
 use Jitesoft\Utilities\DataStructures\Lists\IndexedListInterface;
 use ArrayAccess;
@@ -29,9 +29,18 @@ interface MapInterface extends CollectionInterface,
      *
      * @param string $key Key to fetch.
      * @return mixed
-     * @throws InvalidArgumentException On out of bounds error. Deprecated and will change to OutOfBoundsException in next major release.
+     * @throws InvalidKeyException Thrown if key does not exist.
      */
     public function get(string $key);
+
+    /**
+     * Try to get a key from the map. If it does not exist, '$default' value will be returned.
+     *
+     * @param string     $key     Key to try fetch.
+     * @param mixed|null $default Value to return if key is not found.
+     * @return mixed
+     */
+    public function tryGet(string $key, $default = null);
 
     /**
      * Set a given keys value.
@@ -40,7 +49,7 @@ interface MapInterface extends CollectionInterface,
      * @param string $key   Key to add.
      * @param mixed  $value Value to add.
      * @return boolean
-     * @throws InvalidArgumentException Thrown if there is already a key with given name.
+     * @throws InvalidKeyException Thrown if key already exist.
      */
     public function add(string $key, $value): bool;
 

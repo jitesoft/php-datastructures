@@ -8,6 +8,7 @@ namespace Jitesoft\Utilities\DataStructures\Maps;
 
 use ArrayIterator;
 use Jitesoft\Exceptions\Logic\InvalidArgumentException;
+use Jitesoft\Exceptions\Logic\InvalidKeyException;
 use Jitesoft\Exceptions\Logic\OutOfBoundsException;
 use Jitesoft\Utilities\DataStructures\Lists\IndexedList;
 use Jitesoft\Utilities\DataStructures\Lists\IndexedListInterface;
@@ -113,20 +114,32 @@ class SimpleMap implements MapInterface {
 
     /**
      * Get the value of a given key.
-     * If the key does not exist, a InvalidArgumentException will be thrown.
+     * If the key does not exist, an InvalidKeyException will be thrown.
      *
      * @param string $key Key to fetch.
      * @return mixed
-     * @throws InvalidArgumentException On out of bounds error. Deprecated and will change to OutOfBoundsException in next major release.
+     * @throws InvalidKeyException Thrown if key does not exist.
      */
     public function get(string $key) {
         if (!$this->has($key)) {
-            throw new InvalidArgumentException(
-                sprintf('Key "%s" does not exist.', $key)
+            throw new InvalidKeyException(
+                sprintf('Key "%s" does not exist.', $key),
+                $key
             );
         }
 
         return $this->innerMap[$key];
+    }
+
+    /**
+     * Try to get a key from the map. If it does not exist, '$default' value will be returned.
+     *
+     * @param string     $key     Key to try fetch.
+     * @param mixed|null $default Value to return if key is not found.
+     * @return mixed
+     */
+    public function tryGet(string $key, $default = null) {
+        return $this->has($key) ? $this->innerMap[$key] : $default;
     }
 
     /**
@@ -136,12 +149,13 @@ class SimpleMap implements MapInterface {
      * @param string $key   Key to set.
      * @param mixed  $value Object to add.
      * @return boolean
-     * @throws InvalidArgumentException On out of bounds error. Deprecated and will change to OutOfBoundsException in next major release.
+     * @throws InvalidKeyException Thrown if key already exist.
      */
     public function add(string $key, $value): bool {
         if ($this->has($key)) {
-            throw new InvalidArgumentException(
-                sprintf('Key "%s" already exist.', $key)
+            throw new InvalidKeyException(
+                sprintf('Key "%s" already exist.', $key),
+                $key
             );
         }
 
