@@ -1,4 +1,4 @@
-<?php
+<?php /** @noinspection ALL */
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
   MapTestTrait.php - Part of the php-datastructures project.
 
@@ -7,6 +7,7 @@
 namespace Jitesoft\Utilities\DataStructures\Tests\Traits;
 
 use Jitesoft\Exceptions\Logic\InvalidArgumentException;
+use Jitesoft\Exceptions\Logic\InvalidKeyException;
 use Jitesoft\Utilities\DataStructures\Maps\MapInterface;
 
 trait MapTestTrait {
@@ -77,7 +78,7 @@ trait MapTestTrait {
     }
 
     public function testGetNotExists() {
-        $this->expectException(InvalidArgumentException::class);
+        $this->expectException(InvalidKeyException::class);
         $this->expectExceptionMessage('Key "abc" does not exist.');
         $this->implementation->get('abc');
     }
@@ -171,7 +172,7 @@ trait MapTestTrait {
     }
 
     public function testArrayAccessGetInvalidKey() {
-        $this->expectException(InvalidArgumentException::class);
+        $this->expectException(InvalidKeyException::class);
         $this->expectExceptionMessage('Key "abc" does not exist.');
         $this->implementation['abc'];
     }

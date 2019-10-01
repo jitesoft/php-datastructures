@@ -1,11 +1,9 @@
-<?php
-
+<?php /** @noinspection ALL */
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
   SimpleMapTest.php - Part of the php-datastructures project.
 
   © - Jitesoft 2017
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
-
 namespace Jitesoft\Utilities\DataStructures\Tests\Maps;
 
 use Jitesoft\Utilities\DataStructures\Maps\SimpleMap;

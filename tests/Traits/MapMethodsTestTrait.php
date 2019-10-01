@@ -1,11 +1,9 @@
-<?php
-
+<?php /** @noinspection ALL */
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
   MapMethodsTestTrait.php - Part of the php-datastructures project.
 
   © - Jitesoft 2017
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
-
 namespace Jitesoft\Utilities\DataStructures\Tests\Traits;
 
 use Jitesoft\Exceptions\Logic\InvalidArgumentException;
