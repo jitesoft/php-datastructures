@@ -35,6 +35,15 @@ interface MapInterface extends CollectionInterface,
     public function get(string $key);
 
     /**
+     * Try to get a key from the map. If it does not exist, '$default' value will be returned.
+     *
+     * @param string     $key     Key to try fetch.
+     * @param mixed|null $default Value to return if key is not found.
+     * @return mixed
+     */
+    public function tryGet(string $key, $default = null);
+
+    /**
      * Set a given keys value.
      * If the key already exists a InvalidArgumentException will be thrown.
      *
@@ -44,8 +53,6 @@ interface MapInterface extends CollectionInterface,
      * @throws InvalidKeyException Thrown if key already exist.
      */
     public function add(string $key, $value): bool;
-
-    // TODO: Add tryGet(..)
 
     /**
      * Sets a value to a key.

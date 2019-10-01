@@ -131,6 +131,17 @@ class SimpleMap implements MapInterface {
     }
 
     /**
+     * Try to get a key from the map. If it does not exist, '$default' value will be returned.
+     *
+     * @param string     $key     Key to try fetch.
+     * @param mixed|null $default Value to return if key is not found.
+     * @return mixed
+     */
+    public function tryGet(string $key, $default = null) {
+        // TODO: Implement tryGet() method.
+    }
+
+    /**
      * Set a given keys value.
      * If the key already exists a InvalidArgumentException will be thrown.
      *

@@ -76,6 +76,19 @@ trait MapTestTrait {
         $this->assertEquals(456, $this->implementation->get('efg'));
     }
 
+    public function testTryGet() {
+        $this->implementation->add('abc', 123);
+        $this->implementation->add('efg', 456);
+        $this->implementation->add('hij', 789);
+
+        $this->assertEquals(123, $this->implementation->tryGet('abc'));
+        $this->assertEquals(789, $this->implementation->tryGet('hij'));
+        $this->assertEquals(456, $this->implementation->tryGet('efg'));
+
+        $this->assertEquals(null, $this->implementation->tryGet('dsadasdas'));
+        $this->assertEquals('not-set', $this->implementation->tryGet('dsadasadsdsa', 'not-set'));
+    }
+
     public function testGetNotExists() {
         $this->expectException(InvalidKeyException::class);
         $this->expectExceptionMessage('Key "abc" does not exist.');
