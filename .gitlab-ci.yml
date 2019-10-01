@@ -1,0 +1,22 @@
+include:
+  - https://gitlab.com/jitesoft/gitlab-ci-lib/raw/master/dependency_scanning.yml
+
+stages:
+  - test
+
+test:7.2:
+  stage: test
+  image: registry.gitlab.com/jitesoft/dockerfiles/phpunit:7.2
+  script:
+    - composer install --no-interaction --prefer-dist
+    - composer test
+
+test:7.3:
+  stage: test
+  image: registry.gitlab.com/jitesoft/dockerfiles/phpunit:7.3
+  script:
+    - composer install --no-interaction --prefer-dist
+    - composer test
+
+scan:
+  extends: .scan:composer
