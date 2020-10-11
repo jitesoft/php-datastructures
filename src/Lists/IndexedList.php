@@ -20,10 +20,9 @@ use Jitesoft\Exceptions\Logic\OutOfBoundsException;
  */
 class IndexedList implements IndexedListInterface {
     use ArrayMethodsTrait;
-    /** @var array */
-    private $innerArray = [];
-    /** @var integer */
-    private $count = 0;
+
+    private array $innerArray = [];
+    private int   $count;
 
     /**
      * ListInterface constructor.
@@ -55,7 +54,7 @@ class IndexedList implements IndexedListInterface {
      * @return boolean
      */
     public function remove($object): bool {
-        if (!in_array($object, $this->innerArray)) {
+        if (!in_array($object, $this->innerArray, true)) {
             return false;
         }
 
@@ -120,8 +119,7 @@ class IndexedList implements IndexedListInterface {
      * @param mixed   $object Object to insert.
      * @param integer $index  Index to insert at.
      * @return boolean
-     * @throws InvalidArgumentException Deprecated.
-     * @throws OutOfBoundsException     On out-of-bounds error.
+     * @throws OutOfBoundsException On out-of-bounds error.
      */
     public function insert($object, int $index): bool {
         $this->boundsCheck($index, $this->count + 1, 0);
@@ -218,9 +216,8 @@ class IndexedList implements IndexedListInterface {
      * @param mixed $offset An offset to check for.
      * @return boolean true on success or false on failure.
      * The return value will be casted to boolean if non-boolean was returned.
-     * @since 5.0.0
      */
-    public function offsetExists($offset) {
+    public function offsetExists($offset): bool {
         return isset($this->innerArray[$offset]);
     }
 
@@ -232,7 +229,6 @@ class IndexedList implements IndexedListInterface {
      * @return mixed Can return all value types.
      * @throws InvalidArgumentException Deprecated exception.
      * @throws OutOfBoundsException     If index is out of bounds.
-     * @since 5.0.0
      */
     public function offsetGet($offset) {
         $this->boundsCheck($offset, $this->count(), 0);
@@ -248,9 +244,8 @@ class IndexedList implements IndexedListInterface {
      * @return void
      * @throws InvalidArgumentException Deprecated exception.
      * @throws OutOfBoundsException     If index is out of bounds.
-     * @since 5.0.0
      */
-    public function offsetSet($offset, $value) {
+    public function offsetSet($offset, $value): void {
         $this->boundsCheck($offset, $this->count() + 1, 0);
         if (!isset($this->innerArray[$offset])) {
             $this->count++;
@@ -267,9 +262,8 @@ class IndexedList implements IndexedListInterface {
      * @return void
      * @throws InvalidArgumentException Deprecated exception.
      * @throws OutOfBoundsException     If index is out of range.
-     * @since 5.0.0
      */
-    public function offsetUnset($offset) {
+    public function offsetUnset($offset): void {
         $this->removeAt($offset, true);
     }
 
@@ -279,17 +273,10 @@ class IndexedList implements IndexedListInterface {
      * @param integer $offset Offset to check.
      * @param integer $high   High limit.
      * @param integer $low    Low limit.
-     * @throws InvalidArgumentException Deprecated exception.
      * @throws OutOfBoundsException     In case offset is out of range.
      * @return void
      */
-    private function boundsCheck(int $offset, int $high, int $low = 0) {
-        if (!is_integer($offset)) {
-            throw new InvalidArgumentException(
-                'Invalid indexer access. Argument was not of integer type.'
-            );
-        }
-
+    private function boundsCheck(int $offset, int $high, int $low = 0): void {
         if ($offset > $high || $offset < $low) {
             throw new OutOfBoundsException('Array out of bounds.');
         }

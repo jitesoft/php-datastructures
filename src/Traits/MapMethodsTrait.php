@@ -24,7 +24,7 @@ trait MapMethodsTrait {
      * @return void
      * @throws InvalidArgumentException In case argument is not a map.
      */
-    public function forEach(callable $action) {
+    public function forEach(callable $action): void {
         Maps::forEach($this, $action);
     }
 

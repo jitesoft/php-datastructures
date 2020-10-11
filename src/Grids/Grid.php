@@ -17,16 +17,11 @@ use Jitesoft\Utilities\Math\Vector2D;
  */
 class Grid implements GridInterface {
 
-    /** @var integer */
-    protected $width;
-    /** @var integer */
-    protected $height;
-    /** @var integer */
-    protected $cellSize;
-    /** @var integer */
-    protected $cellCountX;
-    /** @var integer */
-    protected $cellCountY;
+    protected int $width;
+    protected int $height;
+    protected int $cellSize;
+    protected int $cellCountX;
+    protected int $cellCountY;
     /** @var ListInterface|GridCell[] */
     protected $cells;
 

@@ -49,7 +49,7 @@ final class Maps {
      * @see Maps::callback()
      * @return void
      */
-    public static function forEach($map, callable $action) {
+    public static function forEach($map, callable $action): void {
         if (!is_array($map) && !($map instanceof MapInterface)) {
             throw new InvalidArgumentException(
                 'Passed argument was not a map.'

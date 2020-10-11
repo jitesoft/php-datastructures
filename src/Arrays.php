@@ -97,7 +97,7 @@ final class Arrays {
      * @return array
      * @see Arrays::callback()
      */
-    public static function filter($array, callable $closure) {
+    public static function filter($array, callable $closure): array {
         $result = [];
         $count  = count($array);
         for ($i = 0;$i < $count;$i++) {
@@ -176,12 +176,12 @@ final class Arrays {
 
     /**
      * Sorts a given array using the provided comparator callable and sorting type.
-     * The sort type needs to be a class name extending the
+     * The sort type needs to be a class name extending the AbstractSort class.
      *
      * @param ArrayAccess|array|mixed $array    Array to sort.
      * @param callable|null           $compare  Comparator function.
      * @param string                  $sortType Type of sort algorithm.
-     * @return array
+     * @return mixed
      * @throws InvalidArgumentException On invalid sort type.
      */
     public static function sort($array,
@@ -200,9 +200,7 @@ final class Arrays {
         }
 
         if ($compare === null) {
-            $compare = function($a, $b) {
-                return $a - $b;
-            };
+            $compare = static fn($a, $b) => $a - $b;
         }
 
         return $sortType::sort($array, $compare);
