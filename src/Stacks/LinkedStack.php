@@ -17,9 +17,9 @@ use Jitesoft\Utilities\DataStructures\Internal\Node;
  * A Stack (LiFo) structure implemented as a linked list.
  */
 class LinkedStack implements StackInterface {
-    private ?Node $top = null;
+    private ?Node $top    = null;
     private ?Node $bottom = null;
-    private int $count = 0;
+    private int $count    = 0;
 
     /**
      * Get number of objects in the collection.

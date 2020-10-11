@@ -22,7 +22,7 @@ class IndexedList implements IndexedListInterface {
     use ArrayMethodsTrait;
 
     private array $innerArray = [];
-    private int   $count;
+    private int $count;
 
     /**
      * ListInterface constructor.

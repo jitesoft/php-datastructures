@@ -16,7 +16,7 @@ use Jitesoft\Exceptions\Logic\OutOfBoundsException;
  */
 class Node {
     /** @var mixed|null */
-    private $object = null;
+    private $object      = null;
     private array $links = [];
 
     /**
