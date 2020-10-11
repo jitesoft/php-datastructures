@@ -1,16 +1,14 @@
+4.1.0
+-------
+
+* Updated package to require and make use of php 7.4.2+.
+* Removal of deprecated functionality.
+
+
 4.0.0
 -------
 
-**breaking changes**
-
-* Updated codebase to make use of php 7.4.2+ features. Package is now 7.4.2+ dependent.
-* Updated exceptions that are thrown when trying to access a key in a map structure.
-  This now throws an InvalidKeyException (still inheriting from JitesoftException)
-  instead of a InvalidArgumentException.
-* Updated exception thrown when trying to access a invalid link in a node. This
-  now throws an OutOfBoundsException instead of an InvalidArgumentException.
-
-**features**
+This would be a minor release if it was not for some minor breaking changes.
 
 * Added `tryGet` method to MAP interface / implementations.
   The tryGet method accepts a key and an optional default return value
@@ -18,3 +16,10 @@
 * Made some minor cleanup to the codebase and tests to make sure that the
   required standards are followed.
 
+**breaking changes**
+
+* Updated exceptions that are thrown when trying to access a key in a map structure.
+  This now throws an InvalidKeyException (still inheriting from JitesoftException)
+  instead of a InvalidArgumentException.
+* Updated exception thrown when trying to access a invalid link in a node. This
+  now throws an OutOfBoundsException instead of an InvalidArgumentException.
