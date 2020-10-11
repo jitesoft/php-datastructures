@@ -1,24 +1,6 @@
+variables:
+  PHP_COMMON_SNIFF_FILE: ruleset.xml
+
 include:
-  - https://gitlab.com/jitesoft/gitlab-ci-lib/raw/master/dependency_scanning.yml
-
-stages:
-  - test
-
-test:7.2:
-  stage: test
-  image: registry.gitlab.com/jitesoft/dockerfiles/phpunit:7.2
-  before_script:
-    - apk add --no-cache git
-  script:
-    - composer install --no-interaction --prefer-dist
-    - composer test
-
-test:7.3:
-  stage: test
-  image: registry.gitlab.com/jitesoft/dockerfiles/phpunit:7.3
-  script:
-    - composer install --no-interaction --prefer-dist
-    - composer test
-
-scan:
-  extends: .scan:composer
+  - file: /Auto/php.yml
+    project: jitesoft/gitlab-ci-lib
