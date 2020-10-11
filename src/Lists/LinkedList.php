@@ -22,7 +22,7 @@ class LinkedList implements IndexedListInterface {
 
     private ?Node $rootNode = null;
     private ?Node $lastNode = null;
-    private int   $count    = 0;
+    private int $count      = 0;
 
     /**
      * Whether a offset exists
@@ -116,17 +116,17 @@ class LinkedList implements IndexedListInterface {
         }
 
         $remove = $this->rootNode;
-        $prev = null;
+        $prev   = null;
         while ($remove !== null) {
             if ($remove->getItem() === $object) {
                 break;
             }
-            $prev = $remove;
+            $prev   = $remove;
             $remove = $remove->getLink(0);
         }
 
         if ($prev === null) { // Is first.
-            $old = $this->rootNode;
+            $old            = $this->rootNode;
             $this->rootNode = $remove->getLink(0);
             $old->setLink(0, null);
         } else {
@@ -159,9 +159,9 @@ class LinkedList implements IndexedListInterface {
             $node = $node->getLink(0);
         }
 
-        $child = $node;
+        $child  = $node;
         $parent = $node->getLink(0);
-        $new = new Node($object, 1);
+        $new    = new Node($object, 1);
 
         $child->setLink(0, $new);
         $new->setLink(0, $parent);
@@ -182,17 +182,17 @@ class LinkedList implements IndexedListInterface {
         $this->boundsCheck($index, $this->count, 0);
 
         $toRemove = $this->rootNode;
-        $node = null;
+        $node     = null;
 
         if ($index !== 0) {
-            $node = $this->getNode($index - 1);
+            $node     = $this->getNode($index - 1);
             $toRemove = $node->getLink(0);
         }
 
         $replace = $toRemove->getLink(0);
 
         if (!$cyclic && $replace !== $this->lastNode) {
-            $replace = $this->lastNode;
+            $replace        = $this->lastNode;
             $this->lastNode = $this->getNode($this->count - 2);
             $this->lastNode->setLink(0, null);
             $replace->setLink(0, $toRemove->getLink(0));
@@ -309,7 +309,7 @@ class LinkedList implements IndexedListInterface {
     public function clear(): bool {
         $this->rootNode = null;
         $this->lastNode = null;
-        $this->count = 0;
+        $this->count    = 0;
         return true;
     }
 
@@ -361,11 +361,11 @@ class LinkedList implements IndexedListInterface {
      * @throws OutOfBoundsException Deprecated exception.
      */
     public function toArray(): array {
-        $out = [];
+        $out  = [];
         $node = $this->rootNode;
         while ($node !== null) {
             $out[] = $node->getItem();
-            $node = $node->getLink(0);
+            $node  = $node->getLink(0);
         }
         return $out;
     }
