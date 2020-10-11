@@ -24,6 +24,6 @@ abstract class AbstractSort {
      * @param callable          $compare Comparator function.
      * @return array|ArrayAccess
      */
-    public abstract static function sort($array, callable $compare);
+    abstract public static function sort($array, callable $compare);
 
 }

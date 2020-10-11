@@ -6,7 +6,6 @@
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 namespace Jitesoft\Utilities\DataStructures\Internal;
 
-use Jitesoft\Exceptions\Logic\InvalidArgumentException;
 use Jitesoft\Exceptions\Logic\OutOfBoundsException;
 
 /**
@@ -16,11 +15,9 @@ use Jitesoft\Exceptions\Logic\OutOfBoundsException;
  * Node structure used by tree and linked list -structures.
  */
 class Node {
-
     /** @var mixed|null */
     private $object = null;
-    /** @var array */
-    private $links = [];
+    private array $links = [];
 
     /**
      * Node constructor.
@@ -40,7 +37,7 @@ class Node {
      * @throws OutOfBoundsException Thrown if trying to access a link which is not supported.
      * @return void
      */
-    private function boundsCheck(int $index) {
+    private function boundsCheck(int $index): void {
         $linkCount = count($this->links);
         if ($index < 0 || $index > $linkCount - 1) {
             $message = sprintf(
@@ -73,7 +70,7 @@ class Node {
      * @param mixed|null $object Object to set.
      * @return void
      */
-    public function setItem($object) {
+    public function setItem($object): void {
         $this->object = $object;
     }
 
@@ -83,7 +80,7 @@ class Node {
      * @throws OutOfBoundsException Thrown if trying to access a link which is not supported.
      * @return void
      */
-    public function setLink(int $link, ?Node $node = null) {
+    public function setLink(int $link, ?Node $node = null): void {
         $this->boundsCheck($link);
         $this->links[$link] = $node;
     }

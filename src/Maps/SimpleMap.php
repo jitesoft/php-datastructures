@@ -23,10 +23,8 @@ use Traversable;
 class SimpleMap implements MapInterface {
     use MapMethodsTrait;
 
-    /** @var array */
-    private $innerMap;
-    /** @var integer */
-    private $count;
+    private array $innerMap;
+    private int $count;
 
     /**
      * MapInterface constructor.
@@ -89,7 +87,7 @@ class SimpleMap implements MapInterface {
     /**
      * @param mixed $offset Offset to fetch.
      * @return mixed
-     * @throws InvalidArgumentException On out of bounds error. Deprecated and will change to OutOfBoundsException in next major release.
+     * @throws InvalidKeyException Thrown if key does not exist.
      */
     public function offsetGet($offset) {
         return $this->get($offset);
@@ -100,7 +98,7 @@ class SimpleMap implements MapInterface {
      * @param mixed $value  Value to set.
      * @return void
      */
-    public function offsetSet($offset, $value) {
+    public function offsetSet($offset, $value): void {
         $this->set($offset, $value);
     }
 
@@ -108,7 +106,7 @@ class SimpleMap implements MapInterface {
      * @param mixed $offset Offset to unset.
      * @return void
      */
-    public function offsetUnset($offset) {
+    public function offsetUnset($offset): void {
         $this->unset($offset);
     }
 

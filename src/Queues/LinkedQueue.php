@@ -1,4 +1,4 @@
-<?php
+<?php /** @noinspection PhpDocMissingThrowsInspection */
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
   LinkedQueue.php - Part of the php-datastructures project.
 
@@ -7,6 +7,7 @@
 namespace Jitesoft\Utilities\DataStructures\Queues;
 
 use Jitesoft\Exceptions\Logic\InvalidArgumentException;
+use Jitesoft\Exceptions\Logic\OutOfBoundsException;
 use Jitesoft\Utilities\DataStructures\Internal\Node;
 
 /**
@@ -15,12 +16,9 @@ use Jitesoft\Utilities\DataStructures\Internal\Node;
  * A Queue (FiFo) structure built as a linked list.
  */
 class LinkedQueue implements QueueInterface {
-    /** @var integer */
-    private $count;
-    /** @var null|Node */
-    private $first;
-    /** @var null|Node */
-    private $last;
+    private int $count;
+    private ?Node $first;
+    private ?Node $last;
 
     /**
      * LinkedQueue constructor.
@@ -77,7 +75,6 @@ class LinkedQueue implements QueueInterface {
      *
      * @param array|mixed ...$object One or multiple objects to enqueue.
      * @return boolean
-     * @throws InvalidArgumentException Should not happen. Exception is deprecated and will not be thrown in future versions.
      */
     public function enqueue(...$object): bool {
         if ($this->first === null) {
@@ -102,7 +99,6 @@ class LinkedQueue implements QueueInterface {
      * Returns the first object and removes it from the queue.
      *
      * @return mixed
-     * @throws InvalidArgumentException Should not happen. Exception is deprecated and will not be thrown in future versions.
      */
     public function dequeue() {
         if ($this->count <= 0) {

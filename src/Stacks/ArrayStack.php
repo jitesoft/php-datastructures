@@ -14,9 +14,9 @@ namespace Jitesoft\Utilities\DataStructures\Stacks;
 class ArrayStack implements StackInterface {
 
     /** @var array */
-    private $inner;
+    private array $inner;
     /** @var integer */
-    private $count;
+    private int $count;
 
     /**
      * ArrayStack constructor.

@@ -14,11 +14,8 @@ use Jitesoft\Utilities\DataStructures\Arrays;
  * A Queue (FiFo) structure using an array as base.
  */
 class ArrayQueue implements QueueInterface {
-
-    /** @var integer */
-    private $count;
-    /** @var array */
-    private $inner;
+    private int $count;
+    private array $inner;
 
     /**
      * ArrayQueue constructor.

@@ -20,18 +20,12 @@ use Jitesoft\Utilities\Math\VectorMath;
  */
 class GridCell implements GridCellInterface {
 
-    /** @var IndexedListInterface */
-    private $objects;
-    /** @var integer */
-    protected $indexX;
-    /** @var integer */
-    protected $indexY;
-    /** @var integer */
-    protected $cellSize;
-    /** @var Vector2D */
-    protected $center;
-    /** @var float */
-    protected $radius;
+    private IndexedListInterface $objects;
+    protected int $indexX;
+    protected int $indexY;
+    protected int $cellSize;
+    protected Vector2D $center;
+    protected float $radius;
 
     /**
      * GridCellInterface constructor.

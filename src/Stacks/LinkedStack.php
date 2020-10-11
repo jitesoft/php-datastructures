@@ -1,4 +1,5 @@
 <?php
+/** @noinspection PhpDocMissingThrowsInspection */
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
   LinkedStack.php - Part of the php-datastructures project.
 
@@ -16,13 +17,9 @@ use Jitesoft\Utilities\DataStructures\Internal\Node;
  * A Stack (LiFo) structure implemented as a linked list.
  */
 class LinkedStack implements StackInterface {
-
-    /** @var Node|null */
-    private $top = null;
-    /** @var Node|null */
-    private $bottom = null;
-    /** @var integer */
-    private $count = 0;
+    private ?Node $top = null;
+    private ?Node $bottom = null;
+    private int $count = 0;
 
     /**
      * Get number of objects in the collection.
@@ -92,7 +89,6 @@ class LinkedStack implements StackInterface {
      * Removes and returns the object at the top of the stack.
      *
      * @return mixed
-     * @throws InvalidArgumentException On error. This will change to OutOfBoundsException in next major release.
      */
     public function pop() {
         if ($this->count === 0) {
